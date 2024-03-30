@@ -127,3 +127,68 @@ body{
     text-transform: capitalize;
     padding-left:4px;
 }
+
+.main-footer-logo img{
+    width: 67px;
+    height: 93px;
+    flex-shrink: 0;
+}
+
+.main-footer-logo{
+    height:200px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.main-footer-medias{
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.main-footer-medias a{
+    margin:12px;
+}
+
+.main-footer-contact{
+    /* background:red; */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:60px;
+}
+
+.main-footer-contact svg{
+    margin-right:10px;
+}
+
+.main-footer-hr{
+    stroke-width: 1px;
+    stroke: rgba(255, 255, 255, 0.19);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.main-footer-copyright{
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
