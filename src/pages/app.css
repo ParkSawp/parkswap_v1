@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lato&family=Montserrat&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text&display=swap');
+
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+}
+
+.site-wrapper{
+    min-height:100vh;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    flex-direction:column;
+    background: linear-gradient(114deg, rgba(156, 230, 0, 0.02) 7.02%, rgba(133, 188, 239, 0.10) 31.27%, rgba(184, 230, 230, 0.06) 54.67%, rgba(141, 229, 176, 0.10) 84.42%);
+    backdrop-filter: blur(7px);
+}
+
+
+.app-navigation{
+    /* background:red; */
+    height:210px;
+    display:grid;
+    grid-template-rows:80px 1fr 60px;
+}
+
+.app-navigation-logo{
+    background:transparent;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.app-navigation-logo img{
+    width: 44.18px;
+    height: 60.836px;
+    flex-shrink: 0;
+}
+
+.app-navigation-nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-left:10px;
+}
+
+.app-navigation-nav ul{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+}
+
+.app-navigation-nav ul a{
+    display:flex;
+    justify-content:center;
+    /* background:yellow; */
+    align-items:center;
+    text-decoration:none;
+    color: #000;
+}
+
+.app-navigation-nav ul li{
+    width: 102px;
+    height: 21px;
+    flex-shrink: 0;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    list-style:none;
+}
+/* 
+.app-navigation-nav ul a:hover{
+    background:red;
+} */
+
+.app-navigation-buttons{
+   display:flex;
+   align-items:center;
+   justify-content:center;
+}
+
+.connect-wallet-btn{
+    color: #FFF;
+    background:#088A24;
+    border-radius:6px;
+    border:2px solid #397546;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    width: 135.854px;
+    height: 36px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor:pointer;
+}
+
+.starknet-btn{
+    cursor:pointer;
+    color: #088A24;
+    background:#D9F9E0;
+    border-radius:6px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    width: 135.854px;
+    height: 36px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right:15px;
+}
+
+
+.nav-market-submenu-box{
+    position:absolute;
+    left:50%;
+    display:none;
+}
+
+
+
+.nav-market-btn:hover .nav-market-submenu-box{
+    transform: translate(-50%,0px);
+    display:block;
+
+}
+
+.nav-market-submenu-box{
+    padding:10px;
+}
+
+.nav-market-submenu{
+    width: 255.159px;
+    height: 164px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
+}
+
+.nav-market-submenu ul{
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:1fr 1fr 1fr;
+}
+
+.nav-market-submenu ul li{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.nav-market-submenu ul li a{
+    display:grid;
+    grid-template-rows:20px 20px;
+    grid-template-columns:45px 1fr;
+    width:100%;
+    color: #000;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.nav-market-submenu ul li a:hover{
+    color: #3BA351;
+}
+
+.nav-market-submenu ul li a .icon{
+    grid-row:span 2;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    
+}
+
+.nav-market-submenu ul li a .icon svg{
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.nav-market-submenu ul li a .title{
+    grid-row-start:1;
+    grid-column-start:2;
+    height:100%;
+    text-align:left;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.nav-market-submenu ul li a p{
+    grid-column-start:2;
+    grid-row-start:2;
+    height:100%;
+    text-align:left;
+}
+
+/* .nav-market-submenu ul:first-child{
+    background:red;
+} */
