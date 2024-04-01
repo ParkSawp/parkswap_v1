@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lato&family=Montserrat&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+.carré-blc{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white;
+}
+.logo-nav{
+    width: 44.18px;
+    height: 60.84px;
+    left: 150px;
+    top: 4.97px;
+    position: absolute;
+}
+.lesBarres{
+    width: 32px;
+    height: 32px;
+    left: 20px;
+    top: 22.88px;
+    position: absolute;
+}
+.StartDapp{
+    width: 120px;
+    height: 36.54px;
+    left: 247px;
+    top: 15px;
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    border: 2px #088A24 solid;
+    text-align: center;
+}
+.textDapp{
+    color: #088A24;
+    font-size: 14px;
+    font-family: Poppins;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+.degradé{
+    width: 400px;
+    height: 680.84px;
+    left: -10px;
+    top: 72.78px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(0, 43.14, 9.44, 0.90) 0%, rgba(7.77, 158.10, 40.66, 0.90) 100%);
+}
+.imgFond{
+    width: 100%;
+    height: 1000px;
+    background-size: cover; 
+    overflow: hidden;
+    left: 0;
+    top: 100px;
+}
+.imgLogo{
+    position:relative;
+    bottom: 935px;
+    left: 8%; 
+}
+.StartTrad{
+    width: 90%;
+    height: 100%;
+    position: relative;
+    bottom: 1350px;
+    left: 8%;
+}
+.btnVert{
+    width: 246.26px;
+    height: 53.90px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #33C653;
+    border-radius: 5px;
+    border: 1px white solid;
+}
+.TextTrad{
+    width: 221.63px;
+    height: 42.75px;
+    left: 11.78px;
+    top: 5.58px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
