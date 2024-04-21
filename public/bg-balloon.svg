@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 430 777" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="filter0_d_34_754" x="-17" y="0.776962" width="494" height="775.807" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.850833 0 0 0 0 0.850833 0 0 0 0 0.850833 0 0 0 1 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_34_754"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_34_754" result="shape"/>
+    </filter>
+    <linearGradient id="paint0_linear_34_754" x1="215" y1="138.675" x2="215" y2="684.152" gradientUnits="userSpaceOnUse">
+      <stop offset="1" stop-color="#089E29"/>
+    </linearGradient>
+    <filter id="filter0_i_35_766" x="28.3467" y="15.9391" width="163.416" height="202.615" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="17" dy="-20"/>
+      <feGaussianBlur stdDeviation="19"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.296507 0 0 0 0 0.900781 0 0 0 0 0.42703 0 0 0 0.31 0"/>
+      <feBlend mode="normal" in2="shape" result="effect1_innerShadow_35_766"/>
+    </filter>
+    <linearGradient id="paint0_linear_35_766" x1="-340.595" y1="-355.578" x2="-45.3791" y2="-490.722" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E431"/>
+      <stop offset="1" stop-color="#001B06"/>
+    </linearGradient>
+    <filter id="filter1_i_35_766" x="156.854" y="197.433" width="24.7655" height="27.7654" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="17" dy="-20"/>
+      <feGaussianBlur stdDeviation="19"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.296507 0 0 0 0 0.900781 0 0 0 0 0.42703 0 0 0 0.31 0"/>
+      <feBlend mode="normal" in2="shape" result="effect1_innerShadow_35_766"/>
+    </filter>
+    <linearGradient id="paint1_linear_35_766" x1="167.796" y1="196.663" x2="151.934" y2="198.418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E431"/>
+      <stop offset="1" stop-color="#001B06"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#filter0_d_34_754)">
+    <path d="M0 22.777H430L430 691.306H322.5H246.998H212.54C182.594 691.306 153.44 700.93 129.378 718.758C75.8579 758.414 5.92282e-05 718.835 5.92282e-05 652.224L0 22.777Z" fill="url(#paint0_linear_34_754)" fill-opacity="0.9"/>
+    <g filter="url(#filter0_i_35_766)" transform="matrix(1, 0, 0, 1, -52.612653, 549.828927)">
+      <path d="M146.572 60.1543C129.263 36.9089 97.672 29.3633 71.6197 42.0603C26.8054 63.9013 14.1283 122.258 46.2649 160.371L47.6832 162.053C70.2011 188.759 101.143 206.998 135.413 213.768L159.641 218.554L168.495 187.868C171.073 178.934 172.831 169.784 173.748 160.531L174.093 157.049C176.071 137.097 173.653 116.953 167.011 98.0343C162.419 84.9531 155.871 72.643 147.591 61.523L146.572 60.1543Z" fill="url(#paint0_linear_35_766)"/>
+    </g>
+    <g filter="url(#filter1_i_35_766)" transform="matrix(1, 0, 0, 1, -52.612653, 549.828927)">
+      <circle cx="160.737" cy="221.316" r="3.88248" transform="rotate(-5.27473 160.737 221.316)" fill="url(#paint1_linear_35_766)"/>
+    </g>
+  </g>
+</svg>
