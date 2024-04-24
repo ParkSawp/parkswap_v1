@@ -42,8 +42,7 @@ html,body{
 
 
 .main-content{
-    background:#FFF;
-    margin-top:100px;
+    background:#ffffff;
     /* margin-top:790px; */
 }
 
@@ -267,4 +266,12 @@ html,body{
 
 .navigation-btn{
     cursor:pointer;
+}
+
+.main-header-container-background{
+    position:absolute;
+    background-image:url("../../public/pexels-rodion-kutsaiev-9436715\ 1.svg");
+    /* z-index:-1; */
+    height:100%;
+    width:100%;
 }
