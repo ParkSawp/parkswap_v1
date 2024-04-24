@@ -9,7 +9,6 @@
     width:100%;
     height:100%;
     background: url("../../public/parkback.svg"), url("../../public/bg-next.svg") ;
-    /* background: url("../../public/svgviewer-output.svg") left 0px, url("../../public/bg-next.svg") left 430px; */
     background-origin:border-box,border-box;
     background-position:0px -25px;
     /* background: url("../../public/bg-balloon.svg"), url("../../public/bg-next.svg");
