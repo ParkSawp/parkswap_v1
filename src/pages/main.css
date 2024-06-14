@@ -47,6 +47,8 @@ html,body{
 .wrapper-background{
     background:url("../../public/b453707b32b5870e5f1157524d479362.png");
     background-size:cover;
+    /* background-repeat:no-repeat; */
+    /* background-repeat:repeat-x,no-repeat; */
     background-position: 1360px 700px;
     background-attachment: fixed;
     height:100%;
