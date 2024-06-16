@@ -37,9 +37,29 @@ html,body{
     z-index:-1;
     position: relative;
     /* clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 80%, 50% 100%, 20% 80%, 0% 80%); */
+    background: rgb(0,43,9);
+    background: linear-gradient(180deg, rgba(0,43,9,1) 0%, rgba(8,158,41,1) 100%); 
 }
 
+.main-header-container{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+    background: url("../../public/parkback.svg"), url("../../public/bg-nextt.svg") ;
+    /* background: url("../../public/svgviewer-output.svg") left 0px, url("../../public/bg-next.svg") left 430px; */
+    background-origin:border-box,border-box;
+    background-position:0px -25px,0px -23px;
+    /* background: url("../../public/bg-balloon.svg"), url("../../public/bg-next.svg");
+    background-origin:border-box,border-box;
+    background-position:0px -25px, 0px -4px; */
+    background-repeat:no-repeat, repeat-x;
 
+}
+
+.main-header-container .container-text{
+    background:red;
+}
 
 .main-content{
     background:#ffffff;
@@ -270,8 +290,10 @@ html,body{
 
 .main-header-container-background{
     position:absolute;
-    background-image:url("../../public/pexels-rodion-kutsaiev-9436715\ 1.svg");
     /* z-index:-1; */
     height:100%;
     width:100%;
+    background:url("../../public/b453707b32b5870e5f1157524d479362.png");
+    background-position:fixed;
+    background-size:cover;
 }
