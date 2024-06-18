@@ -22,9 +22,9 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.52288 8.21637C6.84833 7.89093 7.37596 7.89093 7.7014 8.21637L10.4455 10.9605L13.1896 8.21637C13.515 7.89093 14.0426 7.89093 14.3681 8.21637C14.6935 8.54181 14.6935 9.06946 14.3681 9.39487L11.624 12.139C10.9731 12.7898 9.91781 12.7898 9.26698 12.139L6.52288 9.39487C6.19745 9.06946 6.19745 8.54181 6.52288 8.21637Z" fill="black"/>
                       </svg>
                     </a>
-                    <div class="nav-market-submenu-box">
-                      <div class="nav-market-submenu">
-                        <ul class="market-submenu-list">
+                    <div class="nav-submenu-box">
+                      <div class="nav-menu-submenu">
+                        <ul class="menu-submenu-list">
                           <li>
                             <a href="">
                               <span class="title">Simple Mode</span>
@@ -92,9 +92,72 @@
                       </div>
                     </div>
                   </li>
-                  <li><a href="">Plus<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <li class="nav-plus-btn"><a href="">Plus<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.52288 8.21637C6.84833 7.89093 7.37596 7.89093 7.7014 8.21637L10.4455 10.9605L13.1896 8.21637C13.515 7.89093 14.0426 7.89093 14.3681 8.21637C14.6935 8.54181 14.6935 9.06946 14.3681 9.39487L11.624 12.139C10.9731 12.7898 9.91781 12.7898 9.26698 12.139L6.52288 9.39487C6.19745 9.06946 6.19745 8.54181 6.52288 8.21637Z" fill="black"/>
-                  </svg></a></li>
+                  </svg></a>
+                  <div class="nav-submenu-box">
+                    <div class="nav-menu-submenu">
+                      <ul class="menu-submenu-list">
+                        <li>
+                          <a href="">
+                            <span class="title">Documentation</span>
+                            <span class="icon">
+                              <svg><image href="../../public/doc_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <span class="title">Blog</span>
+                            <span class="icon">
+                              <svg><image href="../../public/blog_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <span class="title">Help</span>
+                            <span class="icon">
+                              <svg><image href="../../public/help_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <span class="title">Address Screening</span>
+                            <span class="icon">
+                              <svg><image href="../../public/screening_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <span class="title">About</span>
+                            <span class="icon">
+                              <svg><image href="../../public/about_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <span class="title">Suggest a Feature</span>
+                            <span class="icon">
+                              <svg><image href="../../public/suggest_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <span class="title">Report a Bug</span>
+                            <span class="icon">
+                              <svg><image href="../../public/bug_icon.svg"/></svg>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  </li>
                 </ul>
               </div>
               <div class="app-navigation-buttons">
@@ -123,15 +186,13 @@
               <div class="app-container-firstBox">
                 <p class="firstBox-title">You Pay</p>
                 <span class="firstBox-token">
-                  <select name="token">
-                    <option value="">Select a Token</option>
-                    <option value="ETH">ETH</option>
-                    <option value="BTC">BTC</option>
-                    <option value="STRK">STRK</option>
-                    <option value="DOGE">DOGE</option>
-                    <option value="SOL">SOL</option>
-                    <option value="cETH">cETH</option>
-                  </select>                  
+                  <button class="box-button firstBox-btn">
+                    <p><span><svg><image href="../../public/eth_icon.svg"/></svg></span>ETH</p>
+                    <i><svg>
+                      <image href="../../public/arrowgreynew.svg"/>
+                    </svg></i>
+                  </button>  
+                  <span class="firstBox-token-name">Ether</span>              
                 </span>
                 <span class="secondBox-amount">
                   <div class="amount-container">
@@ -143,15 +204,12 @@
               <div class="app-container-secondBox">
                 <p class="secondBox-title">You receive</p>
                 <span class="secondBox-token">
-                  <select name="token">
-                    <option value="">Select a Token</option>
-                    <option data-content="<svg xmlns='http://www.w3.org/2000/svg'><image href='../../public/wallet.svg' height='100%' width='100%' /></svg>" value="ETH">ETH</option>
-                    <option value="BTC">BTC</option>
-                    <option value="STRK">STRK</option>
-                    <option value="DOGE">DOGE</option>
-                    <option value="SOL">SOL</option>
-                    <option value="cETH">cETH</option>
-                  </select>                  
+                  <button class="box-button">
+                    <p>Select a Token</p>
+                    <i><svg>
+                      <image href="../../public/arrow.svg"/>
+                    </svg></i>
+                  </button>
                 </span>
                 <span class="secondBox-amount">
                   <div class="amount-container">
