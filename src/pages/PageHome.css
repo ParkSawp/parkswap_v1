@@ -70,6 +70,15 @@ main {
     flex-wrap: wrap;
 }
 
+.connect {
+    position:relative;
+    left: 75%;
+    bottom: 45%; 
+    word-spacing: 10px;
+
+
+}
+
 .card {
     background-color: white;
     border: 1px solid #ccc;
