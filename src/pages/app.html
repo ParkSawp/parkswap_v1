@@ -108,11 +108,21 @@
             </div>
             <div class="app-container">
               <div class="app-container-menu">
-                &nbsp;
+                <ul class="container-menu-firstMenu">
+                    <li><b>Swap</b></li>
+                    <li>Limit</li>
+                    <!-- <li></li> -->
+                </ul>
+                <ul class="container-menu-secondMenu">
+                    <li><svg><image href="../../public/graph.svg"/></svg></li>
+                    <li><svg><image href="../../public/reset.svg"/></svg></li>
+                    <li><svg><image href="../../public/plus.svg"/></svg></li>
+                    <li><svg><image href="../../public/settings.svg"/></svg></li>
+                </ul>
               </div>
               <div class="app-container-firstBox">
-                <p class="secondBox-title">You Pay</p>
-                <span class="secondBox-token">
+                <p class="firstBox-title">You Pay</p>
+                <span class="firstBox-token">
                   <select name="token">
                     <option value="">Select a Token</option>
                     <option value="ETH">ETH</option>
@@ -123,14 +133,19 @@
                     <option value="cETH">cETH</option>
                   </select>                  
                 </span>
-                <span class="secondBox-amount">2.9 ETH</span>
+                <span class="secondBox-amount">
+                  <div class="amount-container">
+                    <input placeholder="0.00" type="text" dir="rtl">
+                    <!-- <span class="eqAmount">~$232.00</span> -->
+                  </div>
+                </span>
               </div>
               <div class="app-container-secondBox">
                 <p class="secondBox-title">You receive</p>
                 <span class="secondBox-token">
                   <select name="token">
                     <option value="">Select a Token</option>
-                    <option value="ETH">ETH</option>
+                    <option data-content="<svg xmlns='http://www.w3.org/2000/svg'><image href='../../public/wallet.svg' height='100%' width='100%' /></svg>" value="ETH">ETH</option>
                     <option value="BTC">BTC</option>
                     <option value="STRK">STRK</option>
                     <option value="DOGE">DOGE</option>
@@ -138,7 +153,12 @@
                     <option value="cETH">cETH</option>
                   </select>                  
                 </span>
-                <span class="secondBox-amount">2.9 ETH</span>
+                <span class="secondBox-amount">
+                  <div class="amount-container">
+                    <input placeholder="0.00" type="text" dir="rtl">
+                    <span class="eqAmount">~$0.00</span>
+                  </div>
+                </span>
               </div>
               <div class="app-container-button">
                 <svg>
