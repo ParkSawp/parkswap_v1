@@ -239,6 +239,15 @@ body{
     align-items:center;
     flex-direction:column;
     padding-top:40px;
+    padding-bottom:100px;
+}
+
+.app-container-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:350px;
 }
 
 .app-container-firstBox{
@@ -275,9 +284,9 @@ body{
     /* justify-content:center; */
 }
 
-.app-container div{
+.app-container-wrapper div{
     margin:8px;
-    width:350px;
+    width:100%;
 }
 
 .app-container-button svg{
@@ -672,4 +681,36 @@ body{
     justify-content:center;
     align-items:center;
     cursor:pointer;
+}
+
+
+/* ===== Responsivité ===== */
+@media only screen and (min-width : 1224px){
+    .app-container-wrapper{
+        width:560px;
+        padding:20px;
+        border-radius:10px;
+        box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
+    }
+
+    .app-navigation{
+        grid-template-rows:1fr;
+        grid-template-columns:150px 1fr 300px 80px;
+        /* background:red; */
+        height:80px;
+    }
+
+    .app-navigation ul{
+        justify-content:flex-start;
+    }
+
+    .app-navigation-btn{
+        position:initial;
+    }
+
+    .nav-submenu-box{
+        margin-left:50px;
+        left:initial;
+    }
+
 }
