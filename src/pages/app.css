@@ -649,3 +649,27 @@ body{
     height:100%;
     width:100%;
 }
+
+.app-footer{
+    border-top:1px solid rgba(0,0,0,0.1);
+    height:50px;
+    margin-top:auto;
+    text-align:center;
+    line-height:50px;
+    font-family:Poppins;
+    font-size:13px;
+    font-weight:300;
+}
+
+.app-navigation-btn{
+    /* background:red; */
+    width:60px;
+    height:60px;
+    position:absolute;
+    right:15px;
+    top:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
