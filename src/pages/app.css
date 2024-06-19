@@ -683,7 +683,29 @@ body{
     cursor:pointer;
 }
 
+.app-container-swapBtn{
+    /* background:red; */
+    height:35px;
+    width:35px;
+    border-radius:100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:absolute;
+    cursor:pointer;
+    margin-top:5px;
+    /* font-style:none; */
+}
 
+.app-container-swapBtn svg{
+    height:100%;
+    width:100%;
+}
+
+.app-container-swapBtn svg image{
+    height:100%;
+    width:100%;
+}
 /* ===== Responsivité ===== */
 @media only screen and (min-width : 1224px){
     .app-container-wrapper{
@@ -713,4 +735,8 @@ body{
         left:initial;
     }
 
+    .app-footer{
+        text-align:left;
+        padding-left:50px;
+    }
 }
