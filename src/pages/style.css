@@ -3,19 +3,6 @@
 
 
 
-
-.main-header-container{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    height:100%;
-    background: url("../../public/parkback.svg"), url("../../public/bg-next.svg") ;
-    background-origin:border-box,border-box;
-    background-position:0px -25px;
-    background-repeat:no-repeat, repeat-x;
-
-}
-
 .container-header{
     /* background:red; */
     height:100%;
@@ -44,6 +31,8 @@
 
 .container-title{
     /* height:160px; */
+    margin-top:10px;
+    margin-bottom:20px;
     /* background:red; */
     grid-column:1/-1;
     display: flex;
@@ -69,13 +58,13 @@
 .container-button{
     height:100%;
     width:100%;
-    padding-right:80px;
+    padding-right:50px;
     grid-row:4/5;
     grid-column:1/-1;
     display:flex;
     justify-content:center;
     align-items:center;
-    /* margin-right:130px; */
+    margin-right:80px;
     /* background:red; */
 }
 
@@ -84,7 +73,7 @@
     width: 221.633px;
     background:#33C653;
     border-radius:6px;
-    border:1.2px solid #FFF;
+    border:1.7px solid #FFF;
     cursor:pointer;
     height: 50px;
     flex-direction: column;
@@ -113,9 +102,9 @@
     margin-right:auto;
 } */
 
-/*
-
 .footer-balloon img{
+    /* position:absolute;
+    z-index:2; */
     height:230px;
     width:230px;
     position:fixed;
@@ -124,7 +113,15 @@
 }
 
 .header-balloon1{
-    position:absolute;
+    width:100%;
+    height:100%;
+    /* background:yellow; */
+    /* transform: rotate(-7.842deg); */
+    grid-column:1/-1;
+    grid-row:span 1;
+    /* background:yellow; */
+    flex-shrink: 0;
+    padding-top:30px;
 }
 
 .header-balloon1 img{
@@ -133,12 +130,16 @@
 }
 
 .header-balloon2{
-    position:absolute;
+    width: 100%;
+    height:100%;
+    /* background:yellow; */
     flex-shrink: 0;
+    /* transform: rotate(-7.842deg); */
     transform:scale(120%);
     grid-row:2/3;
     grid-column:2/-1;
-  
+    /* transform: rotate(-5.275deg); */
+    /* margin-right:20px; */
 }
 
 .header-balloon2 img{
@@ -153,7 +154,7 @@
 }
 
 
-*/
+
 .carré-blc{
     width: 100%;
     height: 100%;
