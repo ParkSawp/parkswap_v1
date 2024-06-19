@@ -46,6 +46,7 @@ html,body{
 
 .wrapper-background{
     background:url("../../public/b453707b32b5870e5f1157524d479362.png");
+    background-color:#1c9436;
     background-size:1800px 650px;
     /* background-repeat:no-repeat; */
     background-repeat:repeat-x,no-repeat;
@@ -66,17 +67,16 @@ html,body{
 .wrapper-background-second{
     width:100%;
     height:100%;
-    background: rgb(0,43,9);
-    background: linear-gradient(180deg, rgba(0,43,9,0.9) 0%, rgba(8,158,41,0.9) 100%); 
+    background: linear-gradient(180deg, rgba(0,43,9,1) 0%, rgba(8,158,41,0.5) 100%);
+    /* background: linear-gradient(180deg, rgba(0,43,9,0.9) 0%, rgba(8,158,41,0.9) 100%);  */
     display:flex;
 }
 
 .main-header-container-wrapper{
     width:100%;
     height:100%;
-    /* background: rgb(0,43,9);
-    background: linear-gradient(180deg, rgba(0,43,9,1) 0%, rgba(8,158,41,1) 100%);  */
-    background:#1c9436;
+    /* background: rgb(0,43,9);  */
+    /* background:#1c9436; */
 }
 
 
