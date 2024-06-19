@@ -46,10 +46,11 @@ html,body{
 
 .wrapper-background{
     background:url("../../public/b453707b32b5870e5f1157524d479362.png");
-    background-size:cover;
+    background-size:1800px 650px;
     /* background-repeat:no-repeat; */
-    /* background-repeat:repeat-x,no-repeat; */
-    background-position: 1360px 700px;
+    background-repeat:repeat-x,no-repeat;
+    /* background-position: bottom; */
+    background-position:bottom;
     background-attachment: fixed;
     height:100%;
     width:100%;
