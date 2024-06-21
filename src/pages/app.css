@@ -248,6 +248,8 @@ body{
     align-items: center;
     flex-direction: column;
     width:350px;
+    padding:20px;
+    box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
 }
 
 .app-container-firstBox{
@@ -739,4 +741,5 @@ body{
         text-align:left;
         padding-left:50px;
     }
+
 }
