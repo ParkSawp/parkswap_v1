@@ -44,16 +44,12 @@
     font-family: Poppins;
     font-size: 33px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 31px; /* 93.939% */
+    font-weight: 700; /* 93.939% */
     letter-spacing: 0.495px;
     text-transform: capitalize;
 }
 
 
-.container-title span{
-    width:305px;
-}
 
 .container-button{
     height:100%;
