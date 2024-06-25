@@ -1,11 +1,17 @@
 {
-  "name": "parkswap_v1",
-  "version": "1.0.0",
-  "description": "Open source interface for the ParkSwap protocol",
-  "main": "index.js",
+  "name": "parkswap",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "author": "parkswap team",
-  "license": "ISC"
+  "dependencies": {
+    "framer-motion": "^11.2.12",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18"
+  }
 }

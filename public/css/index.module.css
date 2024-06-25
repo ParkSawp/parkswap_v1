@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lato&family=Montserrat&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text&display=swap');
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html,body{
-    width:100%;
-    overflow-x:hidden;
-}
-
 .site-wrapper{
     min-height:100vh;
     margin-left:auto;
@@ -43,7 +32,7 @@ html,body{
 }
 
 .wrapper-background{
-    background:url("../../public/img/b453707b32b5870e5f1157524d479362.png");
+    background:url("/img/b453707b32b5870e5f1157524d479362.png");
     background-color:#1c9436;
     background-size:1800px 650px;
     background-repeat:repeat-x,no-repeat;
@@ -478,7 +467,7 @@ html,body{
         padding-top:120px;
     }
 
-    .content-text span,i{
+    .content-text span,.content-text i{
         font-size:50px;
     }
 
