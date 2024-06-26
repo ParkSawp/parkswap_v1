@@ -50,17 +50,17 @@ export default function Home() {
         <header className={styles["main-header"]}>
           <div className={styles["main-header-container-wrapper"]}>
             <motion.div
-              animate={{
-                backgroundPosition: [
-                  "2000px bottom",
-                  "-2000px bottom",
-                  "2000px bottom",
-                ],
-              }}
-              transition={{
-                duration: 120,
-                repeat: Infinity,
-              }}
+              // animate={{
+              //   backgroundPosition: [
+              //     "2000px bottom",
+              //     "-2000px bottom",
+              //     "2000px bottom",
+              //   ],
+              // }}
+              // transition={{
+              //   duration: 120,
+              //   repeat: Infinity,
+              // }}
               className={styles["wrapper-background"]}
             >
               <div className={styles["wrapper-background-second"]}>
@@ -112,9 +112,11 @@ export default function Home() {
                   </div>
                   <div className={styles["content-button"]}>
                     <div className={styles["container-button"]}>
-                      <div className={styles["container-button-btn"]}>
-                        Start Trading
-                      </div>
+                      <Link href="/app">
+                        <div className={styles["container-button-btn"]}>
+                          Start Trading
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </div>

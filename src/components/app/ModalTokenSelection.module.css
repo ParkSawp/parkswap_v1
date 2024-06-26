@@ -1,0 +1,45 @@
+.modalTokenContainer{
+    height:100%;
+    /* background:red; */
+    display:flex;
+    flex-direction:column;
+}
+
+.modalTokenContainerHeader{
+    /* background:yellow; */
+    height:40%;
+}
+
+.modalTokenContainerTokens{
+    /* background:blue; */
+    height:60%;
+}
+
+.ContainerHeaderSearchContainer{
+    /* background:red; */
+    height:80px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ContainerHeaderSearchContainer input{
+    /* background:purple; */
+    height:40px;
+    width:90%;
+    border:1px solid rgba(0,0,0,0.2);
+    outline:none;
+    padding:5px;
+    border-radius:8px;
+    padding-left:40px;
+    font-family:Inter;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+}
+
+.ContainerHeaderSearchContainer svg{
+    position:absolute;
+    /* margin-top:130px;
+    margin-right:35px; */
+    margin-right:315px;
+}

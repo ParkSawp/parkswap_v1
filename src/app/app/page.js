@@ -1,10 +1,12 @@
 // components/ParkSwap.js
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import styles from "../../../public/css/app.module.css";
 import SwapContainer from "../../components/app/SwapContainer";
+import Modal from "../../components/app/Modal";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -53,8 +55,16 @@ export default function Home() {
                     />
                   </svg>
                 </a>
-
-                <div className={styles["nav-submenu-box"]}>
+                <motion.div
+                  initial={{ display: "none" }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className={styles["nav-submenu-box"]}
+                  whileHover={{
+                    display: "block",
+                    transform: "translate(-50%, 0px)",
+                  }}
+                >
                   <div className={styles["nav-menu-submenu"]}>
                     <ul className={styles["menu-submenu-list"]}>
                       <li>
@@ -107,7 +117,7 @@ export default function Home() {
                       </li>
                     </ul>
                   </div>
-                </div>
+                </motion.div>
               </li>
               <li className={styles["nav-plus-btn"]}>
                 <a href="">
