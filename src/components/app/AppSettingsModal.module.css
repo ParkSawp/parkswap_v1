@@ -1,3 +1,12 @@
+.AppSettingsContainerWrapper{
+    /* background:red; */
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+}
+
 .AppSettingsContainer{
     /* background:red; */
     position:absolute;
@@ -14,7 +23,7 @@
     display:grid;
     grid-template-rows:40px 1fr;
     border-radius:12px;
-    padding-bottom:10px;
+    padding-bottom:7px;
     padding-left:10px;
     padding-right:10px;
 }
@@ -59,12 +68,23 @@
     display:grid;
     grid-template-rows:50% 20% 20%; 
     padding:10px;
+    cursor:pointer;
+}
+
+.ContainerBody ul li span:hover{
+    background:#d9f9e0;
 }
 
 .BodyHeader{
     /* background:red; */
     display:flex;
-    cursor:pointer;
+}
+
+.BodyHeader svg:last-child{
+    /* background:red; */
+    margin-left:auto;
+    margin-top:14px;
+    margin-right:2px;
 }
 
 .BodyHeader svg{

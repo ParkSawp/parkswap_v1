@@ -9,8 +9,17 @@ import SwapContainer from "../../components/app/SwapContainer";
 import AppSettingsModal from "../../components/app/AppSettingsModal";
 // import Modal from "../../components/app/Modal";
 import { motion } from "framer-motion";
+import React, { useState } from "react";
 
 export default function Home() {
+  const [isSettingsOpen, setIsSettingOpen] = useState(false);
+  const openSettings = () => {
+    setIsSettingOpen(true);
+  };
+  const closeSettings = () => {
+    setIsSettingOpen(false);
+  };
+
   return (
     <>
       <Head>
@@ -18,7 +27,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={styles["site-wrapper"]}>
-        <AppSettingsModal />
+        <AppSettingsModal isOpen={isSettingsOpen} closeModal={closeSettings} />
         <nav className={styles["app-navigation"]}>
           <div className={styles["app-navigation-logo"]}>
             <Link href="/">
@@ -256,7 +265,14 @@ export default function Home() {
             <div className={styles["starknet-btn"]}>StarkNet</div>
             <div className={styles["connect-wallet-btn"]}>Connect Wallet</div>
           </div>
-          <div className={styles["app-navigation-btn"]}>...</div>
+          <div
+            className={styles["app-navigation-btn"]}
+            onClick={() => {
+              openSettings();
+            }}
+          >
+            ...
+          </div>
         </nav>
         <div className={styles["app-container"]}>
           <SwapContainer />
