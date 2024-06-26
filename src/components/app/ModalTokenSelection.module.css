@@ -85,7 +85,7 @@
 .TokenName{
     /* background:red; */
     display:flex;
-    align-items:end;
+    align-items:flex-end;
     font-size:15px;
 }
 

@@ -1,0 +1,89 @@
+.AppSettingsContainer{
+    /* background:red; */
+    position:absolute;
+    /* top:100px;
+    right:100px; */
+    right:0;
+    top:0;
+    margin-top:80px;
+    margin-right:40px;
+    width:420px;
+    height:330px;
+    background:#FFF;
+    box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
+    display:grid;
+    grid-template-rows:40px 1fr;
+    border-radius:12px;
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.ContainerHeader{
+    /* background:red; */
+    color:#000;
+    font-weight:600;
+    font-size:15px;
+    font-family:Inter;
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-end;
+    /* background:red; */
+    padding-left:20px;
+}
+
+
+.ContainerBody ul{
+    display:grid;
+    grid-template-rows:1fr 1fr;
+    grid-template-columns:1fr 1fr;
+    height:100%;
+    width:100%;
+    padding:5px;
+}
+
+.ContainerBody ul li{
+    /* background:purple; */
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ContainerBody ul li span{
+    /* background:red; */
+    width:185px;
+    height:125px;
+    border-radius:25px;
+    background:#f6fbf1;
+    display:grid;
+    grid-template-rows:50% 20% 20%; 
+    padding:10px;
+}
+
+.BodyHeader{
+    /* background:red; */
+    display:flex;
+    cursor:pointer;
+}
+
+.BodyHeader svg{
+    margin-top:10px;
+    margin-left:10px;
+}
+
+.BodyValue{
+    font-family:Inter;
+    font-size:13px;
+    font-weight:600;
+    padding-left:10px;
+    /* padding-top:15px; */
+}
+
+.BodyName{
+    font-size:12px;
+    font-family:Inter;
+    color:rgba(0,0,0,0.7);
+    padding-left:10px;
+    padding-bottom:10px;
+}

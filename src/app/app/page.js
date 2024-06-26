@@ -6,7 +6,8 @@ import Link from "next/link";
 import Head from "next/head";
 import styles from "../../../public/css/app.module.css";
 import SwapContainer from "../../components/app/SwapContainer";
-import Modal from "../../components/app/Modal";
+import AppSettingsModal from "../../components/app/AppSettingsModal";
+// import Modal from "../../components/app/Modal";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={styles["site-wrapper"]}>
+        <AppSettingsModal />
         <nav className={styles["app-navigation"]}>
           <div className={styles["app-navigation-logo"]}>
             <Link href="/">
