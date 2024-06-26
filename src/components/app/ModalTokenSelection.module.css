@@ -7,12 +7,34 @@
 
 .modalTokenContainerHeader{
     /* background:yellow; */
-    height:40%;
+    height:30%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .modalTokenContainerTokens{
     /* background:blue; */
-    height:60%;
+    display:flex;
+    overflow:scroll;
+    height:300px;
+
+    /* background:red; */
+}
+
+.modalTokenContainerTokens ul{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.modalTokenContainerTokens ul li{
+    height:100px;
+    width:100%;
+    list-style:none;
+    border-bottom:1px solid rgba(0, 0, 0, 0.05);
+    display:grid;
+    grid-template-columns:100px 1fr;
+    /* background:rgba(0,0,0,0.03); */
+    cursor:pointer;
 }
 
 .ContainerHeaderSearchContainer{
@@ -42,4 +64,37 @@
     /* margin-top:130px;
     margin-right:35px; */
     margin-right:315px;
+}
+
+.ContainerTokensIcon{
+    /* background:red; */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ContainerTokensName{
+    display:grid;
+    /* grid-template-rows:50% 50%; */
+}
+
+.TokenName{
+    /* background:red; */
+    display:flex;
+    align-items:end;
+    font-size:15px;
+}
+
+.TokenAddress{
+    font-size:10px;
+    color:rgba(0, 0, 0, 0.6);
+}
+
+.TokenAddress i{
+    background:rgba(0, 0, 0, 0.8);
+    padding:3px;
+    border-radius:3px;
+    color:#FFF;
+    margin-left:10px;
+    font-style:initial;
 }
