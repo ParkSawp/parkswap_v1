@@ -101,9 +101,9 @@ export default function SwapContainer() {
           </span>
         </div>
         <i className={styles["app-container-swapBtn"]}>
-          <svg height="35px" width="35px">
+          <svg height="25px" width="25px">
             <title>Swap cryptocurrencies</title>
-            <image href="/svg/icons/down.svg" height="35px" width="35px" />
+            <image href="/svg/icons/swp.svg" height="25px" width="25px" />
           </svg>
         </i>
         <div className={styles["app-container-secondBox"]}>

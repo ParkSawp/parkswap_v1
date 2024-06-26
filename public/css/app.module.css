@@ -610,8 +610,8 @@
 }
 
 .app-container-swapBtn{
-    height:35px;
-    width:35px;
+    height:30px;
+    width:30px;
     border-radius:100%;
     display:flex;
     justify-content: center;
@@ -619,11 +619,15 @@
     position:absolute;
     cursor:pointer;
     margin-top:5px;
+    background:green;
+    padding:5px;
 }
 
 .app-container-swapBtn svg{
     height:100%;
     width:100%;
+    filter: brightness(0) invert(1);
+    padding-right:2px;
 }
 
 .app-container-swapBtn svg image{

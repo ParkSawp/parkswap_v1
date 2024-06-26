@@ -37,6 +37,10 @@
     cursor:pointer;
 }
 
+.modalTokenContainerTokens ul li:hover{
+    background:rgba(0,0,0,0.03);
+}
+
 .ContainerHeaderSearchContainer{
     /* background:red; */
     height:80px;
