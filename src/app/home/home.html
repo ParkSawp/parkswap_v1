@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple de Page</title>
-    <link rel="stylesheet" href="../../public/css/home.css">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../../../public/css/home.module.css">
 </head>
 
 <body>
     <header>
         <div class="header-content">
-            <img src="../../public/img/Header.logo.png" alt="Logo ParkSwap">
+            <img src="../../../public/img/Header.logo.png" alt="Logo ParkSwap">
             <div class="navbar">
                 <a href="#home">Home</a>
                 <a href="#trade">Trade</a>
                 <a href="#marche">Marché</a>
+                <a href="#pool">Pool</a>
                 <a href="#portfolio">Portfolio</a>
                 <a href="#bridge">Bridge</a>
                 <a href="#plus">Plus</a>
@@ -28,11 +29,35 @@
             <span>starknet</span>
             <span>connect wallet</span>
         </div>
-        <div class="card">Portfolio</div>
-        <div class="card">Swap</div>
-        <div class="card">Marché</div>
-        <div class="card">Bridge</div>
-        <div class="card">Blog</div>
+        <div class="card-container">
+            <div class="card">
+                <img src="../../../public/img/portefeuille.png" alt="Image Portfolio" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p>Portfolio</p>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <img src="../../../public/svg/swap.svg" alt="Image Swap" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p>Swap</p>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <img src="../../../public/svg/graphique.svg" alt="Image Marché" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p>Marché</p>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <img src="../../../public/img/pont.png" alt="Image Bridge" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p>Bridge</p>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <img src="../../../public/img/Header.logo.png" alt="image blog" style="width: 50%; height: 50%; object-fit: cover;">
+            </div>
+            <p>Blog</p>
     </main>
     <footer>
         <div class="mentions-legales">
