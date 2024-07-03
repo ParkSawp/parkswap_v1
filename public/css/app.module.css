@@ -47,6 +47,7 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     width:100%;
 }
 
@@ -59,16 +60,18 @@
 }
 
 .app-navigation-nav ul li{
-    width: 102px;
-    height: 21px;
     flex-shrink: 0;
     text-align: center;
     font-family: Inter;
+    /* display:flex;
+    justify-content:center;
+    align-items:center; */
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: normal;
+    /* line-height: normal; */
     list-style:none;
+    /* background:red; */
 }
 
 
@@ -128,14 +131,15 @@
 
 
 .nav-market-btn:hover .nav-submenu-box{
-    transform: translate(-50%,0px);
-    /* display:block; */
+    transform: translate(-50%,0);
 }
 
 
 .nav-plus-btn:hover .nav-submenu-box{
-    transform: translate(-50%,0px);
+    /* transform: translate(-50%); */
     display:block;
+    margin-top:330px;
+    margin-left:50px;
 }
 
 .nav-submenu-box{
@@ -148,6 +152,7 @@
     border-radius: 10px;
     background: #FFF;
     box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
+    /* margin-left:400px; */
 }
 
 .nav-menu-submenu ul{
@@ -238,8 +243,6 @@
     border-bottom:1px solid rgba(0,0,0,0.1);
     border-left:1px solid rgba(0,0,0,0.05);
     border-right:1px solid rgba(0,0,0,0.05);
-
-
 }
 
 .app-container-firstBox{
@@ -635,6 +638,38 @@
     width:100%;
 }
 
+.nav-home-btn,.nav-portfolio-btn,.nav-bridge-btn{
+    margin-top:6px;
+    height: 40px;
+    width: 102px;
+}
+.nav-trade-btn,.nav-plus-btn,.nav-market-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#d9f9e07b;
+    height:40px;
+}
+
+.nav-trade-btn{
+    border-radius:8px 0px 0px 8px;
+    width: 102px;
+}
+
+.nav-market-btn{
+    width: 102px;
+}
+
+.nav-plus-btn{
+    border-radius:0px 8px 8px 0px;
+    width: 90px;
+}
+
+.nav-dd,.nav-no-dd{
+    display:flex;
+    flex-direction:row;
+}
+
 /* ===== MQ ===== */
 
 @media only screen and (min-width : 1224px){
@@ -660,7 +695,7 @@
     }
 
     .nav-submenu-box{
-        margin-left:50px;
+        margin-left:150px;
         left:initial;
     }
 
@@ -669,4 +704,14 @@
         padding-left:50px;
     }
 
+    
+    .app-navigation-nav ul{
+        flex-direction:row;
+    }
+
+    .nav-home-btn,.nav-portfolio-btn,.nav-bridge-btn{
+        height:21px;
+        /* margin-bottom:100px; */
+    }
 }
+

@@ -44,7 +44,9 @@ export default function Home() {
             />
           </div>
           <div className={styles["main-navigation-container-dapp"]}>
-            <div className={styles["dapp-btn"]}>Start Dapp</div>
+            <Link href="/app">
+              <div className={styles["dapp-btn"]}>Start Dapp</div>
+            </Link>
           </div>
         </nav>
         <header className={styles["main-header"]}>
