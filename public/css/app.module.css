@@ -124,7 +124,7 @@
 
 .nav-submenu-box{
     position:absolute;
-    left:50%;
+    
     display:none;
 }
 
@@ -132,14 +132,17 @@
 
 .nav-market-btn:hover .nav-submenu-box{
     transform: translate(-50%,0);
+    display:block;
+    margin-top:215px;
+    margin-left:270px;
 }
 
 
 .nav-plus-btn:hover .nav-submenu-box{
-    /* transform: translate(-50%); */
+    transform: translate(-50%);
     display:block;
     margin-top:330px;
-    margin-left:50px;
+    margin-left:110px;
 }
 
 .nav-submenu-box{
@@ -662,7 +665,8 @@
 
 .nav-plus-btn{
     border-radius:0px 8px 8px 0px;
-    width: 90px;
+    width: 92px;
+    margin-right:10px;
 }
 
 .nav-dd,.nav-no-dd{

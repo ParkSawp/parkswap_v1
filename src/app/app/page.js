@@ -46,7 +46,7 @@ export default function Home() {
             <ul>
               <div className={styles["nav-no-dd"]}>
                 <li className={styles["nav-home-btn"]}>
-                  <a href="">
+                  <Link href="/">
                     Home
                     {/* <svg width="21px" height="21px">
                       <title>Home</title>
@@ -56,7 +56,7 @@ export default function Home() {
                         href="/svg/icons/down_arrow.svg"
                       />
                     </svg> */}
-                  </a>
+                  </Link>
                 </li>
                 <li className={styles["nav-portfolio-btn"]}>
                   <a href="">
@@ -111,16 +111,7 @@ export default function Home() {
                       />
                     </svg>
                   </a>
-                  <motion.div
-                    initial={{ display: "none" }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className={styles["nav-submenu-box"]}
-                    whileHover={{
-                      display: "block",
-                      transform: "translate(-50%, 0px)",
-                    }}
-                  >
+                  <div className={styles["nav-submenu-box"]}>
                     <div className={styles["nav-menu-submenu"]}>
                       <ul className={styles["menu-submenu-list"]}>
                         <li>
@@ -175,7 +166,7 @@ export default function Home() {
                         </li>
                       </ul>
                     </div>
-                  </motion.div>
+                  </div>
                 </li>
                 <li className={styles["nav-plus-btn"]}>
                   <a href="">
