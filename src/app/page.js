@@ -126,7 +126,7 @@ export default function Home() {
             </motion.div>
           </div>
         </header>
-        <svg
+        {/* <svg
           className={styles["top-arrondis grey2-arrondis"]}
           fill="#FFF"
           version="1.1"
@@ -135,12 +135,14 @@ export default function Home() {
           x="0px"
           y="0px"
           viewBox="0 0 1440 48"
-          style={{ enableBackground: "new 0 0 1440 48" }}
+          style={{
+            background: "#02a323",
+          }}
           xmlSpace="preserve"
           aria-hidden="true"
         >
           <path d="M1440,48H0V0c0,0,205,47,720,47s720-46.9,720-46.9V48z"></path>
-        </svg>
+        </svg> */}
         <section className={styles["main-content"]}>
           <h1 className={styles["main-content-title"]}>FEATURES</h1>
           <div className={styles["main-content-features"]}>
