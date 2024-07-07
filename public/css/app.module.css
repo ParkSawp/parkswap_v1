@@ -240,7 +240,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width:350px;
     padding:20px;
     box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
     border-bottom:1px solid rgba(0,0,0,0.1);
@@ -613,6 +612,7 @@
     justify-content:center;
     align-items:center;
     cursor:pointer;
+    z-index:1;
 }
 
 .app-container-swapBtn{

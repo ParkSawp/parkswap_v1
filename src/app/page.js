@@ -243,7 +243,7 @@ export default function Home() {
             <img
               width="67"
               height="93"
-              src="/img/main_logo_white.png"
+              src="/img/main_logo.png"
               alt="Parkswap logo white"
             />
           </div>

@@ -14,6 +14,12 @@ export default function AppSettingsModal({isOpen,closeModal}) {
           className={styles["AppSettingsContainer"]} onClick={(e) => e.stopPropagation()}>
             <div className={styles["ContainerHeader"]}>
                 Global Settings
+                <span onClick={closeModal}>
+                    <svg width="25px" height="25px">
+                                            <title>Ether</title>
+                                            <image width="25px" height="25px" href="/svg/icons/cross.svg"/>
+                    </svg>
+                </span>
             </div>
             <div className={styles["ContainerBody"]}>
                 <ul>
