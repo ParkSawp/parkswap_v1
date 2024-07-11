@@ -9,11 +9,41 @@ const ModalTokenSelection = ({ isOpen, closeModal, modalTitle, modalContent }) =
         <div className={styles["modalTokenContainer"]}>
             <div className={styles["modalTokenContainerHeader"]}>
                 <div className={styles["ContainerHeaderSearchContainer"]}>
-                    <svg width="21px" height="21px">
+                    {/* <svg width="21px" height="21px">
                         <title>Search</title>
                         <image width="21px" height="21px" href="/svg/icons/search.svg" />
-                    </svg>
+                    </svg> */}
                     <input type="text" placeholder="Search name or address"></input>
+                </div>
+                <div className={styles["ContainerHeaderTokensContainer"]}>
+                    <div className={styles["ContainerHeaderToken"]}>
+                        <svg width="25px" height="25px">
+                                        <title>Ether</title>
+                                        <image width="25px" height="25px" href="/svg/icons/eth_icon.svg"/>
+                        </svg>
+                        <span>ETH</span>
+                    </div>
+                    <div className={styles["ContainerHeaderToken"]}>
+                        <svg width="25px" height="25px">
+                                        <title>DAI</title>
+                                        <image width="25px" height="25px" href="/svg/icons/dai-logo.svg"/>
+                        </svg>
+                        <span>DAI</span>
+                    </div>
+                    <div className={styles["ContainerHeaderToken"]}>
+                        <svg width="25px" height="25px">
+                                        <title>SOL</title>
+                                        <image width="25px" height="25px" href="/svg/icons/sol-logo.svg"/>
+                        </svg>
+                        <span>SOL</span>
+                    </div>
+                    <div className={styles["ContainerHeaderToken"]}>
+                        <svg width="25px" height="25px">
+                                <title>STRK</title>
+                                <image width="25px" height="25px" href="/svg/icons/strk-logo.svg"/>
+                        </svg>
+                        <span>STRK</span>
+                    </div>
                 </div>
             </div>
             <div className={styles["modalTokenContainerTokens"]}>

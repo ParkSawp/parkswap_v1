@@ -3,6 +3,7 @@
 import styles from "../../../public/css/app.module.css";
 import Modal from "../../components/app/Modal";
 import ModalTokenSelection from "../../components/app/ModalTokenSelection"
+import ModalSwapSettings from "../../components/app/ModalSwapSettings"
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
@@ -43,7 +44,7 @@ export default function SwapContainer() {
               </svg>
             </li>
             <li onClick={() => {
-              setModalTitle("Séléctionnez un Jeton")
+              setModalTitle("Select a Token")
               setModalContent(<ModalTokenSelection/>)
               openModal()
               }}>
@@ -52,7 +53,11 @@ export default function SwapContainer() {
                 <image width="21px" height="21px" href="/svg/icons/plus.svg" />
               </svg>
             </li>
-            <li>
+            <li onClick={() => {
+              setModalTitle("Swap settings")
+              setModalContent(<ModalSwapSettings/>)
+              openModal()
+              }}>
               <svg>
                 <title>Settings</title>
                 <image

@@ -304,8 +304,18 @@ export default function Home() {
             </ul>
           </div>
           <div className={styles["app-navigation-buttons"]}>
-            <div className={styles["starknet-btn"]}>StarkNet</div>
-            <div className={styles["connect-wallet-btn"]}>Connect Wallet</div>
+            <div className={styles["starknet-btn"]}>
+              <svg width="24px" height="24px">
+                <title>STRK</title>
+                <image
+                  width="22px"
+                  height="22px"
+                  href="/svg/icons/strk-logo.svg"
+                />
+              </svg>
+              StarkNet
+            </div>
+            <div className={styles["connect-wallet-btn"]}>Mainnet</div>
           </div>
           <div
             className={styles["app-navigation-btn"]}

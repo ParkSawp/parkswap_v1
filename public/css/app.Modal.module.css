@@ -13,6 +13,9 @@
     font-size:14px;
     font-weight:600;
     font-style:normal;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .app-modal{
@@ -21,15 +24,17 @@
     border-left:1px solid rgba(0,0,0,0.05);
     border-right:1px solid rgba(0,0,0,0.05);
     background:#FFF;
-    min-width:400px;
+    /* min-width:400px; */
+    max-width:460px;
+    width:100%;
     min-height:500px;
     border-radius:12px;
     display:grid;
     grid-template-rows:60px 1fr;
-    position:absolute;
+    /* position:absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    top: 50%; */
+    /* transform: translate(-50%,-50%); */
 }
 
 .app-modal-header{
@@ -62,3 +67,9 @@
     display:flex;
     flex-direction:column;
 }
+/* 
+@media only screen and (max-width: 600px) {
+    .app-modal{
+        width:100%;
+    }
+} */
