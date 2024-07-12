@@ -42,7 +42,7 @@
     align-items:center;
 }
 
-.SlippageButtons{
+.SlippageButtons,.GasButtons{
     /* background:blue; */
     width:100%;
     height:45px;
@@ -54,11 +54,11 @@
     padding:2px;
 }
 
-.SlippageButtons input[type="radio"]{
+.SlippageButtons input[type="radio"],.GasButtons input[type="radio"]{
     display: none;
 }
 
-.SlippageButtons input[type="radio"]+label{
+.SlippageButtons input[type="radio"]+label,.GasButtons input[type="radio"]+label{
     height:100%;
     display:flex;
     width:100%;
@@ -71,23 +71,23 @@
 }
 
 
-.SlippageButtons input[type="radio"]:nth-of-type(1)+label{
+.SlippageButtons input[type="radio"]:nth-of-type(1)+label,.GasButtons input[type="radio"]:nth-of-type(1)+label{
     border-radius:10px 0px 0px 10px;
 }
 
-.SlippageButtons input[type="radio"]:nth-last-of-type(1)+label{
+.SlippageButtons input[type="radio"]:nth-last-of-type(1)+label, .GasButtons input[type="radio"]:nth-last-of-type(1)+label{
     border-radius:0px 10px 10px 0px;
 }
 
 
-.SlippageButtons input[type="radio"]+label:hover{
+.SlippageButtons input[type="radio"]+label:hover, .GasButtons input[type="radio"]+label:hover{
     background:#FFF;
     /* border:1px solid rgba(0,0,0,0.03) */
     background:#c0f5ce;
 }
 
 
-.SlippageButtons input[type="radio"]:checked+label{
+.SlippageButtons input[type="radio"]:checked+label, .GasButtons input[type="radio"]:checked+label{
     background:#000;
     color:#FFF;
     /* border:1px solid rgba(0,0,0,0.03) */

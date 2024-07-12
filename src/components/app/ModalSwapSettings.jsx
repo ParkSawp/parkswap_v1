@@ -20,18 +20,18 @@ const ModalSwapSettings = ({ isOpen, closeModal, modalTitle, modalContent }) => 
               </div>
               <div className={styles["SwapSettingBody"]}>
                 <div className={styles["SlippageButtons"]}>
-                  <motion.input type="radio" name="demo2" class="demo1" id="demo1-d"/>
-                  <label for="demo1-c">Auto</label>
-                  <input type="radio" name="demo2" class="demo1" id="demo1-a"/>
-                  <label for="demo1-a">0.1%</label>
-                  <input type="radio" name="demo2" class="demo1" id="demo1-b"/>
-                  <label for="demo1-b">0.5%</label>
-                  <input type="radio" name="demo2" class="demo1" id="demo1-c" checked/>
-                  <label for="demo1-c">1%</label>
-                  <input type="radio" name="demo2" class="demo1" id="demo1-f"/>
-                  <label for="demo1-f">3%</label>
-                  <input type="radio" name="demo2" class="demo1" id="demo1-e"/>
-                  <label for="demo1-e">Custom</label>
+                  <input type="radio" name="SlippageButtonOption"  id="SlippageButton_1"/>
+                  <label for="SlippageButton_1">Auto</label>
+                  <input type="radio" name="SlippageButtonOption"  id="SlippageButton_2"/>
+                  <label for="SlippageButton_2">0.1%</label>
+                  <input type="radio" name="SlippageButtonOption"  id="SlippageButton_3"/>
+                  <label for="SlippageButton_3">0.5%</label>
+                  <input type="radio" name="SlippageButtonOption"  id="SlippageButton_4"/>
+                  <label for="SlippageButton_4">1%</label>
+                  <input type="radio" name="SlippageButtonOption"  id="SlippageButton_5"/>
+                  <label for="SlippageButton_5">3%</label>
+                  <input type="radio" name="SlippageButtonOption"  id="SlippageButton_6"/>
+                  <label for="SlippageButton_6">Custom</label>
                 </div>
               </div>
             </div>
@@ -46,15 +46,15 @@ const ModalSwapSettings = ({ isOpen, closeModal, modalTitle, modalContent }) => 
                 </span>
               </div>
               <div className={styles["SwapSettingBody"]}>
-                <div className={styles["SlippageButtons"]}>
-                    <input type="radio" name="demo1" class="demo1" id="demo1-d"/>
-                    <label for="demo1-c">Auto</label>
-                    <input type="radio" name="demo1" class="demo1" id="demo1-a"/>
-                    <label for="demo1-a">Slow</label>
-                    <input type="radio" name="demo1" class="demo1" id="demo1-b"/>
-                    <label for="demo1-b">Market</label>
-                    <input type="radio" name="demo1" class="demo1" id="demo1-c" checked/>
-                    <label for="demo1-c">Fast</label>
+                <div className={styles["GasButtons"]}>
+                    <input type="radio" name="GasButtonOption" id="GasButton_1"/>
+                    <label for="GasButton_1">Auto</label>
+                    <input type="radio" name="GasButtonOption" id="GasButton_2"/>
+                    <label for="GasButton_2">Slow</label>
+                    <input type="radio" name="GasButtonOption" id="GasButton_3"/>
+                    <label for="GasButton_3">Market</label>
+                    <input type="radio" name="GasButtonOption" id="GasButton_4"/>
+                    <label for="GasButton_4">Fast</label>
                   </div>
               </div>
             </div>
