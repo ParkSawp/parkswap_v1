@@ -1,9 +1,9 @@
 'use client'
 
 import styles from "../../../public/css/app.module.css";
-import Modal from "../../components/app/Modal";
-import ModalTokenSelection from "../../components/app/ModalTokenSelection"
-import ModalSwapSettings from "../../components/app/ModalSwapSettings"
+import Modal from "../Modal/Modal";
+import ModalTokenSelection from "../Modal/ModalTokenSelection/ModalTokenSelection"
+import ModalSwapSettings from "../Modal/ModalSwapSettings/ModalSwapSettings"
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 

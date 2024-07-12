@@ -1,6 +1,6 @@
 'use client'
 
-import styles from "../../../public/css/app.Modal.module.css";
+import styles from "./Modal.module.css";
 import { motion, useAnimation } from "framer-motion";
 import React, { useEffect } from 'react';
 
