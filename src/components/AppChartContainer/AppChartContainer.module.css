@@ -1,0 +1,17 @@
+.chart-container-wrapper{
+    /* background:red; */
+    height:460px;
+    width:750px;
+    margin-left:20px;
+    /* border-ra */
+    padding:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.chart-container{
+    height:100%;
+    width:100%;
+}
+

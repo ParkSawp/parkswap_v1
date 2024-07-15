@@ -6,6 +6,7 @@ import Link from "next/link";
 import Head from "next/head";
 import styles from "../../../public/css/app.module.css";
 import SwapContainer from "../../components/AppSwapContainer/AppSwapContainer";
+import ChartContainer from "../../components/AppChartContainer/AppChartContainer";
 import AppSettingsModal from "../../components/AppSettingsModal/AppSettingsModal";
 // import Modal from "../../components/app/Modal";
 import { motion } from "framer-motion";
@@ -328,6 +329,7 @@ export default function Home() {
         </nav>
         <div className={styles["app-container"]}>
           <SwapContainer />
+          <ChartContainer />
         </div>
         <div className={styles["app-footer"]}>© 2024 ParkSwap</div>
       </div>
