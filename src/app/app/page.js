@@ -6,8 +6,9 @@ import Link from "next/link";
 import Head from "next/head";
 import styles from "../../../public/css/app.module.css";
 import SwapContainer from "../../components/AppSwapContainer/AppSwapContainer";
-import ChartContainer from "../../components/AppChartContainer/AppChartContainer";
 import AppSettingsModal from "../../components/AppSettingsModal/AppSettingsModal";
+import ChartContainer from "../../components/AppChartContainer/AppChartContainer";
+
 // import Modal from "../../components/app/Modal";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
@@ -15,6 +16,8 @@ import React, { useState } from "react";
 export default function Home() {
   const [isSettingsOpen, setIsSettingOpen] = useState(false);
   const [settingsButtonVal, setSettingsButtonVal] = useState("...");
+  const [isGraphOpen, setIsGraphOpen] = useState(false);
+
   const openSettings = () => {
     setIsSettingOpen(true);
     setSettingsButtonVal("");
@@ -328,8 +331,11 @@ export default function Home() {
           </div>
         </nav>
         <div className={styles["app-container"]}>
-          <SwapContainer />
-          <ChartContainer />
+          <SwapContainer
+            setIsGraphOpen={setIsGraphOpen}
+            isGraphOpen={isGraphOpen}
+          />
+          <ChartContainer isGraphOpen={isGraphOpen} />
         </div>
         <div className={styles["app-footer"]}>© 2024 ParkSwap</div>
       </div>

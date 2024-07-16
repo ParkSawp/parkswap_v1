@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 
-export default function SwapContainer() {
+export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle,setModalTitle] = useState("");
   const [modalContent,setModalContent] = useState("");
@@ -31,7 +31,7 @@ export default function SwapContainer() {
             <li>Limit</li>
           </ul>
           <ul className={styles["container-menu-secondMenu"]}>
-            <li>
+            <li onClick={() => {setIsGraphOpen(!isGraphOpen)}}>
               <svg>
                 <title>Graph</title>
                 <image width="21px" height="21px" href="/svg/icons/graph.svg" />
