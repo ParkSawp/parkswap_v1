@@ -36,11 +36,16 @@
     grid-template-columns:100px 1fr;
     /* background:rgba(0,0,0,0.03); */
     cursor:pointer;
+    transition:background-color .3s;
 }
 
 .modalTokenContainerTokens ul li:hover{
-    background:rgba(0,0,0,0.03);
+    background-color:rgba(0,0,0,0.03);
 }
+/* 
+.modalTokenContainerTokens ul li:focus{
+    background-color:rgba(0,0,0,0.0);
+} */
 
 .ContainerHeaderSearchContainer{
     /* background:red; */
@@ -127,6 +132,11 @@
     margin-right:5px;
     /* margin-bottom:3px; */
     cursor:pointer;
+    transition:background-color .3s;
+}
+
+.ContainerHeaderToken:hover{
+    background-color:rgba(0,0,0,0.03);
 }
 
 .ContainerHeaderToken span{

@@ -61,7 +61,12 @@
 
 .app-modal-header svg image{
     cursor:pointer;
+    transition:filter .3s;
 
+}
+
+.app-modal-header svg image:hover{
+    filter: invert(22%) sepia(66%) saturate(5851%) hue-rotate(140deg) brightness(98%) contrast(94%);
 }
 
 

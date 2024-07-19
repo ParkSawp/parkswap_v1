@@ -3,7 +3,8 @@ import styles from "./ModalTokenSelection.module.css";
 import TokenItem from "./tokenItem/tokenItem"; // Assurez-vous que le chemin et le nom du fichier sont corrects
 import axios from "axios";
 
-const ModalTokenSelection = ({ isOpen, closeModal, modalTitle, modalContent }) => {
+const ModalTokenSelection = ({ callbacks }) => {
+    // callbacks : closeModal,setFirstTokenSelected, setSecondTokenSelected
     const [tokens, setTokens] = useState([]);
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const ModalTokenSelection = ({ isOpen, closeModal, modalTitle, modalContent }) =
                         <input type="text" placeholder="Search name or address" />
                     </div>
                     <div className={styles["ContainerHeaderTokensContainer"]}>
-                        <div className={styles["ContainerHeaderToken"]}>
+                        <div className={styles["ContainerHeaderToken"]} >
                             <svg width="25px" height="25px">
                                 <title>Ether</title>
                                 <image width="25px" height="25px" href="/svg/icons/eth_icon.svg" />
@@ -63,6 +64,15 @@ const ModalTokenSelection = ({ isOpen, closeModal, modalTitle, modalContent }) =
                         {tokens.map((token, index) => (
                             <TokenItem
                                 key={index}
+                                onClick={() => {
+                                    callbacks[1]({
+                                            name:token.name,
+                                            symbol:token.symbol,
+                                            logo:token.logo,
+                                            address:token.address
+                                    });
+                                    callbacks[0]();
+                                }}
                                 tokenSymbol={token.name}
                                 tokenName={token.symbol}
                                 tokenAddress={token.address}

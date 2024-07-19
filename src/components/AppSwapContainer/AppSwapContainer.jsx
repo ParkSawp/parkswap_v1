@@ -12,7 +12,22 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle,setModalTitle] = useState("");
   const [modalContent,setModalContent] = useState("");
-  const [firstTokenSelected,setFirstTokenSelected] = useState("");
+  const [firstTokenSelected,setFirstTokenSelected] = useState(
+    {
+      name:"Ethereum",
+      symbol:"ETH",
+      logo:"/svg/icons/eth_icon.svg",
+      address:""
+    }
+  );
+  const [secondTokenSelected,setSecondTokenSelected] = useState(
+    {
+      name:"",
+      symbol:"Select a Token",
+      logo:"",
+      address:""
+    }
+  );
   const openModal = () => {setIsModalOpen(true)};
   const closeModal = () => {setIsModalOpen(false)}
 
@@ -73,20 +88,20 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
               className={`${styles["box-button"]} ${styles["firstBox-btn"]}`}
               onClick={() => {
                 setModalTitle("Select a Token")
-                setModalContent(<ModalTokenSelection/>)
+                setModalContent(<ModalTokenSelection callbacks={[closeModal,setFirstTokenSelected]}/>)
                 openModal()
                 }}
             >
               <span>
                 <svg width="30px" height="30px">
-                  <title>Ether</title>
+                  <title>{firstTokenSelected.name}</title>
                   <image
                     width="30px"
                     height="30px"
-                    href="/svg/icons/eth_icon.svg"
+                    href={firstTokenSelected.logo}
                   />
                 </svg>
-                ETH
+                {firstTokenSelected.symbol}
               </span>
               <i>
                 <svg>
@@ -99,7 +114,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
                 </svg>
               </i>
             </button>
-            <span className={styles["firstBox-token-name"]}>Ether</span>
+            <span className={styles["firstBox-token-name"]}>{firstTokenSelected.name}</span>
           </span>
           <span className={styles["secondBox-amount"]}>
             <span className={styles["amount-container"]}>
@@ -119,11 +134,12 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
             <motion.button className={styles["box-button"]}
               onClick={() => {
               setModalTitle("Select a Token")
-              setModalContent(<ModalTokenSelection/>)
+              setModalContent(<ModalTokenSelection callbacks={[closeModal,setSecondTokenSelected]}/>)
               openModal()
               }}
               >
-              Select a Token
+
+              {secondTokenSelected.symbol}
               <i>
                 <svg>
                   <title>Select a Token</title>
