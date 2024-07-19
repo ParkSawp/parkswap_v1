@@ -12,6 +12,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle,setModalTitle] = useState("");
   const [modalContent,setModalContent] = useState("");
+  const [firstTokenSelected,setFirstTokenSelected] = useState("");
   const openModal = () => {setIsModalOpen(true)};
   const closeModal = () => {setIsModalOpen(false)}
 
@@ -31,7 +32,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
             <li>Limit</li>
           </ul>
           <ul className={styles["container-menu-secondMenu"]}>
-            <li onClick={() => {setIsGraphOpen(!isGraphOpen)}}>
+            <li className={styles["graph-btn"]} onClick={() => {setIsGraphOpen(!isGraphOpen)}}>
               <svg>
                 <title>Graph</title>
                 <image width="21px" height="21px" href="/svg/icons/graph.svg" />
@@ -43,11 +44,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
                 <image width="21px" height="21px" href="/svg/icons/reset.svg" />
               </svg>
             </li>
-            <li onClick={() => {
-              setModalTitle("Select a Token")
-              setModalContent(<ModalTokenSelection/>)
-              openModal()
-              }}>
+            <li>
               <svg>
                 <title>Add currency</title>
                 <image width="21px" height="21px" href="/svg/icons/plus.svg" />
@@ -74,6 +71,11 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
           <span className={styles["firstBox-token"]}>
             <button
               className={`${styles["box-button"]} ${styles["firstBox-btn"]}`}
+              onClick={() => {
+                setModalTitle("Select a Token")
+                setModalContent(<ModalTokenSelection/>)
+                openModal()
+                }}
             >
               <span>
                 <svg width="30px" height="30px">
@@ -114,7 +116,13 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
         <div className={styles["app-container-secondBox"]}>
           <p className={styles["secondBox-title"]}>You receive</p>
           <span className={styles["secondBox-token"]}>
-            <button className={styles["box-button"]}>
+            <motion.button className={styles["box-button"]}
+              onClick={() => {
+              setModalTitle("Select a Token")
+              setModalContent(<ModalTokenSelection/>)
+              openModal()
+              }}
+              >
               Select a Token
               <i>
                 <svg>
@@ -122,7 +130,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
                   <image width="10px" height="10px" href="/svg/icons/arrow.svg" />
                 </svg>
               </i>
-            </button>
+            </motion.button>
           </span>
           <span className={styles["secondBox-amount"]}>
             <span className={styles["amount-container"]}>
