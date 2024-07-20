@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #D9D9D9;
     color: #fff;
     padding: 10px 0;
 }
@@ -29,8 +29,8 @@ header h1 {
 }
 
 .start-dapp {
-    background-color: #008cba;
-    color: white;
+    background-color: #d9d9d900;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -39,7 +39,7 @@ header h1 {
 }
 
 .start-dapp:hover {
-    background-color: #005f5f;
+    background-color: #26292b00;
 }
 
 .navbar {
@@ -50,7 +50,7 @@ header h1 {
 }
 
 .navbar a {
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 14px 20px;
     text-decoration: none;
     text-align: center;
@@ -71,10 +71,11 @@ main {
 }
 
 .connect {
-    position:relative;
-    left: 75%;
-    bottom: 45%; 
-    word-spacing: 10px;
+    position:absolute;
+    left: 83%;
+    bottom: 82%; 
+
+    word-spacing: 6px;
 
 
 }
@@ -88,7 +89,7 @@ main {
 .card {
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 19px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
@@ -116,8 +117,8 @@ main {
 } */
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #D9D9D9;
+    color: rgb(0, 0, 0);
     padding: 20px;
     text-align: center;
 }
