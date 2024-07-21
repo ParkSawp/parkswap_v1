@@ -17,19 +17,32 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
       name:"Ethereum",
       symbol:"ETH",
       logo:"/svg/icons/eth_icon.svg",
-      address:""
+      address:"0xc999999999",
+      amount:"0.00" // ToDo : amount management by inputs
     }
   );
   const [secondTokenSelected,setSecondTokenSelected] = useState(
     {
-      name:"",
-      symbol:"Select a Token",
-      logo:"",
-      address:""
+      name:"Dai Stablecoin",
+      symbol:"DAI",
+      logo:"/svg/icons/dai-logo.svg",
+      address:"0xb839382",
+      amount:"0.00"
     }
   );
   const openModal = () => {setIsModalOpen(true)};
   const closeModal = () => {setIsModalOpen(false)}
+
+
+  let getTokens = () => {
+    return [firstTokenSelected,secondTokenSelected]
+  }
+
+  let switchTokens = () => {
+    let tempToken =  firstTokenSelected;
+    setFirstTokenSelected(secondTokenSelected);
+    setSecondTokenSelected(tempToken);
+  }
 
   return (
     <>
@@ -88,7 +101,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
               className={`${styles["box-button"]} ${styles["firstBox-btn"]}`}
               onClick={() => {
                 setModalTitle("Select a Token")
-                setModalContent(<ModalTokenSelection callbacks={[closeModal,setFirstTokenSelected]}/>)
+                setModalContent(<ModalTokenSelection callbacks={[closeModal,setFirstTokenSelected,switchTokens,getTokens]}/>)
                 openModal()
                 }}
             >
@@ -122,15 +135,16 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
             </span>
           </span>
         </div>
-        <i className={styles["app-container-swapBtn"]}>
+        <i className={styles["app-container-swapBtn"]} onClick={switchTokens}>
           <svg height="25px" width="25px">
             <title>Swap cryptocurrencies</title>
             <image href="/svg/icons/swp.svg" height="25px" width="25px" />
           </svg>
         </i>
         <div className={styles["app-container-secondBox"]}>
+          {/* <div className={styles["app-container-secondBox-background"]}></div> */}
           <p className={styles["secondBox-title"]}>You receive</p>
-          <span className={styles["secondBox-token"]}>
+          {/* <span className={styles["secondBox-token"]}>
             <motion.button className={styles["box-button"]}
               onClick={() => {
               setModalTitle("Select a Token")
@@ -138,7 +152,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
               openModal()
               }}
               >
-
+              
               {secondTokenSelected.symbol}
               <i>
                 <svg>
@@ -147,6 +161,39 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
                 </svg>
               </i>
             </motion.button>
+          </span> */}
+          <span className={styles["firstBox-token"]}>
+            <button
+              className={`${styles["box-button"]} ${styles["firstBox-btn"]}`}
+              onClick={() => {
+                setModalTitle("Select a Token")
+                setModalContent(<ModalTokenSelection callbacks={[closeModal,setSecondTokenSelected,switchTokens,getTokens]}/>)
+                openModal()
+                }}
+            >
+              <span>
+                <svg width="30px" height="30px">
+                  <title>{secondTokenSelected.name}</title>
+                  <image
+                    width="30px"
+                    height="30px"
+                    href={secondTokenSelected.logo}
+                  />
+                </svg>
+                {secondTokenSelected.symbol}
+              </span>
+              <i>
+                <svg>
+                  <title>Select Currency</title>
+                  <image
+                    width="10px"
+                    height="10px"
+                    href="/svg/icons/arrowgreynew.svg"
+                  />
+                </svg>
+              </i>
+            </button>
+            <span className={styles["firstBox-token-name"]}>{secondTokenSelected.name}</span>
           </span>
           <span className={styles["secondBox-amount"]}>
             <span className={styles["amount-container"]}>

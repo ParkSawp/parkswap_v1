@@ -4,7 +4,8 @@ import TokenItem from "./tokenItem/tokenItem"; // Assurez-vous que le chemin et 
 import axios from "axios";
 
 const ModalTokenSelection = ({ callbacks }) => {
-    // callbacks : closeModal,setFirstTokenSelected, setSecondTokenSelected
+    // callbacks : closeModal,setFirstTokenSelected or setSecondTokenSelected,switchTokens,getTokens
+    // ToDo : Rename callbacks
     const [tokens, setTokens] = useState([]);
 
     useEffect(() => {
@@ -65,12 +66,19 @@ const ModalTokenSelection = ({ callbacks }) => {
                             <TokenItem
                                 key={index}
                                 onClick={() => {
-                                    callbacks[1]({
-                                            name:token.name,
-                                            symbol:token.symbol,
-                                            logo:token.logo,
-                                            address:token.address
-                                    });
+                                    var myNewToken = {
+                                        name:token.name,
+                                        symbol:token.symbol,
+                                        logo:token.logo,
+                                        address:token.address
+                                    }
+
+                                    if( myNewToken.address != callbacks[3]()[0].address && myNewToken.address != callbacks[3]()[1].address ){
+                                        callbacks[1](myNewToken);
+                                    }else{
+                                        callbacks[2]();
+                                    }
+                                    
                                     callbacks[0]();
                                 }}
                                 tokenSymbol={token.name}
