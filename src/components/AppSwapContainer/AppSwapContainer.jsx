@@ -17,7 +17,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
       name:"Ethereum",
       symbol:"ETH",
       logo:"/svg/icons/eth_icon.svg",
-      address:"0xc999999999",
+      address:"0xc9999929999",
       amount:"0.00" // ToDo : amount management by inputs
     }
   );
