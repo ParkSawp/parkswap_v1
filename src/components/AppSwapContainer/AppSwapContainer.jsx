@@ -4,6 +4,7 @@ import styles from "../../../public/css/app.module.css";
 import Modal from "../Modal/Modal";
 import ModalTokenSelection from "../Modal/ModalTokenSelection/ModalTokenSelection"
 import ModalSwapSettings from "../Modal/ModalSwapSettings/ModalSwapSettings"
+import ModalAddToken from "../Modal/ModalAddToken/ModalAddToken"
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
@@ -72,7 +73,11 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
                 <image width="21px" height="21px" href="/svg/icons/reset.svg" />
               </svg>
             </li>
-            <li>
+            <li onClick={() => {
+                setModalTitle("Add a Token")
+                setModalContent(<ModalAddToken/>)
+                openModal()
+                }}>
               <svg>
                 <title>Add currency</title>
                 <image width="21px" height="21px" href="/svg/icons/plus.svg" />
@@ -132,6 +137,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
           <span className={styles["secondBox-amount"]}>
             <span className={styles["amount-container"]}>
               <input placeholder="0.00" type="text" dir="rtl" />
+              <span className={styles["eqAmount"]}>~$0.00</span>
             </span>
           </span>
         </div>

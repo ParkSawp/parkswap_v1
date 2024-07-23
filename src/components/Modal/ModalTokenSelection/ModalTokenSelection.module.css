@@ -17,7 +17,8 @@
     display:flex;
     overflow-y:scroll;
     height:300px;
-
+    justify-content:center;
+    align-items:center;
     /* background:red; */
 }
 
@@ -33,7 +34,7 @@
     list-style:none;
     border-bottom:1px solid rgba(0, 0, 0, 0.05);
     display:grid;
-    grid-template-columns:100px 1fr;
+    grid-template-columns:100px 1fr 80px;
     /* background:rgba(0,0,0,0.03); */
     cursor:pointer;
     transition:background-color .3s;
@@ -83,6 +84,33 @@
     align-items:center;
 }
 
+.ContainerTokensImportBtn{
+    /* background:red; */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ContainerTokensImportBtn button{
+    background:#bef4cb;
+    padding:10px;
+    border:none;
+    outline:none;
+    border-radius:6px;
+    cursor:pointer;
+    color:#088a24;
+    border:1px solid rgba(0,0,0,0.2);
+    margin-right:15px;
+    cursor:pointer;
+    transition:background-color .3s;
+}
+
+.ContainerTokensImportBtn button:hover{
+    background-color:#088a24;
+    color:#FFF;
+
+}
+
 .ContainerTokensName{
     display:grid;
     /* grid-template-rows:50% 50%; */
@@ -107,6 +135,8 @@
     color:#FFF;
     margin-left:10px;
     font-style:initial;
+    overflow:hidden;
+    width:245px;
 }
 
 .ContainerHeaderTokensContainer{
