@@ -1,0 +1,50 @@
+.connectWalletWrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.connectWalletList{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding-top:20px;
+}
+
+.connectWalletList li{
+    list-style:none;
+    height:70px;
+    width:90%;
+    border-radius:8px;
+    /* background:rgba(0,0,0,0.04); */
+    display:flex;
+    flex-direction:row;
+    margin:8px;
+    cursor:pointer;
+    padding:8px;
+    transition:background-color .3s;
+    
+
+}
+
+.connectWalletList li:hover{
+    background-color:#bff5cc;
+    border:1px solid rgba(0,0,0,0.08);
+    color:#088a24;
+}
+
+.connectWalletList li img{
+    width:30%;
+    height:100%;
+}
+
+.connectWalletList li span{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
+}

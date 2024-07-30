@@ -5,11 +5,12 @@ import Modal from "../Modal/Modal";
 import ModalTokenSelection from "../Modal/ModalTokenSelection/ModalTokenSelection"
 import ModalSwapSettings from "../Modal/ModalSwapSettings/ModalSwapSettings"
 import ModalAddToken from "../Modal/ModalAddToken/ModalAddToken"
+import ModalConnectWallet from "../Modal/ModalConnectWallet/ModalConnectWallet"
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 
-export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
+export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletConnected,isWalletConnected}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle,setModalTitle] = useState("");
   const [modalContent,setModalContent] = useState("");
@@ -207,14 +208,35 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen}) {
               <span className={styles["eqAmount"]}>~$0.00</span>
             </span>
           </span>
-        </div>
-        <div className={styles["app-container-button"]}>
-          <svg>
-            <title>Connect Wallet</title>
-            <image href="/svg/icons/wallet.svg" height="100%" width="100%" />
-          </svg>
-          <span>Connect Wallet</span>
-        </div>
+        </div>  
+        {
+          /* If wallet connected do : */
+          isWalletConnected && (
+            <div className={styles["app-container-button"]} onClick={(() => {
+            })}>
+              <svg>
+                <title>Swap currency</title>
+                <image href="/svg/icons/wallet.svg" height="100%" width="100%" />
+              </svg>
+              <span>Swap currency</span>
+            </div>
+          )
+        }
+      
+        {/* If wallet not connected do :*/
+        !isWalletConnected && (
+          <div className={styles["app-container-button"]} onClick={(() => {
+            setModalTitle("Connect your wallet")
+            setModalContent(<ModalConnectWallet callbacks={{closeModal:closeModal,setIsWalletConnected:setIsWalletConnected}}/>)
+            openModal()
+          })}>
+            <svg>
+              <title>Connect Wallet</title>
+              <image href="/svg/icons/wallet.svg" height="100%" width="100%" />
+            </svg>
+            <span>Connect Wallet</span>
+          </div>
+        )}
       </motion.div>
     </>
   );

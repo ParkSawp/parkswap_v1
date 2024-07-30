@@ -17,6 +17,7 @@ export default function Home() {
   const [isSettingsOpen, setIsSettingOpen] = useState(false);
   const [settingsButtonVal, setSettingsButtonVal] = useState("...");
   const [isGraphOpen, setIsGraphOpen] = useState(false);
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
 
   const openSettings = () => {
     setIsSettingOpen(true);
@@ -334,6 +335,8 @@ export default function Home() {
           <SwapContainer
             setIsGraphOpen={setIsGraphOpen}
             isGraphOpen={isGraphOpen}
+            isWalletConnected={isWalletConnected}
+            setIsWalletConnected={setIsWalletConnected}
           />
           <ChartContainer isGraphOpen={isGraphOpen} />
         </div>

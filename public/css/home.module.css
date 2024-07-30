@@ -100,21 +100,6 @@ main {
     align-items: center;
     font-weight: bold;
 }
-/* 
-.card {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-} */
 
 footer {
     background-color: #D9D9D9;
