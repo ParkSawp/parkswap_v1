@@ -4,7 +4,7 @@ import styles from "./Modal.module.css";
 import { motion, useAnimation } from "framer-motion";
 import React, { useEffect } from 'react';
 
-const Modal = ({ isOpen, closeModal, modalTitle, modalContent }) => {
+const Modal = ({ isOpen, closeModal, modalTitle, modalContent, modalWidth=460, modalHeight=500 }) => {
   const controls = useAnimation();
 
   useEffect(() => {
@@ -32,8 +32,12 @@ const Modal = ({ isOpen, closeModal, modalTitle, modalContent }) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
             className={styles["app-modal"]}
+            style={{
+              ...(modalWidth !== false && { maxWidth: modalWidth }),
+              ...(modalHeight !== false && { maxHeight: modalHeight })
+            }}          
             onClick={(e) => e.stopPropagation()}
-          >
+            >
             <div className={styles["app-modal-header"]}>
               <span>{modalTitle}</span>
               <svg

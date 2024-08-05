@@ -14,6 +14,8 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle,setModalTitle] = useState("");
   const [modalContent,setModalContent] = useState("");
+  const [modalWidth,setModalWidth] = useState(false);
+  const [modalHeight,setModalHeight] = useState(false);
   const [firstTokenSelected,setFirstTokenSelected] = useState(
     {
       name:"Ethereum",
@@ -33,8 +35,11 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
     }
   );
   const openModal = () => {setIsModalOpen(true)};
-  const closeModal = () => {setIsModalOpen(false)}
-
+  const closeModal = () => {
+    setModalWidth(false);
+    setModalHeight(false);
+    setIsModalOpen(false);
+  }
 
   let getTokens = () => {
     return [firstTokenSelected,secondTokenSelected]
@@ -48,7 +53,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
 
   return (
     <>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} modalTitle={modalTitle} modalContent={modalContent}></Modal>
+      <Modal isOpen={isModalOpen} closeModal={closeModal} modalTitle={modalTitle} modalContent={modalContent} modalWidth={modalWidth} modalHeight={modalHeight}></Modal>
       <motion.div     
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -66,12 +71,15 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
               <svg>
                 <title>Graph</title>
                 <image width="21px" height="21px" href="/svg/icons/graph.svg" />
+                {/* <image width="21px" height="21px" href="/svg/icons/solar_graph.svg" /> */}
               </svg>
             </li>
             <li>
               <svg>
                 <title>Reset</title>
                 <image width="21px" height="21px" href="/svg/icons/reset.svg" />
+                {/* <image width="21px" height="21px" href="/svg/icons/solar_reset.svg" /> */}
+
               </svg>
             </li>
             <li onClick={() => {
@@ -81,6 +89,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
                 }}>
               <svg>
                 <title>Add currency</title>
+                {/* <image width="30px" height="30px" href="/svg/icons/solar_plus.svg" /> */}
                 <image width="21px" height="21px" href="/svg/icons/plus.svg" />
               </svg>
             </li>
@@ -96,6 +105,11 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
                   height="21px"
                   href="/svg/icons/settings.svg"
                 />
+                {/* <image
+                  width="21px"
+                  height="21px"
+                  href="/svg/icons/solar_settings.svg"
+                /> */}
               </svg>
             </li>
           </ul>
@@ -228,6 +242,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
           <div className={styles["app-container-button"]} onClick={(() => {
             setModalTitle("Connect your wallet")
             setModalContent(<ModalConnectWallet callbacks={{closeModal:closeModal,setIsWalletConnected:setIsWalletConnected}}/>)
+            setModalWidth(800);
             openModal()
           })}>
             <svg>
