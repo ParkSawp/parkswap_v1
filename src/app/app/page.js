@@ -93,9 +93,9 @@ export default function Home() {
               <div className={styles["nav-dd"]}>
                 <li className={styles["nav-trade-btn"]}>
                   <a href="">
-                    Trade
+                    Marché
                     <svg width="21px" height="21px">
-                      <title>Trade</title>
+                      <title>Marché</title>
                       <image
                         width="21px"
                         height="21px"
@@ -106,9 +106,9 @@ export default function Home() {
                 </li>
                 <li className={styles["nav-market-btn"]}>
                   <a href="">
-                    Marché
+                    Trade
                     <svg width="21px" height="21px">
-                      <title>Market</title>
+                      <title>Trade</title>
                       <image
                         width="21px"
                         height="21px"
