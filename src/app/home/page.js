@@ -100,7 +100,7 @@ export default function Home() {
                 </svg>
               </div>
             </Link>
-            <Link href="/" className={styles["home-option"]}>
+            <Link href="/bridge" className={styles["home-option"]}>
               <div className={styles["home-option-title"]}>Bridge</div>
               <div className={styles["home-option-icon"]}>
                 <svg width="80px" height="80px">
