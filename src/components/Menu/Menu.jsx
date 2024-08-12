@@ -33,7 +33,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                   </Link>
                 </li>
                 <li className={styles["nav-portfolio-btn"]}>
-                  <a href="">
+                  <a href="/portfolio">
                     Portfolio
                     {/* <svg width="21px" height="21px">
                       <title>Portfolio</title>
@@ -46,7 +46,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                   </a>
                 </li>
                 <li className={styles["nav-bridge-btn"]}>
-                  <a href="">
+                  <a href="/bridge">
                     Bridge
                     {/* <svg width="21px" height="21px">
                       <title>Bridge</title>
@@ -61,7 +61,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
               </div>
               <div className={styles["nav-dd"]}>
                 <li className={styles["nav-trade-btn"]}>
-                  <a href="">
+                  <a href="/market">
                     Marché
                     <svg width="21px" height="21px">
                       <title>Marché</title>

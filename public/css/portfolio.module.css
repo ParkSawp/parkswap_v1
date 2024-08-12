@@ -1,0 +1,128 @@
+.portfolio-wrapper{
+    /* background:red; */
+    min-height:600px;
+    display:flex;
+    justify-content: center;
+    padding-top:100px;
+    padding-bottom:20px;
+    font-family:Poppins;
+}
+
+.portfolio-container{
+    width:80%;
+}
+
+.portfolio-container-header{
+    display:flex;
+    height:100px;
+}
+
+.header-starknetId{
+    border-radius:8px 0px 0px 0px;
+    width:200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-picture{
+    background:rgba(0,0,0,0.05);
+    border-radius:8px;
+    width:150px;
+}
+
+.header-title{
+    /* background:green; */
+    width:100%;
+}
+
+.header-amount{
+    /* background:blue; */
+    border-radius:8px 8px 0px 0px;
+    width:200px;    
+}
+
+.body-container{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.body-container-header{
+    display:flex;
+    flex-direction:row;
+    height:50px;
+}
+
+.body-container-header ul{
+    display:flex;
+    flex-direction:row;
+    height:100%;
+    width:100%;
+    align-items: center;
+}
+
+.body-container-header ul li{
+    list-style:none;
+    font-family:Poppins;
+    margin:5px;
+    cursor:pointer;
+    font-size:15px;
+}   
+
+.body-container-header ul li:last-child{
+    font-weight:600;
+    margin-left:auto;
+}
+
+.body-container-body{
+    font-family:Poppins;
+}
+
+.body-container-body table{
+    width:100%;
+}
+
+.body-container-body td,.body-container-body th{
+    border-bottom:1px solid #dddddd;
+    padding:10px;
+    text-align:center;
+}
+
+
+.header-title-title,.header-title-address{
+    /* background:red; */
+    padding-left:20px;
+    height:50%;
+}
+
+.header-title-title{
+    padding-top:25px;
+}
+
+.header-title-address span{
+    background:#000;
+    border-radius:4px;
+    font-size:15px;
+    padding:3px;
+    color:#FFF;
+}
+
+.header-amount-amount,.header-amount-percent{
+    height:50%;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.header-amount-amount{
+    padding-top:20px;
+    font-size:16px;
+}
+
+.header-amount-percent{
+    padding-bottom:20px;
+    font-size:14px;
+    color:red;
+}
