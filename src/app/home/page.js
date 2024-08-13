@@ -48,7 +48,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className={styles["home-container"]}
           >
-            <Link href="/" className={styles["home-option"]}>
+            <Link href="/portfolio" className={styles["home-option"]}>
               <div className={styles["home-option-title"]}>Portfolio</div>
               <div className={styles["home-option-icon"]}>
                 <svg width="80px" height="80px">
@@ -74,7 +74,7 @@ export default function Home() {
                 </svg>
               </div>
             </Link>
-            <Link href="/" className={styles["home-option"]}>
+            <Link href="/market" className={styles["home-option"]}>
               <div className={styles["home-option-title"]}>Market</div>
               <div className={styles["home-option-icon"]}>
                 <svg width="80px" height="80px">
@@ -87,7 +87,7 @@ export default function Home() {
                 </svg>
               </div>
             </Link>
-            <Link href="/" className={styles["home-option"]}>
+            <Link href="/market" className={styles["home-option"]}>
               <div className={styles["home-option-title"]}>Blog</div>
               <div className={styles["home-option-icon"]}>
                 <svg width="80px" height="80px">
