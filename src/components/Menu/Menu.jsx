@@ -52,7 +52,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                       <title>Bridge</title>
                       <image
                         width="21px"
-                        height="21px"
+                        height="21px" 
                         href="/svg/icons/right_arrow.svg"
                       />
                     </svg> */}
