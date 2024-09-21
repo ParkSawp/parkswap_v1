@@ -83,3 +83,8 @@
     text-align:center;
 }
 
+.market-indicator{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}

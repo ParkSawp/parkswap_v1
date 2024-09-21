@@ -32,47 +32,6 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     </svg> */}
                   </Link>
                 </li>
-                <li className={styles["nav-portfolio-btn"]}>
-                  <a href="/portfolio">
-                    Portfolio
-                    {/* <svg width="21px" height="21px">
-                      <title>Portfolio</title>
-                      <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
-                      />
-                    </svg> */}
-                  </a>
-                </li>
-                <li className={styles["nav-bridge-btn"]}>
-                  <a href="/bridge">
-                    Bridge
-                    {/* <svg width="21px" height="21px">
-                      <title>Bridge</title>
-                      <image
-                        width="21px"
-                        height="21px" 
-                        href="/svg/icons/right_arrow.svg"
-                      />
-                    </svg> */}
-                  </a>
-                </li>
-              </div>
-              <div className={styles["nav-dd"]}>
-                <li className={styles["nav-trade-btn"]}>
-                  <a href="/market">
-                    Marché
-                    <svg width="21px" height="21px">
-                      <title>Marché</title>
-                      <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
-                      />
-                    </svg>
-                  </a>
-                </li>
                 <li className={styles["nav-market-btn"]}>
                   <Link href="/app">
                     Trade
@@ -142,7 +101,47 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     </div>
                   </div>
                 </li>
-                <li className={styles["nav-plus-btn"]}>
+                <li className={styles["nav-portfolio-btn"]}>
+                  <a href="/portfolio">
+                    Portfolio
+                    {/* <svg width="21px" height="21px">
+                      <title>Portfolio</title>
+                      <image
+                        width="21px"
+                        height="21px"
+                        href="/svg/icons/down_arrow.svg"
+                      />
+                    </svg> */}
+                  </a>
+                </li>
+                <li className={styles["nav-trade-btn"]}>
+                  <a href="/market">
+                    Marché
+                    <svg width="21px" height="21px">
+                      <title>Marché</title>
+                      <image
+                        width="21px"
+                        height="21px"
+                        href="/svg/icons/down_arrow.svg"
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li className={styles["nav-bridge-btn"]}>
+                  <a href="/bridge">
+                    Bridge
+                    {/* <svg width="21px" height="21px">
+                      <title>Bridge</title>
+                      <image
+                        width="21px"
+                        height="21px" 
+                        href="/svg/icons/right_arrow.svg"
+                      />
+                    </svg> */}
+                  </a>
+                </li>
+              </div>
+              <li className={styles["nav-plus-btn"]}>
                   <a href="">
                     Plus
                     <svg width="21px" height="21px">
@@ -274,7 +273,9 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     </div>
                   </div>
                 </li>
-              </div>
+              {/* <div className={styles["nav-dd"]}>
+                
+              </div> */}
             </ul>
           </div>
           <div className={styles["app-navigation-buttons"]}>
@@ -287,9 +288,9 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                   href="/svg/icons/strk-logo.svg"
                 />
               </svg>
-              StarkNet
+              StarkNet Mainnet
             </div>
-            <div className={styles["connect-wallet-btn"]}>Mainnet</div>
+            <div className={styles["connect-wallet-btn"]}>Connect Wallet</div>
           </div>
           <div
             className={styles["app-navigation-btn"]}

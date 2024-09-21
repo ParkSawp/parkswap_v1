@@ -58,29 +58,65 @@ export default function Home() {
                   <tr>
                     <th scope="col">Asset</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Balance</th>
+                    <th scope="col">Peformance</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">ETH</th>
                     <td>$667</td>
-                    <td>1</td>
+                    <td className={styles["market-indicator"]}>
+                      <svg width="30px" height="30px">
+                        <title>Indicator</title>
+                        <image
+                          width="30px"
+                          height="30px"
+                          href="/svg/arrow_up_right.svg"
+                        />
+                      </svg>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">USDT</th>
                     <td>$667</td>
-                    <td>9.2</td>
+                    <td className={styles["market-indicator"]}>
+                      <svg width="30px" height="30px">
+                        <title>Indicator</title>
+                        <image
+                          width="30px"
+                          height="30px"
+                          href="/svg/arrow_up_right.svg"
+                        />
+                      </svg>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">USDC</th>
                     <td>$667</td>
-                    <td>0</td>
+                    <td className={styles["market-indicator"]}>
+                      <svg width="30px" height="30px">
+                        <title>Indicator</title>
+                        <image
+                          width="30px"
+                          height="30px"
+                          href="/svg/arrow_up_right.svg"
+                        />
+                      </svg>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">UNI</th>
                     <td>$667</td>
-                    <td>0</td>
+                    <td className={styles["market-indicator"]}>
+                      <svg width="30px" height="30px">
+                        <title>Indicator</title>
+                        <image
+                          width="30px"
+                          height="30px"
+                          href="/svg/arrow_down_right.svg"
+                        />
+                      </svg>
+                    </td>
                   </tr>
                 </tbody>
               </table>
