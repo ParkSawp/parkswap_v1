@@ -39,6 +39,7 @@
     align-items:center;
     text-decoration:none;
     color: #000;
+    height:28px;
 }
 
 .app-navigation-nav ul li{
@@ -267,7 +268,6 @@
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#d9f9e07b;
     height:40px;
 }
 
@@ -289,6 +289,8 @@
 .nav-dd,.nav-no-dd{
     display:flex;
     flex-direction:row;
+    justify-content: center;
+    flex-wrap:wrap;
 }
 
 /* ====== MQ ====== */

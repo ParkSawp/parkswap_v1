@@ -140,8 +140,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     </svg> */}
                   </a>
                 </li>
-              </div>
-              <li className={styles["nav-plus-btn"]}>
+                <li className={styles["nav-plus-btn"]}>
                   <a href="">
                     Plus
                     <svg width="21px" height="21px">
@@ -273,9 +272,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     </div>
                   </div>
                 </li>
-              {/* <div className={styles["nav-dd"]}>
-                
-              </div> */}
+              </div>
             </ul>
           </div>
           <div className={styles["app-navigation-buttons"]}>
