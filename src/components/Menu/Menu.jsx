@@ -131,7 +131,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                   <a href="/bridge">
                     Bridge
                     {/* <svg width="21px" height="21px">
-                      <title>Bridge</title>
+                      <title>bridge</title>
                       <image
                         width="21px"
                         height="21px" 

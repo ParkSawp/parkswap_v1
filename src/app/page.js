@@ -102,14 +102,14 @@ export default function Home() {
                   </div>
                   <div className={styles["content-text"]}>
                     <div className={styles["container-title"]}>
-                      <span style={{ color: "#33C653" }}>
-                        plongez{" "}
-                        <i style={{ color: "white", fontStyle: "normal" }}>
-                          Au coeur
-                        </i>
+                      <span style={{ color: "white" }}>
+                        Multifunctionnal aggregator
+                        {/*<i style={{ color: "white", fontStyle: "normal" }}>*/}
+                        {/*  Au coeur*/}
+                        {/*</i>*/}
                       </span>
-                      <span style={{ color: "white" }}>de la finance </span>
-                      <span style={{ color: "#33C653" }}>décentralisée</span>
+                      {/*<span style={{ color: "white" }}>de la finance </span>*/}
+                      {/*<span style={{ color: "#33C653" }}>décentralisée</span>*/}
                     </div>
                   </div>
                   <div className={styles["content-button"]}>
@@ -157,13 +157,10 @@ export default function Home() {
                 </svg>
               </div>
               <div className={styles["feature-title"]}>
-                Liquidité et Échange :
+                Multi-Services DeFi :
               </div>
               <div className={styles["feature-text"]}>
-                Profitez d'une liquidité sans précédent et de taux d'échange
-                avantageux sur une multitude de paires crypto. Contribuez au
-                pool de liquidité pour gagner des frais de transaction,
-                renforçant ainsi un écosystème dynamique.
+                Explorez un écosystème complet réunissant swap, bridge, et marché en un seul endroit. Accédez à tous vos services DeFi essentiels via une plateforme unique, simplifiant vos opérations et maximisant votre efficacité dans l'univers crypto.
               </div>
               <div className={styles["feature-button"]}>
                 Voir Plus
@@ -187,13 +184,10 @@ export default function Home() {
                 </svg>
               </div>
               <div className={styles["feature-title"]}>
-                Sécurité et Autonomie :
+                Design & Expérience :
               </div>
               <div className={styles["feature-text"]}>
-                Priorité absolue à la sécurité avec des transactions
-                transparentes via des contrats intelligents, vous gardant maître
-                de vos clés privées et de vos actifs, minimisant les risques
-                liés aux plateformes centralisées.
+                Profitez d'une interface intuitive où chaque détail est pensé pour votre confort. Notre design moderne et nos parcours utilisateurs optimisés rendent la DeFi accessible à tous.
               </div>
               <div className={styles["feature-button"]}>
                 Voir Plus
@@ -217,13 +211,10 @@ export default function Home() {
                 </svg>
               </div>
               <div className={styles["feature-title"]}>
-                Innovation et Accessibilité :
+                Agrégateur Intelligent :
               </div>
               <div className={styles["feature-text"]}>
-                Interface conviviale ouvrant la porte à la DeFi pour tous, du
-                novice au professionnel. Découvrez des fonctionnalités de pointe
-                comme le staking et le farming de rendement, enrichissant votre
-                parcours dans l'économie crypto.
+                Obtenez automatiquement les meilleurs taux pour vos transactions grâce à notre moteur d'agrégation. Notre technologie analyse en temps réel les prix à travers les protocoles pour vous garantir les conditions optimales.
               </div>
               <div className={styles["feature-button"]}>
                 Voir Plus

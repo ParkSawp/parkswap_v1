@@ -1,0 +1,35 @@
+services:
+  orchestrator:
+    image: traefik:3.2
+    container_name: orchestrator
+    networks:
+      - parkswap_network
+    command:
+      - --providers.docker
+      - --api.dashboard=true
+      - --providers.docker.exposedByDefault=false
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:delegated
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.orchestrator.rule=Host(`traefik.${DOMAIN}`)
+  app:
+    build: ./
+    container_name: app
+    networks:
+      - parkswap_network
+    volumes:
+      - ./:/var/www
+    ports:
+      - 3000:3000
+    working_dir: /var/www
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app.rule=Host(`app.${DOMAIN}`)
+
+networks:
+  parkswap_network:
+    name: parkswap_network
