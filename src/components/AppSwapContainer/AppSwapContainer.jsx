@@ -8,6 +8,9 @@ import ModalAddToken from "../Modal/ModalAddToken/ModalAddToken"
 import ModalConnectWallet from "../Modal/ModalConnectWallet/ModalConnectWallet"
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import AppSwapTokenSelectionBlockHeader
+  from "@/src/components/AppSwapTokenSelectionBlockHeader/AppSwapTokenSelectionBlockHeader";
+import AppSwapSlipage from "@/src/components/AppSwapSlipage/AppSwapSlipage";
 
 
 export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletConnected,isWalletConnected}) {
@@ -115,7 +118,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
           </ul>
         </div>
         <div className={styles["app-container-firstBox"]}>
-          <p className={styles["firstBox-title"]}>You Pay</p>
+          <AppSwapTokenSelectionBlockHeader title="You Pay" />
           <span className={styles["firstBox-token"]}>
             <button
               className={`${styles["box-button"]} ${styles["firstBox-btn"]}`}
@@ -155,6 +158,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
               <span className={styles["eqAmount"]}>~$0.00</span>
             </span>
           </span>
+          <AppSwapSlipage />
         </div>
         <i className={styles["app-container-swapBtn"]} onClick={switchTokens}>
           <svg height="25px" width="25px">
@@ -164,7 +168,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
         </i>
         <div className={styles["app-container-secondBox"]}>
           {/* <div className={styles["app-container-secondBox-background"]}></div> */}
-          <p className={styles["secondBox-title"]}>You receive</p>
+          <AppSwapTokenSelectionBlockHeader title="You receive" />
           {/* <span className={styles["secondBox-token"]}>
             <motion.button className={styles["box-button"]}
               onClick={() => {

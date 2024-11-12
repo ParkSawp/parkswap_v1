@@ -85,10 +85,12 @@
     margin-right:15px;
 }
 
-.starknet-btn{
+.network-btn{
     cursor:pointer;
-    color: #088A24;
-    background:#D9F9E0;
+    color: white;
+    background: #0052ff;
+    /*color: #088A24;*/
+    /*background:#D9F9E0;*/
     border-radius:6px;
     text-align: center;
     font-family: Poppins;

@@ -13,6 +13,7 @@ import Menu from "../../components/Menu/Menu";
 // import Modal from "../../components/app/Modal";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import AppSwapHistory from "@/src/components/AppSwapHistory/AppSwapHistory";
 
 export default function Home() {
   const [isSettingsOpen, setIsSettingOpen] = useState(false);
@@ -50,6 +51,7 @@ export default function Home() {
           />
           <ChartContainer isGraphOpen={isGraphOpen} />
         </div>
+        <AppSwapHistory />
         <div className={styles["app-footer"]}>© 2024 ParkSwap</div>
       </div>
     </>

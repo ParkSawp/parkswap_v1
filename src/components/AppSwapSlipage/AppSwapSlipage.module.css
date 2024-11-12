@@ -1,0 +1,23 @@
+.slipage-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    grid-row: 4/5;
+    grid-column: 1/4;
+}
+
+.slipage-item {
+    background: white;
+    font-family:Poppins;
+    color: black;
+    border-radius: 35px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.slipage-item.active {
+    background: rgba(65, 224, 99, 0.3);
+    color: black;
+}

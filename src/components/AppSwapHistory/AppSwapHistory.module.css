@@ -1,0 +1,29 @@
+.app-swap-history {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 20px;
+}
+.app-swap-history-title {
+    color: #397546;
+    font-family:Poppins;
+    margin-bottom: 2rem;
+}
+.app-swap-histories-table {
+    width: 100%;
+}
+.app-swap-histories-container {
+    width: min(90%, 700px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:Poppins;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.app-swap-histories-container th {
+    padding: 10px;
+}

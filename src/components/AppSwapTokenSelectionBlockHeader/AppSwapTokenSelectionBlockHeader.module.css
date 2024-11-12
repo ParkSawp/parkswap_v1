@@ -1,0 +1,35 @@
+.swap-token-selection-block-header {
+    grid-column: 1/4;
+    grid-row: 1/1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.firstBox-title{
+    grid-column:1 / 2;
+    grid-row:1 / 1;
+    font-family:Poppins;
+    font-size:12px;
+    padding:8px;
+    flex: 1;
+}
+.secondBox-title{
+    grid-column:1 / 2;
+    grid-row:1 / 1;
+    font-family:Poppins;
+    font-size:12px;
+    padding:8px;
+}
+
+.swap-frequently-tokens-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 150px;
+    align-content: center;
+}
+.swap-frequently-token {
+    cursor: pointer;
+    margin: 5px 0;
+}

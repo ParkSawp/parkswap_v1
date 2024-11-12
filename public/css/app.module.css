@@ -40,13 +40,13 @@
 
 .app-container-firstBox{
     background:rgba(162, 218, 118, 0.1);
-    height:130px;
+    height:180px;
     border-radius:20px;
 }
 
 .app-container-secondBox{
     border-radius:20px;
-    height:130px;
+    height:160px;
     border:1px solid rgba(0,0,0,0.1);
 }
 
@@ -84,7 +84,7 @@
 .app-container-secondBox{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows:30px 1fr;
+    grid-template-rows: 40px 1fr 1f;
 }
 
 
@@ -104,7 +104,7 @@
 }
 
 .secondBox-amount{
-    grid-row:1/4;
+    grid-row:2/4;
     grid-column:2/4;
     color:rgba(0,0,0,0.9);
     display:flex;
@@ -119,7 +119,7 @@
 .app-container-firstBox{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows:30px 1fr;
+    grid-template-rows: 40px 1fr 1fr;
 }
 
 .firstBox-title{
@@ -139,7 +139,7 @@
 }
 
 .firstBox-amount{
-    grid-row:1/4;
+    grid-row:2/4;
     grid-column:2/4;
     color:rgba(0,0,0,0.9);
     display:flex;
@@ -363,8 +363,11 @@
 
 .app-footer{
     border-top:1px solid rgba(0,0,0,0.1);
-    height:50px;
+    padding: 20px 0;
+    margin-top:20px;
     margin-top:auto;
+    display: flex;
+    justify-content: center;
     text-align:center;
     line-height:50px;
     font-family:Poppins;
@@ -381,7 +384,7 @@
     align-items:center;
     position:absolute;
     cursor:pointer;
-    margin-top:5px;
+    margin-top:20px;
     background:green;
     padding:5px;
 }
