@@ -20,29 +20,100 @@
     width:100%;
     height:100px;
     display:flex;
-    align-items:center;
+    flex-direction:column;
+    margin-bottom: 3rem;
 }
 
-.market-container-header h1{
-    padding-left:20px;
+.market-header-title{
+    font-size: 4rem;
 }
-
+.market-header-subtitle {
+    font-size: 1.2rem;
+    color: gray;
+}
 .market-container-header span{
     margin-left:auto;
     padding-right:20px;
 }
+.market-container-subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.market-header-filter-input {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding: .5rem 1rem;
+    height: 2.5rem;
+    font-family: Poppins;
+    border-radius: 5px;
+    border: 1px solid #E2E8F0;
+    box-sizing: border-box;
+    outline-style: none;
+    box-shadow: none;
+}
 
-
+.market-header-filter-input:focus {
+    border-color: #696969;
+}
+.market-container-content {
+    min-height: 300px;
+}
 .market-container-content table{
     width:100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
 }
 
+.market-container-content tbody tr {
+    background: white;
+}
+.market-container-content tbody tr:hover td{
+    border-bottom-color: #dddddd;
+}
 .market-container-content td,.market-container-content th{
-    border-bottom:1px solid #dddddd;
     padding:10px;
     text-align:center;
+    border-bottom: 2px solid transparent;
 }
+.token-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.token-logo-container {
+    margin-right: 10px;
+}
+.token-name {
+    font-weight: bold;
+}
+.token-currency {
+    color: gray;
+    font-weight: normal;
+    font-size: .75rem;
+}
+.token-details {
+    text-align: left;
+    flex: 1;
+}
+.price-direction-up,
+.price-direction-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+}
+.price-direction-up {
+    color: green;
+}
+.price-direction-down {
+    color: red;
+}
+.duration-style {
 
+}
 .market-container-insight{
     background:rgba(0,0,0,0.03);
     width:100%;
@@ -87,4 +158,7 @@
     display:flex;
     justify-content: center;
     align-items:center;
+}
+.market-container-content th.market-table-header-name-column {
+    text-align: left;
 }

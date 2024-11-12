@@ -17,3 +17,7 @@ html,body{
 a{
     text-decoration:none;
 }
+
+.canvasjs-chart-credit {
+    display: none !important;
+}
