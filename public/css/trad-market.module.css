@@ -1,0 +1,101 @@
+.market-wrapper{
+    min-height:500px;
+    display:flex;
+    justify-content: center;
+    padding-top:20px;
+    padding-bottom:20px;
+    font-family:Poppins;
+}
+
+.trad-market-container {
+    width: min(90%, 1200px);
+}
+.trad-market-infos-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 5px 5px 10px #dddddd;
+    border-radius: 5px;
+    padding: 1rem;
+}
+.trad-market-info {
+    flex: 1;
+    border-right: 1px solid gray;
+    font-size: .85rem;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family:Poppins;
+}
+.trad-market-info:last-child {
+    border-right: none;
+}
+.trad-market-info-label {
+    font-weight: bold;
+}
+.trad-market-info-value {
+
+}
+.widgets-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.trad-market-applications-container {
+    padding: 1rem;
+    box-shadow: 5px 5px 10px #dddddd;
+    background-color: white;
+}
+.trad-market-applications-title {
+    font-weight: bold;
+    font-family:Poppins;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.trad-market-application {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+.trad-market-application-title {
+
+}
+.trad-market-application-picture {
+    border-radius: 10px;
+    height: 100px;
+    overflow: hidden;
+}
+.trad-market-application-picture img {
+    height: 100px;
+}
+.trad-market-applications {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+
+@media only screen and (min-width:700px){
+    .trad-market-applications-title {
+        text-align: left;
+    }
+    .widgets-container {
+        flex-direction: row;
+        gap: 2rem;
+    }
+    .trad-market-applications {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+    .trad-market-application {
+        align-content: flex-start;
+        align-items: flex-start;
+    }
+}

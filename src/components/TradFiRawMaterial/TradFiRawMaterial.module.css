@@ -1,0 +1,12 @@
+.trad-fi-raw-material-container {
+    display: flex;
+    justify-content: space-between;
+}
+.trad-fi-raw-material-note {
+    text-align: center;
+    font-size: .8rem;
+    margin-top: 2rem;
+}
+.trad-fi-raw-material-note a {
+    color: dodgerblue;
+}

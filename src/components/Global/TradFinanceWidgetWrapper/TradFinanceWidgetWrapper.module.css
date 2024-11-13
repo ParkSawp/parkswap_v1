@@ -1,0 +1,28 @@
+.trad-finance-widget {
+    flex: 1;
+    background-color: #00161a;
+    color: white;
+    padding:5px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.trad-finance-widget-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+.trad-finance-widget-show-all {
+    cursor: pointer;
+}
+.trad-finance-widget-container {
+    min-height: 150px;
+    background-color: #192e33;
+    border-radius: 10px;
+    padding: 1rem;
+    flex: 1;
+    margin-bottom: .5rem;
+    overflow: hidden;
+}

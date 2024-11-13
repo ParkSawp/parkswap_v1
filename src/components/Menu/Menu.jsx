@@ -114,18 +114,58 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     </svg> */}
                   </a>
                 </li>
-                <li className={styles["nav-trade-btn"]}>
-                  <a href="/market">
+                <li className={styles["nav-trade-btn"] +' '+ styles["nav-menu-item-btn"]}>
+                  <Link href="/market">
                     Marché
                     <svg width="21px" height="21px">
                       <title>Marché</title>
                       <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
+                          width="21px"
+                          height="21px"
+                          href="/svg/icons/down_arrow.svg"
                       />
                     </svg>
-                  </a>
+                  </Link>
+                  <div className={styles["nav-submenu-box"]}>
+                    <div className={styles["nav-menu-submenu"]}>
+                      <ul className={styles["menu-submenu-list"]}>
+                        <li>
+                          <Link href="/market">
+                            <span className={styles["title"]}>Marché DeFi</span>
+                            <p>Decentralize finance</p>
+                            <span className={styles["icon"]}>
+                              <svg width="18px" height="18px">
+                                <title>Simple mode</title>
+                                <image
+                                    width="18px"
+                                    height="18px"
+                                    href="/svg/icons/simple_mode.svg"
+                                />
+                              </svg>
+                            </span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/trad-market">
+                            <span className={styles["title"]}>
+                              Marché Trad.Fi
+                            </span>
+                            <p>Traditional Finance</p>
+                            <span className={styles["icon"]}>
+                              <svg width="18px" height="18px">
+                                <title>Advanced mode</title>
+                                <image
+                                    width="18px"
+                                    height="18px"
+                                    href="/svg/icons/advanced_mode.svg"
+                                />
+                              </svg>
+                            </span>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </li>
                 <li className={styles["nav-bridge-btn"]}>
                   <a href="/bridge">
@@ -146,9 +186,9 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                     <svg width="21px" height="21px">
                       <title>More</title>
                       <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
+                          width="21px"
+                          height="21px"
+                          href="/svg/icons/down_arrow.svg"
                       />
                     </svg>
                   </a>
@@ -164,9 +204,9 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                               <svg width="20px" height="20px">
                                 <title>Documentation</title>
                                 <image
-                                  width="20px"
-                                  height="20px"
-                                  href="/svg/icons/doc_icon.svg"
+                                    width="20px"
+                                    height="20px"
+                                    href="/svg/icons/doc_icon.svg"
                                 />
                               </svg>
                             </span>
@@ -179,9 +219,9 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                               <svg width="20px" height="20px">
                                 <title>Blog</title>
                                 <image
-                                  width="20px"
-                                  height="20px"
-                                  href="/svg/icons/blog_icon.svg"
+                                    width="20px"
+                                    height="20px"
+                                    href="/svg/icons/blog_icon.svg"
                                 />
                               </svg>
                             </span>
@@ -189,7 +229,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                         </li>
                         <li>
                           <a href="">
-                            <span className={styles["title"]}>Help</span>
+                          <span className={styles["title"]}>Help</span>
                             <span className={styles["icon"]}>
                               <svg width="20px" height="20px">
                                 <title>Help</title>
@@ -285,7 +325,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                   href="/svg/icons/base-logo.svg"
                 />
               </svg>
-              Base
+              Base Mainnet
             </div>
             <div className={styles["connect-wallet-btn"]}>Connect Wallet</div>
           </div>

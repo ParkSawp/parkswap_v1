@@ -1,0 +1,6 @@
+.trad-fi-actions-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 1rem;
+}

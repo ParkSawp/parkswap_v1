@@ -1,0 +1,43 @@
+.trad-fi-obligations-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.trad-fi-obligation-row {
+    display: flex;
+    justify-content: space-between;
+    row-gap: 1rem;
+    align-content: flex-start;
+    align-items: flex-start;
+    column-gap: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.trad-fi-obligation-row:hover {
+    background-color: rgba(184, 184, 184, 0.29);
+}
+.trad-fi-obligation-picture-container {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.trad-fi-obligation-picture-container img {
+    height: 100%;
+}
+.trad-fi-obligation-description {
+    flex: 1;
+}
+.trad-fi-obligation-name {
+    font-size: .85rem;
+}
+.trad-fi-obligation-performance {
+    font-size: .7rem;
+}
+.trad-fi-obligation-price {
+    font-size: .85rem;
+}

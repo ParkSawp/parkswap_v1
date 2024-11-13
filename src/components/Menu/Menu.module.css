@@ -123,6 +123,7 @@
 
 
 
+.nav-menu-item-btn:hover .nav-submenu-box,
 .nav-market-btn:hover .nav-submenu-box{
     transform: translate(-50%,0);
     display:block;

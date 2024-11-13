@@ -1,0 +1,52 @@
+.trad-fi-element-container {
+    font-family:Poppins;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: 10px;
+}
+.trad-fi-element-container:hover {
+    background-color: rgba(184, 184, 184, 0.29);
+}
+.trad-fi-element-logo-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.trad-fi-element-picture {
+    width: 40px;
+    border-radius: 50%;
+}
+.trad-fi-element-name {
+    font-size: .75rem;
+    text-wrap: nowrap;
+    width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.trad-fi-element-move-container {
+    color: gray;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.trad-fi-element-move-direction {
+    margin-right: 5px;
+}
+.trad-fi-element-move-direction img {
+    width: 10px;
+}
+.trad-fi-element-value {
+    font-size: .7rem;
+}
