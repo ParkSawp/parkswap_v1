@@ -21,3 +21,8 @@ a{
 .canvasjs-chart-credit {
     display: none !important;
 }
+input {
+    box-sizing: border-box;
+    outline-style: none;
+    box-shadow: none;
+}

@@ -1,0 +1,11 @@
+.amount-input-container input{
+    background: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border: 1px solid transparent;
+    color: white;
+    width: 100%;
+}
+.amount-input-amount {
+    font-size: .75rem;
+}

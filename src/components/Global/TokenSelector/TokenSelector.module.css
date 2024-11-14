@@ -1,0 +1,8 @@
+.selected-element-symbol {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.selected-element-name {
+    font-size: .6rem;
+    font-weight: normal;
+}

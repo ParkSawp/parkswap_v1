@@ -1,0 +1,127 @@
+.networks-token-selector-container {
+    font-family: poppins;
+    max-height: 550px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-top: .75rem;
+}
+
+.networks-list-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.network-name-container {
+    display: none;
+}
+.networks-token-selector-container.network-only .networks-list-container,
+.tokens-list-container {
+    /*display: grid;*/
+    /*grid-template-columns: repeat(5, 1fr);*/
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.network-item-container,
+.tokens-item-container{
+    flex: 1;
+    padding: .2rem 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    column-gap: .5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+.network-item-container.active,
+.tokens-item-container.active{
+    background: #e7f8eb;
+    border: 1px solid #088A24;
+}
+.network-item-container:hover,
+.tokens-item-container:hover{
+    background: rgba(247, 247, 247, 0.59);
+    border: 1px solid #dddddd;
+}
+.networks-token-selector-container.network-only .network-name-container,
+.tokens-name-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: 1rem;
+    align-self: center;
+}
+
+.token-name,
+.network-name{
+
+}
+
+.network-symbol,
+.token-symbol{
+    font-weight: normal;
+    font-size: .6rem;
+}
+
+.networks-list-wrapper .networks-token-search-container {
+    display: none;
+}
+.networks-token-selector-container.network-only .networks-list-wrapper .networks-token-search-container {
+    display: block;
+}
+.networks-token-search-container {
+    padding: 0 1rem 1rem 1rem;
+    padding-bottom: 1rem;
+}
+.tokens-list-wrapper .networks-token-search-container {
+    border-bottom: 1px solid #dddddd;
+}
+.networks-token-search-container input{
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: .25rem 1rem;
+    border: 1px solid white;
+    background: rgba(36, 32, 61, 0.67);
+    height: 2.5rem;
+    color: white;
+}
+
+.tokens-icon-container,
+.network-icon-container{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.tokens-icon-container img,
+.network-icon-container img{
+    height: 90%;
+}
+
+.networks-token-selector-container.network-only .networks-list-wrapper,
+.tokens-list-wrapper {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.networks-token-selector-container.network-only .networks-list-container,
+.tokens-list-container {
+    flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.networks-list-container,
+.tokens-list-container {
+    padding: 1rem;
+}
+
+.networks-token-selector-container.network-only .tokens-list-wrapper{
+    display: none;
+}

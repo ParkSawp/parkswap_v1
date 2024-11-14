@@ -1,0 +1,58 @@
+.bridge-form-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
+    background: #24203d;
+    border: 1px solid #24203d;
+    border-radius: 10px;
+    cursor: pointer;
+    flex: 1;
+}
+.bridge-form-item-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: .8rem;
+}
+.bridge-form-item-token-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    column-gap: 1rem;
+}
+.bridge-form-item-token {
+    position: relative;
+}
+.bridge-form-item-token-picture-container {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #302b52;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.bridge-form-item-network-picture-container {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #302b52;
+    border: 1px solid #120f29;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.bridge-form-item-network-picture-container img,
+.bridge-form-item-token-picture-container img {
+    height: 80%;
+}
+.bridge-form-item-placeholder {
+    flex:1;
+}

@@ -1,0 +1,9 @@
+.address-input-container input{
+    background: none;
+    font-weight: bold;
+    font-size: 1rem;
+    height: 1.7rem;
+    border: 1px solid transparent;
+    color: white;
+    width: 100%;
+}
