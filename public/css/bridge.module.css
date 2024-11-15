@@ -66,6 +66,9 @@
     align-content: center;
     margin-bottom: 1.2rem;
 }
+.bridge-view-setting {
+    cursor: pointer;
+}
 .bridge-view-setting img{
     width: 20px;
 }
@@ -128,6 +131,7 @@
     /*max-height: 400px;*/
     overflow: hidden;
     border-radius: 10px;
+    transition: padding .5s;
 }
 .bridge-view-paths-container:hover {
     overflow-y: auto;

@@ -1,0 +1,57 @@
+.bridge-settings-container{
+    display: flex;
+    flex-direction: column;
+}
+.bridge-settings-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: .5rem;
+}
+.bridge-settings-icon-container {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.bridge-settings-icon-container img {
+    width: 90%;
+}
+.bridge-settings-header-title{
+    flex: 1;
+    text-align: center;
+}
+.bridge-settings-body-container{
+    flex: 1;
+    max-width: 500px;
+    overflow: hidden;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+.options-list-container {
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+    align-content: center;
+    align-items: center;
+    padding: .5rem
+}
+.options-list-option {
+    flex: 1;
+    border-radius: 10px;
+    padding: .8rem;
+    text-align: center;
+    cursor: pointer;
+}
+.options-list-option.is_active {
+    background: #171621;
+}
+.options-list-option input {
+    background: none;
+    height: 100%;
+    color: white;
+    border: none;
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,36 @@
+.bridge-setting-item-container {
+    background: rgb(36, 32, 61);
+    border: 1px solid rgb(48, 43, 82);
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    font-size: .8rem;
+}
+.bridge-setting-item-header {
+    display: flex;
+    justify-content: space-between;
+    column-gap: .3rem;
+}
+.bridge-setting-item-icon-container {
+    width: 25px;
+    height: 25px;
+}
+.bridge-setting-item-icon-container img {
+    width: 90%;
+}
+.bridge-setting-item-header-title {
+    flex: 1;
+}
+.bridge-setting-item-header-indication-container {
+
+}
+.bridge-setting-item-body {
+    overflow: hidden;
+    min-height: 48px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.08);
+    margin-top: 12px;
+}
