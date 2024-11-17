@@ -168,7 +168,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                   </div>
                 </li>
                 <li className={styles["nav-bridge-btn"]}>
-                  <a href="/bridge">
+                  <a href="/Bridge">
                     Bridge
                     {/* <svg width="21px" height="21px">
                       <title>bridge</title>
