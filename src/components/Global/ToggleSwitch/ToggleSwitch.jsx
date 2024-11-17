@@ -1,3 +1,4 @@
+'use client';
 
 import styles from './ToggleSwitch.module.css';
 import React, {useState} from "react";

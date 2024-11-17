@@ -14,7 +14,9 @@ import Menu from "../../components/Menu/Menu";
 import {motion} from "framer-motion";
 import React, {useState} from "react";
 import ToggleSwitch from "@/src/components/Global/ToggleSwitch/ToggleSwitch";
-import StatsChart from "@/src/components/Global/StatsChart/StatsChart";
+import dynamic from "next/dynamic";
+
+const StatsChart = dynamic(() => import("@/src/components/Global/StatsChart/StatsChart"), { ssr: false });
 
 export default function Home() {
     const [isSettingsOpen, setIsSettingOpen] = useState(false);

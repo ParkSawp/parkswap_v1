@@ -1,3 +1,5 @@
+'use client';
+
 import React, {useState} from 'react';
 import styles from './TradFiActions.module.css';
 import TradFinanceWidgetWrapper from "@/src/components/Global/TradFinanceWidgetWrapper/TradFinanceWidgetWrapper";

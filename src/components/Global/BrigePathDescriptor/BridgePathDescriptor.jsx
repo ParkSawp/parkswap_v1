@@ -1,3 +1,5 @@
+'use client';
+
 import React, {useState} from 'react';
 import styles from './BridgePathDescriptor.module.css';
 import bfstyles from '../../BridgeFormItem/BridgeFormItem.module.css';

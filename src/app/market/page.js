@@ -14,7 +14,9 @@ import Menu from "../../components/Menu/Menu";
 import { motion } from "framer-motion";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import PriceChart from "@/src/components/Global/PriceChart/PriceChart";
+import dynamic from "next/dynamic";
+
+const PriceChart = dynamic(() => import("@/src/components/Global/PriceChart/PriceChart"), { ssr: false });
 
 export default function Home() {
   const [isSettingsOpen, setIsSettingOpen] = useState(false);

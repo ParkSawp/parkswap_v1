@@ -1,3 +1,5 @@
+'use client';
+
 import React, {useState} from 'react';
 import styles from './WalletAddressInput.module.css';
 import BridgeFormItem from "@/src/components/BridgeFormItem/BridgeFormItem";

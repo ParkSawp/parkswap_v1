@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import styles from './TokenSelector.module.css';
 import ModalTokenSelection from "@/src/components/Modal/ModalTokenSelection/ModalTokenSelection";

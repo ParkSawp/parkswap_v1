@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './AppSwapHistory.module.css';
 import ToggleSwitch from "@/src/components/Global/ToggleSwitch/ToggleSwitch";
 import {useState} from "react";
