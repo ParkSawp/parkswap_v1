@@ -35,71 +35,71 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                 <li className={styles["nav-market-btn"]}>
                   <Link href="/app">
                     Trade
-                    <svg width="21px" height="21px">
-                      <title>Trade</title>
-                      <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
-                      />
-                    </svg>
+                    {/*<svg width="21px" height="21px">*/}
+                    {/*  <title>Trade</title>*/}
+                    {/*  <image*/}
+                    {/*    width="21px"*/}
+                    {/*    height="21px"*/}
+                    {/*    href="/svg/icons/down_arrow.svg"*/}
+                    {/*  />*/}
+                    {/*</svg>*/}
                   </Link>
-                  <div className={styles["nav-submenu-box"]}>
-                    <div className={styles["nav-menu-submenu"]}>
-                      <ul className={styles["menu-submenu-list"]}>
-                        <li>
-                          <a href="">
-                            <span className={styles["title"]}>Simple Mode</span>
-                            <p>The most user-friendly way to trade</p>
-                            <span className={styles["icon"]}>
-                              <svg width="18px" height="18px">
-                                <title>Simple mode</title>
-                                <image
-                                  width="18px"
-                                  height="18px"
-                                  href="/svg/icons/simple_mode.svg"
-                                />
-                              </svg>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span className={styles["title"]}>
-                              Advanced Mode
-                            </span>
-                            <p>Take advantage of all the familiar tools</p>
-                            <span className={styles["icon"]}>
-                              <svg width="18px" height="18px">
-                                <title>Advanced mode</title>
-                                <image
-                                  width="18px"
-                                  height="18px"
-                                  href="/svg/icons/advanced_mode.svg"
-                                />
-                              </svg>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span className={styles["title"]}>Limit Order</span>
-                            <p>Schedule a swap to get the best price</p>
-                            <span className={styles["icon"]}>
-                              <svg width="18px" height="18px">
-                                <title>Limit Order</title>
-                                <image
-                                  width="18px"
-                                  height="18px"
-                                  href="/svg/icons/limit_order.svg"
-                                />
-                              </svg>
-                            </span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  {/*<div className={styles["nav-submenu-box"]}>*/}
+                  {/*  <div className={styles["nav-menu-submenu"]}>*/}
+                  {/*    <ul className={styles["menu-submenu-list"]}>*/}
+                  {/*      /!*<li>*!/*/}
+                  {/*      /!*  <a href="">*!/*/}
+                  {/*      /!*    <span className={styles["title"]}>Simple Mode</span>*!/*/}
+                  {/*      /!*    <p>The most user-friendly way to trade</p>*!/*/}
+                  {/*      /!*    <span className={styles["icon"]}>*!/*/}
+                  {/*      /!*      <svg width="18px" height="18px">*!/*/}
+                  {/*      /!*        <title>Simple mode</title>*!/*/}
+                  {/*      /!*        <image*!/*/}
+                  {/*      /!*          width="18px"*!/*/}
+                  {/*      /!*          height="18px"*!/*/}
+                  {/*      /!*          href="/svg/icons/simple_mode.svg"*!/*/}
+                  {/*      /!*        />*!/*/}
+                  {/*      /!*      </svg>*!/*/}
+                  {/*      /!*    </span>*!/*/}
+                  {/*      /!*  </a>*!/*/}
+                  {/*      /!*</li>*!/*/}
+                  {/*      /!*<li>*!/*/}
+                  {/*      /!*  <a href="">*!/*/}
+                  {/*      /!*    <span className={styles["title"]}>*!/*/}
+                  {/*      /!*      Advanced Mode*!/*/}
+                  {/*      /!*    </span>*!/*/}
+                  {/*      /!*    <p>Take advantage of all the familiar tools</p>*!/*/}
+                  {/*      /!*    <span className={styles["icon"]}>*!/*/}
+                  {/*      /!*      <svg width="18px" height="18px">*!/*/}
+                  {/*      /!*        <title>Advanced mode</title>*!/*/}
+                  {/*      /!*        <image*!/*/}
+                  {/*      /!*          width="18px"*!/*/}
+                  {/*      /!*          height="18px"*!/*/}
+                  {/*      /!*          href="/svg/icons/advanced_mode.svg"*!/*/}
+                  {/*      /!*        />*!/*/}
+                  {/*      /!*      </svg>*!/*/}
+                  {/*      /!*    </span>*!/*/}
+                  {/*      /!*  </a>*!/*/}
+                  {/*      /!*</li>*!/*/}
+                  {/*      /!*<li>*!/*/}
+                  {/*      /!*  <a href="">*!/*/}
+                  {/*      /!*    <span className={styles["title"]}>Limit Order</span>*!/*/}
+                  {/*      /!*    <p>Schedule a swap to get the best price</p>*!/*/}
+                  {/*      /!*    <span className={styles["icon"]}>*!/*/}
+                  {/*      /!*      <svg width="18px" height="18px">*!/*/}
+                  {/*      /!*        <title>Limit Order</title>*!/*/}
+                  {/*      /!*        <image*!/*/}
+                  {/*      /!*          width="18px"*!/*/}
+                  {/*      /!*          height="18px"*!/*/}
+                  {/*      /!*          href="/svg/icons/limit_order.svg"*!/*/}
+                  {/*      /!*        />*!/*/}
+                  {/*      /!*      </svg>*!/*/}
+                  {/*      /!*    </span>*!/*/}
+                  {/*      /!*  </a>*!/*/}
+                  {/*      /!*</li>*!/*/}
+                  {/*    </ul>*/}
+                  {/*  </div>*/}
+                  {/*</div>*/}
                 </li>
                 <li className={styles["nav-portfolio-btn"]}>
                   <a href="/portfolio">
@@ -249,7 +249,7 @@ const Menu = ({openSettings,settingsButtonVal}) => {
                             </span>
                             <span className={styles["icon"]}>
                               <svg width="20px" height="20px">
-                                <title>Address Screening</title>
+                                <title>Stats</title>
                                 <image
                                   width="20px"
                                   height="20px"

@@ -87,6 +87,19 @@ export default function Home() {
                 </svg>
               </div>
             </Link>
+            <Link href="/bridge" className={styles["home-option"]}>
+              <div className={styles["home-option-title"]}>Bridge</div>
+              <div className={styles["home-option-icon"]}>
+                <svg width="80px" height="80px">
+                  <title>Bridge</title>
+                  <image
+                      width="80px"
+                      height="80px"
+                      href="/svg/icons/bridge.svg"
+                  />
+                </svg>
+              </div>
+            </Link>
             <Link href="/market" className={styles["home-option"]}>
               <div className={styles["home-option-title"]}>Blog</div>
               <div className={styles["home-option-icon"]}>
@@ -96,19 +109,6 @@ export default function Home() {
                     width="80px"
                     height="80px"
                     href="/svg/icons/blog.svg"
-                  />
-                </svg>
-              </div>
-            </Link>
-            <Link href="/bridge" className={styles["home-option"]}>
-              <div className={styles["home-option-title"]}>Bridge</div>
-              <div className={styles["home-option-icon"]}>
-                <svg width="80px" height="80px">
-                  <title>Bridge</title>
-                  <image
-                    width="80px"
-                    height="80px"
-                    href="/svg/icons/bridge.svg"
                   />
                 </svg>
               </div>

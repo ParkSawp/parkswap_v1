@@ -40,7 +40,7 @@
 
 .app-container-firstBox{
     background:rgba(162, 218, 118, 0.1);
-    height:180px;
+    height:220px;
     border-radius:20px;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .app-container-wrapper div{
-    margin:8px;
+    padding: 5px;
     width:100%;
 }
 
@@ -84,7 +84,8 @@
 .app-container-secondBox{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 40px 1fr 1f;
+    grid-template-rows: 40px 1fr 1fr;
+    margin-bottom: 8px;
 }
 
 
@@ -120,6 +121,7 @@
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 40px 1fr 1fr;
+    margin-bottom: 8px;
 }
 
 .firstBox-title{
@@ -384,7 +386,7 @@
     align-items:center;
     position:absolute;
     cursor:pointer;
-    margin-top:20px;
+    margin-bottom: -42px;
     background:green;
     padding:5px;
 }

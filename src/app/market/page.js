@@ -108,7 +108,6 @@ export default function Home() {
                               <th scope="col">7D</th>
                               <th scope="col">Trading Volume(24)</th>
                               <th scope="col">Market Cap</th>
-                              <th scope="col">Parkswap TVL</th>
                               <th scope="col">Last 7 days</th>
                             </tr>
                           </thead>
@@ -183,7 +182,6 @@ export default function Home() {
                                     </td>
                                     <td>${token.tradingVolume.toLocaleString('hi-IN')}</td>
                                     <td>${token.marketCap.toLocaleString('hi-IN')}</td>
-                                    <td>${token.parkswapTvl.toLocaleString('hi-IN')}</td>
                                     <td >
                                       <div className={styles["market-indicator"]} >
                                         <PriceChart />
