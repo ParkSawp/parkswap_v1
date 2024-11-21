@@ -1,3 +1,9 @@
+.toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
 .toggle-switch {
     position: relative;
     width: 40px;
@@ -21,6 +27,7 @@
     border: 0 solid #bbb;
     border-radius: 20px;
     margin: 0;
+    font-family: Poppins;
 }
 .toggle-switch-inner {
     display: block;

@@ -14,7 +14,7 @@ export default function ToggleSwitch({ name, label, checked, onChange }) {
     }
 
     return (
-        <div>
+        <div className={styles['toggle-wrapper']}>
             <div className={styles['toggle-switch']}>
                 <input type="checkbox" className={styles['toggle-switch-checkbox']} name={name} id={name} checked={isChecked} onChange={handleInput} />
                 <label className={styles['toggle-switch-label']} htmlFor={name}>
@@ -25,7 +25,7 @@ export default function ToggleSwitch({ name, label, checked, onChange }) {
             {
                 label
                 &&
-                <label className='toggle-switch-label' htmlFor={name}>
+                <label className={styles['toggle-switch-label']} htmlFor={name}>
                     {label}
                 </label>
             }
