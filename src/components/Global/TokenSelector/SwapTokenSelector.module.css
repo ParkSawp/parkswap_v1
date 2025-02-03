@@ -1,0 +1,103 @@
+.swap-token-selector {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: row;
+}
+.swap-token-selector-token-selection {
+    display: inline-flex;
+    flex-direction: column;
+    color: #2C4932;
+    width: min-content !important;
+}
+.swap-token-selector-button {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    height: 45px;
+    color: #000;
+    border: none;
+    background: rgba(162, 218, 118, 0.08);
+    background-color: rgba(162, 218, 118, 0.08);
+    border-radius: 35px;
+    transition:background-color .3s;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: .2rem .5rem !important;
+    cursor: pointer;
+}
+.swap-token-selector-button:hover {
+    background-color:rgba(65, 224, 99, 0.3);
+}
+.swap-token-selector-token-description {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    column-gap: .5rem;
+    padding: 0 !important;
+}
+.swap-token-selector-token-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: whitesmoke;
+    border: 1px solid #e8e3e3;
+}
+.swap-token-selector-token-name {
+    color: rgba(0,0,0,0.6);
+    font-family: Poppins;
+    font-size: .8rem;
+    padding-left: .8rem !important;
+}
+
+.swap-token-selector-amount-wrapper {
+    flex: 1;
+
+}
+.swap-token-selector-amount-container {
+    display: flex;
+    /*justify-content: flex-end;*/
+    flex-direction: column;
+    /*align-items: flex-end;*/
+    color: darkolivegreen;
+    flex: 1;
+}
+.swap-token-selector-amount-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+}
+.swap-token-selector-amount,
+.swap-token-selector-token-balance {
+    font-size: 15px;
+    text-align: right;
+    line-height: 15px;
+    color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: flex-end;
+    column-gap: .5rem;
+    align-content: center;
+    align-items: center;
+    font-size: .8rem;
+}
+.swap-token-selector-amount-max-button {
+    background: #088a24;
+    color: white;
+    border-radius:  5px;
+    padding: .2rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-size: .5rem;
+}
+.swap-token-selector-token-symbol {
+    text-wrap: nowrap;
+    display: inline-block;
+    margin-right: .5rem;
+}

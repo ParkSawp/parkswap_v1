@@ -1,0 +1,59 @@
+.swap-settings-container {
+    margin-top:  1.5rem;
+    display: flex;
+    column-gap: .5rem;
+    align-items: center;
+    align-content: center;
+}
+.swap-setting-container {
+
+}
+
+.slippage-container {
+    margin-top: .5rem;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    margin-bottom: .5rem;
+    column-gap: 8px;
+    padding: 0;
+}
+.slippage-value-container {
+    font-size: .75rem;
+    grid-column: 1/4;
+    font-weight: bold;
+    padding: 0 !important;
+}
+.slippage-item {
+    background: white;
+    font-family:Poppins;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: .7rem;
+}
+
+.slippage-item.active {
+    background: rgba(65, 224, 99, 0.3);
+}
+.slippage-slider-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    height: 20px;
+    margin-bottom: 8px;
+    column-gap: 10px;
+    font-family: Poppins;
+}
+.slippage-slider-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

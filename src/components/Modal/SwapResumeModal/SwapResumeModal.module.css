@@ -1,0 +1,104 @@
+.swap-resume-modal-content {
+    padding: 1rem;
+}
+.swap-resume-modal {
+    border: 1px solid black;
+}
+.swap-resume-modal .app-modal-header {
+    background: black;
+}
+.swap-resume-step-token {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.swap-resume-step-token-details {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+.swap-resume-step-token-amount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-content: center;
+}
+.swap-resume-step-direction-logo {
+    display: flex;
+    justify-content: center;
+}
+.swap-resume-step-token-amount-quantity {
+    font-size: 1.5rem;
+}
+.swap-resume-step-token-amount-value {
+
+}
+.swap-resume-step-container {
+    display: flex;
+}
+.swap-resume-step-container.step-resume {
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.swap-resume-step-container.step-information {
+    row-gap: .5rem;
+    margin-top: 1rem;
+    flex-direction: column;
+}
+.swap-resume-step-transaction-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.swap-resume-step-separator {
+    border-top: 1px solid #ccc;
+    margin: .8rem 0;
+}
+.step-alert {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 1rem;
+}
+.step-alert-title {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+.swap-resume-options-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    column-gap: .6rem;
+    align-items: center;
+}
+.swap-resume-option-button {
+    padding: .8rem !important;
+    border-radius: 35px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.swap-resume-option-button.cancel-swap {
+    width: 80px;
+    background-color: #721c24;
+    border-color: #721c24;
+    color: #f8d7da;
+}
+.swap-resume-option-button.validate-swap {
+    width: 100%;
+    color: #FFF;
+    background:#088A24;
+    border-color: #397546;
+}
+.swap-resume-option-button:disabled {
+    background: #F7F7F7;
+    color: black;
+}
+.swap-resume-title {
+    margin-bottom: 1.25rem;
+}

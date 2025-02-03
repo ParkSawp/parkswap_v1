@@ -30,11 +30,11 @@
     /* min-width:400px; */
     max-width:460px;
     width:100%;
-    min-height:500px;
+    min-height:200px;
     max-height:500px;
     border-radius:12px;
-    display:grid;
-    grid-template-rows:60px 1fr;
+    /*display:grid;*/
+    /*grid-template-rows:60px 1fr;*/
     /* position:absolute;
     left: 50%;
     top: 50%; */
@@ -42,23 +42,21 @@
 }
 
 .app-modal-header{
-    display:grid;
-    grid-template-columns:1fr 60px;
-    /* background:red; */
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
     align-items: center;
-    border-bottom:1px solid rgba(0,0,0,0.05)
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    padding: .5rem;
 }
 
-.app-modal-header span{
-    margin-right:auto;
-    padding-left:20px;
-
+.app-modal-header-title{
+    flex: 1;
+    padding: 0 1rem;
 }
 
-.app-modal-header svg{
-    /* background:yellow; */
-    padding-top:18px;
-    padding-left:20px;
+.app-modal-header-icon-container{
+    padding: 0 1rem;
 }
 
 .app-modal-header svg image{

@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import TokenProvider from "@/src/core/ApiServices/TokensProvider/TokenProvider";
 
 export async function GET(request) {
-  const filePath = path.join(process.cwd(), "./public/tokens.json");
-  const jsonData = fs.readFileSync(filePath, "utf-8");
-  const data = JSON.parse(jsonData);
+  const { searchParams } = request.nextUrl
+  const { chainId, search } = Object.fromEntries(searchParams.entries());
+
+  const tokens = await TokenProvider.tokens(chainId, search);
   // Do whatever you want
-  return NextResponse.json(data, { status: 200 });
+  return NextResponse.json(tokens, { status: 200 });
 }

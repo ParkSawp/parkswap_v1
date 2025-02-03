@@ -1,7 +1,7 @@
 import "../../public/css/style.css";
 
 export const metadata = {
-  title: "ParkSwap",
+  // title: "ParkSwap",
   description: "",
 };
 

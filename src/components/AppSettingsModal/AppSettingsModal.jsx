@@ -54,7 +54,8 @@ export default function AppSettingsModal({isOpen,closeModal}) {
                             <div className={styles["BodyValue"]}>English</div>
                             <div className={styles["BodyName"]}>Choose language</div>
                         </span>
-                    </li><li>
+                    </li>
+                    <li>
                         <span>
                             <div className={styles["BodyHeader"]}>
                                 <svg width="25px" height="25px">
@@ -69,7 +70,8 @@ export default function AppSettingsModal({isOpen,closeModal}) {
                             <div className={styles["BodyValue"]}>Space (1000)</div>
                             <div className={styles["BodyName"]}>Thousand separator</div>
                         </span>
-                    </li><li>
+                    </li>
+                    <li>
                         <span>
                             <div className={styles["BodyHeader"]}>
                                 <svg width="25px" height="25px">

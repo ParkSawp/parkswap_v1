@@ -9,6 +9,8 @@ export default function AppSwapSlipage({ onSelect }) {
 
     const [currentSlipage, setCurrentSlipage] = useState(5);
     const slipages = [
+        { label: '5%', value: 25 },
+        { label: '10%', value: 25 },
         { label: '25%', value: 25 },
         { label: '50%', value: 50 },
         { label: '75%', value: 75 },

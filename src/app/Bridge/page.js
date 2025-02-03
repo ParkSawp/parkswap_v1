@@ -1,11 +1,6 @@
 "use client";
 
-
-import Head from "next/head";
-import AppStyles from "../../../public/css/app.module.css";
 import styles from "../../../public/css/bridge.module.css";
-import AppSettingsModal from "../../components/AppSettingsModal/AppSettingsModal";
-import Menu from "../../components/Menu/Menu";
 
 import { motion } from "framer-motion";
 import React, { useState } from "react";
@@ -14,10 +9,9 @@ import TokenAmountInput from "@/src/components/Global/TokenAmountInput/TokenAmou
 import WalletAddressInput from "@/src/components/Global/WalletAddressInput/WalletAddressInput";
 import BridgePathDescriptor from "@/src/components/Global/BrigePathDescriptor/BridgePathDescriptor";
 import BridgeSettings from "@/src/components/BridgeSettings/BridgeSettings";
+import AppLayout from "@/src/app/AppLayout";
 
 export default function Home() {
-  const [isSettingsOpen, setIsSettingOpen] = useState(false);
-  const [settingsButtonVal, setSettingsButtonVal] = useState("...");
   const [isExchangeView, setIsExchangeView] = useState(true);
   const [tokenFrom, setTokenFrom] = useState({ token: null, network: null });
   const [tokenTo, setTokenTo] = useState({ token: null, network: null });
@@ -34,15 +28,6 @@ export default function Home() {
     { },
   ];
 
-
-  const openSettings = () => {
-    setIsSettingOpen(true);
-    setSettingsButtonVal("");
-  };
-  const closeSettings = () => {
-    setIsSettingOpen(false);
-    setSettingsButtonVal("...");
-  };
   const saveAmount = (amount) => {
     setAmount(amount);
     setShowAll(false);
@@ -70,37 +55,29 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Head>
-        <title>Parkswap | App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <div className={AppStyles["site-wrapper"]}>
-        <AppSettingsModal isOpen={isSettingsOpen} closeModal={closeSettings} />
-        <Menu
-          openSettings={openSettings}
-          settingsButtonVal={settingsButtonVal}
-        />
+      <AppLayout header={{title: 'Parkswap | Bridge'}}>
         <motion.div
-          className={styles["bridge-wrapper"]}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+            className={styles["bridge-wrapper"]}
+            initial={{opacity: 0, scale: 0.5}}
+            animate={{opacity: 1, scale: 1}}
+            transition={{duration: 0.5}}
         >
           <div className={styles["bridge-container"]}>
-            <div className={styles['bridge-views-container']} >
-              <div className={styles['bridge-view-handlers-container']} >
-                <button className={styles['bridge-view-handler'] +' '+ (isExchangeView && styles['active'])} onClick={showExchangeView} >
-                  <img src="/img/exchange.png" alt="Exchange" />
+            <div className={styles['bridge-views-container']}>
+              <div className={styles['bridge-view-handlers-container']}>
+                <button className={styles['bridge-view-handler'] + ' ' + (isExchangeView && styles['active'])}
+                        onClick={showExchangeView}>
+                  <img src="/img/exchange.png" alt="Exchange"/>
                 </button>
-                <button className={styles['bridge-view-handler'] +' '+ (!isExchangeView && styles['active'])} onClick={showGasView} >
-                  <img src="/img/gas.png" alt="Gas calculator" />
+                <button className={styles['bridge-view-handler'] + ' ' + (!isExchangeView && styles['active'])}
+                        onClick={showGasView}>
+                  <img src="/img/gas.png" alt="Gas calculator"/>
                 </button>
               </div>
-              <div className={styles['bridge-view-form-container']} >
+              <div className={styles['bridge-view-form-container']}>
                 {
                   showSettings
-                      ? <BridgeSettings onClose={closeBrideSettings} />
+                      ? <BridgeSettings onClose={closeBrideSettings}/>
                       : (
                           <>
                             <div className={styles['bridge-view-form-header']}>
@@ -149,8 +126,8 @@ export default function Home() {
                                   <div className={styles['bridge-view-paths-container']}>
                                     {
                                       showAll
-                                          ? routes.map(({isTheBest}) => (
-                                              <BridgePathDescriptor showTitle={false} fromToken={tokenFrom.token}
+                                          ? routes.map(({isTheBest}, index) => (
+                                              <BridgePathDescriptor key={index} showTitle={false} fromToken={tokenFrom.token}
                                                                     token={tokenTo.token} network={tokenTo.network}
                                                                     isTheBest={isTheBest}/>
                                           ))
@@ -187,8 +164,6 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
-        <div className={AppStyles["app-footer"]}>© 2024 ParkSwap</div>
-      </div>
-    </>
+      </AppLayout>
   );
 }

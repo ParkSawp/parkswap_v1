@@ -4,7 +4,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding-top: .75rem;
 }
 
 .networks-list-container {
@@ -33,6 +32,7 @@
     cursor: pointer;
     border-radius: 10px;
     border: 1px solid transparent;
+    max-height: 50px;
 }
 
 .network-item-container.active,
@@ -40,10 +40,14 @@
     background: #e7f8eb;
     border: 1px solid #088A24;
 }
+.recent-token-item-container:hover,
 .network-item-container:hover,
 .tokens-item-container:hover{
     background: rgba(247, 247, 247, 0.59);
     border: 1px solid #dddddd;
+}
+.networks-token-selector-container {
+    min-height: 500px;
 }
 .networks-token-selector-container.network-only .network-name-container,
 .tokens-name-container{
@@ -65,15 +69,18 @@
     font-size: .6rem;
 }
 
-.networks-list-wrapper .networks-token-search-container {
-    display: none;
-}
 .networks-token-selector-container.network-only .networks-list-wrapper .networks-token-search-container {
     display: block;
 }
 .networks-token-search-container {
-    padding: 0 1rem 1rem 1rem;
-    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    align-items: center;
+    align-content: center;
+}
+.token-search-input-container {
+    flex: 1;
 }
 .tokens-list-wrapper .networks-token-search-container {
     border-bottom: 1px solid #dddddd;
@@ -83,10 +90,10 @@
     border-radius: 10px;
     font-size: 1rem;
     padding: .25rem 1rem;
-    border: 1px solid white;
-    background: rgba(36, 32, 61, 0.67);
+    border: 1px solid rgba(236, 236, 236, 0.67);
+    background: #F7F7F7;
     height: 2.5rem;
-    color: white;
+    color: black;
 }
 
 .tokens-icon-container,
@@ -115,13 +122,115 @@
 .tokens-list-container {
     flex: 1;
     overflow: hidden;
+}
+.networks-token-selector-container.network-only .networks-list-container,
+.tokens-list-container:hover {
     overflow-y: auto;
 }
 .networks-list-container,
 .tokens-list-container {
     padding: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
 }
-
 .networks-token-selector-container.network-only .tokens-list-wrapper{
     display: none;
+}
+.token-networks-list-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: .2rem;
+    padding: 0 .5rem;
+    height: 30px;
+}
+.network-list-item-container {
+    height: 14px;
+    border: 1px solid transparent;
+    opacity: .5;
+}
+.network-list-item-container.active {
+    background: #e7f8eb;
+    border: 1px solid rgba(0, 0, 0, 0.89);
+    border-radius: 50%;
+    opacity: 1;
+}
+.network-list-icon-container {
+    width: 12px;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.network-list-item-container img {
+    width: 12px;
+    height: 12px;
+}
+.tokens-description-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    column-gap: .5rem;
+}
+.tokens-balance-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.tokens-balance-value {
+    color: rgba(0,0,0,0.7);
+}
+.tokens-loading-container {
+    display: flex;
+    justify-content: center;
+    column-gap: .5rem;
+    padding: .5rem;
+    align-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.token-list-sub-title-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    column-gap: .7rem;
+    margin-bottom: .5rem;
+    color: #696969;
+}
+.token-list-sub-title-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.other-tokens {
+    margin-top: 1rem;
+}
+.recent-tokens-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+.recent-token-item-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    row-gap: .5rem;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    font-size: .7rem;
 }

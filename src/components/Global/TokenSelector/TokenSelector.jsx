@@ -1,14 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './TokenSelector.module.css';
-import ModalTokenSelection from "@/src/components/Modal/ModalTokenSelection/ModalTokenSelection";
 import Modal from "@/src/components/Modal/Modal";
 import NetworkAndTokenSelector from "@/src/components/Global/NetworkAndTokenSelector/NetworkAndTokenSelector";
-import BridgeFormItem from "@/src/components/BridgeFormItem/BridgeFormItem";
+import BridgeTokenSelector from "@/src/components/Global/TokenSelector/BridgeTokenSelector";
 
 
-export default function TokenSelector({ title, placeholder, networkOnly, tokenOnly, onNetworkSelected, onTokenSelected }) {
+export default function TokenSelector({ title, placeholder, networkOnly, tokenOnly, onNetworkSelected, onTokenSelected, customProps, Template }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedToken, setSelectedToken] = useState(null);
@@ -32,24 +30,20 @@ export default function TokenSelector({ title, placeholder, networkOnly, tokenOn
     }
 
     const elementToDisplay = networkOnly ? selectedNetwork : selectedToken;
+    const TemplateComponentName = Template || BridgeTokenSelector;
 
     return (
         <>
-            <BridgeFormItem title={title} onClick={openModal} token={selectedToken} network={selectedNetwork}>
-                {
-                    elementToDisplay
-                    &&
-                    <div className={styles['selected-element-container']}>
-                        <div className={styles['selected-element-symbol']}>
-                            {elementToDisplay.symbol}
-                        </div>
-                        <div className={styles['selected-element-name']}>
-                            {elementToDisplay.name}
-                        </div>
-                    </div>
-                }
-                {!elementToDisplay && placeholder}
-            </BridgeFormItem>
+            <TemplateComponentName
+                title={title}
+                openModal={openModal}
+                selectedToken={selectedToken}
+                elementToDisplay={elementToDisplay}
+                placeholder={placeholder}
+                selectedNetwork={selectedNetwork}
+                customProps={customProps}
+            />
+
             <Modal
                 className={''}
                 isOpen={isModalOpen}

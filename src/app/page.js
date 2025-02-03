@@ -162,16 +162,16 @@ export default function Home() {
               <div className={styles["feature-text"]}>
                 Explorez un écosystème complet réunissant swap, bridge, et marché en un seul endroit. Accédez à tous vos services DeFi essentiels via une plateforme unique, simplifiant vos opérations et maximisant votre efficacité dans l'univers crypto.
               </div>
-              <div className={styles["feature-button"]}>
-                Voir Plus
-                <svg width="26" height="26">
-                  <image
-                    width="26"
-                    height="26"
-                    href="/svg/icons/arrow_right_round.svg"
-                  ></image>
-                </svg>
-              </div>
+              {/*<div className={styles["feature-button"]}>*/}
+              {/*  Voir Plus*/}
+              {/*  <svg width="26" height="26">*/}
+              {/*    <image*/}
+              {/*      width="26"*/}
+              {/*      height="26"*/}
+              {/*      href="/svg/icons/arrow_right_round.svg"*/}
+              {/*    ></image>*/}
+              {/*  </svg>*/}
+              {/*</div>*/}
             </div>
             <div className={styles["feature-container"]}>
               <div className={styles["feature-icon"]}>
@@ -189,16 +189,16 @@ export default function Home() {
               <div className={styles["feature-text"]}>
                 Profitez d'une interface intuitive où chaque détail est pensé pour votre confort. Notre design moderne et nos parcours utilisateurs optimisés rendent la DeFi accessible à tous.
               </div>
-              <div className={styles["feature-button"]}>
-                Voir Plus
-                <svg width="26" height="26">
-                  <image
-                    width="26"
-                    height="26"
-                    href="/svg/icons/arrow_right_round.svg"
-                  ></image>
-                </svg>
-              </div>
+              {/*<div className={styles["feature-button"]}>*/}
+              {/*  Voir Plus*/}
+              {/*  <svg width="26" height="26">*/}
+              {/*    <image*/}
+              {/*      width="26"*/}
+              {/*      height="26"*/}
+              {/*      href="/svg/icons/arrow_right_round.svg"*/}
+              {/*    ></image>*/}
+              {/*  </svg>*/}
+              {/*</div>*/}
             </div>
             <div className={styles["feature-container"]}>
               <div className={styles["feature-icon"]}>
@@ -216,16 +216,16 @@ export default function Home() {
               <div className={styles["feature-text"]}>
                 Obtenez automatiquement les meilleurs taux pour vos transactions grâce à notre moteur d'agrégation. Notre technologie analyse en temps réel les prix à travers les protocoles pour vous garantir les conditions optimales.
               </div>
-              <div className={styles["feature-button"]}>
-                Voir Plus
-                <svg width="26" height="26">
-                  <image
-                    width="26"
-                    height="26"
-                    href="/svg/icons/arrow_right_round.svg"
-                  ></image>
-                </svg>
-              </div>
+              {/*<div className={styles["feature-button"]}>*/}
+              {/*  Voir Plus*/}
+              {/*  <svg width="26" height="26">*/}
+              {/*    <image*/}
+              {/*      width="26"*/}
+              {/*      height="26"*/}
+              {/*      href="/svg/icons/arrow_right_round.svg"*/}
+              {/*    ></image>*/}
+              {/*  </svg>*/}
+              {/*</div>*/}
             </div>
           </div>
         </section>

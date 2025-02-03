@@ -1,0 +1,44 @@
+.send-token-block {
+
+}
+.send-block-title {
+
+}
+
+.send-receiver-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+}
+.send-connect-wallet-btn {
+    width: 100%;
+    border-radius: 35px;
+    padding: .9rem;
+    height: 45px;
+}
+.send-connect-wallet-btn:disabled {
+    background: #ccc;
+    color: #696969;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+}
+.send-receiver-input.has-error {
+    border: 1px solid #3a0202;
+    background: rgba(255, 0, 0, 0.28);
+}
+.send-token-block-error-container {
+    color: #3a0202;
+    text-align: center;
+}
+.send-connect-wallet-btn-container {
+    margin-top: 2rem;
+}
+.send-loading-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

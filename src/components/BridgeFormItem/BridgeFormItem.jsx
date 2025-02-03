@@ -11,11 +11,11 @@ export default function BridgeFormItem({ token, network, title, onClick, childre
             <div className={styles['bridge-form-item-token-description']}>
                 <div className={styles['bridge-form-item-token']}>
                     <div className={styles['bridge-form-item-token-picture-container']}>
-                        {token && <img src={token.logo} alt={token.name}/>}
-                        {!token && network && <img src={network.logo} alt={network.name}/>}
+                        {token && <img src={token.logo_uri} alt={token.name}/>}
+                        {!token && network && <img src={network.logo_uri} alt={network.name}/>}
                     </div>
                     <div className={styles['bridge-form-item-network-picture-container']}>
-                        {network && <img src={network.logo} alt={network.name}/>}
+                        {network && <img src={network.logo_uri} alt={network.name}/>}
                     </div>
                 </div>
                 <div className={styles['bridge-form-item-placeholder']}>

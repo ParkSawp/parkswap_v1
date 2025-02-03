@@ -1,0 +1,31 @@
+.parkswap-network-socials-container {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    column-gap: .5rem;
+}
+.parkswap-network-container {
+}
+
+.parkswap-network-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #088a24;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.parkswap-network-link:hover {
+    background: rgba(8, 138, 36, 0.18);
+    transition: background-color .2s ease-in;
+}
+
+.parkswap-network-icon {
+
+}

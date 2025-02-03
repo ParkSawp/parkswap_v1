@@ -1,0 +1,44 @@
+.best-price-details-container {
+    display: flex;
+    flex-direction: column;
+    font-family: Poppins;
+    font-size: .8rem;
+}
+.best-price-details-resume-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.best-price-detail-tokens-container {
+    /*flex: 1;*/
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    gap: .5rem;
+    width: 120px;
+}
+.best-price-gas-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    gap: .4rem;
+}
+.best-price-detail-token-sell,
+.best-price-detail-direction-logo,
+.best-price-detail-token-buy {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: .7rem;
+}
+.best-price-loading-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: .5rem;
+}
