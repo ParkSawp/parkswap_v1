@@ -133,19 +133,19 @@ function HomeComponent() {
                     </div>
                 </div>
             </motion.div>
-            <motion.div className={styles["portfolio-graphics-wrapper"]}>
-                <div className={styles['graphics-container']}>
-                    <div className={styles['graphic-container']}>
-                        <StatsChart title='Protocol Exposure'/>
-                    </div>
-                    <div className={styles['graphic-container']}>
-                        <StatsChart title='Token Exposure'/>
-                    </div>
-                    <div className={styles['graphic-container']}>
-                        <img src="/img/nft.jpg" alt="NFT"/>
-                    </div>
-                </div>
-            </motion.div>
+            {/*<motion.div className={styles["portfolio-graphics-wrapper"]}>*/}
+            {/*    <div className={styles['graphics-container']}>*/}
+            {/*        <div className={styles['graphic-container']}>*/}
+            {/*            <StatsChart title='Protocol Exposure'/>*/}
+            {/*        </div>*/}
+            {/*        <div className={styles['graphic-container']}>*/}
+            {/*            <StatsChart title='Token Exposure'/>*/}
+            {/*        </div>*/}
+            {/*        <div className={styles['graphic-container']}>*/}
+            {/*            <img src="/img/nft.jpg" alt="NFT"/>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</motion.div>*/}
         </>
     );
 }
