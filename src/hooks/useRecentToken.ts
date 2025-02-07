@@ -23,7 +23,7 @@ export default function useRecentToken() {
 
     const addToRecent = (token) => {
         const isTokenExist = tokens.find((item) => item.address === token.address);
-        const currentTokens = isTokenExist ? tokens.filter((item) => item.address === token.address) : tokens;
+        const currentTokens = isTokenExist ? tokens.filter((item) => item.address !== token.address) : tokens;
         const newRecentTokens = [token, ...currentTokens].splice(0, MAX_RECENT_TOKEN_LENGTH);
         setTokens(newRecentTokens);
         saveNewRecentTokenList(newRecentTokens);

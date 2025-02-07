@@ -49,7 +49,8 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
         return (
             <ReviewAndApproveButton taker={address}
                                     sellToken={sellToken}
-                                    buyToken={buyToken} price={price}
+                                    buyToken={buyToken}
+                                    price={price}
                                     disabled={inSufficientBalance}
                                     sellTokenAmount={sellTokenAmount}
                                     buyTokenAmount={buyTokenAmount}

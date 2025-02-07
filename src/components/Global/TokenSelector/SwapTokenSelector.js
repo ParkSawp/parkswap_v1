@@ -1,7 +1,7 @@
 'use client'
 
 import styles from "@/src/components/Global/TokenSelector/SwapTokenSelector.module.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAccount, useBalance } from 'wagmi';
 import {formatFromBalance, fullFormatFromBalance} from "@/src/config/functions";
 
@@ -9,6 +9,8 @@ import {formatFromBalance, fullFormatFromBalance} from "@/src/config/functions";
 export default function SwapTokenSelector({ openModal, selectedToken, elementToDisplay, placeholder, selectedNetwork, customProps: { onAmountChange, token, amount } }) {
 
     const { address } = useAccount();
+    const [query, setQuery] = useState(amount);
+    const [refreshFromParent, setRefreshFromParent] = useState(false);
     const tokenSelected = token || selectedToken;
 
     const { data: selectedTokenBalance } = useBalance({
@@ -17,13 +19,35 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     });
 
     const handleAmountInput = (event) => {
-        const value = event.target.value.trim();
-        onAmountChange(value.length > 0 ? value : '0');
+        let value = event.target.value;
+        value = value.replace(',', '.');
+        setQuery(value.length > 0 ? value.toString() : '0');
     };
 
     const setMax =  () => {
         onAmountChange(fullFormatFromBalance(selectedTokenBalance));
     }
+
+    useEffect(() => {
+        if(refreshFromParent) {
+            setRefreshFromParent(false);
+            return;
+        }
+        const timeOutId = setTimeout(() => {
+            const value = Number(query);
+            if(isNaN(value)) {
+                setQuery('0');
+                return;
+            }
+            onAmountChange(query);
+        }, 500);
+        return () => clearTimeout(timeOutId);
+    }, [query]);
+
+    useEffect(() => {
+        setRefreshFromParent(true);
+        setQuery(amount);
+    }, [amount])
 
     return (
         <div className={styles["swap-token-selector"]}>
@@ -60,7 +84,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
                 <div className={styles["swap-token-selector-amount-container"]}>
                     <input placeholder="0.00" type="text" dir="rtl"
                            className={styles['swap-token-selector-amount-input']}
-                           value={amount}
+                           value={query}
                            onInput={handleAmountInput}
                     />
                     <span className={styles["swap-token-selector-amount"]}>

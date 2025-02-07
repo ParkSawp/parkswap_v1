@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
 export type TokenRequest = {
     sellAddress: string;
@@ -12,20 +12,20 @@ export default function useGetPrice() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const getPrice = async (params: TokenRequest) => {
+    const getPrice = useCallback(async (params: TokenRequest) => {
         setLoading(true);
         const priceParams = new URLSearchParams(params);
         let price = null;
         try {
             const response = await fetch('/api/swap/price?'+ priceParams.toString());
             price = await response.json();
-            setPrice(price);
+            setPrice({ ...price });
         } catch (e) {
             setError(e.message);
         }
         setLoading(false);
         return price;
-    };
+    }, [setPrice]);
 
     const resetPrice = () => {
         setPrice(null);

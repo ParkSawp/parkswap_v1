@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import useGetQuote from "@/src/hooks/useGetQuote";
 import useAppSettings from "@/src/hooks/useAppSettings";
 import {useAccount} from "wagmi";
@@ -18,16 +18,17 @@ export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmoun
     const appSettings = useAppSettings();
 
     useEffect(() => {
+
         const params = {
             sellAddress: sellToken.address,
             buyAddress: buyToken.address,
-            amount: parseUnits(sellTokenAmount.toString()),
+            amount: parseUnits(sellTokenAmount.toString(), sellToken.decimals),
             chainId: appSettings.selectedChainId,
             slippage: appSettings.slippage,
             taker: address
         };
         getQuote(params);
-    }, [address, buyToken, sellToken, sellTokenAmount ]);
+    }, [address, buyToken.address, sellToken.address, sellTokenAmount ]);
 
     const startSwap = () => {
         setIsOpenModal(true);

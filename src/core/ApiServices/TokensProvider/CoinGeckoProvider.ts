@@ -18,12 +18,12 @@ export default class CoinGeckoProvider implements ITokenProvider {
     public static shared = new CoinGeckoProvider();
 
     public async getAll(): Promise<CoinGekoToken[]> {
-        const tokenListResponse = await fetch(process.env['COIN_GECKO_TOKEN']+'/list');
+        const tokenListResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/list');
         const data = await tokenListResponse.json();
         return data || [];
     }
     public async getTokenDetails(id: string): Promise<CoinGekoTokenDetail> {
-        const tokenResponse = await fetch(process.env['COIN_GECKO_TOKEN']+'/'+id);
+        const tokenResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/'+id);
         return await tokenResponse.json();
     }
 

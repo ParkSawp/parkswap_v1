@@ -1,5 +1,6 @@
 import PriceFormatter from "@/src/core/Fotmatter/PriceFormatter";
 import QuoteFormatter from "@/src/core/Fotmatter/QuoteFormatter";
+import TransactionRepository from "@/src/core/Models/TransactionRepository";
 
 type RouteFillItem = {
     from: string;
@@ -104,9 +105,22 @@ export default class Ox {
         }
         const priceParams = new URLSearchParams(params);
 
+        console.log({
+            quote: params
+        });
+
         const priceResponse = await Ox.fetch('/swap/permit2/quote', priceParams);
         const data = await priceResponse.json();
-        return QuoteFormatter.formatFrom0X(data);
+        const transaction = await TransactionRepository.createTransactionFromSwap({
+            data,
+            sellToken,
+            buyToken,
+            chainId,
+            slippage,
+            taker,
+            amount
+        });
+        return QuoteFormatter.formatFrom0X({ transactionId: transaction?.id, ...data});
     }
 
     private static async fetch(urlPath: string, params: URLSearchParams): Promise<any> {

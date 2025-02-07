@@ -5,7 +5,7 @@ import AppSwapTokenBox from "@/src/components/AppSwapTokenBox/AppSwapTokenBox";
 import customConnectStyles from "@/src/components/Global/CustomConnectButton/CustomConnectButton.module.css";
 import CustomConnectButton from "@/src/components/Global/CustomConnectButton/CustomConnectButton";
 import SwapButtonHandler from "@/src/components/AppSwapContainer/SwapButtonHandler";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState, useRef} from "react";
 import {formatUnits, parseUnits} from "ethers";
 import useGetPrice from "@/src/hooks/useGetPrice";
 import {useAccount} from "wagmi";
@@ -16,7 +16,7 @@ import AppSwapSettings from "@/src/components/AppSwapSettings/AppSwapSettings";
 const BUY_DIRECTION = 'buy';
 const SELL_DIRECTION = 'sell';
 
-export default function SwapFormView({setIsWalletConnected, isWalletConnected, displaySettings, onTokensSelect }) {
+export default function SwapFormView({setIsWalletConnected, reset: {shouldResetPrice, setShouldResetPrice}, isWalletConnected, displaySettings, onTokensSelect }) {
 
     const [sellToken,setSellToken] = useState();
     const [sellTokenAmount,setSellTokenAmount] = useState(0);
@@ -27,6 +27,8 @@ export default function SwapFormView({setIsWalletConnected, isWalletConnected, d
     const { price, getPrice, resetPrice, loading: loadPrice, error } = useGetPrice();
     const { address } = useAccount();
     const appSettings = useAppSettings();
+
+    const prevValues = useRef({ direction, sellTokenAmount, buyTokenAmount, sellTokenAddress: null, buyTokenAddress: null }).current
 
     const switchTokens = async () => {
         setBuyToken(sellToken);
@@ -54,8 +56,8 @@ export default function SwapFormView({setIsWalletConnected, isWalletConnected, d
     };
 
 
-    const updateAmount = useCallback(async (amount) => {
-        resetPrice();
+    const updateAmount = useCallback(async () => {
+        // resetPrice();
         if(!sellToken || !buyToken || sellTokenAmount?.length === 0) {
             setBuyTokenAmount('0.00');
             return;
@@ -79,7 +81,7 @@ export default function SwapFormView({setIsWalletConnected, isWalletConnected, d
     }, [getPrice, sellTokenAmount, direction, buyTokenAmount, sellToken, buyToken]);
 
     const updateSellAmount = useCallback(async (amount) => {
-        resetPrice();
+        // resetPrice();
         if(!sellToken || !buyToken) {
             return;
         }
@@ -102,12 +104,34 @@ export default function SwapFormView({setIsWalletConnected, isWalletConnected, d
 
 
     useEffect(() => {
+        if(prevValues.direction === direction && prevValues.buyTokenAddress === buyToken?.address && prevValues.sellTokenAddress === sellToken?.address) {
+            if(prevValues.direction === SELL_DIRECTION && prevValues.sellTokenAmount === sellTokenAmount) {
+                return;
+            }
+            else if(prevValues.direction === BUY_DIRECTION && prevValues.buyTokenAmount === buyTokenAmount) {
+                return;
+            }
+        }
         if(direction === SELL_DIRECTION) {
             updateAmount();
-            return;
+        } else {
+            updateSellAmount();
         }
-        updateSellAmount();
-    }, [sellTokenAmount, direction, buyTokenAmount, sellToken, buyToken]);
+        return () => {
+            prevValues.direction = direction;
+            prevValues.sellTokenAmount = sellTokenAmount;
+            prevValues.buyTokenAmount = buyTokenAmount;
+            prevValues.sellTokenAddress = sellToken?.address;
+            prevValues.buyTokenAddress = buyToken?.address;
+        };
+    }, [sellTokenAmount, direction, buyTokenAmount, sellToken?.address, buyToken?.address]);
+
+    useEffect(() => {
+        if(shouldResetPrice) {
+            updateAmount();
+        }
+        setShouldResetPrice(false);
+    }, [shouldResetPrice, updateAmount]);
 
     return (
         <>

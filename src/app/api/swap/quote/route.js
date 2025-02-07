@@ -7,7 +7,6 @@ export async function GET(request) {
     if(!sellAddress) {
         return NextResponse.json({ error: 'Missing parameter "address"' }, { status: 400 });
     }
-
     const quote = await Ox.placeOrder(amount, sellAddress, buyAddress, chainId, slippage || 0, taker);
 
     // Do whatever you want

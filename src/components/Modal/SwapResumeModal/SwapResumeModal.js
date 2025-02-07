@@ -6,11 +6,13 @@ import {formatEther} from "ethers";
 import {Toast} from "@/src/config/functions";
 import useRecentToken from "@/src/hooks/useRecentToken";
 import {numberToHex, size, concat} from "viem";
+import useUpdateTransaction from "@/src/hooks/useUpdateTransaction";
 
 export default function SwapResumeModal({ onClose, quote, sellToken, buyToken, sellTokenAmount, buyTokenAmount }) {
 
 
     const { data: transactionSentHash, sendTransaction, isPending: isTransactionOnLoading, error } = useSendTransaction();
+    const { updateTransaction } = useUpdateTransaction();
     const { addToRecent } = useRecentToken();
     const { signTypedData} = useSignTypedData();
 
@@ -56,6 +58,7 @@ export default function SwapResumeModal({ onClose, quote, sellToken, buyToken, s
         if(transactionSentHash) {
             Toast.success('Swap transaction sent with success');
             onClose && onClose();
+            updateTransaction({ transactionId: quote.transactionId, hash: transactionSentHash });
             return;
         }
         if(error) {

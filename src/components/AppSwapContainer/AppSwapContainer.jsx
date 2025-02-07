@@ -12,6 +12,7 @@ const SEND_VIEW = 'SEND_VIEW';
 
 export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletConnected,isWalletConnected, onTokensSelect}) {
   const [displaySettings,setDisplaySettings] = useState(false);
+  const [shouldResetPrice, setShouldResetPrice] = useState(false);
 
   const [view, setView] = useState(SWAP_VIEW);
 
@@ -21,7 +22,13 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
 
   const toggleDisplaySettings = () => {
     setDisplaySettings(!displaySettings);
-  }
+  };
+  const handleResetQuote = () => {
+    setShouldResetPrice(true);
+  };
+  const toggleIsGraphOpen = () => {
+    setIsGraphOpen(!isGraphOpen);
+  };
 
   return (
       <>
@@ -44,14 +51,14 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
                 &&
                 (
                     <ul className={styles["container-menu-secondMenu"]}>
-                      <li className={styles["graph-btn"]} onClick={() => { setIsGraphOpen(!isGraphOpen) }}>
+                      <li className={styles["graph-btn"]} onClick={toggleIsGraphOpen}>
                         <svg>
                           <title>Graph</title>
                           <image width="21px" height="21px" href="/svg/icons/graph.svg"/>
                           {/* <image width="21px" height="21px" href="/svg/icons/solar_graph.svg" /> */}
                         </svg>
                       </li>
-                      <li>
+                      <li onClick={handleResetQuote}>
                         <svg>
                           <title>Reset</title>
                           <image width="21px" height="21px" href="/svg/icons/reset.svg"/>
@@ -75,7 +82,12 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
           </div>
           {
             (view === SWAP_VIEW)
-                ? <SwapFormView setIsWalletConnected={setIsWalletConnected} isWalletConnected={isWalletConnected} displaySettings={displaySettings} onTokensSelect={onTokensSelect} />
+                ? <SwapFormView
+                    reset={{shouldResetPrice, setShouldResetPrice}}
+                    setIsWalletConnected={setIsWalletConnected}
+                    isWalletConnected={isWalletConnected}
+                    displaySettings={displaySettings}
+                    onTokensSelect={onTokensSelect} />
                 : <SendFormView/>
           }
         </motion.div>
