@@ -13,7 +13,7 @@ async function removeExpiredTransactions(){
 async function updatePendingTransaction(transaction) {
     const transactionStatus = await BaseScam.getTransactionByHash(transaction.hash);
     if(transactionStatus.message === 'OK') {
-        const status = (transactionStatus.result.isError === 1 ? TransactionStatus.failed : TransactionStatus.success);
+        const status = (Number(transactionStatus.result.isError) === 1 ? TransactionStatus.failed : TransactionStatus.success);
         await TransactionRepository.updateTransactionStatus(transaction.id, status);
         console.log('Transaction updated status : '+transaction.hash+' -> to '+status);
     }
