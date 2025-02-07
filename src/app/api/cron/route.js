@@ -28,9 +28,9 @@ async function updatePendingTransactions() {
 
 
 export async function GET(request) {
-    // if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-    //     return request.status(401).end('Unauthorized');
-    // }
+    if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+        return request.status(401).end('Unauthorized');
+    }
 
     await removeExpiredTransactions();
     await updatePendingTransactions();
