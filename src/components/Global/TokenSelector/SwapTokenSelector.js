@@ -21,6 +21,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     const handleAmountInput = (event) => {
         let value = event.target.value;
         value = value.replace(',', '.');
+        setRefreshFromParent(false);
         setQuery(value.length > 0 ? value.toString() : '0');
     };
 
@@ -35,6 +36,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
         }
         const timeOutId = setTimeout(() => {
             const value = Number(query);
+            console.log({ query, value });
             if(isNaN(value)) {
                 setQuery('0');
                 return;
