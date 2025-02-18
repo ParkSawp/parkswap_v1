@@ -13,7 +13,10 @@ export default function useColorScheme() {
         setColorScheme(newColorScheme);
         setAppColorScheme(newColorScheme);
         if(custom) {
-            localStorage.setItem(COLOR_SCHEME, newColorScheme);
+
+            if (typeof window !== 'undefined') {
+                localStorage.setItem(COLOR_SCHEME, newColorScheme);
+            }
         }
     }, [setAppColorScheme, setColorScheme]);
 

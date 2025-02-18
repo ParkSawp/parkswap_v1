@@ -3,10 +3,16 @@ import { createContext } from 'react';
 
 export const COLOR_SCHEME = 'COLOR_SCHEME';
 export const getSavedColorScheme = () => {
-    return localStorage.getItem(COLOR_SCHEME);
+    if (typeof window !== 'undefined') {
+        return localStorage.getItem(COLOR_SCHEME);
+    }
 }
 export const getDefaultColorScheme = () => {
-    let defaultColorScheme = localStorage.getItem(COLOR_SCHEME);
+    let defaultColorScheme = null;
+
+    if (typeof window !== 'undefined') {
+        defaultColorScheme = localStorage.getItem(COLOR_SCHEME);
+    }
 
     console.log({ defaultColorScheme });
     if(defaultColorScheme) {

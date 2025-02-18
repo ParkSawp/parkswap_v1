@@ -7,16 +7,20 @@ const RECENT_TOKENS = "RECENT_TOKENS";
 
 const getStoredTokens = () => {
     try {
-        const storedTokens = localStorage.getItem(RECENT_TOKENS);
-        if(storedTokens) {
-            return JSON.parse(storedTokens);
+        if (typeof window !== 'undefined') {
+            const storedTokens = localStorage.getItem(RECENT_TOKENS);
+            if (storedTokens) {
+                return JSON.parse(storedTokens);
+            }
         }
     } catch (e) {}
     return [];
 }
 
 const saveNewRecentTokenList = (tokens) => {
-    localStorage.setItem(RECENT_TOKENS, JSON.stringify(tokens));
+    if (typeof window !== 'undefined') {
+        localStorage.setItem(RECENT_TOKENS, JSON.stringify(tokens));
+    }
 }
 
 export default function useRecentToken() {
