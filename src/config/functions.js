@@ -1,5 +1,11 @@
 import {formatUnits} from "ethers";
 import {Bounce, toast} from "react-toastify";
+import i18n from '../config/i18n';
+
+const Sounds = {
+    notification: new Audio('audio/notification.mp3'),
+    swipe: new Audio('audio/swipe.wav')
+}
 
 
 export const formatFromUnits = (value, decimals) => {
@@ -14,9 +20,10 @@ export const formatFromBalance = (balance) => {
     return formatFromUnits(balance.value, balance.decimals);
 }
 
+
 export const Toast = {
     error: (message) => {
-        toast.error(message, {
+        toast.error(i18n.t(message), {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -29,7 +36,7 @@ export const Toast = {
         });
     },
     success: (message) => {
-        toast.success(message, {
+        toast.success(i18n.t(message), {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -40,5 +47,6 @@ export const Toast = {
             theme: "light",
             transition: Bounce,
         });
+        Sounds.notification.play();
     }
 }

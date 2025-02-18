@@ -6,10 +6,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <link rel="icon" href="/img/main_logo_white.png" sizes="any" />
-      <body>{children}</body>
+      {children}
     </html>
   );
 }

@@ -135,8 +135,8 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
 
     return (
         <>
-            <div className={`${styles["app-swap-box-container"]} ${styles["bg-green"]}`}>
-                <AppSwapTokenSelectionBlockHeader title="You Pay"/>
+            <div className={`${styles["app-swap-box-container"]} bg-green`}>
+                <AppSwapTokenSelectionBlockHeader title="You Pay" onTokenClick={handleSellToken} />
                 <AppSwapTokenBox token={sellToken} amount={sellTokenAmount} onTokenSelected={handleSellToken}
                                  onAmountChange={changeSellTokenAmount}/>
             </div>
@@ -149,7 +149,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
                 </div>
             </div>
             <div className={`${styles["app-swap-box-container"]} ${styles["bordered"]}`}>
-                <AppSwapTokenSelectionBlockHeader title="You receive"/>
+                <AppSwapTokenSelectionBlockHeader title="You receive" onTokenClick={handleBuyToken} />
                 <AppSwapTokenBox token={buyToken} amount={buyTokenAmount} onTokenSelected={handleBuyToken}
                                  onAmountChange={changeBuyTokenAmount}/>
             </div>

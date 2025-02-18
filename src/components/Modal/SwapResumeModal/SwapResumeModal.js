@@ -7,14 +7,35 @@ import {Toast} from "@/src/config/functions";
 import useRecentToken from "@/src/hooks/useRecentToken";
 import {numberToHex, size, concat} from "viem";
 import useUpdateTransaction from "@/src/hooks/useUpdateTransaction";
+import Translate from "@/src/components/Translate/Translate";
+import {ArrowRight} from "@/src/components/Icon/Icon";
 
-export default function SwapResumeModal({ onClose, quote, sellToken, buyToken, sellTokenAmount, buyTokenAmount }) {
+const SwapResumeTokenDetail = ({ token, amount }) => {
+    return (
+        <div className={styles['swap-resume-step-token']}>
+            <div className={styles['swap-resume-step-token-details']}>
+                <img src={token.logo_uri} alt={token.name} width={30}/>
+                <span>{token.symbol}</span>
+            </div>
+            <div className={styles['swap-resume-step-token-amount']}>
+                <div className={styles['swap-resume-step-token-amount-quantity']}>
+                    {parseFloat(amount).toFixed(3)}
+                </div>
+                <div className={styles['swap-resume-step-token-amount-value']}>
+                    0.00 $
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default function SwapResumeModal({onClose, quote, sellToken, buyToken, sellTokenAmount, buyTokenAmount}) {
 
 
-    const { data: transactionSentHash, sendTransaction, isPending: isTransactionOnLoading, error } = useSendTransaction();
-    const { updateTransaction } = useUpdateTransaction();
-    const { addToRecent } = useRecentToken();
-    const { signTypedData} = useSignTypedData();
+    const {data: transactionSentHash, sendTransaction, isPending: isTransactionOnLoading, error} = useSendTransaction();
+    const {updateTransaction} = useUpdateTransaction();
+    const {addToRecent} = useRecentToken();
+    const {signTypedData} = useSignTypedData();
 
     const executeTransaction = (transaction) => {
         const params = {
@@ -22,10 +43,10 @@ export default function SwapResumeModal({ onClose, quote, sellToken, buyToken, s
             data: transaction.data,
             value: transaction.value
         };
-        if(!!transaction.gas) {
+        if (!!transaction.gas) {
             params.gas = BigInt(transaction.gas);
         }
-        if(!!transaction.gasPrice) {
+        if (!!transaction.gasPrice) {
             params.gasPrice = BigInt(transaction.gasPrice);
         }
 
@@ -79,44 +100,20 @@ export default function SwapResumeModal({ onClose, quote, sellToken, buyToken, s
                 modalHeight={600}
             >
                 <div className={styles['swap-resume-modal-content']}>
-                    <h2 className={styles['swap-resume-title']} >You’re swapping</h2>
+                    <h2 className={styles['swap-resume-title']} >
+                        <Translate>You’re swapping</Translate>
+                    </h2>
                     <div className={styles['swap-resume-step-container'] + ' ' + styles['step-resume']}>
-                        <div className={styles['swap-resume-step-token']}>
-                            <div className={styles['swap-resume-step-token-details']}>
-                                <img src={sellToken.logo_uri} alt={sellToken.name} width={30} />
-                                <span>{sellToken.symbol}</span>
-                            </div>
-                            <div className={styles['swap-resume-step-token-amount']}>
-                                <div className={styles['swap-resume-step-token-amount-quantity']}>
-                                    {sellTokenAmount}
-                                </div>
-                                <div className={styles['swap-resume-step-token-amount-value']}>
-                                    0.00 $
-                                </div>
-                            </div>
-                        </div>
+                        <SwapResumeTokenDetail token={sellToken} amount={sellTokenAmount} />
                         <div className={styles['swap-resume-step-direction-logo']}>
-                            <img src="/img/down-arrows.png" alt="Swap To" width={20} />
+                            <ArrowRight />
                         </div>
-                        <div className={styles['swap-resume-step-token']}>
-                            <div className={styles['swap-resume-step-token-details']}>
-                                <img src={buyToken.logo_uri} alt={buyToken.name} width={30} />
-                                <span>{buyToken.symbol}</span>
-                            </div>
-                            <div className={styles['swap-resume-step-token-amount']}>
-                                <div className={styles['swap-resume-step-token-amount-quantity']}>
-                                    {buyTokenAmount}
-                                </div>
-                                <div className={styles['swap-resume-step-token-amount-value']}>
-                                    0,00 $
-                                </div>
-                            </div>
-                        </div>
+                        <SwapResumeTokenDetail token={buyToken} amount={buyTokenAmount} />
                     </div>
                     <div className={styles['swap-resume-step-separator']}></div>
                     <div className={styles['swap-resume-step-container'] + ' ' + styles['step-information']}>
                         <div className={styles['swap-resume-step-transaction-detail']}>
-                            <strong>Fee</strong> <span>{parseFloat(formatEther(quote?.totalNetworkFee)).toFixed(8)} <strong>ETH</strong></span>
+                            <strong><Translate>Fee</Translate></strong> <span>{parseFloat(formatEther(quote?.totalNetworkFee)).toFixed(8)} <strong>ETH</strong></span>
                         </div>
                         {/*<div className={styles['swap-resume-step-transaction-detail']}>*/}
                         {/*    <strong>Network Cost</strong> <span>0,00</span>*/}
@@ -137,12 +134,19 @@ export default function SwapResumeModal({ onClose, quote, sellToken, buyToken, s
                     {/*</div>*/}
 
                     <div className={styles['swap-resume-options-container']} >
-                        {
-                            isTransactionOnLoading
-                            && <img src="/img/w-loading.gif" alt="Swap on pending" height={25} />
-                        }
-                        <button className={styles['swap-resume-option-button']+' '+styles["cancel-swap"]} onClick={onClose}>Close</button>
-                        <button disabled={isTransactionOnLoading} className={styles['swap-resume-option-button']+' '+styles["validate-swap"]} onClick={handleTransaction}>Confirm swap</button>
+                        <div></div>
+                        <div className={styles['swap-resume-buttons-container']} >
+                            {
+                                isTransactionOnLoading
+                                && <img src="/img/w-loading.gif" alt="Swap on pending" height={25} />
+                            }
+                            <button className={styles['swap-resume-option-button']+' '+styles["cancel-swap"]} onClick={onClose}>
+                                <Translate>Close</Translate>
+                            </button>
+                            <button disabled={isTransactionOnLoading} className={styles['swap-resume-option-button']+' '+styles["validate-swap"]} onClick={handleTransaction}>
+                                <Translate>Confirm swap</Translate>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </Modal>

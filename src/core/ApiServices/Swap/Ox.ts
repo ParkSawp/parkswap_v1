@@ -105,10 +105,6 @@ export default class Ox {
         }
         const priceParams = new URLSearchParams(params);
 
-        console.log({
-            quote: params
-        });
-
         const priceResponse = await Ox.fetch('/swap/permit2/quote', priceParams);
         const data = await priceResponse.json();
         const transaction = await TransactionRepository.createTransactionFromSwap({

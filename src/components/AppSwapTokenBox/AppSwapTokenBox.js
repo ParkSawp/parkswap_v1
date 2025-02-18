@@ -3,19 +3,21 @@
 import React from "react";
 import TokenSelector from "@/src/components/Global/TokenSelector/TokenSelector";
 import SwapTokenSelector from "@/src/components/Global/TokenSelector/SwapTokenSelector";
+import {useTranslation} from "react-i18next";
 
 
 export default function AppSwapTokenBox({ token, amount, onTokenSelected, onAmountChange }) {
+    const { t } = useTranslation();
     return (
         <>
             <TokenSelector
-                title={'Select a Token'}
+                title={t('Select a token')}
                 Template={SwapTokenSelector}
                 networkOnly={false}
                 tokenOnly={false}
                 onNetworkSelected={() => { }}
                 onTokenSelected={onTokenSelected}
-                placeholder={'Select a token'}
+                placeholder={t('Select a token')}
                 customProps={ { onAmountChange, token, amount } }
             />
         </>

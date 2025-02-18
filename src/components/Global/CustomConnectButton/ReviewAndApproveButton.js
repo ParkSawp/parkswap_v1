@@ -121,7 +121,7 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
                     <button
                         type="button"
                         disabled={isPending}
-                        className={`${customConnectStyles["connect-wallet-btn"]} ${customConnectStyles["swap-wallet-btn"]}`}
+                        className={`${customConnectStyles["connect-wallet-btn"]} primary-button ${customConnectStyles["swap-wallet-btn"]}`}
                         onClick={approve}
                     >
                         Approve

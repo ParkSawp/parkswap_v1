@@ -11,7 +11,7 @@ export default function CustomConnectButton({ children, className }) {
                 <ConnectKitButton.Custom>
                     {({ isConnected, isConnecting, show, hide, address, ensName, chain }) => {
                         return (
-                            <button onClick={show} className={styles["connect-wallet-btn"]+' '+className}>
+                            <button onClick={show} className={styles["connect-wallet-btn"]+' primary-button '+className}>
                                 Connect Wallet
                             </button>
                         );
@@ -26,7 +26,7 @@ export default function CustomConnectButton({ children, className }) {
             {
                 !children
                     ? (
-                        <div className={styles["connect-wallet-btn"]} >
+                        <div className={styles["connect-wallet-btn"]+' primary-button'} >
                             {address.substring(0, 6)}...{address.substring(address.length - 4)}
                         </div>
                     )

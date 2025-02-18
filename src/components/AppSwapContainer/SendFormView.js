@@ -89,8 +89,8 @@ export default function SendFormView({ }) {
                 )
             }
             <br/>
-            <div className={styles['send-token-block']+' '+styles['send-connect-wallet-btn-container']}>
-                <CustomConnectButton className={styles['send-connect-wallet-btn']}>
+            <div className={styles['send-token-block']+' primary-button '+styles['send-connect-wallet-btn-container']}>
+                <CustomConnectButton className={styles['send-connect-wallet-btn']+' primary-button'}>
                     {
                         isPending
                             ? (
@@ -100,7 +100,7 @@ export default function SendFormView({ }) {
                             )
                             : (
                                 <button
-                                    className={customConnectStyles['connect-wallet-btn'] + ' ' + styles['send-connect-wallet-btn']}
+                                    className={customConnectStyles['connect-wallet-btn'] + ' primary-button ' + styles['send-connect-wallet-btn']}
                                     onClick={send} disabled={isInvalidForm}>
                                     Send
                                 </button>

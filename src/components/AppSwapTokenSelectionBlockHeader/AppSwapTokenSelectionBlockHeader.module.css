@@ -1,9 +1,8 @@
 .swap-token-selection-block-header {
-    grid-column: 1/4;
-    grid-row: 1/1;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
 }
 
 .firstBox-title{
@@ -24,12 +23,13 @@
 
 .swap-frequently-tokens-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     max-width: 150px;
     align-content: center;
 }
 .swap-frequently-token {
     cursor: pointer;
-    margin: 5px 0;
+    margin: 0;
+    width: 25% !important;
 }

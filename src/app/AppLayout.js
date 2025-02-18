@@ -9,7 +9,7 @@ import AppSettingsModal from "@/src/components/AppSettingsModal/AppSettingsModal
 import Menu from "@/src/components/Menu/Menu";
 import AppStyles from "@/public/css/app.module.css";
 import {APP_SETTINGS_DEFAULT, AppSettingContext} from "@/src/hooks/contexts";
-import config from './config';
+import connectKitConfig from '../config/connectKitConfig';
 import { ToastContainer } from 'react-toastify';
 import ParkSwapSocialNetworks from "@/src/components/ParkSwapSocialNetworks/ParkSwapSocialNetworks";
 
@@ -33,23 +33,25 @@ export default function AppLayout({ children, header = {} }) {
     const setters = {
         setSlippage: (slippage) => {
             setSettings({ ...settings, slippage });
+        },
+        setColorScheme: (mode) => {
+            setSettings({ ...settings, colorScheme: mode })
         }
     };
 
-    config.subscribe(
+    connectKitConfig.subscribe(
         (state) => settings.selectedChainId,
         (chainId) => {
             setSettings({ ...settings, selectedChainId: chainId });
-            console.log(`Chain ID changed to ${chainId}`);
         },
     )
 
     return (
         <AppSettingContext.Provider value={{ ...settings, ...setters }}>
-            <WagmiConfig config={config} >
+            <WagmiConfig config={connectKitConfig} >
                 <QueryClientProvider client={queryClient}>
                     <ConnectKitProvider>
-                        <>
+                        <body className={settings.colorScheme} >
                             <Head>
                                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                                 <title>{header?.title || 'Parkswap | App'}</title>
@@ -62,7 +64,7 @@ export default function AppLayout({ children, header = {} }) {
                             <div className={AppStyles["app-footer"]}>© 2024 ParkSwap</div>
                             <ToastContainer />
                             <ParkSwapSocialNetworks />
-                        </>
+                        </body>
                     </ConnectKitProvider>
                 </QueryClientProvider>
             </WagmiConfig>

@@ -1,0 +1,16 @@
+{
+  "Welcome to React": "Bienvenue dans react et react-i18next",
+  "Select a token": "Veuillez sélectionner un token",
+  "Loading for the best quote": "Recherche de la meilleur quotation",
+  "Minimum buy Amount": "Le montant minimum achetable",
+  "Liquidity not available": "Liquidité non disponible pour cette transaction",
+  "Enter an amount": "Veuillez saisir la quantité de token",
+  "Swap": "Swap",
+  "Fee": "Frais",
+  "Send": "Envoyer",
+  "Confirm swap": "Confirmez le swap",
+  "Close": "Ferme",
+  "You’re swapping": "Vous échangés",
+  "Swap rejected by user": "Echange rejeté par l'utilisateur",
+  "Swap transaction sent with success": "La transaction a été bien enregistré"
+}

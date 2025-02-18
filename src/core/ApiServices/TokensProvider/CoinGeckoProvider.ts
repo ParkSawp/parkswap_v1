@@ -1,7 +1,7 @@
 import ITokenProvider from "@/src/core/ApiServices/TokensProvider/ITokenProvider";
 import { type Token } from "@/src/core/Models/TokenRepository";
 import {getToken} from "@wagmi/core";
-import config from '../../../app/config.js';
+import connectKitConfig from '../../../config/connectKitConfig.js';
 
 
 type CoinGekoToken = {symbol: string, id: string, name: string};
@@ -28,7 +28,7 @@ export default class CoinGeckoProvider implements ITokenProvider {
     }
 
     public async getToken(address: string, chainId: string): Promise<Token|null> {
-        const token = await getToken(config, {
+        const token = await getToken(connectKitConfig, {
             address: address as `0x${string}`,
             chainId: Number(chainId) as (1 | 137 | 8453)
         });

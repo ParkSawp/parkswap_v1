@@ -3,6 +3,19 @@
     height:210px;
     display:grid;
     grid-template-rows:80px 1fr 60px;
+    align-items: center;
+}
+
+.app-navigation-nav, .app-navigation-buttons {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.app-navigation-nav {
+    justify-content: flex-start;
+}
+.app-navigation-buttons {
+    justify-content: flex-end;
 }
 
 .app-navigation-logo{
@@ -18,125 +31,95 @@
     flex-shrink: 0;
 }
 
-.app-navigation-nav{
+.nav-menu-list-container {
     display:flex;
-    justify-content:center;
-    align-items:center;
-    padding-left:10px;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    column-gap: 1rem;
 }
 
-.app-navigation-nav ul{
+.nav-menu-list-container > ul {
+    display:flex;
+    border: 1px solid red;
+    column-gap: 1rem;
+}
+.nav-menu-list-container > ul li{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
+    flex-direction: column;
+    align-content: center;
     width:100%;
 }
-
-.app-navigation-nav ul a{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-decoration:none;
-    color: #000;
-    height:28px;
-}
-
-.app-navigation-nav ul li{
-    flex-shrink: 0;
-    text-align: center;
-    font-family: Inter;
-    /* display:flex;
-    justify-content:center;
-    align-items:center; */
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    /* line-height: normal; */
-    list-style:none;
-    /* background:red; */
-}
-
-
-.app-navigation-buttons{
-   display:flex;
-   align-items:center;
-   justify-content:center;
-}
-
-.network-btn{
-    cursor:pointer;
-    color: white;
-    background: #0052ff;
-    /*color: #088A24;*/
-    /*background:#D9F9E0;*/
-    border-radius:6px;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+.circular-menu-item {
+    background: light-dark(var(--transparent-white), none);
+    width: 40px;
+    height: 40px;
     display: flex;
-    height: 36px;
-    padding-left:10px;
-    padding-right:10px;
-    flex-direction: row;
     justify-content: center;
-    align-items:center;
-    flex-shrink: 0;
-    margin-right:15px;
+    align-items: center;
+    align-content: center;
+    border-radius: 50%;
+    color: light-dark(var(--black), var(--white));
+    cursor: pointer;
+    font-size: 1.2rem;
+    &:hover {
+        background: light-dark(var(--transparent-black), var(--transparent-white));
+        color: light-dark(var(--text-white-hover), var(--text-black-hover));
+    }
 }
 
-
-.starknet-btn svg{
-    margin-right:10px;
-    padding-top:1px;
+.network-btn > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.network-btn a{
+    color: white;
 }
 
-.nav-submenu-box{
+.nav-submenu-box {
     position:absolute;
-    
     display:none;
 }
 
-
-
-.nav-menu-item-btn:hover .nav-submenu-box,
-.nav-market-btn:hover .nav-submenu-box{
-    transform: translate(-50%,0);
-    display:block;
-    margin-top:215px;
-    margin-left:270px;
-}
-
-
-.nav-plus-btn:hover .nav-submenu-box{
-    transform: translate(-50%);
-    display:block;
-    margin-top:330px;
-    margin-left:110px;
-}
-
-.nav-submenu-box{
-    padding:10px;
-}
-
-.nav-menu-submenu{
-    width: 255.159px;
-    height: 164px;
-    border-radius: 10px;
+.nav-menu-submenu {
+    position: absolute;
+    display: none;
+    min-width: 170px;
+    min-height: 20px;
+    border-radius: 2px;
     background: #FFF;
     box-shadow: 0px 8px 17.7px 0px rgba(51, 198, 83, 0.10);
+    padding: .5rem 0;
+    z-index: 9999;
     /* margin-left:400px; */
 }
 
-.nav-menu-submenu ul{
-    width:100%;
-    height:100%;
-    display:grid;
-    grid-template-columns:1fr;
-    grid-template-rows:1fr 1fr 1fr;
+.nav-menu-submenu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.nav-menu-item:hover .nav-menu-submenu {
+    display: block;
+    border: 1px solid black;
+}
+.nav-menu-item-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    min-width: 90px;
+}
+.nav-menu-item-link {
+    color: light-dark(var(--black), var(--white));
+    font-weight: bold;
 }
 
 .nav-menu-submenu ul li{
@@ -145,12 +128,15 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    align-content: center;
 }
 
-.nav-menu-submenu ul li a{
-    display:grid;
-    grid-template-rows:20px 20px;
-    grid-template-columns:45px 1fr;
+.nav-menu-submenu-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    padding: .7rem;
     width:100%;
     color: #000;
     font-family: Poppins;
@@ -158,23 +144,20 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
+    column-gap: .35rem;
 }
 
-.nav-menu-submenu ul li a:hover{
+.nav-menu-submenu-link:hover{
     color: #3BA351;
 }
 
-.nav-menu-submenu ul li a .icon{
-    grid-row:span 2;
-    height:100%;
+.nav-menu-submenu-link .icon{
     display:flex;
     justify-content:center;
     align-items:center;
-    
 }
 
-.nav-menu-submenu ul li a .icon svg{
+.nav-menu-submenu-link .icon img{
     width: 18px;
     height: 18px;
     flex-shrink: 0;
@@ -201,7 +184,6 @@
 
 .nav-plus-btn .nav-menu-submenu{
     height:auto;
-    
 }
 
 
@@ -228,23 +210,18 @@
 }
 
 .app-navigation-btn{
-    width:60px;
-    height:60px;
-    position:absolute;
-    right:15px;
-    top:15px;
     display:flex;
     justify-content:center;
     align-items:center;
     cursor:pointer;
     z-index:1;
+    margin-left: 1rem;
 }
 
-
 .nav-home-btn,.nav-portfolio-btn,.nav-bridge-btn{
-    margin-top:6px;
     height: 40px;
     width: 102px;
+    position: relative;
 }
 .nav-trade-btn,.nav-plus-btn,.nav-market-btn{
     display:flex;
@@ -274,18 +251,37 @@
     justify-content: center;
     flex-wrap:wrap;
 }
+.nav-menu-item-description.network-btn {
+    cursor:pointer;
+    background: #0052ff;
+    color: white;
+    border-radius:6px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    height: 36px;
+    padding: 0 0.4rem;
+    flex-direction: row;
+    align-items:center;
+    flex-shrink: 0;
+    justify-content: space-between;
+    min-width: 170px;
+}
+.nav-menu-submenu-item {
+    cursor: pointer;
+}
 
 /* ====== MQ ====== */
 
 @media only screen and (min-width : 1224px){
     .app-navigation{
         grid-template-rows:1fr;
-        grid-template-columns:150px 1fr 300px 80px;
+        grid-template-columns:150px 1fr 1fr 80px;
         height:80px;
-    }
-
-    .app-navigation ul{
-        justify-content:flex-start;
     }
 
     .app-navigation-btn{
@@ -298,10 +294,6 @@
     }
     .connected-network-submenu-box {
 
-    }
-    
-    .app-navigation-nav ul{
-        flex-direction:row;
     }
 
     .nav-home-btn,.nav-portfolio-btn,.nav-bridge-btn{

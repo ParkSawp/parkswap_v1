@@ -3,7 +3,11 @@
 import styles from "./AppSettingsModal.module.css";
 import { motion, useAnimation } from "framer-motion";
 import React, { useEffect } from 'react';
+import useAppSettings from "@/src/hooks/useAppSettings";
 export default function AppSettingsModal({isOpen,closeModal}) {
+
+    const appSettings = useAppSettings();
+
     if(isOpen){
         return(
         <div className={styles["AppSettingsContainerWrapper"]} onClick={closeModal}>
@@ -36,7 +40,10 @@ export default function AppSettingsModal({isOpen,closeModal}) {
                                 </svg>
                             </div>
                             <div className={styles["BodyValue"]}>AUTOMATIC</div>
-                            <div className={styles["BodyName"]}>Theme for the Web</div>
+                            <div className={styles["BodyName"]}>
+                                Theme for the Web
+                                <strong style={{color: 'red'}}>{appSettings.colorScheme}</strong>
+                            </div>
                         </span>
                     </li>
                     <li>

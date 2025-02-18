@@ -9,21 +9,38 @@
     column-gap: .5rem;
 }
 .parkswap-network-container {
+
 }
 
 .parkswap-network-link {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid #088a24;
+    /*border: 1px solid black;*/
+    box-shadow: 1px 1px 5px #000000c7;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background: light-dark(var(--gray), var(--gray));
+    color: light-dark(var(--white), var(--white));
 }
 .parkswap-network-link:hover {
-    background: rgba(8, 138, 36, 0.18);
-    transition: background-color .2s ease-in;
+    transform: scale(1.2);
+    transition: background-color .2s ease-in,
+                transform .2s ease-in;
+}
+.parkswap-network-link.is-telegram:hover {
+    background: var(--telegram-color);
+}
+.parkswap-network-link.is-discord:hover {
+    background: var(--discord-color);
+}
+.parkswap-network-link.is-chat:hover {
+    background: var(--chat-color);
+}
+.parkswap-network-link.is-twitterX:hover {
+    background: var(--twitter-x-color);
 }
 
 .parkswap-network-icon {

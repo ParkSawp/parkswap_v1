@@ -1,0 +1,15 @@
+{
+  "Select a token": "Select a token",
+  "Loading for the best quote": "Loading for the best quote",
+  "Minimum buy Amount": "Minimum buy Amount",
+  "Liquidity not available": "Liquidity not available",
+  "Enter an amount": "Enter an amount",
+  "Swap": "Swap",
+  "Fee": "Fee",
+  "Send": "Send",
+  "Confirm swap": "Confirm swap",
+  "Close": "Close",
+  "You’re swapping": "You’re swapping",
+  "Swap rejected by user": "Swap rejected by user",
+  "Swap transaction sent with success": "Swap transaction sent with success"
+}

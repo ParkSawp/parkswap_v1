@@ -1,15 +1,49 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXTwitter, faTelegram, faDiscord, faRedhat } from '@fortawesome/free-brands-svg-icons';
+import { faSun as regularSun} from '@fortawesome/free-regular-svg-icons';
 import {
-    faPaperPlane
+    faPaperPlane,
+    faArrowRightArrowLeft,
+    faEllipsis,
+    faAngleDown,
+    faRightFromBracket,
+    faBug,
+    faCoins,
+    faSun,
+    faCircleHalfStroke,
+    faLanguage,
+    faVolumeHigh,
+    faVolumeXmark,
+    faRotate,
+    faGear,
+    faChartLine,
+    faComments,
+    faArrowRight
 } from '@fortawesome/free-solid-svg-icons'
 
 
 
-const Icon = (props) => <FontAwesomeIcon {...props} />
-const SendIcon = (props) => <FontAwesomeIcon icon={faPaperPlane} {...props} />
-
-export {
-    Icon,
-    SendIcon
-}
+export const Icon = (props) => <FontAwesomeIcon {...props} />
+export const SendIcon = (props) => <Icon icon={faPaperPlane} {...props} />
+export const SwapIcon = (props) => <Icon icon={faArrowRightArrowLeft} {...props} />
+export const EllipsisIcon = (props) => <Icon icon={faEllipsis} {...props} />
+export const AngleDownIcon = (props) => <Icon icon={faAngleDown} {...props} />
+export const LogoutIcon = (props) => <Icon icon={faRightFromBracket} {...props} />
+export const BugIcon = (props) => <Icon icon={faBug} {...props} />
+export const ExplorerIcon = (props) => <Icon icon={faCoins} {...props} />
+export const LightModeIcon = (props) => <Icon icon={regularSun} {...props} />
+export const DarkModeIcon = (props) => <Icon icon={faSun} {...props}  />
+export const AutoModeIcon = (props) => <Icon icon={faCircleHalfStroke} {...props} />
+export const LangIcon = (props) => <Icon icon={faLanguage} {...props} />
+export const SoundEnableIcon = (props) => <Icon icon={faVolumeHigh} {...props} />
+export const SoundDisableIcon = (props) => <Icon icon={faVolumeXmark} {...props} />
+export const ReloadIcon = (props) => <Icon icon={faRotate} {...props} />
+export const SettingsIcon = (props) => <Icon icon={faGear} {...props} />
+export const ChartIcon = (props) => <Icon icon={faChartLine} {...props} />
+export const XTwitterIcon = (props) => <Icon icon={faXTwitter} {...props} />
+export const TelegramIcon = (props) => <Icon icon={faTelegram} {...props} />
+export const RedditIcon = (props) => <Icon icon={faXTwitter} {...props} />
+export const DiscordIcon = (props) => <Icon icon={faDiscord} {...props} />
+export const ChatIcon = (props) => <Icon icon={faComments} {...props} />
+export const ArrowRight = (props) => <Icon icon={faArrowRight} {...props} />

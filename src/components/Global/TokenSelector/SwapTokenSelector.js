@@ -1,7 +1,7 @@
 'use client'
 
 import styles from "@/src/components/Global/TokenSelector/SwapTokenSelector.module.css";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { useAccount, useBalance } from 'wagmi';
 import {formatFromBalance, fullFormatFromBalance} from "@/src/config/functions";
 
@@ -9,6 +9,7 @@ import {formatFromBalance, fullFormatFromBalance} from "@/src/config/functions";
 export default function SwapTokenSelector({ openModal, selectedToken, elementToDisplay, placeholder, selectedNetwork, customProps: { onAmountChange, token, amount } }) {
 
     const { address } = useAccount();
+    const inputRef = useRef(null);
     const [query, setQuery] = useState(amount);
     const [refreshFromParent, setRefreshFromParent] = useState(false);
     const tokenSelected = token || selectedToken;
@@ -21,6 +22,16 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     const handleAmountInput = (event) => {
         let value = event.target.value;
         value = value.replace(',', '.');
+        value = value.replace(/^0/g, '');
+        if(/^\./.test(value)) {
+            value = '0'+value;
+        }
+        value = value.replace(/[\.]+/, '.');
+
+        if(value.split('.').length > 2) {
+            const [digit, decimal] = value.split('.');
+            value = digit+'.'+decimal;
+        }
         setRefreshFromParent(false);
         setQuery(value.length > 0 ? value.toString() : '0');
     };
@@ -49,7 +60,8 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     useEffect(() => {
         setRefreshFromParent(true);
         setQuery(amount);
-    }, [amount])
+    }, [amount]);
+
 
     return (
         <div className={styles["swap-token-selector"]}>
@@ -84,8 +96,9 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
             </div>
             <div className={styles["swap-token-selector-amount-wrapper"]}>
                 <div className={styles["swap-token-selector-amount-container"]}>
-                    <input placeholder="0.00" type="text" dir="rtl"
+                    <input placeholder="0.00" type="text"
                            className={styles['swap-token-selector-amount-input']}
+                           ref={inputRef}
                            value={query}
                            onInput={handleAmountInput}
                     />

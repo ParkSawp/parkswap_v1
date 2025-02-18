@@ -4,9 +4,12 @@ import ReviewAndApproveButton from "@/src/components/Global/CustomConnectButton/
 import {useBalance} from "wagmi";
 import {formatUnits, parseUnits} from "ethers";
 import styles from "@/src/components/AppSwapReviewTrade/AppSwapReviewTrade.module.css";
+import {useTranslation} from "react-i18next";
+import Translate from "@/src/components/Translate/Translate";
 
 export default function SwapButtonHandler({ loading, price, address, sellToken, buyToken, sellTokenAmount, buyTokenAmount }) {
 
+    const { t } = useTranslation();
     const { data: sellTokenBalance, isLoading: sellTokenBalanceLoading } = useBalance({
         address: address,
         token: sellToken?.address,
@@ -22,7 +25,7 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
             <div className={styles['best-price-details-container']}>
                 <div className={styles['best-price-loading-container']}>
                     <img src="/img/w-loading.gif" alt="Loading" height={25}/>
-                    Loading for the best quote...
+                    <Translate>Loading for the best quote</Translate>...
                 </div>
             </div>
         )
@@ -31,16 +34,15 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
     if (price && price.minBuyAmount && BigInt(price.buyAmount) < BigInt(price.minBuyAmount)) {
         return (
             <div className={customConnectStyles['select-token-alert'] + ' ' + customConnectStyles['alert-danger']}>
-                Minimum buy Amount : {parseFloat(formatUnits(price.minBuyAmount)).toFixed(8)} {buyToken.symbol}
+                <Translate>Minimum buy Amount</Translate> : {parseFloat(formatUnits(price.minBuyAmount)).toFixed(8)} {buyToken.symbol}
             </div>
         );
     }
 
     if(price && price.liquidityAvailable === false) {
         return (
-            <div
-                className={customConnectStyles['select-token-alert'] + ' ' + customConnectStyles['alert-danger']}>
-                Liquidity not available
+            <div className={customConnectStyles['select-token-alert'] + ' ' + customConnectStyles['alert-danger']}>
+                <Translate>Liquidity not available</Translate>
             </div>
         );
     }
@@ -60,11 +62,11 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
 
     return (
         <div className={customConnectStyles['select-token-alert']}>
-            {
+            <Translate>{
                 (!sellToken || !buyToken)
                     ? "Select a token"
                     : "Enter an amount"
-            }
+            }</Translate>
         </div>
     );
 }

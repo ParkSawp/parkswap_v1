@@ -3,8 +3,286 @@ import Link from "next/link";
 import Head from "next/head";
 import styles from "./Menu.module.css";
 import CustomConnectButton from "@/src/components/Global/CustomConnectButton/CustomConnectButton";
+import { useAccount, useDisconnect } from "wagmi";
+import {AngleDownIcon, EllipsisIcon, LogoutIcon, BugIcon, ExplorerIcon} from "@/src/components/Icon/Icon";
+import ColorSchemeButton from "@/src/components/Menu/ColorSchemeButton/ColorSchemButton";
+import LangButton from "@/src/components/Menu/LangButton/LangButton";
+import NotificationSoundButton from "@/src/components/Menu/NotificationSoundButton/NotificationSoundButton";
+import {useTranslation} from "react-i18next";
 
-const Menu = ({openSettings,settingsButtonVal}) => {
+
+const MenuList = ({ menu }) =>  {
+
+    const availableMenu = menu.filter((item) => item.available);
+
+    return (
+        <ul className={styles["nav-menu-list-container"]} >
+            {
+                availableMenu.map((menuItem, index) => {
+                    const submenus = menuItem.submenus?.filter((item) => item.available) || [];
+                    const hasSubMenu = submenus.length > 0;
+
+                    return (
+                        <li className={styles["nav-menu-item"]} key={'menu-'+index} >
+                            {
+                                menuItem.isComponent
+                                ?  <menuItem.Component className={menuItem.className} onClick={menuItem.onClick}  />
+                                : (
+                                    <div className={menuItem.className +' '+ styles['nav-menu-item-description']}  onClick={menuItem.onClick} >
+                                        {
+                                            menuItem.icon
+                                            &&
+                                            (
+                                                typeof menuItem.icon === 'string'
+                                                    ? <img width={22} height={22} src={menuItem.icon} alt={menuItem.text}/>
+                                                    : menuItem.icon
+                                            )
+                                        }
+                                        <Link href={menuItem.href || ''} target={menuItem.target} className={styles['nav-menu-item-link']} >{menuItem.text}</Link>
+                                        { hasSubMenu && <AngleDownIcon /> }
+                                    </div>
+                                )
+                            }
+
+                            {
+                                hasSubMenu
+                                &&
+                                (
+                                    <div className={styles["nav-menu-submenu"]}>
+                                        <ul>
+                                            {
+                                                submenus.map((subMenuItem, index) => (
+                                                    <li key={'submenu-'+index} className={styles["nav-menu-submenu-item"]} >
+                                                        <a href={subMenuItem.href} target={subMenuItem.target} className={styles["nav-menu-submenu-link"]} onClick={subMenuItem.onClick} >
+                                                            <span className={styles["icon"]}>
+                                                                {
+                                                                    typeof subMenuItem.icon === 'string'
+                                                                        ? <img width="20px" height="20px" src={subMenuItem.icon} alt={subMenuItem.text}/>
+                                                                        : subMenuItem.icon
+                                                                }
+                                                            </span>
+                                                            <span className={styles["title"]}>{subMenuItem.text}</span>
+                                                        </a>
+                                                    </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                )
+                            }
+                        </li>
+                    )
+                })
+            }
+        </ul>
+    )
+}
+
+
+const Menu = ({openSettings, settingsButtonVal}) => {
+    const { disconnect } = useDisconnect()
+    const {  isDisconnected } = useAccount();
+    const { t } = useTranslation();
+
+    const leftMenu = [
+        {
+            href: '/home',
+            text: t('Home'),
+            title: '',
+            available: true,
+            icon: null,
+            submenus: []
+        },
+        {
+            href: '/app',
+            text: t('Trade'),
+            title: '',
+            available: true,
+            icon: null,
+            submenus: [
+                {
+                    href: '/',
+                    text: t('Simple mode'),
+                    title: t('The most user-friendly way to trade'),
+                    available: false,
+                    icon: '/svg/icons/simple_mode.svg'
+                },
+                {
+                    href: '/',
+                    text: t('Advanced Mode'),
+                    title: t('Take advantage of all the familiar tools'),
+                    available: false,
+                    icon: '/svg/icons/advanced_mode.svg'
+                },
+                {
+                    href: '/',
+                    text: t('Limit Order'),
+                    title: t('Schedule a swap to get the best price'),
+                    available: false,
+                    icon: '/svg/icons/limit_order.svg',
+                }
+            ]
+        },
+        {
+            href: '/portfolio',
+            text: t('Portfolio'),
+            title: '',
+            available: false,
+            icon: null,
+            submenus: []
+        },
+        {
+            href: '/',
+            text: t('Marché'),
+            title: '',
+            available: false,
+            icon: null,
+            submenus: [
+                {
+                    href: '/',
+                    text: t('Marché DeFi'),
+                    title: t('Decentralize finance'),
+                    available: false,
+                    icon: '/svg/icons/simple_mode.svg',
+                },
+                {
+                    href: '/',
+                    text: t('Marché Trad.Fi'),
+                    title: t('Traditional Finance'),
+                    available: false,
+                    icon: '/svg/icons/advanced_mode.svg',
+                }
+            ]
+        },
+        {
+            href: '/Bridge',
+            text: t('Bridge'),
+            title: t('bridge'),
+            available: false,
+            icon: null,
+            submenus: []
+        },
+        {
+            href: '/',
+            text: t('Plus'),
+            title: t('More'),
+            available: false,
+            icon: null,
+            submenus: [
+                {
+                    href: '/',
+                    text: t('Documentation'),
+                    title: t('Documentation'),
+                    available: false,
+                    icon: '/svg/icons/doc_icon.svg',
+                },
+                {
+                    href: '',
+                    text: t('Blog'),
+                    title: t('Blog'),
+                    available: false,
+                    icon: '/svg/icons/blog_icon.svg',
+                },
+                {
+                    href: '/',
+                    text: t('Help'),
+                    title: t('Help'),
+                    available: false,
+                    icon: '/svg/icons/help_icon.svg',
+                },
+                {
+                    href: '/',
+                    text: t('Stats'),
+                    title: t('Stats'),
+                    available: false,
+                    icon: '/svg/icons/screening_icon.svg',
+                },
+                {
+                    href: '/',
+                    text: t('About'),
+                    title: t('About'),
+                    available: false,
+                    icon: '/svg/icons/about_icon.svg',
+                },
+                {
+                    href: '/',
+                    text: t('Suggest a Feature'),
+                    title: t('Suggest a Feature'),
+                    available: false,
+                    icon: '/svg/icons/suggest_icon.svg',
+                },
+                {
+                    href: '/',
+                    text: t('Report a Bug'),
+                    title: t('Report a Bug'),
+                    available: false,
+                    icon: '/svg/icons/bug_icon.svg',
+                },
+            ]
+        }
+    ];
+    const rightMenu = [
+        {
+            href: '/',
+            text: t('Base Mainnet'),
+            title: '',
+            available: true,
+            icon: '/svg/icons/base-logo.svg',
+            className: styles['network-btn'],
+            submenus: [
+                {
+                    href: 'https://basescan.org/',
+                    target: '_blank',
+                    text: t('Base Scan'),
+                    title: t('Base Scan'),
+                    available: true,
+                    icon: <BugIcon />,
+                },
+                {
+                    href: '/explorer',
+                    target: '_blank',
+                    text: t('ParkSwap Explorer'),
+                    title: t('ParkSwap Explorer'),
+                    available: false,
+                    icon: <ExplorerIcon />,
+                },
+            ]
+        },
+        {
+            isComponent: true,
+            available: true,
+            Component: CustomConnectButton,
+            submenus: (
+                !isDisconnected ? [
+                    {
+                        text: t("Deconnexion"),
+                        available: true,
+                        onClick: disconnect,
+                        icon: <LogoutIcon />
+                    },
+                ]: null
+            )
+        },
+        {
+            isComponent: true,
+            available: true,
+            className: styles['circular-menu-item'],
+            Component: ColorSchemeButton,
+        },
+        {
+            isComponent: true,
+            available: true,
+            className: styles['circular-menu-item'],
+            Component: LangButton,
+        },
+        {
+            isComponent: true,
+            available: true,
+            className: styles['circular-menu-item'],
+            Component: NotificationSoundButton,
+        }
+    ];
+
     return(
         <nav className={styles["app-navigation"]}>
           <div className={styles["app-navigation-logo"]}>
@@ -18,339 +296,11 @@ const Menu = ({openSettings,settingsButtonVal}) => {
             </Link>
           </div>
           <div className={styles["app-navigation-nav"]}>
-            <ul>
-              <div className={styles["nav-no-dd"]}>
-                <li className={styles["nav-home-btn"]}>
-                  <Link href="/home">
-                    Home
-                    {/* <svg width="21px" height="21px">
-                      <title>Home</title>
-                      <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
-                      />
-                    </svg> */}
-                  </Link>
-                </li>
-                <li className={styles["nav-market-btn"]}>
-                  <Link href="/app">
-                    Trade
-                    {/*<svg width="21px" height="21px">*/}
-                    {/*  <title>Trade</title>*/}
-                    {/*  <image*/}
-                    {/*    width="21px"*/}
-                    {/*    height="21px"*/}
-                    {/*    href="/svg/icons/down_arrow.svg"*/}
-                    {/*  />*/}
-                    {/*</svg>*/}
-                  </Link>
-                  {/*<div className={styles["nav-submenu-box"]}>*/}
-                  {/*  <div className={styles["nav-menu-submenu"]}>*/}
-                  {/*    <ul className={styles["menu-submenu-list"]}>*/}
-                  {/*      /!*<li>*!/*/}
-                  {/*      /!*  <a href="">*!/*/}
-                  {/*      /!*    <span className={styles["title"]}>Simple Mode</span>*!/*/}
-                  {/*      /!*    <p>The most user-friendly way to trade</p>*!/*/}
-                  {/*      /!*    <span className={styles["icon"]}>*!/*/}
-                  {/*      /!*      <svg width="18px" height="18px">*!/*/}
-                  {/*      /!*        <title>Simple mode</title>*!/*/}
-                  {/*      /!*        <image*!/*/}
-                  {/*      /!*          width="18px"*!/*/}
-                  {/*      /!*          height="18px"*!/*/}
-                  {/*      /!*          href="/svg/icons/simple_mode.svg"*!/*/}
-                  {/*      /!*        />*!/*/}
-                  {/*      /!*      </svg>*!/*/}
-                  {/*      /!*    </span>*!/*/}
-                  {/*      /!*  </a>*!/*/}
-                  {/*      /!*</li>*!/*/}
-                  {/*      /!*<li>*!/*/}
-                  {/*      /!*  <a href="">*!/*/}
-                  {/*      /!*    <span className={styles["title"]}>*!/*/}
-                  {/*      /!*      Advanced Mode*!/*/}
-                  {/*      /!*    </span>*!/*/}
-                  {/*      /!*    <p>Take advantage of all the familiar tools</p>*!/*/}
-                  {/*      /!*    <span className={styles["icon"]}>*!/*/}
-                  {/*      /!*      <svg width="18px" height="18px">*!/*/}
-                  {/*      /!*        <title>Advanced mode</title>*!/*/}
-                  {/*      /!*        <image*!/*/}
-                  {/*      /!*          width="18px"*!/*/}
-                  {/*      /!*          height="18px"*!/*/}
-                  {/*      /!*          href="/svg/icons/advanced_mode.svg"*!/*/}
-                  {/*      /!*        />*!/*/}
-                  {/*      /!*      </svg>*!/*/}
-                  {/*      /!*    </span>*!/*/}
-                  {/*      /!*  </a>*!/*/}
-                  {/*      /!*</li>*!/*/}
-                  {/*      /!*<li>*!/*/}
-                  {/*      /!*  <a href="">*!/*/}
-                  {/*      /!*    <span className={styles["title"]}>Limit Order</span>*!/*/}
-                  {/*      /!*    <p>Schedule a swap to get the best price</p>*!/*/}
-                  {/*      /!*    <span className={styles["icon"]}>*!/*/}
-                  {/*      /!*      <svg width="18px" height="18px">*!/*/}
-                  {/*      /!*        <title>Limit Order</title>*!/*/}
-                  {/*      /!*        <image*!/*/}
-                  {/*      /!*          width="18px"*!/*/}
-                  {/*      /!*          height="18px"*!/*/}
-                  {/*      /!*          href="/svg/icons/limit_order.svg"*!/*/}
-                  {/*      /!*        />*!/*/}
-                  {/*      /!*      </svg>*!/*/}
-                  {/*      /!*    </span>*!/*/}
-                  {/*      /!*  </a>*!/*/}
-                  {/*      /!*</li>*!/*/}
-                  {/*    </ul>*/}
-                  {/*  </div>*/}
-                  {/*</div>*/}
-                </li>
-                {/*<li className={styles["nav-portfolio-btn"]}>*/}
-                {/*  <a href="/portfolio">*/}
-                {/*    Portfolio*/}
-                    {/* <svg width="21px" height="21px">
-                      <title>Portfolio</title>
-                      <image
-                        width="21px"
-                        height="21px"
-                        href="/svg/icons/down_arrow.svg"
-                      />
-                    </svg> */}
-                  {/*</a>*/}
-                {/*</li>*/}
-                {/*<li className={styles["nav-trade-btn"] +' '+ styles["nav-menu-item-btn"]}>*/}
-                {/*  <Link href="/market">*/}
-                {/*    Marché*/}
-                {/*    <svg width="21px" height="21px">*/}
-                {/*      <title>Marché</title>*/}
-                {/*      <image*/}
-                {/*          width="21px"*/}
-                {/*          height="21px"*/}
-                {/*          href="/svg/icons/down_arrow.svg"*/}
-                {/*      />*/}
-                {/*    </svg>*/}
-                {/*  </Link>*/}
-                {/*  <div className={styles["nav-submenu-box"]}>*/}
-                {/*    <div className={styles["nav-menu-submenu"]}>*/}
-                {/*      <ul className={styles["menu-submenu-list"]}>*/}
-                {/*        <li>*/}
-                {/*          <Link href="/market">*/}
-                {/*            <span className={styles["title"]}>Marché DeFi</span>*/}
-                {/*            <p>Decentralize finance</p>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="18px" height="18px">*/}
-                {/*                <title>Simple mode</title>*/}
-                {/*                <image*/}
-                {/*                    width="18px"*/}
-                {/*                    height="18px"*/}
-                {/*                    href="/svg/icons/simple_mode.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </Link>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <Link href="/trad-market">*/}
-                {/*            <span className={styles["title"]}>*/}
-                {/*              Marché Trad.Fi*/}
-                {/*            </span>*/}
-                {/*            <p>Traditional Finance</p>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="18px" height="18px">*/}
-                {/*                <title>Advanced mode</title>*/}
-                {/*                <image*/}
-                {/*                    width="18px"*/}
-                {/*                    height="18px"*/}
-                {/*                    href="/svg/icons/advanced_mode.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </Link>*/}
-                {/*        </li>*/}
-                {/*      </ul>*/}
-                {/*    </div>*/}
-                {/*  </div>*/}
-                {/*</li>*/}
-                {/*<li className={styles["nav-bridge-btn"]}>*/}
-                {/*  <a href="/Bridge">*/}
-                {/*    Bridge*/}
-                    {/* <svg width="21px" height="21px">
-                      <title>bridge</title>
-                      <image
-                        width="21px"
-                        height="21px" 
-                        href="/svg/icons/right_arrow.svg"
-                      />
-                    </svg> */}
-                  {/*</a>*/}
-                {/*</li>*/}
-                {/*<li className={styles["nav-plus-btn"]}>*/}
-                {/*  <a href="">*/}
-                {/*    Plus*/}
-                {/*    <svg width="21px" height="21px">*/}
-                {/*      <title>More</title>*/}
-                {/*      <image*/}
-                {/*          width="21px"*/}
-                {/*          height="21px"*/}
-                {/*          href="/svg/icons/down_arrow.svg"*/}
-                {/*      />*/}
-                {/*    </svg>*/}
-                {/*  </a>*/}
-                {/*  <div className={styles["nav-submenu-box"]}>*/}
-                {/*    <div className={styles["nav-menu-submenu"]}>*/}
-                {/*      <ul className={styles["menu-submenu-list"]}>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*            <span className={styles["title"]}>*/}
-                {/*              Documentation*/}
-                {/*            </span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>Documentation</title>*/}
-                {/*                <image*/}
-                {/*                    width="20px"*/}
-                {/*                    height="20px"*/}
-                {/*                    href="/svg/icons/doc_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*            <span className={styles["title"]}>Blog</span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>Blog</title>*/}
-                {/*                <image*/}
-                {/*                    width="20px"*/}
-                {/*                    height="20px"*/}
-                {/*                    href="/svg/icons/blog_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*          <span className={styles["title"]}>Help</span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>Help</title>*/}
-                {/*                <image*/}
-                {/*                  width="20px"*/}
-                {/*                  height="20px"*/}
-                {/*                  href="/svg/icons/help_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*            <span className={styles["title"]}>*/}
-                {/*              Stats*/}
-                {/*            </span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>Stats</title>*/}
-                {/*                <image*/}
-                {/*                  width="20px"*/}
-                {/*                  height="20px"*/}
-                {/*                  href="/svg/icons/screening_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*            <span className={styles["title"]}>About</span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>About</title>*/}
-                {/*                <image*/}
-                {/*                  width="20px"*/}
-                {/*                  height="20px"*/}
-                {/*                  href="/svg/icons/about_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*            <span className={styles["title"]}>*/}
-                {/*              Suggest a Feature*/}
-                {/*            </span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>Suggest a Feature</title>*/}
-                {/*                <image*/}
-                {/*                  width="20px"*/}
-                {/*                  height="20px"*/}
-                {/*                  href="/svg/icons/suggest_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*          <a href="">*/}
-                {/*            <span className={styles["title"]}>*/}
-                {/*              Report a Bug*/}
-                {/*            </span>*/}
-                {/*            <span className={styles["icon"]}>*/}
-                {/*              <svg width="20px" height="20px">*/}
-                {/*                <title>Report a Bug</title>*/}
-                {/*                <image*/}
-                {/*                  width="20px"*/}
-                {/*                  height="20px"*/}
-                {/*                  href="/svg/icons/bug_icon.svg"*/}
-                {/*                />*/}
-                {/*              </svg>*/}
-                {/*            </span>*/}
-                {/*          </a>*/}
-                {/*        </li>*/}
-                {/*      </ul>*/}
-                {/*    </div>*/}
-                {/*  </div>*/}
-                {/*</li>*/}
-              </div>
-            </ul>
+              <MenuList menu={leftMenu} />
           </div>
-          <ul className={styles["app-navigation-buttons"]}>
-            <li className={styles["nav-market-btn"]}>
-              <div className={styles["network-btn"]}>
-                <svg width="24px" height="24px">
-                  <title>STRK</title>
-                  <image
-                      width="22px"
-                      height="22px"
-                      href="/svg/icons/base-logo.svg"
-                  />
-                </svg>
-                Base Mainnet
-              </div>
-              {/*<div className={styles["nav-submenu-box"]+' '+styles["connected-network-submenu-box"]}>*/}
-              {/*  <div className={styles["nav-menu-submenu"]}>*/}
-              {/*    <ul className={styles["menu-submenu-list"]}>*/}
-              {/*      <li>*/}
-              {/*        <Link href="https://basescan.org/" target="_blank" >Base Scan</Link>*/}
-              {/*      </li>*/}
-                    {/*<li>*/}
-                    {/*  <Link href="/explorer" target="_blank" >*/}
-                    {/*    ParkSwap Explorer*/}
-                    {/*  </Link>*/}
-                    {/*</li>*/}
-                  {/*</ul>*/}
-                {/*</div>*/}
-              {/*</div>*/}
-            </li>
-            <li className={styles["nav-market-btn"]}>
-              <CustomConnectButton/>
-            </li>
-          </ul>
-          {/*<div className={styles["app-navigation-btn"]} onClick={openSettings}>*/}
-          {/*  {settingsButtonVal}*/}
-          {/*</div>*/}
+          <div className={styles["app-navigation-buttons"]}>
+              <MenuList menu={rightMenu}  />
+          </div>
         </nav>
     )
 }

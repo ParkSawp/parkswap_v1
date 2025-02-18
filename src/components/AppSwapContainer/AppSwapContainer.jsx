@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import React, {useCallback, useEffect, useState} from "react";
 import SwapFormView from "@/src/components/AppSwapContainer/SwapFormView";
 import SendFormView from "@/src/components/AppSwapContainer/SendFormView";
+import {ChartIcon, ReloadIcon, SendIcon, SettingsIcon, SwapIcon} from "@/src/components/Icon/Icon";
+import Translate from "@/src/components/Translate/Translate";
 
 const SWAP_VIEW = 'SWAP_VIEW';
 const SEND_VIEW = 'SEND_VIEW';
@@ -39,11 +41,11 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
             className={styles["app-container-wrapper"]}>
           <div className={styles["app-container-menu"]}>
             <ul className={styles["container-menu-firstMenu"]}>
-              <li onClick={showSwapView} >
-                <b>Swap</b>
+              <li onClick={showSwapView} className={(view === SWAP_VIEW) ? styles['app-menu-active'] : ''} >
+                <SwapIcon /> <span><Translate>Swap</Translate></span>
               </li>
-              <li onClick={showSendView} >
-                <img src="/img/send.png" alt="Send" height={20} />
+              <li onClick={showSendView} className={(view !== SWAP_VIEW) ? styles['app-menu-active'] : ''}  >
+                <SendIcon /> <span><Translate>Send</Translate></span>
               </li>
             </ul>
             {
@@ -52,29 +54,13 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
                 (
                     <ul className={styles["container-menu-secondMenu"]}>
                       <li className={styles["graph-btn"]} onClick={toggleIsGraphOpen}>
-                        <svg>
-                          <title>Graph</title>
-                          <image width="21px" height="21px" href="/svg/icons/graph.svg"/>
-                          {/* <image width="21px" height="21px" href="/svg/icons/solar_graph.svg" /> */}
-                        </svg>
+                        <ChartIcon />
                       </li>
                       <li onClick={handleResetQuote}>
-                        <svg>
-                          <title>Reset</title>
-                          <image width="21px" height="21px" href="/svg/icons/reset.svg"/>
-                          {/* <image width="21px" height="21px" href="/svg/icons/solar_reset.svg" /> */}
-
-                        </svg>
+                        <ReloadIcon />
                       </li>
                       <li onClick={toggleDisplaySettings}>
-                        <svg>
-                          <title>Settings</title>
-                          <image
-                              width="21px"
-                              height="21px"
-                              href="/svg/icons/settings.svg"
-                          />
-                        </svg>
+                        <SettingsIcon />
                       </li>
                     </ul>
                 )

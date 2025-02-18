@@ -9,6 +9,7 @@
     flex-direction: column;
     color: #2C4932;
     width: min-content !important;
+    min-width: 150px;
 }
 .swap-token-selector-button {
     display: flex;
@@ -73,6 +74,7 @@
     font-size: 20px;
     font-weight: 500;
     width: 100%;
+    text-align: right;
 }
 .swap-token-selector-amount,
 .swap-token-selector-token-balance {
@@ -81,11 +83,16 @@
     line-height: 15px;
     color: rgba(0,0,0,0.7);
     display: flex;
-    justify-content: flex-end;
     column-gap: .5rem;
     align-content: center;
     align-items: center;
-    font-size: .8rem;
+    font-size: .75rem;
+}
+.swap-token-selector-amount {
+    justify-content: flex-end;
+}
+.swap-token-selector-token-balance {
+    justify-content: flex-start;
 }
 .swap-token-selector-amount-max-button {
     background: #088a24;
