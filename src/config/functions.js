@@ -3,9 +3,22 @@ import {Bounce, toast} from "react-toastify";
 import i18n from '../config/i18n';
 
 const Sounds = {
-    notification: new Audio('audio/notification.mp3'),
-    swipe: new Audio('audio/swipe.wav')
+    NotificationAudio: null,
+    SwipeAudio: null,
+    notification: () => {
+        if(!Sounds.NotificationAudio) {
+            Sounds.NotificationAudio =  new Audio('audio/notification.mp3');
+        }
+        Sounds.NotificationAudio.play();
+    },
+    swipe: () => {
+        if(!Sounds.SwipeAudio) {
+            Sounds.SwipeAudio =  new Audio('audio/swipe.mp3');
+        }
+        Sounds.SwipeAudio.play();
+    }
 }
+
 
 
 export const formatFromUnits = (value, decimals) => {
@@ -47,6 +60,6 @@ export const Toast = {
             theme: "light",
             transition: Bounce,
         });
-        Sounds.notification.play();
+        Sounds.notification();
     }
 }

@@ -3,26 +3,22 @@ import {useCallback, useEffect, useState} from "react";
 import useAppSettings from "@/src/hooks/useAppSettings";
 import {COLOR_SCHEME, getDefaultColorScheme, getSavedColorScheme} from "@/src/hooks/contexts";
 
-
 export default function useColorScheme() {
 
-    const [colorScheme, setColorScheme] = useState(getDefaultColorScheme());
+    const [colorScheme, setColorScheme] = useState(null);
     const { setColorScheme: setAppColorScheme } = useAppSettings();
 
     const changeColorScheme = useCallback((newColorScheme, custom = true) => {
         setColorScheme(newColorScheme);
         setAppColorScheme(newColorScheme);
         if(custom) {
-
-            if (typeof window !== 'undefined') {
-                localStorage.setItem(COLOR_SCHEME, newColorScheme);
-            }
+            localStorage.setItem(COLOR_SCHEME, newColorScheme);
         }
     }, [setAppColorScheme, setColorScheme]);
 
-    // useEffect(() => {
-    //     setAppColorScheme(colorScheme);
-    // }, [setAppColorScheme]);
+    useEffect(() => {
+        setColorScheme(getDefaultColorScheme());
+    }, []);
 
     useEffect(() => {
         const callback = (event) => {

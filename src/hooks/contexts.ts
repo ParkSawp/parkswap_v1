@@ -3,16 +3,10 @@ import { createContext } from 'react';
 
 export const COLOR_SCHEME = 'COLOR_SCHEME';
 export const getSavedColorScheme = () => {
-    if (typeof window !== 'undefined') {
-        return localStorage.getItem(COLOR_SCHEME);
-    }
+    return localStorage.getItem(COLOR_SCHEME);
 }
 export const getDefaultColorScheme = () => {
-    let defaultColorScheme = null;
-
-    if (typeof window !== 'undefined') {
-        defaultColorScheme = localStorage.getItem(COLOR_SCHEME);
-    }
+    let defaultColorScheme = localStorage.getItem(COLOR_SCHEME);
 
     console.log({ defaultColorScheme });
     if(defaultColorScheme) {
@@ -27,7 +21,7 @@ export const getDefaultColorScheme = () => {
 
 export const APP_SETTINGS_DEFAULT = {
     selectedChainId: '8453',
-    colorScheme: getDefaultColorScheme(),
+    colorScheme: 'light',
     slippage: 0,
     local: 'en_EN',
 

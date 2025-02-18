@@ -7,24 +7,20 @@ const RECENT_TOKENS = "RECENT_TOKENS";
 
 const getStoredTokens = () => {
     try {
-        if (typeof window !== 'undefined') {
-            const storedTokens = localStorage.getItem(RECENT_TOKENS);
-            if (storedTokens) {
-                return JSON.parse(storedTokens);
-            }
+        const storedTokens = localStorage.getItem(RECENT_TOKENS);
+        if (storedTokens) {
+            return JSON.parse(storedTokens);
         }
     } catch (e) {}
     return [];
 }
 
 const saveNewRecentTokenList = (tokens) => {
-    if (typeof window !== 'undefined') {
-        localStorage.setItem(RECENT_TOKENS, JSON.stringify(tokens));
-    }
+    localStorage.setItem(RECENT_TOKENS, JSON.stringify(tokens));
 }
 
 export default function useRecentToken() {
-    const [tokens, setTokens] = useState(getStoredTokens());
+    const [tokens, setTokens] = useState([]);
 
     const addToRecent = (token) => {
         const isTokenExist = tokens.find((item) => item.address === token.address);
@@ -33,6 +29,9 @@ export default function useRecentToken() {
         setTokens(newRecentTokens);
         saveNewRecentTokenList(newRecentTokens);
     }
+    useEffect(() => {
+        setTokens(getStoredTokens());
+    }, [])
 
     return {
         addToRecent,

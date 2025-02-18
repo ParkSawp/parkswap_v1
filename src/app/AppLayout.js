@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiConfig, createConfig, http } from "wagmi";
 import { mainnet, base, polygon   } from 'wagmi/chains'
@@ -8,7 +8,7 @@ import styles from "@/public/css/app.module.css";
 import AppSettingsModal from "@/src/components/AppSettingsModal/AppSettingsModal";
 import Menu from "@/src/components/Menu/Menu";
 import AppStyles from "@/public/css/app.module.css";
-import {APP_SETTINGS_DEFAULT, AppSettingContext} from "@/src/hooks/contexts";
+import {APP_SETTINGS_DEFAULT, AppSettingContext, getDefaultColorScheme} from "@/src/hooks/contexts";
 import connectKitConfig from '../config/connectKitConfig';
 import { ToastContainer } from 'react-toastify';
 import ParkSwapSocialNetworks from "@/src/components/ParkSwapSocialNetworks/ParkSwapSocialNetworks";
@@ -45,6 +45,10 @@ export default function AppLayout({ children, header = {} }) {
             setSettings({ ...settings, selectedChainId: chainId });
         },
     )
+
+    useEffect(() => {
+        setters.setColorScheme(getDefaultColorScheme());
+    }, []);
 
     return (
         <AppSettingContext.Provider value={{ ...settings, ...setters }}>
