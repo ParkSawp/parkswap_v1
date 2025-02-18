@@ -1,3 +1,4 @@
+"use client"
 import { createContext } from 'react';
 
 export const COLOR_SCHEME = 'COLOR_SCHEME';

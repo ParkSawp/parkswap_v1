@@ -1,3 +1,4 @@
+"use client"
 import {useCallback, useEffect, useState} from "react";
 import useAppSettings from "@/src/hooks/useAppSettings";
 import {COLOR_SCHEME, getDefaultColorScheme, getSavedColorScheme} from "@/src/hooks/contexts";
