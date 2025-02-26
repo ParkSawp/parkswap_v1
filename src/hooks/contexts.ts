@@ -8,7 +8,6 @@ export const getSavedColorScheme = () => {
 export const getDefaultColorScheme = () => {
     let defaultColorScheme = localStorage.getItem(COLOR_SCHEME);
 
-    console.log({ defaultColorScheme });
     if(defaultColorScheme) {
         return defaultColorScheme;
     }
@@ -22,12 +21,14 @@ export const getDefaultColorScheme = () => {
 export const APP_SETTINGS_DEFAULT = {
     selectedChainId: '8453',
     colorScheme: 'light',
+    notificationSound: true,
     slippage: 0,
     local: 'en_EN',
 
     setSlippage: () => {},
     setColorScheme: (mode: string) => {},
-    setLocal: (lang: string) => {}
+    setLocal: (lang: string) => {},
+    setNotificationSound: (notificationSound: boolean) => {}
 };
 
 export const AppSettingContext = createContext(APP_SETTINGS_DEFAULT);

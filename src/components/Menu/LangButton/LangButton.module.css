@@ -1,3 +1,7 @@
 .div {
     box-sizing: border-box;
 }
+.current-language-container {
+    font-size: .6rem;
+    text-align: center;
+}

@@ -20,6 +20,8 @@ import {
 import { toast, Bounce } from 'react-toastify';
 import AppSwapReviewTrade from "@/src/components/AppSwapReviewTrade/AppSwapReviewTrade";
 import {Toast} from "@/src/config/functions";
+import useAppSettings from "@/src/hooks/useAppSettings";
+import {LoadingIcon} from "@/src/components/Icon/Icon";
 // import { permit2Abi } from "@/src/config/permit2abi";
 // import Image from "next/image";
 // import qs from "qs";
@@ -74,6 +76,7 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
 
     // Define useWriteContract for the 'approve' operation
     const {data: writeContractHash, isPending, writeContractAsync: writeContract, error } = useWriteContract();
+    const settings = useAppSettings();
 
     const approve =  async () => {
         writeContract({
@@ -97,13 +100,13 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
 
     useEffect(() => {
         if(writeContractHash) {
-            Toast.success(sellToken.symbol+' Approved. Transaction Hash : '+ writeContractHash);
+            Toast.success(sellToken.symbol+' Approved. Transaction Hash : '+ writeContractHash, settings.notificationSound);
             return;
         }
         if (!error) {
             return;
         }
-        Toast.error(error.message);
+        Toast.error(error.message, settings.notificationSound);
     }, [error, writeContractHash]);
 
     if (!allowance || allowance < BigInt(sellTokenAmount)) {
@@ -114,7 +117,7 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
                         isOnProcess
                         &&
                         <div className={customConnectStyles["loading-approve-container"]}>
-                            <img src="/img/w-loading.gif" alt="Approve Loading" height={25} />
+                            <LoadingIcon height={25} />
                             <span>Waiting for your approvement</span>
                         </div>
                     }

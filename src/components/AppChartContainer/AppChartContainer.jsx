@@ -10,8 +10,6 @@ const PriceChart = dynamic(() => import("@/src/components/Global/PriceChart/Pric
 
 const ChartContainer = ({ isGraphOpen, sellToken, buyToken }) => {
 
-  console.log({ sellToken, buyToken })
-
   const symbol = (sellToken?.symbol || 'BTC')+'USD';
 
   return (

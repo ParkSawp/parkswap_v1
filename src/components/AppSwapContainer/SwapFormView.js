@@ -11,6 +11,8 @@ import useGetPrice from "@/src/hooks/useGetPrice";
 import {useAccount} from "wagmi";
 import useAppSettings from "@/src/hooks/useAppSettings";
 import AppSwapSettings from "@/src/components/AppSwapSettings/AppSwapSettings";
+import { useTranslation } from 'react-i18next';
+import RangeSlider from "react-range-slider-input";
 
 
 const BUY_DIRECTION = 'buy';
@@ -27,6 +29,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
     const { price, getPrice, resetPrice, loading: loadPrice, error } = useGetPrice();
     const { address } = useAccount();
     const appSettings = useAppSettings();
+    const { t } = useTranslation()
 
     const prevValues = useRef({ direction, sellTokenAmount, buyTokenAmount, sellTokenAddress: null, buyTokenAddress: null }).current
 
@@ -136,9 +139,8 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
     return (
         <>
             <div className={`${styles["app-swap-box-container"]} bg-green`}>
-                <AppSwapTokenSelectionBlockHeader title="You Pay" onTokenClick={handleSellToken} />
-                <AppSwapTokenBox token={sellToken} amount={sellTokenAmount} onTokenSelected={handleSellToken}
-                                 onAmountChange={changeSellTokenAmount}/>
+                <AppSwapTokenSelectionBlockHeader title={t('You Pay')} onTokenClick={handleSellToken} />
+                <AppSwapTokenBox token={sellToken} amountSlipper={true} amount={sellTokenAmount} onTokenSelected={handleSellToken} onAmountChange={changeSellTokenAmount}/>
             </div>
             <div className={styles["app-container-swap-btn-wrapper"]}>
                 <div className={styles["app-container-swapBtn"]} onClick={switchTokens}>
@@ -149,7 +151,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
                 </div>
             </div>
             <div className={`${styles["app-swap-box-container"]} ${styles["bordered"]}`}>
-                <AppSwapTokenSelectionBlockHeader title="You receive" onTokenClick={handleBuyToken} />
+                <AppSwapTokenSelectionBlockHeader title={t('You receive')} onTokenClick={handleBuyToken} />
                 <AppSwapTokenBox token={buyToken} amount={buyTokenAmount} onTokenSelected={handleBuyToken}
                                  onAmountChange={changeBuyTokenAmount}/>
             </div>

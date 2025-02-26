@@ -76,6 +76,7 @@ export default class Ox {
             buyToken: Ox.getRealAddress(buyToken),
             sellAmount: amount.toString(),
         };
+        console.log({ params })
         if(slippage) {
             params['slippageBps'] = (slippage * 100).toString();
         }
@@ -96,9 +97,9 @@ export default class Ox {
             buyToken: Ox.getRealAddress(buyToken),
             sellAmount: amount.toString(),
             taker,
-            // swapFeeRecipient: '0x98c34d9d19eB15c86366bB22710cc66be395a9f7',
-            // swapFeeToken: sellToken,
-            // swapFeeBps: '10'
+            swapFeeRecipient: process.env.API_FEE_RECIPIENT,
+            swapFeeToken: sellToken,
+            swapFeeBps: process.env.API_FEE_BPS
         };
         if(slippage) {
             params['slippageBps'] = slippage * 100;

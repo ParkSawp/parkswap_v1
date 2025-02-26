@@ -6,6 +6,9 @@ import CustomConnectButton from "@/src/components/Global/CustomConnectButton/Cus
 import { isAddress, parseUnits, Interface } from 'ethers';
 import { useSendTransaction } from "wagmi";
 import { ERC20_ABI } from '@/src/config/constants'
+import Translate from "@/src/components/Translate/Translate";
+import {useTranslation} from "react-i18next";
+import {LoadingIcon} from "@/src/components/Icon/Icon";
 
 
 
@@ -14,7 +17,8 @@ export default function SendFormView({ }) {
     const [amount, setAmount] = useState('0');
     const [token, setToken] = useState(null);
     const [receiverAddress, setReceiverAddress] = useState('');
-    const { sendTransaction, data, isPending, error } = useSendTransaction()
+    const { sendTransaction, data, isPending, error } = useSendTransaction();
+    const { t } = useTranslation();
 
     const handleReceiverAddress = (event) => {
         setReceiverAddress(event.target.value.trim());
@@ -62,7 +66,9 @@ export default function SendFormView({ }) {
     return (
         <>
             <div className={styles['send-token-block']}>
-                <h3 className={styles['send-block-title']}>Send Tokens</h3>
+                <h3 className={styles['send-block-title']}>
+                    <Translate>Send Tokens</Translate>
+                </h3>
                 <AppSwapTokenBox
                     onTokenSelected={setToken}
                     onAmountChange={setAmount}
@@ -71,9 +77,11 @@ export default function SendFormView({ }) {
                 />
             </div>
             <div className={styles['send-token-block']}>
-                <h3 className={styles['send-block-title']}>Receiver Address</h3>
+                <h3 className={styles['send-block-title']}>
+                    <Translate>Receiver Address</Translate>
+                </h3>
                 <input type="text"
-                       placeholder="Receiver Address"
+                       placeholder={t('Receiver Address')}
                        value={receiverAddress}
                        onChange={handleReceiverAddress}
                        className={styles['send-receiver-input']+' '+(isInvalidAddress ? styles['has-error'] : '')}
@@ -84,25 +92,25 @@ export default function SendFormView({ }) {
                 &&
                 (
                     <div className={styles['send-token-block-error-container']}>
-                        Please provide a correct address
+                        <Translate>Please provide a correct address</Translate>
                     </div>
                 )
             }
             <br/>
-            <div className={styles['send-token-block']+' primary-button '+styles['send-connect-wallet-btn-container']}>
+            <div className={styles['send-token-block']+' '+styles['send-connect-wallet-btn-container']}>
                 <CustomConnectButton className={styles['send-connect-wallet-btn']+' primary-button'}>
                     {
                         isPending
                             ? (
                                 <div className={styles['send-loading-container']} >
-                                    <img src="/img/w-loading.gif" alt="Loading" height={35}/>
+                                    <LoadingIcon height={35} />
                                 </div>
                             )
                             : (
                                 <button
                                     className={customConnectStyles['connect-wallet-btn'] + ' primary-button ' + styles['send-connect-wallet-btn']}
                                     onClick={send} disabled={isInvalidForm}>
-                                    Send
+                                    <Translate>Send</Translate>
                                 </button>
                             )
                     }

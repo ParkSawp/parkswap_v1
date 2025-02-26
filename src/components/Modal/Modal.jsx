@@ -5,7 +5,7 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-const Modal = ({ isOpen, className, closeModal, modalTitle, modalContent, children, modalWidth=460, modalHeight=500 }) => {
+const Modal = ({ isOpen, className, closeModal, modalTitle, modalContent, children, modalWidth=375, modalHeight=500 }) => {
   const controls = useAnimation();
 
   useEffect(() => {

@@ -7,6 +7,7 @@ import SwapFormView from "@/src/components/AppSwapContainer/SwapFormView";
 import SendFormView from "@/src/components/AppSwapContainer/SendFormView";
 import {ChartIcon, ReloadIcon, SendIcon, SettingsIcon, SwapIcon} from "@/src/components/Icon/Icon";
 import Translate from "@/src/components/Translate/Translate";
+import {useTranslation} from "react-i18next";
 
 const SWAP_VIEW = 'SWAP_VIEW';
 const SEND_VIEW = 'SEND_VIEW';
@@ -17,6 +18,7 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
   const [shouldResetPrice, setShouldResetPrice] = useState(false);
 
   const [view, setView] = useState(SWAP_VIEW);
+  const { t } = useTranslation();
 
 
   const showSwapView = () => setView(SWAP_VIEW);
@@ -42,10 +44,12 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
           <div className={styles["app-container-menu"]}>
             <ul className={styles["container-menu-firstMenu"]}>
               <li onClick={showSwapView} className={(view === SWAP_VIEW) ? styles['app-menu-active'] : ''} >
-                <SwapIcon /> <span><Translate>Swap</Translate></span>
+                <SwapIcon className={styles["container-menu-icon"]} />
+                <span>{t('Swap')}</span>
               </li>
               <li onClick={showSendView} className={(view !== SWAP_VIEW) ? styles['app-menu-active'] : ''}  >
-                <SendIcon /> <span><Translate>Send</Translate></span>
+                <SendIcon className={styles["container-menu-icon"]} />
+                <span>{t('Send')}</span>
               </li>
             </ul>
             {
@@ -54,13 +58,13 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
                 (
                     <ul className={styles["container-menu-secondMenu"]}>
                       <li className={styles["graph-btn"]} onClick={toggleIsGraphOpen}>
-                        <ChartIcon />
+                        <ChartIcon className={styles["container-menu-icon"]} />
                       </li>
                       <li onClick={handleResetQuote}>
-                        <ReloadIcon />
+                        <ReloadIcon className={styles["container-menu-icon"]} />
                       </li>
                       <li onClick={toggleDisplaySettings}>
-                        <SettingsIcon />
+                        <SettingsIcon className={styles["container-menu-icon"]}  />
                       </li>
                     </ul>
                 )

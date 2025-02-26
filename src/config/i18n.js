@@ -4,6 +4,10 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en.json";
 import fr from "./locales/fr.json";
 
+export const LANGUAGES = {
+    fr: 'French',
+    en: 'English',
+}
 
 const resources = {
     en: {

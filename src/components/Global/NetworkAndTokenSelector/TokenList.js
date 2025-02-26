@@ -5,6 +5,9 @@ import styles from "@/src/components/Global/NetworkAndTokenSelector/NetworkAndTo
 import TokenSelectorItem from "@/src/components/Global/NetworkAndTokenSelector/TokenSelectorItem";
 import useGetWalletTokens from "@/src/hooks/useGetWalletTokens";
 import useRecentToken from "@/src/hooks/useRecentToken";
+import Translate from "@/src/components/Translate/Translate";
+import {useTranslation} from "react-i18next";
+import {LoadingIcon} from "@/src/components/Icon/Icon";
 
 const QuickTokens = function({ icon, title, recentTokens, onSelectToken }) {
 
@@ -43,6 +46,7 @@ const QuickTokens = function({ icon, title, recentTokens, onSelectToken }) {
 export default function TokenList({loading, tokens, onSelectToken, selectedToken}) {
 
     const {userTokens, userTokensAddress} = useGetWalletTokens(tokens);
+    const { t } = useTranslation();
     const {tokens: recentTokens} = useRecentToken();
 
     const defaultTokens = tokens ? tokens.filter((token) => token.is_default).splice(0, 6) : [];
@@ -50,8 +54,8 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
     if (loading) {
         return (
             <div className={styles['tokens-loading-container']}>
-                <img src="/img/w-loading.gif" alt="Token loading" height={20}/>
-                Loading...
+                <LoadingIcon height={20} />
+                <Translate>Loading</Translate>...
             </div>
         );
     }
@@ -61,7 +65,7 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
     return (
         <div className={styles['tokens-list-container']}>
             <QuickTokens recentTokens={defaultTokens} onSelectToken={onSelectToken}  />
-            <QuickTokens recentTokens={recentTokens} onSelectToken={onSelectToken} icon="/img/main_logo_white.png" title="Recent Tokens" />
+            <QuickTokens recentTokens={recentTokens} onSelectToken={onSelectToken} icon="/img/main_logo_white.png" title={t('Recent Tokens')} />
             {
                 (userTokens.length > 0)
                 &&
@@ -69,9 +73,11 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
                     <>
                         <div className={styles['token-list-sub-title-container']}>
                             <div className={styles['token-list-sub-title-icon-container']}>
-                                <img src="/img/main_logo_white.png" alt="Tokens" height={20} />
+                                <img src="/img/main_logo_white.png" alt={t("Tokens")} height={20} />
                             </div>
-                            <div className={styles['token-list-sub-title']}>Your Tokens</div>
+                            <div className={styles['token-list-sub-title']}>
+                                <Translate>Your Tokens</Translate>
+                            </div>
                         </div>
                         {
                             userTokens.map((token) => <TokenSelectorItem key={token.address}
@@ -87,9 +93,11 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
                 (
                     <div className={styles['token-list-sub-title-container']+' '+styles['other-tokens']}>
                         <div className={styles['token-list-sub-title-icon-container']}>
-                            <img src="/svg/icons/walletconnect.svg" alt="Tokens" height={20} />
+                            <img src="/svg/icons/walletconnect.svg" alt={t('Tokens')} height={20} />
                         </div>
-                        <div className={styles['token-list-sub-title']}>Tokens</div>
+                        <div className={styles['token-list-sub-title']}>
+                            <Translate>Tokens</Translate>
+                        </div>
                     </div>
                 )
             }

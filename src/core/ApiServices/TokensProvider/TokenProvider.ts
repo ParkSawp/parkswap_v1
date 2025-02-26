@@ -13,17 +13,19 @@ export default class TokenProvider {
     ];
 
     public static async tokenFormProvider(address: string, chainId: string): Promise<Token|null> {
+        let token = null;
         try {
             for await (const provider of this.providers) {
-                const token = await provider.getToken(address, chainId);
+                token = await provider.getToken(address, chainId);
                 if(token) {
                     await TokenRepository.create(token);
-                    return token;
                 }
             }
-        } catch (e) {}
+        } catch (e) {
+            console.log('TOKEN CREATION ERROR : '+ e.message);
+        }
 
-        return null;
+        return token;
     }
 
     public static async tokens(chainId: string, search: string): Promise<Token[]> {
@@ -38,7 +40,6 @@ export default class TokenProvider {
             });
             if(!tokens.length && isAddress(search)) {
                 const token = await TokenProvider.tokenFormProvider(search, chainId);
-                console.log({ token });
                 token && tokens.push(token);
             }
         }

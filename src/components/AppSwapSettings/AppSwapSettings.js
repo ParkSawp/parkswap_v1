@@ -11,13 +11,11 @@ export default function AppSwapSettings({ }) {
     const [currentSlippage, setCurrentSlippage] = useState(0);
     const settings = useAppSettings();
     const slippages = [
+        { label: 'Auto', value: 0 },
+        { label: '0.1%', value: .1 },
+        { label: '0.5%', value: .5 },
+        { label: '1%', value: 1 },
         { label: '5%', value: 5 },
-        { label: '10%', value: 10 },
-        { label: '25%', value: 25 },
-        { label: '50%', value: 50 },
-        { label: '75%', value: 75 },
-        { label: '90%', value: 90 },
-        { label: '100%', value: 100 },
     ];
 
     const updateSlippage = (value) => {
@@ -31,6 +29,19 @@ export default function AppSwapSettings({ }) {
 
     const selectSlippage = (item) => {
         updateSlippage(item.value)
+    };
+
+    const handleCustomSlippage = (event) => {
+        const targetValue = event.target.value.replace(',', '.');
+        setCurrentSlippage(targetValue);
+        if(/\.$/.test(targetValue)) {
+            return;
+        }
+        const value = parseFloat(targetValue);
+        if(value < 0 || value > 100 || isNaN(value)) {
+            return;
+        }
+        updateSlippage(value);
     };
 
     return (
@@ -54,11 +65,15 @@ export default function AppSwapSettings({ }) {
                     className="single-thumb"
                     min={0}
                     max={100}
+                    step={0.1}
                     value={[0, currentSlippage]}
                     thumbsDisabled={[true, false]}
                     rangeSlideDisabled={false}
                     onInput={handleSlippage}
                 />
+            </div>
+            <div className={styles['slippage-custom-input-container']} >
+                <input type="text" value={currentSlippage} onChange={handleCustomSlippage} className={styles['slippage-custom-input']}  />
             </div>
         </div>
     )

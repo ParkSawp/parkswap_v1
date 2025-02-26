@@ -21,7 +21,7 @@
     padding: 0;
 }
 .slippage-value-container {
-    font-size: .75rem;
+    font-size: .7rem;
     grid-column: 1/4;
     font-weight: bold;
     padding: 0 !important;
@@ -56,4 +56,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
+}
+.slippage-custom-input-container {
+    width: 70px !important;
+}
+.slippage-custom-input {
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--black);
+    padding: .5rem .2rem;
 }

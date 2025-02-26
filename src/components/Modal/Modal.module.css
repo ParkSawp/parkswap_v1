@@ -27,6 +27,7 @@
     border-left:1px solid rgba(0,0,0,0.05);
     border-right:1px solid rgba(0,0,0,0.05);
     background:#fafbfe;
+    margin: 1rem;
     /* min-width:400px; */
     max-width:460px;
     width:100%;

@@ -1,8 +1,9 @@
 
 .connect-wallet-btn{
     border-radius:6px;
-    width: 135.854px;
+    min-width: 135px;
     height: 36px;
+    padding: .2rem .5rem;
 }
 .swap-wallet-btn {
     width: 100%;
@@ -39,7 +40,7 @@
     align-content: center;
     align-items: center;
     height: 4rem;
-    background: #f1f8ef;
+    background: light-dark(var(--white-smoof), none);
     margin-top: 1rem;
 }
 .select-token-alert.alert-danger{

@@ -6,3 +6,5 @@ export const MAX_ALLOWANCE =
 export const ERC20_ABI = [
     'function transfer(address to, uint256 amount) public returns (bool)',
 ];
+
+export const USD_PRICE_REFRESH_TIME = 1000;

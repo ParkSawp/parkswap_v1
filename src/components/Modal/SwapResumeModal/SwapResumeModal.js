@@ -8,9 +8,18 @@ import useRecentToken from "@/src/hooks/useRecentToken";
 import {numberToHex, size, concat} from "viem";
 import useUpdateTransaction from "@/src/hooks/useUpdateTransaction";
 import Translate from "@/src/components/Translate/Translate";
-import {ArrowRight} from "@/src/components/Icon/Icon";
+import {ArrowRight, LoadingIcon} from "@/src/components/Icon/Icon";
+import useAppSettings from "@/src/hooks/useAppSettings";
+import useGetUsdPrice from "@/src/hooks/useGetUsdPrice";
+import Amount from "@/src/components/Global/Amount/Amount";
 
 const SwapResumeTokenDetail = ({ token, amount }) => {
+    const { amount: usdAmount, updateAmount } = useGetUsdPrice();
+
+    useEffect(() => {
+        updateAmount(token, amount);
+    }, [amount, token.name]);
+
     return (
         <div className={styles['swap-resume-step-token']}>
             <div className={styles['swap-resume-step-token-details']}>
@@ -22,7 +31,7 @@ const SwapResumeTokenDetail = ({ token, amount }) => {
                     {parseFloat(amount).toFixed(3)}
                 </div>
                 <div className={styles['swap-resume-step-token-amount-value']}>
-                    0.00 $
+                    <Amount amount={usdAmount} />
                 </div>
             </div>
         </div>
@@ -36,6 +45,7 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
     const {updateTransaction} = useUpdateTransaction();
     const {addToRecent} = useRecentToken();
     const {signTypedData} = useSignTypedData();
+    const settings = useAppSettings();
 
     const executeTransaction = (transaction) => {
         const params = {
@@ -77,14 +87,14 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
 
     useEffect(() => {
         if(transactionSentHash) {
-            Toast.success('Swap transaction sent with success');
+            Toast.success('Swap transaction sent with success', settings.notificationSound);
             onClose && onClose();
             updateTransaction({ transactionId: quote.transactionId, hash: transactionSentHash });
             return;
         }
         if(error) {
             console.log(error)
-            Toast.error("Swap rejected by user");
+            Toast.error("Swap rejected by user", settings.notificationSound);
         }
     }, [error, transactionSentHash]);
 
@@ -136,10 +146,7 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
                     <div className={styles['swap-resume-options-container']} >
                         <div></div>
                         <div className={styles['swap-resume-buttons-container']} >
-                            {
-                                isTransactionOnLoading
-                                && <img src="/img/w-loading.gif" alt="Swap on pending" height={25} />
-                            }
+                            { isTransactionOnLoading && <LoadingIcon height={25} /> }
                             <button className={styles['swap-resume-option-button']+' '+styles["cancel-swap"]} onClick={onClose}>
                                 <Translate>Close</Translate>
                             </button>

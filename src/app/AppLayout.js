@@ -36,6 +36,9 @@ export default function AppLayout({ children, header = {} }) {
         },
         setColorScheme: (mode) => {
             setSettings({ ...settings, colorScheme: mode })
+        },
+        setNotificationSound: (notificationSound) => {
+            setSettings({ ...settings, notificationSound })
         }
     };
 

@@ -7,7 +7,7 @@ import {
     faArrowRightArrowLeft,
     faEllipsis,
     faAngleDown,
-    faRightFromBracket,
+    faPowerOff,
     faBug,
     faCoins,
     faSun,
@@ -19,7 +19,10 @@ import {
     faGear,
     faChartLine,
     faComments,
-    faArrowRight
+    faArrowRight,
+    faTimes,
+    faBars,
+    faSpinner,
 } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -29,7 +32,7 @@ export const SendIcon = (props) => <Icon icon={faPaperPlane} {...props} />
 export const SwapIcon = (props) => <Icon icon={faArrowRightArrowLeft} {...props} />
 export const EllipsisIcon = (props) => <Icon icon={faEllipsis} {...props} />
 export const AngleDownIcon = (props) => <Icon icon={faAngleDown} {...props} />
-export const LogoutIcon = (props) => <Icon icon={faRightFromBracket} {...props} />
+export const LogoutIcon = (props) => <Icon icon={faPowerOff} {...props} />
 export const BugIcon = (props) => <Icon icon={faBug} {...props} />
 export const ExplorerIcon = (props) => <Icon icon={faCoins} {...props} />
 export const LightModeIcon = (props) => <Icon icon={regularSun} {...props} />
@@ -47,3 +50,6 @@ export const RedditIcon = (props) => <Icon icon={faXTwitter} {...props} />
 export const DiscordIcon = (props) => <Icon icon={faDiscord} {...props} />
 export const ChatIcon = (props) => <Icon icon={faComments} {...props} />
 export const ArrowRight = (props) => <Icon icon={faArrowRight} {...props} />
+export const CloseIcon = (props) => <Icon icon={faTimes} {...props} />
+export const BurgerMenuIcon = (props) => <Icon icon={faBars} {...props} />
+export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />

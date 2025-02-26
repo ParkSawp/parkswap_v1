@@ -4,15 +4,21 @@ import styles from "@/src/components/Global/TokenSelector/SwapTokenSelector.modu
 import React, {useEffect, useRef, useState} from "react";
 import { useAccount, useBalance } from 'wagmi';
 import {formatFromBalance, fullFormatFromBalance} from "@/src/config/functions";
+import useGetUsdPrice from "@/src/hooks/useGetUsdPrice";
+import Amount from "@/src/components/Global/Amount/Amount";
+import RangeSlider from "react-range-slider-input";
 
 
-export default function SwapTokenSelector({ openModal, selectedToken, elementToDisplay, placeholder, selectedNetwork, customProps: { onAmountChange, token, amount } }) {
+export default function SwapTokenSelector({ openModal, selectedToken, elementToDisplay, placeholder, selectedNetwork, customProps: { onAmountChange, token, amount, amountSlipper } }) {
 
     const { address } = useAccount();
     const inputRef = useRef(null);
     const [query, setQuery] = useState(amount);
     const [refreshFromParent, setRefreshFromParent] = useState(false);
+    const { amount: usdAmount, updateAmount } = useGetUsdPrice();
     const tokenSelected = token || selectedToken;
+    const [amountToUse, setAmountToUse] = useState(0);
+    const amountSlipperValues = [25, 50, 75, 100];
 
     const { data: selectedTokenBalance } = useBalance({
         address,
@@ -38,7 +44,15 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
 
     const setMax =  () => {
         onAmountChange(fullFormatFromBalance(selectedTokenBalance));
-    }
+    };
+
+    const handleAmountToUse = (value) => {
+        setAmountToUse(value[1]);
+    };
+
+    const setAmount = (value) => {
+        setAmountToUse(value);
+    };
 
     useEffect(() => {
         if(refreshFromParent) {
@@ -47,7 +61,6 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
         }
         const timeOutId = setTimeout(() => {
             const value = Number(query);
-            console.log({ query, value });
             if(isNaN(value)) {
                 setQuery('0');
                 return;
@@ -62,51 +75,100 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
         setQuery(amount);
     }, [amount]);
 
+    useEffect(() => {
+        updateAmount(tokenSelected, parseFloat(query));
+    }, [amount, tokenSelected]);
+
+    useEffect(() => {
+        if(!selectedTokenBalance) {
+            return;
+        }
+        const amountTotal = fullFormatFromBalance(selectedTokenBalance);
+        const amount = (amountTotal / 100) * amountToUse;
+        console.log({ amount });
+        if(isNaN(amount)) {
+            return;
+        }
+        onAmountChange(amount.toFixed(4));
+    }, [amountToUse]);
+
+    useEffect(() => {
+
+    }, []);
 
     return (
-        <div className={styles["swap-token-selector"]}>
-            <div className={styles["swap-token-selector-token-selection"]}>
-                <div className={styles["swap-token-selector-button"]} onClick={openModal}>
-                    <div className={styles["swap-token-selector-token-description"]}>
+        <div>
+            <div className={styles["swap-token-selector"]}>
+                <div className={styles["swap-token-selector-token-selection"]}>
+                    <div className={styles["swap-token-selector-button"]} onClick={openModal}>
+                        <div className={styles["swap-token-selector-token-description"]}>
                         <span className={styles["swap-token-selector-token-icon"]}>
                             <svg width="35px" height="35px">
                               <title>{tokenSelected?.name}</title>
                               <image width="35px" height="35px" href={tokenSelected?.logo_uri}/>
                             </svg>
                         </span>
-                        <span className={styles["swap-token-selector-token-symbol"]} >{tokenSelected?.symbol || placeholder}</span>
+                            <span
+                                className={styles["swap-token-selector-token-symbol"]}>{tokenSelected?.symbol || placeholder}</span>
+                        </div>
+                        <svg width='15px' height='15px'>
+                            <title>Select Currency</title>
+                            <image width="15px" height="15px" href="/svg/icons/arrowgreynew.svg"/>
+                        </svg>
                     </div>
-                    <svg width='15px' height='15px'>
-                        <title>Select Currency</title>
-                        <image width="15px" height="15px" href="/svg/icons/arrowgreynew.svg"/>
-                    </svg>
                 </div>
-                <div className={styles["swap-token-selector-token-balance"]}>
-                    {
-                        token && selectedTokenBalance?.value
-                        &&
-                        (
-                            <>
-                                <button className={styles['swap-token-selector-amount-max-button']} type='button' onClick={setMax}>Max</button>
-                                <span>{formatFromBalance(selectedTokenBalance)} {selectedTokenBalance.symbol}</span>
-                            </>
-                        )
-                    }
-                </div>
-            </div>
-            <div className={styles["swap-token-selector-amount-wrapper"]}>
-                <div className={styles["swap-token-selector-amount-container"]}>
-                    <input placeholder="0.00" type="text"
-                           className={styles['swap-token-selector-amount-input']}
-                           ref={inputRef}
-                           value={query}
-                           onInput={handleAmountInput}
-                    />
-                    <span className={styles["swap-token-selector-amount"]}>
-                        0 $
+                <div className={styles["swap-token-selector-amount-wrapper"]}>
+                    <div className={styles["swap-token-selector-amount-container"]}>
+                        <input placeholder="0.00" type="text"
+                               className={styles['swap-token-selector-amount-input']}
+                               ref={inputRef}
+                               value={query}
+                               onInput={handleAmountInput}
+                        />
+                        <span className={styles["swap-token-selector-amount"]}>
+                        <Amount amount={usdAmount}/>
                     </span>
+                    </div>
                 </div>
             </div>
+            {
+                amountSlipper && token && selectedTokenBalance?.value
+                &&
+                (
+                    <div className={styles["swap-token-amount-slipper"]}>
+                        <div className={styles["swap-token-amount-handlers-container"]} >
+                            <div className={styles["swap-token-selector-token-balance"]}>
+                                <button className={styles['swap-token-selector-amount-max-button']}
+                                        type='button'
+                                        onClick={setMax}>Max
+                                </button>
+                                <span>{formatFromBalance(selectedTokenBalance)} {selectedTokenBalance.symbol}</span>
+                            </div>
+                            <div className={styles["swap-token-amount-slipper-shorts-container"]}>
+                                {
+                                    amountSlipperValues.map((value) => (
+                                        <button type='button' onClick={() => setAmount(value)} className={styles["swap-token-amount-slipper-item"]+' '+(amountToUse === value ? styles['active'] : '')}>
+                                            {value} %
+                                        </button>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        <div className={styles['amount-slipper-slider-container']}>
+                            <RangeSlider
+                                className="single-thumb"
+                                value={[0, amountToUse]}
+                                thumbsDisabled={[true, false]}
+                                rangeSlideDisabled={false}
+                                onInput={handleAmountToUse}
+                                min={0}
+                                max={100}
+                                step={1}
+                            />
+                        </div>
+                    </div>
+                )
+            }
         </div>
     )
 };

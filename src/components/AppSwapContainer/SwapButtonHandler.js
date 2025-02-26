@@ -6,6 +6,7 @@ import {formatUnits, parseUnits} from "ethers";
 import styles from "@/src/components/AppSwapReviewTrade/AppSwapReviewTrade.module.css";
 import {useTranslation} from "react-i18next";
 import Translate from "@/src/components/Translate/Translate";
+import {LoadingIcon} from "@/src/components/Icon/Icon";
 
 export default function SwapButtonHandler({ loading, price, address, sellToken, buyToken, sellTokenAmount, buyTokenAmount }) {
 
@@ -24,7 +25,7 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
         return (
             <div className={styles['best-price-details-container']}>
                 <div className={styles['best-price-loading-container']}>
-                    <img src="/img/w-loading.gif" alt="Loading" height={25}/>
+                    <LoadingIcon />
                     <Translate>Loading for the best quote</Translate>...
                 </div>
             </div>

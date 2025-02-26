@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ColorSchemeButton.module.css';
 import {AutoModeIcon, LightModeIcon, DarkModeIcon} from "@/src/components/Icon/Icon";
 import useColorScheme from "@/src/hooks/useColorScheme";
+import Translate from "@/src/components/Translate/Translate";
 
 
 export default function ColorSchemeButton({ className }) {
@@ -14,12 +15,18 @@ export default function ColorSchemeButton({ className }) {
     };
 
     return (
-        <div className={className} onClick={toggleColorScheme} >
-            {
-                colorScheme === 'light'
-                    ? <LightModeIcon />
-                    : <DarkModeIcon />
-            }
+        <div>
+            <div className={className} onClick={toggleColorScheme}>
+                {
+                    colorScheme === 'light'
+                        ? <LightModeIcon/>
+                        : <DarkModeIcon/>
+                }
+
+            </div>
+            <div className={styles['current-style-mode']}>
+                <Translate>{colorScheme}</Translate>
+            </div>
         </div>
     );
 }

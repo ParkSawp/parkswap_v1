@@ -1,10 +1,11 @@
+import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import styles from "./Menu.module.css";
 import CustomConnectButton from "@/src/components/Global/CustomConnectButton/CustomConnectButton";
 import { useAccount, useDisconnect } from "wagmi";
-import {AngleDownIcon, EllipsisIcon, LogoutIcon, BugIcon, ExplorerIcon} from "@/src/components/Icon/Icon";
+import { AngleDownIcon, LogoutIcon, BugIcon, ExplorerIcon, CloseIcon, BurgerMenuIcon } from "@/src/components/Icon/Icon";
 import ColorSchemeButton from "@/src/components/Menu/ColorSchemeButton/ColorSchemButton";
 import LangButton from "@/src/components/Menu/LangButton/LangButton";
 import NotificationSoundButton from "@/src/components/Menu/NotificationSoundButton/NotificationSoundButton";
@@ -83,6 +84,8 @@ const Menu = ({openSettings, settingsButtonVal}) => {
     const { disconnect } = useDisconnect()
     const {  isDisconnected } = useAccount();
     const { t } = useTranslation();
+
+    const [isMobileMenuExtended, setIsMobileMenuExtended] = useState(false);
 
     const leftMenu = [
         {
@@ -221,7 +224,7 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             ]
         }
     ];
-    const rightMenu = [
+    const rightButtonsMenu = [
         {
             href: '/',
             text: t('Base Mainnet'),
@@ -255,7 +258,7 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             submenus: (
                 !isDisconnected ? [
                     {
-                        text: t("Deconnexion"),
+                        text: t("Log out"),
                         available: true,
                         onClick: disconnect,
                         icon: <LogoutIcon />
@@ -263,6 +266,8 @@ const Menu = ({openSettings, settingsButtonVal}) => {
                 ]: null
             )
         },
+    ]
+    const rightMenu = [
         {
             isComponent: true,
             available: true,
@@ -283,22 +288,37 @@ const Menu = ({openSettings, settingsButtonVal}) => {
         }
     ];
 
+    const toggleMobileMenu = () => {
+        setIsMobileMenuExtended(!isMobileMenuExtended);
+    };
+
     return(
-        <nav className={styles["app-navigation"]}>
+        <nav className={styles["app-navigation"]+ ' '+ (!isMobileMenuExtended ? styles['mobile-navigation-not-extended'] : '')}>
           <div className={styles["app-navigation-logo"]}>
-            <Link href="/">
+            <Link href="/" className={styles["app-navigation-home-link"]}>
               <Image
                 src="/img/main_logo.png"
                 width={44}
-                height={60}
+                height={40}
                 alt="ParkSwap Logo"
               />
+                <span>arkswap</span>
             </Link>
+              <div className={styles["app-navigation-close"]} onClick={toggleMobileMenu}>
+                  {
+                      isMobileMenuExtended
+                        ? <CloseIcon />
+                        : <BurgerMenuIcon />
+                  }
+
+
+              </div>
           </div>
           <div className={styles["app-navigation-nav"]}>
               <MenuList menu={leftMenu} />
           </div>
           <div className={styles["app-navigation-buttons"]}>
+              <MenuList menu={rightButtonsMenu}  />
               <MenuList menu={rightMenu}  />
           </div>
         </nav>

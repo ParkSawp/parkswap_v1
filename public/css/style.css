@@ -11,6 +11,7 @@
     --primary-text-color: black;
     --primary-color: #088A24;
     --primary-border-color: #397546;
+    --primary-medium-color: rgba(162, 218, 118, 0.45);
     --primary-lite-color: rgba(162, 218, 118, 0.1);
     --primary-color-hover: #063e13;
     --primary-gradient: linear-gradient(#088a24, darkgreen);
@@ -19,6 +20,7 @@
     --active-background: #27ae60;
     --black: #000;
     --white: #fff;
+    --white-smoof: #f1f8ef;
     --text-black-hover: #000;
     --text-white-hover: white;
     --transparent-white: rgba(255, 255, 255, 0.45);
@@ -102,4 +104,7 @@ ul, ol {
 .primary-button:disabled {
     background: light-dark(var(--disable-background-color), var(--dark-disable-background-color));
     background: light-dark(var(--disable-background-color), var(--dark-disable-foreground-color));
+}
+.loading-icon {
+    font-size: 1.4rem;
 }

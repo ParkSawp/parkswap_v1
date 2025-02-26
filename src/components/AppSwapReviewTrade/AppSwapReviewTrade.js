@@ -11,7 +11,7 @@ import styles from './AppSwapReviewTrade.module.css';
 import SwapResumeModal from "@/src/components/Modal/SwapResumeModal/SwapResumeModal";
 import customConnectStyles from "@/src/components/Global/CustomConnectButton/CustomConnectButton.module.css";
 import Translate from "@/src/components/Translate/Translate";
-import {SwapIcon} from "@/src/components/Icon/Icon";
+import {ArrowRight, LoadingIcon, SwapIcon} from "@/src/components/Icon/Icon";
 
 export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmount, sellTokenAmount }) {
     const { address } = useAccount();
@@ -44,7 +44,7 @@ export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmoun
             <>
                 <div className={styles['best-price-details-container']}>
                     <div className={styles['best-price-loading-container']}>
-                        <img src="/img/w-loading.gif" alt="Loading" height={25} />
+                        <LoadingIcon height={25} />
                         <Translate>Loading for the best quote</Translate> ...
                     </div>
                 </div>
@@ -83,7 +83,7 @@ export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmoun
                                 <span>{sellToken.symbol}</span>
                             </div>
                             <div className={styles['best-price-detail-direction-logo']}>
-                                <SwapIcon />
+                                <ArrowRight />
                             </div>
                             <div className={styles['best-price-detail-token-buy']}>
                                 <img src={buyToken.logo_uri} alt={buyToken.name} height={15} />

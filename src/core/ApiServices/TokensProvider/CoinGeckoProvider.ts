@@ -16,35 +16,60 @@ type CoinGekoTokenDetail = {
 export default class CoinGeckoProvider implements ITokenProvider {
 
     public static shared = new CoinGeckoProvider();
+    public static IconNotFoundSrc = '/svg/tokens/icon.404.svg';
 
+    public async getTokenUsdPrice(id: string, symbol: string): Promise<{ amount: Number }> {
+        id = id.toLowerCase();
+        symbol = symbol.toLowerCase();
+        const params = new URLSearchParams({
+            ids: [id, symbol].join(','),
+            vs_currencies: 'usd'
+        });
+        const response = await fetch(process.env['COIN_GECKO_URL'] +'/simple/price?'+ params.toString());
+        const data = await response.json();
+
+        return { amount: data[id]?.usd || data[symbol]?.usd || 0 };
+    }
     public async getAll(): Promise<CoinGekoToken[]> {
         const tokenListResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/list');
         const data = await tokenListResponse.json();
-        return data || [];
+        if(Array.isArray(data)) {
+            return data;
+        }
+        return [];
     }
     public async getTokenDetails(id: string): Promise<CoinGekoTokenDetail> {
         const tokenResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/'+id);
         return await tokenResponse.json();
     }
 
+    public async getTokenIcon(token): Promise<string> {
+        const tokens = await this.getAll();
+        console.log(tokens)
+        const coinGekoToken = tokens?.find((item) => item.symbol.toLowerCase() === token.symbol.toLowerCase());
+        if(!coinGekoToken) {
+            console.log({ message: 'Token not found on coin gueko'})
+            return CoinGeckoProvider.IconNotFoundSrc;
+        }
+        const coinGekoTokenDetails = await this.getTokenDetails(coinGekoToken.id);
+        if(!coinGekoTokenDetails) {
+            return CoinGeckoProvider.IconNotFoundSrc;
+        }
+
+        return coinGekoTokenDetails.image.small.replace(/\?[0-9]+$/, '');
+    }
+
     public async getToken(address: string, chainId: string): Promise<Token|null> {
         const token = await getToken(connectKitConfig, {
             address: address as `0x${string}`,
-            chainId: Number(chainId) as (1 | 137 | 8453)
+            // @ts-ignore
+            chainId: Number(chainId)
         });
         if(!token) {
             return null;
         }
-
-        const tokens = await this.getAll();
-        const coinGekoToken = tokens.find((item) => item.symbol.toLowerCase() === token.symbol.toLowerCase());
-        if(!coinGekoToken) {
-            return null;
-        }
-        const coinGekoTokenDetails = await this.getTokenDetails(coinGekoToken.id);
-        if(!coinGekoTokenDetails) {
-            return null;
-        }
+        let logoUri = await this.getTokenIcon(token);
+        console.log({ address, chainId, ...token, logoUri })
 
         return {
             address: token.address,
@@ -52,7 +77,7 @@ export default class CoinGeckoProvider implements ITokenProvider {
             symbol: token.symbol,
             name: token.name,
             chain_id: chainId,
-            logo_uri: coinGekoTokenDetails.image.small.replace(/\?[0-9]+$/, '')
+            logo_uri: logoUri
         } satisfies Token
     }
 

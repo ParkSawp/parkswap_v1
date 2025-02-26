@@ -1,6 +1,7 @@
 import { useAccount } from "wagmi";
 import { ConnectKitButton } from "connectkit";
 import styles from "./CustomConnectButton.module.css";
+import Translate from "@/src/components/Translate/Translate";
 
 export default function CustomConnectButton({ children, className }) {
     const { address, isConnecting, isDisconnected } = useAccount();
@@ -12,7 +13,7 @@ export default function CustomConnectButton({ children, className }) {
                     {({ isConnected, isConnecting, show, hide, address, ensName, chain }) => {
                         return (
                             <button onClick={show} className={styles["connect-wallet-btn"]+' primary-button '+className}>
-                                Connect Wallet
+                                <Translate>Connect Wallet</Translate>
                             </button>
                         );
                     }}

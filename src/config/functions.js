@@ -7,13 +7,13 @@ const Sounds = {
     SwipeAudio: null,
     notification: () => {
         if(!Sounds.NotificationAudio) {
-            Sounds.NotificationAudio =  new Audio('audio/notification.mp3');
+            Sounds.NotificationAudio =  new Audio('/audio/notification.mp3');
         }
         Sounds.NotificationAudio.play();
     },
     swipe: () => {
         if(!Sounds.SwipeAudio) {
-            Sounds.SwipeAudio =  new Audio('audio/swipe.mp3');
+            Sounds.SwipeAudio =  new Audio('/audio/swipe.mp3');
         }
         Sounds.SwipeAudio.play();
     }
@@ -35,7 +35,7 @@ export const formatFromBalance = (balance) => {
 
 
 export const Toast = {
-    error: (message) => {
+    error: (message, sound) => {
         toast.error(i18n.t(message), {
             position: "bottom-right",
             autoClose: 5000,
@@ -47,8 +47,9 @@ export const Toast = {
             theme: "light",
             transition: Bounce,
         });
+        sound && Sounds.notification();
     },
-    success: (message) => {
+    success: (message, sound) => {
         toast.success(i18n.t(message), {
             position: "bottom-right",
             autoClose: 5000,
@@ -60,6 +61,6 @@ export const Toast = {
             theme: "light",
             transition: Bounce,
         });
-        Sounds.notification();
+        sound && Sounds.notification();
     }
 }

@@ -7,10 +7,13 @@ import useGetNetworks from "@/src/hooks/useGetNetworks";
 import TokenSelectorItem from "@/src/components/Global/NetworkAndTokenSelector/TokenSelectorItem";
 import { useAccount, useBalance } from 'wagmi';
 import TokenList from "@/src/components/Global/NetworkAndTokenSelector/TokenList";
+import {useTranslation} from "react-i18next";
+import { CloseIcon } from '@/src/components/Icon/Icon';
 
 export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly=false, defaultNetwork, defaultToken, onTokenSelected, onNetworkSelected }) {
 
     const { address, addresses } = useAccount();
+    const { t } = useTranslation();
     const { networks } = useGetNetworks();
 
     const [selectedToken, setSelectedToken] = useState();
@@ -33,6 +36,8 @@ export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly
     const filterToken = (event) => {
         setSearchKey(event.target.value);
     };
+
+    const cleanInput = () => setSearchKey('');
 
     const displayType = (networkOnly ? 'network-only' : (tokenOnly ? 'token-only' : ''));
 
@@ -81,7 +86,16 @@ export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly
                                 {/*    }*/}
                                 {/*</div>*/}
                                 <div className={styles['token-search-input-container']}>
-                                    <input type="text" placeholder='Search by token name or address' onInput={filterToken}/>
+                                    <input value={searchKey} type="text" placeholder={t('Search by token name or address')} onInput={filterToken}/>
+                                    {
+                                        searchKey
+                                        && (
+                                            <button className={styles['erase-input-button']} type='button'
+                                                    onClick={cleanInput}>
+                                                <CloseIcon/>
+                                            </button>
+                                        )
+                                    }
                                 </div>
                             </div>
                             <TokenList loading={isLoading} tokens={tokens || []} onSelectToken={selectToken} selectedToken={selectedToken} />

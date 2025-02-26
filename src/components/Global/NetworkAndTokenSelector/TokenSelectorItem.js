@@ -1,16 +1,27 @@
 import styles from "@/src/components/Global/NetworkAndTokenSelector/NetworkAndTokenSelector.module.css";
-import React from "react";
+import React, {useEffect} from "react";
 import {useAccount, useBalance} from "wagmi";
 import {formatFromBalance} from "@/src/config/functions";
+import useGetUsdPrice from "@/src/hooks/useGetUsdPrice";
+import {USD_PRICE_REFRESH_TIME} from "@/src/config/constants";
+import Amount from "@/src/components/Global/Amount/Amount";
 
 
 export default function TokenSelectorItem({ token, onSelectToken, isSelected }) {
 
     const { address } = useAccount();
+    const { amount: usdAmount, updateAmount } = useGetUsdPrice();
     const { data: balance } = useBalance({
         address: address,
         token: token.address
     });
+
+    useEffect(() => {
+        updateAmount(token, balance?.value);
+        // const update = () => updateAmount(token.name, balance.value);
+        // setInterval(update, USD_PRICE_REFRESH_TIME)
+        // return () => clearInterval(update);
+    }, [balance]);
 
     return (
         <div key={token.name}
@@ -35,7 +46,7 @@ export default function TokenSelectorItem({ token, onSelectToken, isSelected }) 
                                 {formatFromBalance(balance)}
                             </div>
                             <div className={styles['tokens-balance-amount']}>
-                                0 $
+                                <Amount amount={usdAmount} />
                             </div>
                         </>
                     )
