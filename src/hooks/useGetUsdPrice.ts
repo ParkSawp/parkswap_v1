@@ -19,7 +19,7 @@ export default function useGetUsdPrice() {
             const response = await fetch(url);
             const data = await response.json();
 
-            setAmount((data.amount ?? 0) * quantity);
+            setAmount((data.value ?? 0) * quantity);
         } catch (error) {
             setAmount(0);
         }

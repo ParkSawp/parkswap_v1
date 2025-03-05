@@ -3,7 +3,6 @@
 import React, {useEffect} from 'react';
 import styles from "@/src/components/Global/NetworkAndTokenSelector/NetworkAndTokenSelector.module.css";
 import TokenSelectorItem from "@/src/components/Global/NetworkAndTokenSelector/TokenSelectorItem";
-import useGetWalletTokens from "@/src/hooks/useGetWalletTokens";
 import useRecentToken from "@/src/hooks/useRecentToken";
 import Translate from "@/src/components/Translate/Translate";
 import {useTranslation} from "react-i18next";
@@ -43,9 +42,7 @@ const QuickTokens = function({ icon, title, recentTokens, onSelectToken }) {
     )
 };
 
-export default function TokenList({loading, tokens, onSelectToken, selectedToken}) {
-
-    const {userTokens, userTokensAddress} = useGetWalletTokens(tokens);
+export default function TokenList({loading, tokens, onSelectToken, address, selectedToken}) {
     const { t } = useTranslation();
     const {tokens: recentTokens} = useRecentToken();
 
@@ -60,7 +57,8 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
         );
     }
 
-    const otherTokens = (!userTokensAddress.length ? tokens : tokens.filter((token) => !userTokensAddress.includes(token.address)));
+    const userTokens = tokens.filter((token) => token.balance);
+    const otherTokens = tokens.filter((token) => !token.balance);
 
     return (
         <div className={styles['tokens-list-container']}>
@@ -80,7 +78,7 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
                             </div>
                         </div>
                         {
-                            userTokens.map((token) => <TokenSelectorItem key={token.address}
+                            userTokens.map((token) => <TokenSelectorItem key={token.address} address={address}
                                                                          isSelected={token.symbol === selectedToken}
                                                                          token={token} onSelectToken={onSelectToken}/>)
                         }
@@ -104,6 +102,7 @@ export default function TokenList({loading, tokens, onSelectToken, selectedToken
             {
                 otherTokens?.map((token) => <TokenSelectorItem
                     key={token.address}
+                    address={address}
                     isSelected={token.symbol === selectedToken}
                     token={token} onSelectToken={onSelectToken}
                 />)

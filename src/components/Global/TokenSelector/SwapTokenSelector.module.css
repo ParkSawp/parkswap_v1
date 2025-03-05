@@ -46,6 +46,10 @@
     overflow: hidden;
     background: whitesmoke;
     border: 1px solid #e8e3e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 .swap-token-selector-token-name {
     color: rgba(0,0,0,0.6);
@@ -128,7 +132,7 @@
     column-gap: .2rem;
 }
 .swap-token-amount-slipper-item {
-    width: 35px;
+    width: 38px;
     padding: .2rem;
     border-radius: 3px;
     border: 1px solid var(--gray);
@@ -143,6 +147,7 @@
 }
 .swap-token-amount-slipper-item.active{
     background: light-dark(var(--primary-color), var(--dark-primary-color));
+    color: light-dark(var(--dark-green-color), var(--dark-green-color));
 }
 .amount-slipper-slider-container {
     padding: .5rem !important;

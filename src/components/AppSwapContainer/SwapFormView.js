@@ -29,7 +29,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
     const { price, getPrice, resetPrice, loading: loadPrice, error } = useGetPrice();
     const { address } = useAccount();
     const appSettings = useAppSettings();
-    const { t } = useTranslation()
+    const { t } = useTranslation();
 
     const prevValues = useRef({ direction, sellTokenAmount, buyTokenAmount, sellTokenAddress: null, buyTokenAddress: null }).current
 

@@ -22,10 +22,10 @@ export const APP_SETTINGS_DEFAULT = {
     selectedChainId: '8453',
     colorScheme: 'light',
     notificationSound: true,
-    slippage: 0,
+    slippage: 0.5,
     local: 'en_EN',
 
-    setSlippage: () => {},
+    setSlippage: (value: number) => {},
     setColorScheme: (mode: string) => {},
     setLocal: (lang: string) => {},
     setNotificationSound: (notificationSound: boolean) => {}

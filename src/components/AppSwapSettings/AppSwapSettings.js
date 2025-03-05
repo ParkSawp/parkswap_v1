@@ -8,7 +8,7 @@ import "./style.css"
 import useAppSettings from "@/src/hooks/useAppSettings";
 
 export default function AppSwapSettings({ }) {
-    const [currentSlippage, setCurrentSlippage] = useState(0);
+    const [currentSlippage, setCurrentSlippage] = useState(0.5);
     const settings = useAppSettings();
     const slippages = [
         { label: 'Auto', value: 0 },

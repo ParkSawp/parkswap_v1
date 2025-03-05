@@ -76,8 +76,9 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     }, [amount]);
 
     useEffect(() => {
+        console.log({ amount, tokenSelected })
         updateAmount(tokenSelected, parseFloat(query));
-    }, [amount, tokenSelected]);
+    }, [query, tokenSelected]);
 
     useEffect(() => {
         if(!selectedTokenBalance) {
@@ -85,7 +86,6 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
         }
         const amountTotal = fullFormatFromBalance(selectedTokenBalance);
         const amount = (amountTotal / 100) * amountToUse;
-        console.log({ amount });
         if(isNaN(amount)) {
             return;
         }
@@ -93,8 +93,8 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     }, [amountToUse]);
 
     useEffect(() => {
-
-    }, []);
+        setAmountToUse(0);
+    }, [tokenSelected]);
 
     return (
         <div>
@@ -103,10 +103,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
                     <div className={styles["swap-token-selector-button"]} onClick={openModal}>
                         <div className={styles["swap-token-selector-token-description"]}>
                         <span className={styles["swap-token-selector-token-icon"]}>
-                            <svg width="35px" height="35px">
-                              <title>{tokenSelected?.name}</title>
-                              <image width="35px" height="35px" href={tokenSelected?.logo_uri}/>
-                            </svg>
+                              <img width="35px" height="35px" src={tokenSelected?.logo_uri || '/svg/tokens/icon.404.svg'} />
                         </span>
                             <span
                                 className={styles["swap-token-selector-token-symbol"]}>{tokenSelected?.symbol || placeholder}</span>
@@ -116,6 +113,16 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
                             <image width="15px" height="15px" href="/svg/icons/arrowgreynew.svg"/>
                         </svg>
                     </div>
+
+                    {
+                        !amountSlipper && token && selectedTokenBalance?.value
+                        &&
+                        (
+                            <div className={styles["swap-token-selector-token-balance"]}>
+                                <span>{formatFromBalance(selectedTokenBalance)} {selectedTokenBalance.symbol}</span>
+                            </div>
+                        )
+                    }
                 </div>
                 <div className={styles["swap-token-selector-amount-wrapper"]}>
                     <div className={styles["swap-token-selector-amount-container"]}>
@@ -136,7 +143,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
                 &&
                 (
                     <div className={styles["swap-token-amount-slipper"]}>
-                        <div className={styles["swap-token-amount-handlers-container"]} >
+                        <div className={styles["swap-token-amount-handlers-container"]}>
                             <div className={styles["swap-token-selector-token-balance"]}>
                                 <button className={styles['swap-token-selector-amount-max-button']}
                                         type='button'
@@ -147,7 +154,8 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
                             <div className={styles["swap-token-amount-slipper-shorts-container"]}>
                                 {
                                     amountSlipperValues.map((value) => (
-                                        <button type='button' onClick={() => setAmount(value)} className={styles["swap-token-amount-slipper-item"]+' '+(amountToUse === value ? styles['active'] : '')}>
+                                        <button key={'key-'+value} type='button' onClick={() => setAmount(value)}
+                                                className={styles["swap-token-amount-slipper-item"] + ' ' + (amountToUse === value ? styles['active'] : '')}>
                                             {value} %
                                         </button>
                                     ))

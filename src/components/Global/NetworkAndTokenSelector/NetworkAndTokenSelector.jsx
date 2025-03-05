@@ -21,7 +21,7 @@ export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly
     const [searchKey, setSearchKey] = useState('');
     const [selectNetworkOnly, setSelectNetworkOnly] = useState(networkOnly);
 
-    const { tokens, isLoading } = useGetTokens(searchKey);
+    const { tokens, isLoading } = useGetTokens(address, searchKey);
 
     const selectToken = (token) => {
         setSelectedToken(token);
@@ -98,7 +98,7 @@ export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly
                                     }
                                 </div>
                             </div>
-                            <TokenList loading={isLoading} tokens={tokens || []} onSelectToken={selectToken} selectedToken={selectedToken} />
+                            <TokenList loading={isLoading} address={address} tokens={tokens || []} onSelectToken={selectToken} selectedToken={selectedToken} />
 
                         </div>
                     )

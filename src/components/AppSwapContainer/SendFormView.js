@@ -53,8 +53,8 @@ export default function SendFormView({ }) {
         sendTransaction(transaction);
     };
 
-    const isInvalidAddress = receiverAddress && !isAddress(receiverAddress);
-    const isInvalidForm = isInvalidAddress || !amount || !token;
+    const isInvalidAddress = (receiverAddress && !isAddress(receiverAddress));
+    const isInvalidForm = !receiverAddress || isInvalidAddress || !amount || !token;
 
     useEffect(() => {
         if(data) {
@@ -74,6 +74,7 @@ export default function SendFormView({ }) {
                     onAmountChange={setAmount}
                     amount={amount}
                     token={token}
+                    amountSlipper={true}
                 />
             </div>
             <div className={styles['send-token-block']}>
@@ -109,7 +110,8 @@ export default function SendFormView({ }) {
                             : (
                                 <button
                                     className={customConnectStyles['connect-wallet-btn'] + ' primary-button ' + styles['send-connect-wallet-btn']}
-                                    onClick={send} disabled={isInvalidForm}>
+                                    onClick={send}
+                                    disabled={isInvalidForm} >
                                     <Translate>Send</Translate>
                                 </button>
                             )

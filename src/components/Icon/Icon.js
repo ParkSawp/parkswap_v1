@@ -23,6 +23,7 @@ import {
     faTimes,
     faBars,
     faSpinner,
+    faWallet
 } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -52,4 +53,5 @@ export const ChatIcon = (props) => <Icon icon={faComments} {...props} />
 export const ArrowRight = (props) => <Icon icon={faArrowRight} {...props} />
 export const CloseIcon = (props) => <Icon icon={faTimes} {...props} />
 export const BurgerMenuIcon = (props) => <Icon icon={faBars} {...props} />
+export const WalletIcon = (props) => <Icon icon={faWallet} {...props} />
 export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />

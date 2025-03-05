@@ -9,6 +9,7 @@ export type Token = {
     toImport?: boolean;
     is_verify?: boolean;
     risk?: number;
+    usd?: number;
     chain_id?: string|number;
 };
 
@@ -24,6 +25,7 @@ export default class TokenRepository {
     }
 
     public static async create(token: Token): Promise<null|Token> {
+        token.address = token.address.toLowerCase();
         const existingToken = await TokenRepository.getTokenByAddress(token.address, token.chain_id);
         if(existingToken) {
             return existingToken;

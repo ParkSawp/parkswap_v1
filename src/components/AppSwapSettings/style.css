@@ -1,10 +1,3 @@
-.single-thumb .range-slider__thumb[data-lower] {
-    width: 0;
-    display: none;
-}
-.single-thumb .range-slider__range {
-    border-radius: 6px;
-}
 
 /* Vertical Range Slider */
 .vertical-slider[data-vertical] {

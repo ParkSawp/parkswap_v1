@@ -3,6 +3,7 @@ import ITokenProvider from "@/src/core/ApiServices/TokensProvider/ITokenProvider
 import TokenRepository, { type Token } from '@/src/core/Models/TokenRepository';
 
 import { isAddress } from 'ethers';
+import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
 
 export default class TokenProvider {
 
@@ -28,8 +29,39 @@ export default class TokenProvider {
         return token;
     }
 
-    public static async tokens(chainId: string, search: string): Promise<Token[]> {
+    public static async tokens(chainId: string, walletAddress: string, search: string): Promise<Token[]> {
+        const walletTokens = await AlchemyProvider.balances(walletAddress, Number(chainId));
         let tokens = await TokenRepository.getFromChainId(chainId);
+        const tokensSymbols = new Set();
+        Object.values(walletTokens).forEach((token) => tokensSymbols.add(token.symbol));
+
+        const usdPricesPromises = [];
+        const walletTokensBySymbol: {[key: string]: Token} = {};
+
+        tokens = tokens.filter((token) => {
+            if(walletTokens[token.address]) {
+                const walletToken = walletTokens[token.address]
+                const tokenDetailMerged = { ...walletToken, ...token };
+                if(!token.logo_uri) {
+                    tokenDetailMerged.logo_uri = walletToken.logo_uri;
+                }
+                usdPricesPromises.push(AlchemyProvider.usd(token.symbol))
+                walletTokensBySymbol[token.symbol] = tokenDetailMerged;
+                return false;
+            }
+            return true;
+        });
+        const usdPrices = await Promise.all(usdPricesPromises);
+
+        usdPrices.forEach((item) => {
+            if(item && walletTokensBySymbol[item.symbol]) {
+                walletTokensBySymbol[item.symbol].usd = item.value;
+            }
+        });
+
+        tokens = [...Object.values(walletTokensBySymbol), ...tokens];
+
+        tokens = tokens.filter((token) => token.name && token.symbol && token.decimals);
 
         if(search) {
             search = search.toLowerCase();

@@ -18,6 +18,16 @@ export default class CoinGeckoProvider implements ITokenProvider {
     public static shared = new CoinGeckoProvider();
     public static IconNotFoundSrc = '/svg/tokens/icon.404.svg';
 
+    public static async getTokensPrice(ids: string[]): Promise<{ amount: Number }> {
+        ids = ids.map((id) => id.toLowerCase());
+        const params = new URLSearchParams({
+            ids: ids.join(','),
+            vs_currencies: 'usd'
+        });
+        const response = await fetch(process.env['COIN_GECKO_URL'] +'/simple/price?'+ params.toString());
+        return await response.json();
+    }
+
     public async getTokenUsdPrice(id: string, symbol: string): Promise<{ amount: Number }> {
         id = id.toLowerCase();
         symbol = symbol.toLowerCase();

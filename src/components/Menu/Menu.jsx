@@ -302,7 +302,6 @@ const Menu = ({openSettings, settingsButtonVal}) => {
                 height={40}
                 alt="ParkSwap Logo"
               />
-                <span>arkswap</span>
             </Link>
               <div className={styles["app-navigation-close"]} onClick={toggleMobileMenu}>
                   {

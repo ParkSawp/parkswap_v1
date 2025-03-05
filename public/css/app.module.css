@@ -19,7 +19,7 @@
 }
 
 .app-container-wrapper{
-    width: min(90%, 480px);
+    width: min(90%, 550px);
     display: flex;
     justify-content: center;
     align-items: center;
