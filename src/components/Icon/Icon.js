@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXTwitter, faTelegram, faDiscord, faRedhat } from '@fortawesome/free-brands-svg-icons';
@@ -28,7 +28,6 @@ import {
     faWallet,
     faClockRotateLeft,
 } from '@fortawesome/free-solid-svg-icons'
-const { tailChase } = dynamic(() => import("ldrs"), { ssr: false });
 
 
 export const Icon = (props) => <FontAwesomeIcon {...props} />
@@ -61,6 +60,12 @@ export const HistoryIcon = (props) => <Icon icon={faClockRotateLeft} {...props} 
 export const CoinIcon = (props) => <Icon icon={faCoins} {...props} />
 // export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />
 export const LoadingIcon = ({ className, ...props}) => {
-    tailChase.register();
-    return <l-tail-chase size="30" speed="1.75" color="black" {...props} />;
+    const [loaded, setLoaded] = useState(false);
+    useEffect(() => {
+        import("ldrs").then(({tailChase}) => {
+            tailChase?.register();
+            setLoaded(true);
+        });
+    }, []);
+    return (loaded && <l-tail-chase size="30" speed="1.75" color="black" {...props} />);
 };
