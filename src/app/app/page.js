@@ -15,18 +15,18 @@ export default function Home() {
 
 
   return (
-    <AppLayout >
-        <div className={styles["app-container"]}>
-          <SwapContainer
-            setIsGraphOpen={setIsGraphOpen}
-            isGraphOpen={isGraphOpen}
-            isWalletConnected={isWalletConnected}
-            setIsWalletConnected={setIsWalletConnected}
-            onTokensSelect={setTokens}
-          />
-          <ChartContainer isGraphOpen={isGraphOpen} {...tokens} />
-        </div>
-        {/*<AppSwapHistory />*/}
-    </AppLayout>
+      <AppLayout >
+          <div className={styles["app-container"]}>
+              <SwapContainer
+                setIsGraphOpen={setIsGraphOpen}
+                isGraphOpen={isGraphOpen}
+                isWalletConnected={isWalletConnected}
+                setIsWalletConnected={setIsWalletConnected}
+                onTokensSelect={setTokens}
+              />
+              <ChartContainer isGraphOpen={isGraphOpen} {...tokens} />
+          </div>
+          {/*<AppSwapHistory />*/}
+      </AppLayout>
   );
 }

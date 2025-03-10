@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiConfig, createConfig, http } from "wagmi";
-import { mainnet, base, polygon   } from 'wagmi/chains'
 import { ConnectKitProvider } from "connectkit";
 import Head from "next/head";
 import styles from "@/public/css/app.module.css";
@@ -58,11 +57,13 @@ export default function AppLayout({ children, header = {} }) {
             <WagmiConfig config={connectKitConfig} >
                 <QueryClientProvider client={queryClient}>
                     <ConnectKitProvider>
-                        <body className={settings.colorScheme} >
-                            <Head>
-                                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                                <title>{header?.title || 'Parkswap | App'}</title>
-                            </Head>
+                        <Head>
+                            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                            <title>{header?.title || 'Parkswap | App'}</title>
+                            <meta http-equiv="Content-Security-Policy"
+                                  content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com"/>
+                        </Head>
+                        <body className={settings.colorScheme}>
                             <div className={styles["site-wrapper"]}>
                                 <AppSettingsModal isOpen={isSettingsOpen} closeModal={closeSettings}/>
                                 <Menu openSettings={openSettings} settingsButtonVal={settingsButtonVal}/>
@@ -76,5 +77,5 @@ export default function AppLayout({ children, header = {} }) {
                 </QueryClientProvider>
             </WagmiConfig>
         </AppSettingContext.Provider>
-)
+    )
 }

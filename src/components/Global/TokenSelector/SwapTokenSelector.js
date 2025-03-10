@@ -25,6 +25,12 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
         token: token?.address
     });
 
+    const cleanCurrentValue = (event) => {
+        if(parseFloat(query) === 0) {
+            setQuery('');
+        }
+    };
+
     const handleAmountInput = (event) => {
         let value = event.target.value;
         value = value.replace(',', '.');
@@ -39,7 +45,8 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
             value = digit+'.'+decimal;
         }
         setRefreshFromParent(false);
-        setQuery(value.length > 0 ? value.toString() : '0');
+        setQuery(value.length > 0 ? value.toString() : '');
+        setAmountToUse(0);
     };
 
     const setMax =  () => {
@@ -62,7 +69,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
         const timeOutId = setTimeout(() => {
             const value = Number(query);
             if(isNaN(value)) {
-                setQuery('0');
+                setQuery('');
                 return;
             }
             onAmountChange(query);
@@ -76,20 +83,30 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
     }, [amount]);
 
     useEffect(() => {
-        console.log({ amount, tokenSelected })
-        updateAmount(tokenSelected, parseFloat(query));
+        const timeOutId = setTimeout(() => {
+            updateAmount(tokenSelected, query ? parseFloat(query) : 0);
+        }, 200);
+        return () => clearTimeout(timeOutId);
     }, [query, tokenSelected]);
 
     useEffect(() => {
         if(!selectedTokenBalance) {
             return;
         }
-        const amountTotal = fullFormatFromBalance(selectedTokenBalance);
-        const amount = (amountTotal / 100) * amountToUse;
-        if(isNaN(amount)) {
+        if(amountToUse === 0) {
             return;
         }
-        onAmountChange(amount.toFixed(4));
+        const amountTotal = fullFormatFromBalance(selectedTokenBalance);
+        const amount = (amountTotal / 100) * amountToUse;
+        setQuery(amount.toFixed(4));
+
+        const timeOutId = setTimeout(() => {
+            if(isNaN(amount)) {
+                return;
+            }
+            onAmountChange(amount.toFixed(4));
+        }, 500);
+        return () => clearTimeout(timeOutId);
     }, [amountToUse]);
 
     useEffect(() => {
@@ -130,6 +147,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
                                className={styles['swap-token-selector-amount-input']}
                                ref={inputRef}
                                value={query}
+                               onFocus={cleanCurrentValue}
                                onInput={handleAmountInput}
                         />
                         <span className={styles["swap-token-selector-amount"]}>

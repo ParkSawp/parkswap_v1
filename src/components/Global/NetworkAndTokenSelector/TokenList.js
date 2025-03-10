@@ -6,7 +6,7 @@ import TokenSelectorItem from "@/src/components/Global/NetworkAndTokenSelector/T
 import useRecentToken from "@/src/hooks/useRecentToken";
 import Translate from "@/src/components/Translate/Translate";
 import {useTranslation} from "react-i18next";
-import {LoadingIcon} from "@/src/components/Icon/Icon";
+import {CoinIcon, HistoryIcon, LoadingIcon, WalletIcon} from "@/src/components/Icon/Icon";
 
 const QuickTokens = function({ icon, title, recentTokens, onSelectToken }) {
 
@@ -22,7 +22,11 @@ const QuickTokens = function({ icon, title, recentTokens, onSelectToken }) {
                 (
                     <div className={styles['token-list-sub-title-container']}>
                         <div className={styles['token-list-sub-title-icon-container']}>
-                            <img src={icon} alt={title} height={20}/>
+                            {
+                                typeof icon === 'string'
+                                    ? <img src={icon} alt={title} height={20}/>
+                                    : icon
+                            }
                         </div>
                         <div className={styles['token-list-sub-title']}>{title}</div>
                     </div>
@@ -63,7 +67,7 @@ export default function TokenList({loading, tokens, onSelectToken, address, sele
     return (
         <div className={styles['tokens-list-container']}>
             <QuickTokens recentTokens={defaultTokens} onSelectToken={onSelectToken}  />
-            <QuickTokens recentTokens={recentTokens} onSelectToken={onSelectToken} icon="/img/main_logo_white.png" title={t('Recent Tokens')} />
+            <QuickTokens recentTokens={recentTokens} onSelectToken={onSelectToken} icon={<HistoryIcon />} title={t('Recent Tokens')} />
             {
                 (userTokens.length > 0)
                 &&
@@ -71,7 +75,7 @@ export default function TokenList({loading, tokens, onSelectToken, address, sele
                     <>
                         <div className={styles['token-list-sub-title-container']}>
                             <div className={styles['token-list-sub-title-icon-container']}>
-                                <img src="/img/main_logo_white.png" alt={t("Tokens")} height={20} />
+                                <WalletIcon />
                             </div>
                             <div className={styles['token-list-sub-title']}>
                                 <Translate>Your Tokens</Translate>
@@ -91,7 +95,7 @@ export default function TokenList({loading, tokens, onSelectToken, address, sele
                 (
                     <div className={styles['token-list-sub-title-container']+' '+styles['other-tokens']}>
                         <div className={styles['token-list-sub-title-icon-container']}>
-                            <img src="/svg/icons/walletconnect.svg" alt={t('Tokens')} height={20} />
+                            <CoinIcon />
                         </div>
                         <div className={styles['token-list-sub-title']}>
                             <Translate>Tokens</Translate>

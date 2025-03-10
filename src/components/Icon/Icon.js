@@ -1,4 +1,6 @@
+"use client"
 import React from 'react';
+import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXTwitter, faTelegram, faDiscord, faRedhat } from '@fortawesome/free-brands-svg-icons';
 import { faSun as regularSun} from '@fortawesome/free-regular-svg-icons';
@@ -23,9 +25,10 @@ import {
     faTimes,
     faBars,
     faSpinner,
-    faWallet
+    faWallet,
+    faClockRotateLeft,
 } from '@fortawesome/free-solid-svg-icons'
-
+const { tailChase } = dynamic(() => import("ldrs"), { ssr: false });
 
 
 export const Icon = (props) => <FontAwesomeIcon {...props} />
@@ -54,4 +57,10 @@ export const ArrowRight = (props) => <Icon icon={faArrowRight} {...props} />
 export const CloseIcon = (props) => <Icon icon={faTimes} {...props} />
 export const BurgerMenuIcon = (props) => <Icon icon={faBars} {...props} />
 export const WalletIcon = (props) => <Icon icon={faWallet} {...props} />
-export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />
+export const HistoryIcon = (props) => <Icon icon={faClockRotateLeft} {...props} />
+export const CoinIcon = (props) => <Icon icon={faCoins} {...props} />
+// export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />
+export const LoadingIcon = ({ className, ...props}) => {
+    tailChase.register();
+    return <l-tail-chase size="30" speed="1.75" color="black" {...props} />;
+};

@@ -135,7 +135,7 @@
     width: 38px;
     padding: .2rem;
     border-radius: 3px;
-    border: 1px solid var(--gray);
+    border: 1px solid var(--white-smoof);
     background-color: light-dark(var(--active-background), var(--active-background));
     color: light-dark(var(--white), var(--white));
     font-size: .6rem;

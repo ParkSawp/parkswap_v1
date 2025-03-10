@@ -9,7 +9,14 @@
     justify-content:center;
     align-items:center;
     flex-direction: column;
-    z-index:-4;
+    /*z-index:-4;*/
+}
+.chart-container-wrapper div div {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--transparent-black);
+    width: 100%;
+    max-width: 750px;
 }
 
 .chart-container{

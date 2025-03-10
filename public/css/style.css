@@ -139,3 +139,6 @@ ul, ol {
     width: 15px;
     background: var(--dark-green-color);
 }
+.tradingview-widget-copyright {
+    display: none !important;
+}

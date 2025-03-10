@@ -21,7 +21,7 @@ const ChartContainer = ({ isGraphOpen, sellToken, buyToken }) => {
           transition= {{ type: "spring", stiffness: 300, damping: 24, duration:0.2}}
           className={styles["chart-container-wrapper"]}
         >
-          <PriceChart symbol={symbol} width={700} height={430} />
+          <PriceChart symbol={symbol} width={'100%'} height={500} />
         </motion.div>
       )}
     </>

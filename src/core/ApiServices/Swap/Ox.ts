@@ -97,13 +97,15 @@ export default class Ox {
             buyToken: Ox.getRealAddress(buyToken),
             sellAmount: amount.toString(),
             taker,
+            swapFeeToken: Ox.getRealAddress(sellToken),
             swapFeeRecipient: process.env.API_FEE_RECIPIENT,
-            swapFeeToken: sellToken,
             swapFeeBps: process.env.API_FEE_BPS
         };
+
         if(slippage) {
             params['slippageBps'] = slippage * 100;
         }
+        console.log({ params })
         const priceParams = new URLSearchParams(params);
 
         const priceResponse = await Ox.fetch('/swap/permit2/quote', priceParams);
