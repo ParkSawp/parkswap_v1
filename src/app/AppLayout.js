@@ -56,7 +56,7 @@ export default function AppLayout({ children, header = {} }) {
         <AppSettingContext.Provider value={{ ...settings, ...setters }}>
             <WagmiConfig config={connectKitConfig} >
                 <QueryClientProvider client={queryClient}>
-                    <ConnectKitProvider>
+                    <ConnectKitProvider options={{ persistPreviousWallet: false }}>
                         <Head>
                             <meta name="viewport" content="width=device-width, initial-scale=1"/>
                             <title>{header?.title || 'Parkswap | App'}</title>

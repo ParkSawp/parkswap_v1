@@ -82,7 +82,7 @@ const MenuList = ({ menu }) =>  {
 
 const Menu = ({openSettings, settingsButtonVal}) => {
     const { disconnect } = useDisconnect()
-    const {  isDisconnected } = useAccount();
+    const {  isDisconnected, isConnected } = useAccount();
     const { t } = useTranslation();
 
     const [isMobileMenuExtended, setIsMobileMenuExtended] = useState(false);
@@ -169,7 +169,7 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             href: '/',
             text: t('Plus'),
             title: t('More'),
-            available: false,
+            available: true,
             icon: null,
             submenus: [
                 {
@@ -180,10 +180,10 @@ const Menu = ({openSettings, settingsButtonVal}) => {
                     icon: '/svg/icons/doc_icon.svg',
                 },
                 {
-                    href: '',
+                    href: 'blog',
                     text: t('Blog'),
                     title: t('Blog'),
-                    available: false,
+                    available: true,
                     icon: '/svg/icons/blog_icon.svg',
                 },
                 {
@@ -256,11 +256,16 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             available: true,
             Component: CustomConnectButton,
             submenus: (
-                !isDisconnected ? [
+                isConnected ? [
                     {
                         text: t("Log out"),
                         available: true,
-                        onClick: disconnect,
+                        onClick: () => {
+                            disconnect();
+                            localStorage.removeItem("wagmi.connected"); // Supprime la session Wagmi
+                            localStorage.removeItem("wc@2:client:id"); // Supprime la session WalletConnect
+                            sessionStorage.clear(); // Nettoie toutes les sessions
+                        },
                         icon: <LogoutIcon />
                     },
                 ]: null

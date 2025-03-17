@@ -1,3 +1,4 @@
+import React from 'react';
 import "../../public/css/style.css";
 
 export const metadata = {

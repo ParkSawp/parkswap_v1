@@ -162,7 +162,8 @@
 
 .nav-menu-item:hover .nav-menu-submenu {
     display: block;
-    border: 1px solid black;
+    border: 1px solid var(--primary-lite-color);
+    border-radius: 5px;
 }
 .nav-menu-item-description {
     display: flex;
@@ -170,6 +171,7 @@
     align-items: center;
     align-content: center;
     min-width: 90px;
+    column-gap: .5rem;
 }
 .nav-menu-item-link {
     color: light-dark(var(--black), var(--white));
@@ -373,6 +375,7 @@
     }
     .app-navigation-nav ul {
         width: unset;
+        padding: .2rem 0;
     }
     .app-navigation-nav ul li{
         width: unset;
@@ -390,6 +393,7 @@
     }
     .app-navigation-nav>ul ul li{
         padding:  unset;
+        flex: 1;
     }
     .app-navigation.mobile-navigation-not-extended {
         position: unset;
