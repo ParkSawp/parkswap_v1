@@ -1,3 +1,4 @@
+"use client"
 import React, {useEffect, useState} from "react";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiConfig, createConfig, http } from "wagmi";
@@ -41,12 +42,14 @@ export default function AppLayout({ children, header = {} }) {
         }
     };
 
-    connectKitConfig.subscribe(
-        (state) => settings.selectedChainId,
-        (chainId) => {
-            setSettings({ ...settings, selectedChainId: chainId });
-        },
-    )
+    useEffect(() => {
+        connectKitConfig.subscribe(
+            (state) => settings.selectedChainId,
+            (chainId) => {
+                setSettings({ ...settings, selectedChainId: chainId });
+            },
+        )
+    }, []);
 
     useEffect(() => {
         setters.setColorScheme(getDefaultColorScheme());

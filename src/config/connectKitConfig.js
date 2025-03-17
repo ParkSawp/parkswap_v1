@@ -1,9 +1,23 @@
+"use client"
 import {createConfig, http} from "wagmi";
 import {base} from "wagmi/chains";
 import { getDefaultConfig } from "connectkit";
 import { injected, metaMask, walletConnect, coinbaseWallet } from "wagmi/connectors";
 import {PUBLIC_WALLETCONNECT_PROJECT_ID} from "@/src/config/constants";
 
+
+const connectors = [];
+
+if(typeof window !== "undefined") {
+    connectors.push(injected());
+    connectors.push(walletConnect({
+        projectId: PUBLIC_WALLETCONNECT_PROJECT_ID,
+        qrcode: false,
+        showQrModal: false
+    }));
+    connectors.push(metaMask());
+    connectors.push(coinbaseWallet());
+}
 
 const connectKitConfig = createConfig(getDefaultConfig({
     chains: [base],
@@ -13,16 +27,7 @@ const connectKitConfig = createConfig(getDefaultConfig({
     },
     appName: "ParkSwap",
     appDescription: "The aggregator of Aggregators",
-    connectors: [
-        injected(),
-        walletConnect({
-            projectId: PUBLIC_WALLETCONNECT_PROJECT_ID,
-            qrcode: false,
-            showQrModal: false
-        }),
-        metaMask(),
-        coinbaseWallet()
-    ],
+    connectors,
 }));
 
 console.log({ projectId: PUBLIC_WALLETCONNECT_PROJECT_ID })
