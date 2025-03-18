@@ -27,6 +27,7 @@ import {
     faSpinner,
     faWallet,
     faClockRotateLeft,
+    faEnvelope
 } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -58,6 +59,7 @@ export const BurgerMenuIcon = (props) => <Icon icon={faBars} {...props} />
 export const WalletIcon = (props) => <Icon icon={faWallet} {...props} />
 export const HistoryIcon = (props) => <Icon icon={faClockRotateLeft} {...props} />
 export const CoinIcon = (props) => <Icon icon={faCoins} {...props} />
+export const MessageIcon = (props) => <Icon icon={faEnvelope} {...props} />
 // export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />
 export const LoadingIcon = ({ className, ...props}) => {
     const [loaded, setLoaded] = useState(false);

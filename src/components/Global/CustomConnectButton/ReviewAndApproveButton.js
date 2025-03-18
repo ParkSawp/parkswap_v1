@@ -109,7 +109,12 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
         Toast.error(error.message, settings.notificationSound);
     }, [error, writeContractHash]);
 
-    if (!allowance || allowance < BigInt(sellTokenAmount)) {
+    let isAllowance = false;
+    try {
+        isAllowance = !allowance || allowance < BigInt(sellTokenAmount);
+    }catch (e){}
+
+    if (isAllowance) {
         return (
             <>
                 <div>
