@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import styles from "@/public/css/index.module.css";
 import {useTranslation} from "react-i18next";
 import i18n from "@/src/config/i18n";
+import Translate from "@/src/components/Translate/Translate";
 
 export default function HomeFeature({ feature }) {
     // const [title, setTitle] = useState(feature.title);
@@ -22,10 +23,10 @@ export default function HomeFeature({ feature }) {
                     <img src={feature.icon} alt={feature.title} />
                 </div>
                 <div className={styles["feature-title"]}>
-                    {i18n.t(feature.title)}
+                    <Translate>{feature.title}</Translate>
                 </div>
                 <div className={styles["feature-text"]}>
-                    {i18n.t(feature.description)}
+                    <Translate>{feature.description}</Translate>
                 </div>
                 {/*<div className={styles["feature-button"]}>*/}
                 {/*  Voir Plus*/}

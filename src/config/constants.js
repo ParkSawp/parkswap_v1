@@ -14,6 +14,6 @@ export const USD_PRICE_REFRESH_TIME = 1000;
 export const SOCIALS_NETWORKS = [
     { icon: XTwitterIcon, href: '', className: 'is-twitterX', name: 'TwitterX'},
     { icon: DiscordIcon, href: '', className: 'is-discord', name: 'Discord' },
-    { icon: TelegramIcon, href: '', className: 'is-telegram', name: 'Telegram' },
-    { icon: ChatIcon, href: '', className: 'is-chat', name: 'Chat' },
+    // { icon: TelegramIcon, href: '', className: 'is-telegram', name: 'Telegram' },
+    // { icon: ChatIcon, href: '', className: 'is-chat', name: 'Chat' },
 ];

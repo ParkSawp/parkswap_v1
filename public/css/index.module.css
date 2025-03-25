@@ -337,6 +337,10 @@
 .navigation-bar{
     display:none;
 }
+.navigation-bar-item a {
+    color: white;
+}
+
 
 
 

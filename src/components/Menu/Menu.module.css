@@ -194,7 +194,7 @@
     align-content: center;
     padding: .7rem;
     width:100%;
-    color: light-dark(var(--black), var(--white));
+    color: light-dark(var(--black), var(--black));
     font-family: Poppins;
     font-size: 10px;
     font-style: normal;

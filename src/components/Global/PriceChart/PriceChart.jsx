@@ -6,7 +6,6 @@ import useAppSettings from "@/src/hooks/useAppSettings";
 
 export default function PriceChart({ symbol, width, height }) {
     const settings = useAppSettings();
-    console.log({ symbol, settings })
 
     return (
         <>
@@ -19,13 +18,17 @@ export default function PriceChart({ symbol, width, height }) {
                 chartType="area"
                 downColor="#800080"
                 borderDownColor="#800080"
-                wickDownColor="#800080"
+                wickDownColor="#c0392b"
                 lineColor="#27ae60"
-                topColor="#c0f4cf"
-                bottomColor="#fff"
+                topColor="transparent"
+                bottomColor="transparent"
                 dateFormat="YYYY-MM-DD"
                 chartOnly={false}
-                isTransparent={true}
+                isTransparent={false}
+                showFloatingTooltip={true}
+                showVolume={false}
+                scalePosition="right"
+                valuesTracking="0"
             />
             {/*<CanvasJSReact.CanvasJSChart options={options} />*/}
         </>

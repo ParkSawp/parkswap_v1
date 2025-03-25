@@ -14,6 +14,39 @@ export default function Home() {
 
   const { t } = useTranslation();
 
+  const links = [
+    {
+      title: 'Swap',
+      imgSrc: '/svg/icons/swap.svg',
+      url: '/app',
+      soon: false
+    },
+    {
+      title: 'Blog',
+      url: '/blog',
+      imgSrc: '/svg/icons/blog.svg',
+      soon: false
+    },
+    {
+      title: 'Portfolio',
+      url: '/home',
+      imgSrc: '/svg/icons/portfolio2.svg',
+      soon: true
+    },
+    {
+      title: 'Market',
+      url: '/home',
+      imgSrc: '/svg/icons/market.svg',
+      soon: true
+    },
+    {
+      title: 'Bridge',
+      url: '/home',
+      imgSrc: '/svg/icons/bridge.svg',
+      soon: true
+    }
+  ];
+
 
   return (
       <AppLayout header={{ title: t('ParkSwap | Home') }} >
@@ -23,81 +56,34 @@ export default function Home() {
             transition={{duration: 0.5}}
             className={styles["home-container"]}
         >
-          <Link href="/portfolio" className={styles["home-option"]}>
-            <div className={styles["home-option-title"]}>
-              <Translate>Portfolio</Translate>
-            </div>
-            <div className={styles["home-option-icon"]}>
-              <svg width="80px" height="80px">
-                <title>Portfolio</title>
-                <image
-                    width="80px"
-                    height="80px"
-                    href="/svg/icons/portfolio2.svg"
-                />
-              </svg>
-            </div>
-          </Link>
-          <Link href="/app" className={styles["home-option"]}>
-            <div className={styles["home-option-title"]}>
-              <Translate>Swap</Translate>
-            </div>
-            <div className={styles["home-option-icon"]}>
-              <svg width="80px" height="80px">
-                <title>Swap</title>
-                <image
-                    width="80px"
-                    height="80px"
-                    href="/svg/icons/swap.svg"
-                />
-              </svg>
-            </div>
-          </Link>
-          <Link href="/market" className={styles["home-option"]}>
-            <div className={styles["home-option-title"]}>
-              <Translate>Market</Translate>
-            </div>
-            <div className={styles["home-option-icon"]}>
-              <svg width="80px" height="80px">
-                <title>Market</title>
-                <image
-                    width="80px"
-                    height="80px"
-                    href="/svg/icons/market.svg"
-                />
-              </svg>
-            </div>
-          </Link>
-          <Link href="/bridge" className={styles["home-option"]}>
-            <div className={styles["home-option-title"]}>
-              <Translate>Bridge</Translate>
-            </div>
-            <div className={styles["home-option-icon"]}>
-              <svg width="80px" height="80px">
-                <title>Bridge</title>
-                <image
-                    width="80px"
-                    height="80px"
-                    href="/svg/icons/bridge.svg"
-                />
-              </svg>
-            </div>
-          </Link>
-          <Link href="/market" className={styles["home-option"]}>
-            <div className={styles["home-option-title"]}>
-              <Translate>Blog</Translate>
-            </div>
-            <div className={styles["home-option-icon"]}>
-              <svg width="80px" height="80px">
-                <title>Blog</title>
-                <image
-                    width="80px"
-                    height="80px"
-                    href="/svg/icons/blog.svg"
-                />
-              </svg>
-            </div>
-          </Link>
+          {
+            links.map((link) => (
+                <Link key={link.title} disabled={link.soon} href={link.url} className={styles["home-option"] + (link.soon ? ' ' + styles["home-option-soon"] : '')}>
+                  <div className={styles["home-option-icon"]}>
+                    <svg width="80px" height="80px" className={link.soon ? styles['home-option-soon-svg'] : ''}>
+                      <title>{link.title}</title>
+                      <image
+                          width="80px"
+                          height="80px"
+                          href={link.imgSrc}
+                      />
+                    </svg>
+                  </div>
+                  <div className={styles["home-option-title"]}>
+                    <span><Translate>{link.title}</Translate></span>
+                    {
+                      link.soon
+                        &&
+                        (
+                            <span className={styles["home-option-soon-text"]}>
+                              <Translate>Soon</Translate>
+                            </span>
+                        )
+                    }
+                  </div>
+                </Link>
+            ))
+          }
         </motion.div>
       </AppLayout>
   );

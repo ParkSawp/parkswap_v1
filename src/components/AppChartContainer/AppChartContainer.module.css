@@ -13,7 +13,7 @@
 }
 .chart-container-wrapper div div {
     border-radius: 10px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     border: 1px solid var(--transparent-black);
     width: 100%;
     max-width: 750px;

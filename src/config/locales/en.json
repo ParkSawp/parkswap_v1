@@ -32,10 +32,12 @@
   "Log out": "Logout",
   "Connect Wallet": "Connect Wallet",
   "Multi-Services DeFi": "Multi-Services DeFi",
-  "Design & Experience": "Design & Expérience",
-  "Smart Aggregator": "Agrégateur Intelligent",
+  "Design & Experience": "Design & Experience",
+  "Smart Aggregator": "Smart Aggregator",
   "Features multiServiceDefi": "Explore a complete ecosystem bringing swap, bridge, and marketplace together in one place. Access all your essential DeFi services via a single platform, simplifying your operations and maximizing your efficiency in the crypto world.",
   "Features designAndExperience": "Enjoy an intuitive interface where every detail has been thought out for your comfort. Our modern design and optimized user paths make DeFi accessible to all.",
   "Features smartAggregator": "Automatically obtain the best rates for your transactions thanks to our aggregation engine. Our technology analyzes prices across protocols in real time to guarantee you the best conditions.",
+  "About": "About",
+  "Soon": "Soon",
   "": ""
 }

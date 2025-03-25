@@ -4,76 +4,92 @@ import "../../../public/css/blog.css";
 import {SOCIALS_NETWORKS} from "@/src/config/constants";
 import {MessageIcon} from "@/src/components/Icon/Icon";
 import BlogSessionCover from "@/src/components/BlogSessionCover/BlogSessionCover";
+import BlogReveal from "@/src/components/BlogReveal/BlogReveal";
+import BlogContainer from "@/src/components/BlogReveal/BlogContainer";
 
 
 export default function BlogPage() {
 
     return (
         <>
-            <body class="light" >
+            <body className="light" >
                 <main className="blog-main-container">
                     <section className="blog-section blog-header" >
-                        <div className="blog-container blog-header-container">
-                            <div className="blog-title-container">
+                        <div className="blog-container blog-header-container" delay={0} >
+                            <div className="blog-header-menu-container">
+                                <div className="blog-header-logo">
+                                    <a href="/">
+                                        <img src="/svg/parkswap_logo_silver_big.svg" alt="Logo Parkswap" height={80} />
+                                    </a>
+                                </div>
+                                <ul className="blog-header-left-menu">
+                                    <li className="blog-header-left-menu-item" >
+                                        <a href="/home"  className="blog-header-left-menu-item-link" >Home</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <BlogReveal className="blog-title-container">
                                 <div className="blog-title">
-                                    <h1>Park.klub</h1>
+                                    <h1 className="blog-header-title">Park.klub</h1>
                                 </div>
                                 <div className="blog-sub-title">
                                     <h3>Saison SS 2025</h3>
                                 </div>
-                            </div>
+                            </BlogReveal>
                             <BlogSessionCover coverMode={false} backdrop='green'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing...
+                                <BlogReveal delay={.32}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing...
+                                </BlogReveal>
                             </BlogSessionCover>
                         </div>
                     </section>
                     <section className="blog-section blog-dev-token">
-                        <div className="blog-dev-container blog-container">
-                            <img src="/blogs/dev.svg" alt="" />
-                            <BlogSessionCover text="DEV" style="black" coverMode={false} ></BlogSessionCover>
-                        </div>
-                        <div className="blog-token-container blog-container">
+                        <BlogContainer className="blog-dev-container">
+                            <img src="/blogs/dev.svg" alt=""/>
+                            <BlogSessionCover text="DEV" style="black" coverMode={false} />
+                        </BlogContainer>
+                        <BlogContainer className="blog-token-container">
                             <img src="/blogs/token.png" alt=""/>
-                            <BlogSessionCover text="TOKEN" />
-                        </div>
+                            <BlogSessionCover text="TOKEN" backdrop={true} style='token'/>
+                        </BlogContainer>
                     </section>
                     <section className="blog-section blog-collection" >
-                        <div className="blog-container">
+                        <BlogContainer className="blog-simple-collection">
                             <img src="/blogs/blank-parkswap.png" alt="Collection"/>
                             <BlogSessionCover text="COLLECTION" style="black"/>
-                        </div>
+                        </BlogContainer>
                     </section>
                     <section className="blog-section blog-roadmap-gouvernanace" >
-                        <div className="blog-roadmap-container blog-container">
+                        <BlogContainer className="blog-roadmap-container">
                             <img src="/blogs/roadmap.png" alt="" />
                             <BlogSessionCover text="DA & ROADMAP" style="black" />
-                        </div>
-                        <div className="blog-gouvernance-container blog-container">
+                        </BlogContainer>
+                        <BlogContainer className="blog-gouvernance-container">
                             <BlogSessionCover text="GOUVERNACE" />
-                        </div>
+                        </BlogContainer>
                     </section>
-                    <section className="blog-section blog-galerie-collection">
-                        <div className="blog-container">
+                    <section className="blog-section blog-galerie-collection" >
+                        <BlogContainer className="blog-galerie-conllection-container">
                             <div className="blog-galerie-title">
                                 Collection
                             </div>
                             <div className="blog-galerie-container">
                                 <div className="blog-galerie-collection-body">
-                                    <div className="blog-galerie-collection-item blog-galerie-collection-gouvernanace">
+                                    <BlogReveal delay={.1} className="blog-galerie-collection-item blog-galerie-collection-gouvernanace">
                                         <img src="/blogs/gouvernance.png" alt="Gouvernance"/>
                                         <BlogSessionCover text="Gouvernance"/>
-                                    </div>
-                                    <div className="blog-galerie-collection-item blog-galerie-collection-apr ">
+                                    </BlogReveal>
+                                    <BlogReveal delay={.17} className="blog-galerie-collection-item blog-galerie-collection-apr ">
                                         <img src="/blogs/app.png" alt="App"/>
                                         <BlogSessionCover text="APP" style="green"/>
-                                    </div>
-                                    <div className="blog-galerie-collection-item blog-galerie-collection-galerie">
+                                    </BlogReveal>
+                                    <BlogReveal delay={.25} className="blog-galerie-collection-item blog-galerie-collection-galerie">
                                         <img src="/blogs/gallerie.png" alt="Galerie"/>
                                         <BlogSessionCover text="Galerie"/>
-                                    </div>
+                                    </BlogReveal>
                                 </div>
                             </div>
-                        </div>
+                        </BlogContainer>
                     </section>
                     <footer>
                         <section className="footer-header">
@@ -119,7 +135,7 @@ export default function BlogPage() {
                         <div className="footer-separator"></div>
                         <section className="footer-copyright">
                             <div>© 2024 ParkSwap All Rights Reserved</div>
-                            <div class="footer-copyright-links pc-only">
+                            <div className="footer-copyright-links pc-only">
                                 <a href="#">Terms of Service</a>
                                 <a href="#">Privacy policy</a>
                             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import BlogReveal from "@/src/components/BlogReveal/BlogReveal";
 
 export default function BlogSessionCover({ backdrop, coverMode = true, children, text, style, buttonText, buttonClassName }) {
 
@@ -12,11 +13,11 @@ export default function BlogSessionCover({ backdrop, coverMode = true, children,
         }
 
     return (
-        <div className={className}>
-            <div className="blog-session-cover-text-container" >
+        <BlogReveal className={className}>
+            <div className="blog-session-cover-text-container">
                 {children || text}
             </div>
-            <button class={"blog-discover-btn "+(buttonClassName ?? '')}>{buttonText || 'Discover'}</button>
-        </div>
+            <button className={"blog-discover-btn " + (buttonClassName ?? '')}>{buttonText || 'Discover'}</button>
+        </BlogReveal>
     )
 }

@@ -30,6 +30,4 @@ const connectKitConfig = createConfig(getDefaultConfig({
     connectors,
 }));
 
-console.log({ projectId: PUBLIC_WALLETCONNECT_PROJECT_ID })
-
 export default connectKitConfig;

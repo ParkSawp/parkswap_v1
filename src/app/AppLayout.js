@@ -12,6 +12,8 @@ import {APP_SETTINGS_DEFAULT, AppSettingContext, getDefaultColorScheme} from "@/
 import connectKitConfig from '../config/connectKitConfig';
 import { ToastContainer } from 'react-toastify';
 import ParkSwapSocialNetworks from "@/src/components/ParkSwapSocialNetworks/ParkSwapSocialNetworks";
+import i18n from "@/src/config/i18n";
+import { I18nextProvider } from 'react-i18next';
 
 const queryClient = new QueryClient();
 
@@ -57,28 +59,30 @@ export default function AppLayout({ children, header = {} }) {
 
     return (
         <AppSettingContext.Provider value={{ ...settings, ...setters }}>
-            <WagmiConfig config={connectKitConfig} >
-                <QueryClientProvider client={queryClient}>
-                    <ConnectKitProvider options={{ persistPreviousWallet: false }}>
-                        <Head>
-                            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                            <title>{header?.title || 'Parkswap | App'}</title>
-                            <meta http-equiv="Content-Security-Policy"
-                                  content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com"/>
-                        </Head>
-                        <body className={settings.colorScheme}>
-                            <div className={styles["site-wrapper"]}>
-                                <AppSettingsModal isOpen={isSettingsOpen} closeModal={closeSettings}/>
-                                <Menu openSettings={openSettings} settingsButtonVal={settingsButtonVal}/>
-                                {children}
-                            </div>
-                            <div className={AppStyles["app-footer"]}>© 2024 ParkSwap</div>
-                            <ToastContainer />
-                            <ParkSwapSocialNetworks />
-                        </body>
-                    </ConnectKitProvider>
-                </QueryClientProvider>
-            </WagmiConfig>
+            <I18nextProvider i18n={i18n}>
+                <WagmiConfig config={connectKitConfig} >
+                    <QueryClientProvider client={queryClient}>
+                        <ConnectKitProvider options={{ persistPreviousWallet: false }}>
+                            <Head>
+                                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                                <title>{header?.title || 'Parkswap | App'}</title>
+                                <meta http-equiv="Content-Security-Policy"
+                                      content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com"/>
+                            </Head>
+                            <body className={settings.colorScheme}>
+                                <div className={styles["site-wrapper"]}>
+                                    <AppSettingsModal isOpen={isSettingsOpen} closeModal={closeSettings}/>
+                                    <Menu openSettings={openSettings} settingsButtonVal={settingsButtonVal}/>
+                                    {children}
+                                </div>
+                                <div className={AppStyles["app-footer"]}>© 2024 ParkSwap</div>
+                                <ToastContainer />
+                                <ParkSwapSocialNetworks />
+                            </body>
+                        </ConnectKitProvider>
+                    </QueryClientProvider>
+                </WagmiConfig>
+            </I18nextProvider>
         </AppSettingContext.Provider>
     )
 }

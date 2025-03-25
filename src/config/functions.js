@@ -36,7 +36,7 @@ export const formatFromBalance = (balance) => {
 
 export const Toast = {
     error: (message, sound) => {
-        toast.error(i18n.t(message), {
+        toast.error(message, {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -50,7 +50,7 @@ export const Toast = {
         sound && Sounds.notification();
     },
     success: (message, sound) => {
-        toast.success(i18n.t(message), {
+        toast.success(message, {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,

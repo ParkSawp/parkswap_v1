@@ -34,9 +34,9 @@ img {
     display: none;
 }
 .blog-main-container {
-    width: min(100%, 1250px);
+    /*width: min(100%, 1250px);*/
+    width: 100%;
     margin: auto;
-    padding:0 .4rem;
 }
 .blog-section {
     display: flex;
@@ -53,9 +53,11 @@ img {
     border-radius: var(--section-radius);
     overflow: hidden;
     margin-bottom: 1rem;
+    width: 100%;
 }
 .blog-header .blog-container {
-    border-radius: 0 0 var(--section-radius) var(--section-radius);
+    /*border-radius: 0 0 var(--section-radius) var(--section-radius);*/
+    border-radius: 0;
     margin-bottom: 0;
 }
 .blog-title-container {
@@ -89,6 +91,9 @@ img {
     bottom: 0;
     right: 0;
 }
+.blog-section-options-container.token.as-cover {
+    background: #57634B91;
+}
 .blog-session-cover-text-container {
     color: white;
     margin-bottom: 2rem;
@@ -106,6 +111,7 @@ img {
     border-radius: 35px;
     color: white;
     cursor: pointer;
+    animation: blog-btn .5s;
     transition: background-color .2s ease-in, color .2s ease-in, border-color .2s ease-in;
 }
 .blog-section-options-container.green .blog-session-cover-text-container {
@@ -131,16 +137,18 @@ img {
 .blog-header {
     background-image: url("/blogs/dressphtshp.webp");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 125%;
     background-position: center;
-    border-radius: 0 0 var(--section-radius) var(--section-radius);
+    /*border-radius: 0 0 var(--section-radius) var(--section-radius);*/
     overflow: hidden;
+    height: 100vh;
 }
 .blog-header .blog-section-options-container{
     flex: 1;
 }
 .blog-title {
     color: white;
+    font-size: 3rem;
 }
 .blog-sub-title {
     color: white;
@@ -160,9 +168,9 @@ img {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background: linear-gradient(to bottom, #173D1F, rgba(17, 147, 45, 0.8));
+    background: linear-gradient(to bottom, #031F09, rgba(48, 80, 55, 0.8));
     padding: 2rem 0;
-    min-height: 650px;
+    height: 100%;
 }
 .blog-galerie-collection-body {
     display: flex;
@@ -214,6 +222,54 @@ footer {
     color: white !important;
     border-color: #27ae60 !important;
 }
+.blog-header-menu-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+.blog-header-left-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+}
+.blog-header-left-menu-item a {
+    color: white;
+}
+.blog-header-title {
+    position: relative;
+    background-image: linear-gradient(
+        to right,
+        white,
+        #74D680,
+        #3eb489,
+        #90EE90,
+        #addfad,
+        white
+    );
+    background-size: 200%;
+    background-clip: text;
+    background-color: transparent;
+    color: transparent;
+    animation: gradient-effect 3s linear infinite;
+}
+
+@keyframes gradient-effect {
+    to {
+        background-position: 200%;
+    }
+}
+@keyframes fadeIn-view {
+    from {
+        scale: .7;
+        opacity: 0;
+    }
+    to {
+        scale: 1;
+        opacity: 1;
+    }
+}
 
 @media only screen and (min-width: 750px) {
     .blog-section {
@@ -244,7 +300,7 @@ footer {
         display: block;
     }
     .blog-title {
-        font-size: 3rem;
+        font-size: 5rem;
     }
     .blog-collection {
         height: var(--container-height);

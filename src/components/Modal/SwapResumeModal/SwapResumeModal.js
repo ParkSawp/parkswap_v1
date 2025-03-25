@@ -12,6 +12,7 @@ import {ArrowRight, LoadingIcon} from "@/src/components/Icon/Icon";
 import useAppSettings from "@/src/hooks/useAppSettings";
 import useGetUsdPrice from "@/src/hooks/useGetUsdPrice";
 import Amount from "@/src/components/Global/Amount/Amount";
+import SuccessSwapToast from "@/src/components/Modal/SwapResumeModal/SuccessSwapToast";
 
 const SwapResumeTokenDetail = ({ token, amount }) => {
     const { amount: usdAmount, updateAmount } = useGetUsdPrice();
@@ -87,7 +88,7 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
 
     useEffect(() => {
         if(transactionSentHash) {
-            Toast.success('Swap transaction sent with success', settings.notificationSound);
+            Toast.success(<SuccessSwapToast hash={transactionSentHash} />, settings.notificationSound);
             onClose && onClose();
             updateTransaction({ transactionId: quote.transactionId, hash: transactionSentHash });
             return;

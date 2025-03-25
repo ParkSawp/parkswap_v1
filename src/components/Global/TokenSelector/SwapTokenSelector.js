@@ -97,7 +97,7 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
             return;
         }
         const amountTotal = fullFormatFromBalance(selectedTokenBalance);
-        const amount = (amountTotal / 100) * amountToUse;
+        const amount = (amountTotal / 100) * (amountToUse === 100 ? amountToUse - 1 : amountToUse);
         setQuery(amount.toFixed(4));
 
         const timeOutId = setTimeout(() => {
