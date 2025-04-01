@@ -5,3 +5,6 @@
     font-size: .6rem;
     text-align: center;
 }
+.current-style-mode:first-letter {
+    text-transform: uppercase;
+}

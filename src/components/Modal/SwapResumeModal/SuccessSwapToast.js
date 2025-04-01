@@ -16,8 +16,8 @@ export default function SuccessSwapToast({ hash }) {
     return (
         <div>
             <div><Translate>Swap transaction sent with success</Translate></div>
-            <div className={styles['swap-trx-link-container']}>
-                <a href={link} className={styles['swap-trx-link']} target="_blank" >
+            <div className="swap-trx-link-container" >
+                <a href={link} className="swap-trx-link" target="_blank">
                     {hash}
                 </a>
             </div>

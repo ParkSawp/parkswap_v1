@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogReveal from "@/src/components/BlogReveal/BlogReveal";
 
-export default function BlogSessionCover({ backdrop, coverMode = true, children, text, style, buttonText, buttonClassName }) {
+export default function BlogSessionCover({ backdrop, link, soon = false, coverMode = true, children, text, style, buttonText, buttonClassName }) {
 
     let className = "blog-section-options-container"
         if(coverMode) {
@@ -17,7 +17,11 @@ export default function BlogSessionCover({ backdrop, coverMode = true, children,
             <div className="blog-session-cover-text-container">
                 {children || text}
             </div>
-            <button className={"blog-discover-btn " + (buttonClassName ?? '')}>{buttonText || 'Discover'}</button>
+            {
+                soon
+                    ? <div className="blog-section-soon-mode" >Soon</div>
+                    : <a href={link} className={"blog-discover-btn " + (buttonClassName ?? '')}>{buttonText || 'Discover'}</a>
+            }
         </BlogReveal>
     )
 }

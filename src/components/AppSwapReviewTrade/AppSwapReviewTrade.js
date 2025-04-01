@@ -20,9 +20,10 @@ export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmoun
     const appSettings = useAppSettings();
 
     useEffect(() => {
-
         const params = {
             sellAddress: sellToken.address,
+            sellSymbol: sellToken.symbol,
+            sellTokenDecimals: sellToken.decimals,
             buyAddress: buyToken.address,
             amount: parseUnits(sellTokenAmount.toString(), sellToken.decimals),
             chainId: appSettings.selectedChainId,

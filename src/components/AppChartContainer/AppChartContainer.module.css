@@ -1,10 +1,9 @@
 .chart-container-wrapper{
     /* background:red; */
     height:460px;
-    width:750px;
-    margin-left:20px;
+    width: min(100%, 750px);
     /* border-ra */
-    padding:20px;
+    padding: 1rem;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -15,8 +14,8 @@
     border-radius: 10px;
     /*overflow: hidden;*/
     border: 1px solid var(--transparent-black);
-    width: 100%;
-    max-width: 750px;
+    width: min(100%, 750px);
+    display: flex;
 }
 
 .chart-container{

@@ -237,7 +237,7 @@ export default function Home() {
                 </svg>
               </div>
               <div className={styles["main-footer-copyright"]}>
-                © 2024 ParkSwap All Rights Reserved
+                © 2025 ParkSwap All Rights Reserved
               </div>
             </footer>
           </div>

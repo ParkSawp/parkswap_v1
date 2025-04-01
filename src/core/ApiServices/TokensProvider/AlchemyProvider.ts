@@ -3,6 +3,14 @@ import TokenRepository, { type Token } from '@/src/core/Models/TokenRepository';
 
 export default class AlchemyProvider {
 
+    public static getChainEnum(chainId: number): string {
+        if(chainId === 8453) {
+            return 'base-mainnet';
+        }
+        return 'eth-mainnet';
+    }
+
+
     protected static async request(params: object): Promise<any> {
         const url = 'https://base-mainnet.g.alchemy.com/v2/'+process.env.ALCHEMY_API_KEY;
         const headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};

@@ -142,3 +142,10 @@ ul, ol {
 .tradingview-widget-copyright {
     display: none !important;
 }
+.swap-trx-link-container {
+    margin-top: 0.5rem;
+}
+.swap-trx-link {
+    color: var(--primary-color-hover);
+    font-size: .8rem;
+}

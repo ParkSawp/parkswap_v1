@@ -9,6 +9,8 @@ import { ERC20_ABI } from '@/src/config/constants'
 import Translate from "@/src/components/Translate/Translate";
 import {useTranslation} from "react-i18next";
 import {LoadingIcon} from "@/src/components/Icon/Icon";
+import {Toast} from "@/src/config/functions";
+import SendTransactionNotification from "@/src/components/AppSwapContainer/SendTransactionNotification";
 
 
 
@@ -57,11 +59,16 @@ export default function SendFormView({ }) {
     const isInvalidForm = !receiverAddress || isInvalidAddress || !amount || !token;
 
     useEffect(() => {
+        console.log({ data, error });
         if(data) {
             setAmount('0');
             setReceiverAddress('');
+            Toast.success(<SendTransactionNotification hash={data} />, true);
         }
-    }, [data]);
+        if(error) {
+            Toast.error(<SendTransactionNotification error={true} />, true);
+        }
+    }, [data, error]);
 
     return (
         <>

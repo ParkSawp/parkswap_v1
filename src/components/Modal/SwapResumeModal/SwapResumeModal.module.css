@@ -123,10 +123,3 @@
 .swap-resume-title {
     margin-bottom: 1.25rem;
 }
-.swap-trx-link-container {
-    margin-top: 0.5rem;
-}
-.swap-trx-link {
-    color: var(--primary-color-hover);
-    font-size: .8rem;
-}

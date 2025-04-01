@@ -22,7 +22,6 @@ export default function ColorSchemeButton({ className }) {
                         ? <LightModeIcon/>
                         : <DarkModeIcon/>
                 }
-
             </div>
             <div className={styles['current-style-mode']}>
                 <Translate>{colorScheme}</Translate>

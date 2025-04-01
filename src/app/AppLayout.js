@@ -75,7 +75,7 @@ export default function AppLayout({ children, header = {} }) {
                                     <Menu openSettings={openSettings} settingsButtonVal={settingsButtonVal}/>
                                     {children}
                                 </div>
-                                <div className={AppStyles["app-footer"]}>© 2024 ParkSwap</div>
+                                <div className={AppStyles["app-footer"]}>© 2025 ParkSwap</div>
                                 <ToastContainer />
                                 <ParkSwapSocialNetworks />
                             </body>

@@ -1,6 +1,8 @@
 import PriceFormatter from "@/src/core/Fotmatter/PriceFormatter";
 import QuoteFormatter from "@/src/core/Fotmatter/QuoteFormatter";
 import TransactionRepository from "@/src/core/Models/TransactionRepository";
+import ParkSwapFee from "@/src/core/ParkSwap/ParkSwapFee";
+import {formatUnits} from "ethers";
 
 type RouteFillItem = {
     from: string;
@@ -90,7 +92,8 @@ export default class Ox {
         return PriceFormatter.formatFrom0X(data);
     }
 
-    public static async placeOrder(amount: number, sellToken: string, buyToken: string, chainId: string, slippage: number, taker: string): Promise<Quote0X> {
+    public static async placeOrder(amount: number, sellToken: string, sellTokenDecimals: number, sellSymbol: string, buyToken: string, chainId: string, slippage: number, taker: string): Promise<Quote0X> {
+        const { fee } = await ParkSwapFee.getFeeBps(sellSymbol, Number(formatUnits(amount, sellTokenDecimals)));
         const params = {
             chainId: chainId.toString(),
             sellToken: Ox.getRealAddress(sellToken),
@@ -99,7 +102,7 @@ export default class Ox {
             taker,
             swapFeeToken: Ox.getRealAddress(sellToken),
             swapFeeRecipient: process.env.API_FEE_RECIPIENT,
-            swapFeeBps: process.env.API_FEE_BPS
+            swapFeeBps: fee.toString()
         };
 
         if(slippage) {
