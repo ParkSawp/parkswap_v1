@@ -3,7 +3,7 @@
 import styles from "@/src/components/Global/TokenSelector/SwapTokenSelector.module.css";
 import React, {useEffect, useRef, useState} from "react";
 import { useAccount, useBalance } from 'wagmi';
-import {formatFromBalance, fullFormatFromBalance} from "@/src/config/functions";
+import {formatFromBalance, fullFormatFromBalance, truncateDecimal} from "@/src/config/functions";
 import useGetUsdPrice from "@/src/hooks/useGetUsdPrice";
 import Amount from "@/src/components/Global/Amount/Amount";
 import RangeSlider from "react-range-slider-input";
@@ -97,14 +97,15 @@ export default function SwapTokenSelector({ openModal, selectedToken, elementToD
             return;
         }
         const amountTotal = fullFormatFromBalance(selectedTokenBalance);
-        const amount = (amountTotal / 100) * (amountToUse === 100 ? amountToUse - 1 : amountToUse);
-        setQuery(amount.toFixed(4));
+        const amountPercentToUse = ((selectedToken.address === null && amountToUse === 100) ? amountToUse - 1 : amountToUse);
+        const amount = (amountTotal / 100) * amountPercentToUse;
+        setQuery(truncateDecimal(amount, 8));
 
         const timeOutId = setTimeout(() => {
             if(isNaN(amount)) {
                 return;
             }
-            onAmountChange(amount.toFixed(4));
+            onAmountChange(truncateDecimal(amount, 4));
         }, 500);
         return () => clearTimeout(timeOutId);
     }, [amountToUse]);

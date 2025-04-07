@@ -7,6 +7,7 @@ import styles from "@/src/components/AppSwapReviewTrade/AppSwapReviewTrade.modul
 import {useTranslation} from "react-i18next";
 import Translate from "@/src/components/Translate/Translate";
 import {LoadingIcon} from "@/src/components/Icon/Icon";
+import {truncateDecimal} from "@/src/config/functions";
 
 export default function SwapButtonHandler({ loading, price, address, sellToken, buyToken, sellTokenAmount, buyTokenAmount }) {
 
@@ -15,6 +16,7 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
         address: address,
         token: sellToken?.address,
     });
+
 
     // const inSufficientBalance = false;
     const inSufficientBalance = (sellTokenBalance && sellToken && sellTokenAmount)
@@ -35,7 +37,7 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
     if (price && price.minBuyAmount && BigInt(price.buyAmount) < BigInt(price.minBuyAmount)) {
         return (
             <div className={customConnectStyles['select-token-alert'] + ' ' + customConnectStyles['alert-danger']}>
-                <Translate>Minimum buy Amount</Translate> : {parseFloat(formatUnits(price.minBuyAmount)).toFixed(8)} {buyToken.symbol}
+                <Translate>Minimum buy Amount</Translate> : {truncateDecimal(parseFloat(formatUnits(price.minBuyAmount)), 8)} {buyToken.symbol}
             </div>
         );
     }

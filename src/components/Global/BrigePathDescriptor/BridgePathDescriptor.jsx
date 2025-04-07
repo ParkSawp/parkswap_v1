@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import styles from './BridgePathDescriptor.module.css';
 import bfstyles from '../../BridgeFormItem/BridgeFormItem.module.css';
 import BridgeFormItem from "@/src/components/BridgeFormItem/BridgeFormItem";
+import {truncateDecimal} from "@/src/config/functions";
 
 export default function BridgePathDescriptor({ fromToken, token, network, showTitle = true, isTheBest }) {
     const [showDetails, setShowDetails] = useState(false);
@@ -58,7 +59,7 @@ export default function BridgePathDescriptor({ fromToken, token, network, showTi
                 <div className={styles['bridge-form-item-placeholder']}>
                     <div className={styles['bridge-form-amount-details-container']}>
                         <div className={styles['bridge-form-amount-to-receive']}>
-                            {path.amount.toFixed(9)}
+                            {truncateDecimal(path.amount, 9)}
                         </div>
                         <div className={styles['bridge-form-provider-container']}>
                             <div className={styles['bridge-form-provider-amount']}>$10.04</div>

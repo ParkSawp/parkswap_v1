@@ -166,10 +166,17 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             submenus: []
         },
         {
+            href: 'blog',
+            text: t('Blog'),
+            title: t('Blog'),
+            available: true,
+            icon: '/svg/icons/blog_icon.svg',
+        },
+        {
             href: '/',
             text: t('Plus'),
             title: t('More'),
-            available: true,
+            available: false,
             icon: null,
             submenus: [
                 {

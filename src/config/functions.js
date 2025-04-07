@@ -20,9 +20,13 @@ const Sounds = {
 }
 
 
+export const truncateDecimal = (num, digit = 4) => {
+    const calcDec = Math.pow(10, digit);
+    return (Math.trunc(num * calcDec) / calcDec).toString();
+}
 
 export const formatFromUnits = (value, decimals) => {
-    return parseFloat(formatUnits(value, decimals)).toFixed(4);
+    return truncateDecimal(parseFloat(formatUnits(value, decimals)), 6);
 }
 
 export const fullFormatFromBalance = (balance) => {

@@ -3,7 +3,7 @@ import styles from './SwapResumeModal.module.css';
 import Modal from "@/src/components/Modal/Modal";
 import {useSendTransaction, useSignTypedData} from "wagmi";
 import {formatEther} from "ethers";
-import {Toast} from "@/src/config/functions";
+import {Toast, truncateDecimal} from "@/src/config/functions";
 import useRecentToken from "@/src/hooks/useRecentToken";
 import {numberToHex, size, concat} from "viem";
 import useUpdateTransaction from "@/src/hooks/useUpdateTransaction";
@@ -29,7 +29,7 @@ const SwapResumeTokenDetail = ({ token, amount }) => {
             </div>
             <div className={styles['swap-resume-step-token-amount']}>
                 <div className={styles['swap-resume-step-token-amount-quantity']}>
-                    {parseFloat(amount).toFixed(3)}
+                    {truncateDecimal(parseFloat(amount), 3)}
                 </div>
                 <div className={styles['swap-resume-step-token-amount-value']}>
                     <Amount amount={usdAmount} />
@@ -124,7 +124,7 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
                     <div className={styles['swap-resume-step-separator']}></div>
                     <div className={styles['swap-resume-step-container'] + ' ' + styles['step-information']}>
                         <div className={styles['swap-resume-step-transaction-detail']}>
-                            <strong><Translate>Fee</Translate></strong> <span>{parseFloat(formatEther(quote?.totalNetworkFee)).toFixed(8)} <strong>ETH</strong></span>
+                            <strong><Translate>Fee</Translate></strong> <span>{truncateDecimal(parseFloat(formatEther(quote?.totalNetworkFee)), 8)} <strong>ETH</strong></span>
                         </div>
                         {/*<div className={styles['swap-resume-step-transaction-detail']}>*/}
                         {/*    <strong>Network Cost</strong> <span>0,00</span>*/}

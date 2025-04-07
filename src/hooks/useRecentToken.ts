@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 
 
-const MAX_RECENT_TOKEN_LENGTH = 6;
+const MAX_RECENT_TOKEN_LENGTH = 4;
 const RECENT_TOKENS = "RECENT_TOKENS";
 
 const getStoredTokens = () => {

@@ -3,6 +3,8 @@
 import React, {useState} from 'react';
 import styles from './TokenAmountInput.module.css';
 import BridgeFormItem from "@/src/components/BridgeFormItem/BridgeFormItem";
+import {truncate} from "fs";
+import {truncateDecimal} from "@/src/config/functions";
 
 
 export default function TokenAmountInput({ token, network, title, onInput }) {
@@ -25,7 +27,7 @@ export default function TokenAmountInput({ token, network, title, onInput }) {
                 <div className={styles['amount-input-container']}>
                     <input type="text" placeholder='0' onInput={amountHandler}/>
                 </div>
-                <div className={styles['amount-input-amount']}>${amount.toFixed(2)}</div>
+                <div className={styles['amount-input-amount']}>${truncateDecimal(amount, 2)}</div>
             </div>
         </BridgeFormItem>
     );

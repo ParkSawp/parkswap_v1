@@ -14,7 +14,7 @@ export default function BlogPage() {
                 <section className="blog-section blog-dev-token">
                     <BlogContainer className="blog-dev-container">
                         <img src="/blogs/dev.svg" alt=""/>
-                        <BlogSessionCover text="DEV" style="black" coverMode={false}/>
+                        <BlogSessionCover text="DEV" style="black" soon={true} coverMode={false}/>
                     </BlogContainer>
                     <BlogContainer className="blog-token-container">
                         <img src="/blogs/token.png" alt=""/>
