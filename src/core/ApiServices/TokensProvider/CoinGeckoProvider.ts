@@ -1,6 +1,6 @@
 import ITokenProvider from "@/src/core/ApiServices/TokensProvider/ITokenProvider";
 import { type Token } from "@/src/core/Models/TokenRepository";
-import {getToken} from "@wagmi/core";
+import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
 import connectKitConfig from '../../../config/connectKitConfig.js';
 
 
@@ -55,7 +55,6 @@ export default class CoinGeckoProvider implements ITokenProvider {
 
     public async getTokenIcon(token): Promise<string> {
         const tokens = await this.getAll();
-        console.log(tokens)
         const coinGekoToken = tokens?.find((item) => item.symbol.toLowerCase() === token.symbol.toLowerCase());
         if(!coinGekoToken) {
             console.log({ message: 'Token not found on coin gueko'})
@@ -70,15 +69,19 @@ export default class CoinGeckoProvider implements ITokenProvider {
     }
 
     public async getToken(address: string, chainId: string): Promise<Token|null> {
-        const token = await getToken(connectKitConfig, {
-            address: address as `0x${string}`,
-            // @ts-ignore
-            chainId: Number(chainId)
-        });
-        if(!token) {
+        const token = await AlchemyProvider.tokenMetaData(address, Number(chainId));
+        console.log({
+            searchToken: address,
+            chainId,
+            token
+        })
+        if(!token || !token.name) {
             return null;
         }
-        let logoUri = await this.getTokenIcon(token);
+        let logoUri = token.logo;
+        if(!logoUri) {
+            logoUri = await this.getTokenIcon(token);
+        }
         console.log({ address, chainId, ...token, logoUri })
 
         return {

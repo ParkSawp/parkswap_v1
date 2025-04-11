@@ -50,7 +50,7 @@ export default function TokenList({loading, tokens, onSelectToken, address, sele
     const { t } = useTranslation();
     const {tokens: recentTokens} = useRecentToken();
 
-    const defaultTokens = tokens ? tokens.filter((token) => token.is_default).splice(0, 6) : [];
+    const defaultTokens = tokens ? tokens.filter((token) => token.is_default).splice(0, 4) : [];
 
     if (loading) {
         return (

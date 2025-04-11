@@ -7,8 +7,12 @@ import { motion } from "framer-motion";
 import HomeFeature from "@/src/components/Home/HomeFeature";
 import Translate from "@/src/components/Translate/Translate";
 import PageLayout from "@/src/app/PageLayout";
+import {useState} from "react";
+import {CloseIcon, DiscordIcon, XTwitterIcon} from "@/src/components/Icon/Icon";
 
 export default function Home() {
+
+  const [isOpen, setIsOpen] = useState(false)
 
   const features = [
     {
@@ -31,13 +35,17 @@ export default function Home() {
   const socialNetworks = [
         {
           url: 'https://www.facebook.com',
-          iconSrc: '/svg/icons/discord.svg'
+          icon: <DiscordIcon />
         },
         {
           url: 'https://www.x.com',
-          iconSrc: "/svg/icons/twitter.svg"
+          icon: <XTwitterIcon />
         }
       ];
+
+  const toggleMenuOnMobile = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
       <>
@@ -48,7 +56,7 @@ export default function Home() {
           <div className={styles["site-wrapper"]}>
             <nav className={styles["main-navigation"]}>
               <div className={styles["main-navigation-container-btn"]}>
-                <div className={styles["navigation-btn"]}>
+                <div className={styles["navigation-btn"]} onClick={toggleMenuOnMobile}>
                   <svg width="32" height="33">
                     <title>Open Menu</title>
                     <image
@@ -58,12 +66,17 @@ export default function Home() {
                     ></image>
                   </svg>
                 </div>
-                <div className={styles["navigation-bar"]}>
+                <div className={styles["navigation-bar"]+' '+ (isOpen ? styles["navigation-bar-mobile"] : '')} >
+                  <div className={styles['navigation-bar-close-container']} >
+                    <div className={styles['navigation-bar-close']} onClick={toggleMenuOnMobile} >
+                      <CloseIcon />
+                    </div>
+                  </div>
                   <ul>
                     {/*<li>Ecosystem</li>*/}
                     {/*<li>Community</li>*/}
                     <li className={styles["navigation-bar-item"]}>
-                      <a href="#"><Translate>About</Translate></a>
+                      <a href="/blog/presentation" ><Translate>About</Translate></a>
                     </li>
                     <li className={styles["navigation-bar-item"]}>
                       <a href="/blog"><Translate>Blog</Translate></a>
@@ -199,14 +212,8 @@ export default function Home() {
               <div className={styles["main-footer-medias"]}>
                 {
                   socialNetworks.map((socialNetwork)=> (
-                      <a href={socialNetwork.url}>
-                        <svg width="30" height="29">
-                          <image
-                              width="30"
-                              height="29"
-                              href={socialNetwork.iconSrc}
-                          ></image>
-                        </svg>
+                      <a href={socialNetwork.url} className={styles["main-footer-medias-link"]}>
+                        {socialNetwork.icon}
                       </a>
                   ))
                 }

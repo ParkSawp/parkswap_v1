@@ -170,7 +170,7 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             text: t('Blog'),
             title: t('Blog'),
             available: true,
-            icon: '/svg/icons/blog_icon.svg',
+            icon: null
         },
         {
             href: '/',

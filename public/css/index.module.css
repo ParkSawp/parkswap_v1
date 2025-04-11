@@ -273,7 +273,7 @@
     width:30%;
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
 }
 
 .main-navigation-container-logo{
@@ -295,7 +295,7 @@
     width:30%;
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-end;
     padding-right:20px;
 
 }
@@ -337,6 +337,7 @@
 .navigation-bar{
     display:none;
 }
+
 .navigation-bar-item a {
     color: white;
 }
@@ -400,11 +401,58 @@
     line-height: normal;
     text-transform: uppercase;
 }
-
+.main-footer-medias-link {
+    color: white;
+}
 
 
 /* ===== MQ ===== */
-@media only screen and (min-width : 1000px){
+@media only screen and (max-width : 750px){
+    .navigation-bar.navigation-bar-mobile {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .navigation-bar.navigation-bar-mobile .navigation-bar-close-container{
+        display: flex;
+        justify-content: center;
+    }
+    .navigation-bar.navigation-bar-mobile .navigation-bar-close {
+        background: rgba(0,43,9, 0.6);
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--primary-border-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+    .navigation-bar.navigation-bar-mobile ul {
+        background: rgba(0,43,9, 0.92);
+        border-radius: 15px 15px 0 0;
+        padding: 2rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        transition: height .5s ease-in;
+    }
+    .navigation-bar.navigation-bar-mobile .navigation-bar-item a {
+        padding: .7rem 0;
+        display: block;
+    }
+}
+@media only screen and (min-width : 750px){
+    .navigation-bar .navigation-bar-close-container{
+        display: none;
+    }
     .main-content-features{
         flex-direction:row;
         align-items:center;
@@ -513,7 +561,7 @@
 
     .main-navigation-container-dapp{
         order:2;
-        width:200px;
+        /*width:200px;*/
         padding:0;
     }
 

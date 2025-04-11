@@ -2,7 +2,7 @@ import CoinGeckoProvider from "@/src/core/ApiServices/TokensProvider/CoinGeckoPr
 import ITokenProvider from "@/src/core/ApiServices/TokensProvider/ITokenProvider";
 import TokenRepository, { type Token } from '@/src/core/Models/TokenRepository';
 
-import { isAddress } from 'ethers';
+import {formatUnits, isAddress} from 'ethers';
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
 
 export default class TokenProvider {
@@ -35,7 +35,7 @@ export default class TokenProvider {
         const tokensSymbols = new Set();
         Object.values(walletTokens).forEach((token) => tokensSymbols.add(token.symbol));
 
-        const usdPricesPromises = [];
+        const usdPricesPromises= [];
         const walletTokensBySymbol: {[key: string]: Token} = {};
 
         tokens = tokens.filter((token) => {
@@ -56,10 +56,14 @@ export default class TokenProvider {
         usdPrices.forEach((item) => {
             if(item && walletTokensBySymbol[item.symbol]) {
                 walletTokensBySymbol[item.symbol].usd = item.value;
+                const balance = walletTokensBySymbol[item.symbol]['balance'];
+                const decimals = walletTokensBySymbol[item.symbol]['decimals'];
+                walletTokensBySymbol[item.symbol]['totalAmount'] = balance ? parseFloat(formatUnits(balance, decimals)) * item.value : 0;
             }
         });
+        const walletTokenOrdered = Object.values(walletTokensBySymbol).sort((a, b) => a['totalAmount'] > b['totalAmount'] ? -1 : 1);
 
-        tokens = [...Object.values(walletTokensBySymbol), ...tokens];
+        tokens = [...walletTokenOrdered, ...tokens];
 
         tokens = tokens.filter((token) => token.name && token.symbol && token.decimals);
 

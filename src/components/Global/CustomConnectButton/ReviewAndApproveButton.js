@@ -22,6 +22,7 @@ import AppSwapReviewTrade from "@/src/components/AppSwapReviewTrade/AppSwapRevie
 import {Toast} from "@/src/config/functions";
 import useAppSettings from "@/src/hooks/useAppSettings";
 import {LoadingIcon} from "@/src/components/Icon/Icon";
+import Translate from "@/src/components/Translate/Translate";
 // import { permit2Abi } from "@/src/config/permit2abi";
 // import Image from "next/image";
 // import qs from "qs";
@@ -79,7 +80,7 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
     const settings = useAppSettings();
 
     const approve =  async () => {
-        writeContract({
+        await writeContract({
             abi: erc20Abi,
             address: sellToken.address,
             functionName: "approve",
@@ -123,7 +124,7 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
                         &&
                         <div className={customConnectStyles["loading-approve-container"]}>
                             <LoadingIcon height={25} />
-                            <span>Waiting for your approvement</span>
+                            <span><Translate>Waiting for your approvement</Translate></span>
                         </div>
                     }
                     <button
@@ -132,7 +133,7 @@ export default function ReviewAndApproveButton({taker, sellToken, buyToken, sell
                         className={`${customConnectStyles["connect-wallet-btn"]} primary-button ${customConnectStyles["swap-wallet-btn"]}`}
                         onClick={approve}
                     >
-                        Approve
+                        <Translate>Approve</Translate>
                     </button>
                 </div>
             </>

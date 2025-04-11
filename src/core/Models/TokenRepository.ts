@@ -44,7 +44,7 @@ export default class TokenRepository {
         const { data: tokens } = await TokenRepository.table()
             .select()
             .eq('chain_id', chainId)
-            .order('is_default', { ascending: true })
+            .order('is_verify', { ascending: true })
             .range(0, 100);
         return tokens || [];
     }

@@ -236,7 +236,7 @@
 }
 .recent-tokens-container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: flex-start;
     align-content: center;
     align-items: center;
