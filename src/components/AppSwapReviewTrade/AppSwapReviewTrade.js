@@ -98,7 +98,7 @@ export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmoun
                                 &&
                                 (
                                     <>
-                                        <strong><Translate>Fee</Translate> :</strong> {truncateDecimal(parseFloat(formatEther(quote?.totalNetworkFee)))}
+                                        <strong><Translate>Fee</Translate> :</strong> {truncateDecimal(parseFloat(formatEther(quote?.totalNetworkFee)), 4, true)}
                                         <strong>ETH</strong>
                                     </>
                                 )

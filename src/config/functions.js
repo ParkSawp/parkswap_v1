@@ -21,8 +21,8 @@ const Sounds = {
 }
 
 
-export const truncateDecimal = (num, digit = 4) => {
-    if(num < MINIMUM_VALUE_TO_DISPLAY) {
+export const truncateDecimal = (num, digit = 4, checkMinimum = false) => {
+    if(checkMinimum && num < MINIMUM_VALUE_TO_DISPLAY) {
         return ' < '+MINIMUM_VALUE_TO_DISPLAY;
     }
     const calcDec = Math.pow(10, digit);
