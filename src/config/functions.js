@@ -1,6 +1,7 @@
 import {formatUnits} from "ethers";
 import {Bounce, toast} from "react-toastify";
 import i18n from '../config/i18n';
+import {MINIMUM_VALUE_TO_DISPLAY} from "@/src/config/constants";
 
 const Sounds = {
     NotificationAudio: null,
@@ -21,6 +22,9 @@ const Sounds = {
 
 
 export const truncateDecimal = (num, digit = 4) => {
+    if(num < MINIMUM_VALUE_TO_DISPLAY) {
+        return ' < '+MINIMUM_VALUE_TO_DISPLAY;
+    }
     const calcDec = Math.pow(10, digit);
     return (Math.trunc(num * calcDec) / calcDec).toString();
 }

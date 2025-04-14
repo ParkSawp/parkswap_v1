@@ -9,6 +9,7 @@ import Translate from "@/src/components/Translate/Translate";
 import PageLayout from "@/src/app/PageLayout";
 import {useState} from "react";
 import {CloseIcon, DiscordIcon, XTwitterIcon} from "@/src/components/Icon/Icon";
+import {ContactMails} from "@/src/config/constants";
 
 export default function Home() {
 
@@ -226,7 +227,7 @@ export default function Home() {
                       href="/svg/icons/letter.svg"
                   ></image>
                 </svg>
-                parkswap@parkswap.com
+                <a href={'mailto:'+ContactMails.contact}>{ContactMails.contact}</a>
               </div>
               <div className={styles["main-footer-hr"]}>
                 <svg

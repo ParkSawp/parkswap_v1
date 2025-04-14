@@ -1,7 +1,7 @@
 import BlogReveal from "@/src/components/BlogReveal/BlogReveal";
 import BlogSessionCover from "@/src/components/BlogSessionCover/BlogSessionCover";
 import "../../../public/css/blog.css";
-import {SOCIALS_NETWORKS} from "@/src/config/constants";
+import {ContactMails, SOCIALS_NETWORKS} from "@/src/config/constants";
 import {MessageIcon} from "@/src/components/Icon/Icon";
 import React from "react";
 
@@ -99,7 +99,7 @@ export default function BlogLayout({ children, title }) {
                             }
                         </div>
                         <div className="footer-email-container mobile-only">
-                            <MessageIcon/> <span>info@info.com</span>
+                            <MessageIcon/> <a href={'mailto:'+ContactMails.contact}>{ContactMails.contact}</a>
                         </div>
                     </section>
                     <div className="footer-separator"></div>

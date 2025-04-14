@@ -124,7 +124,7 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
                     <div className={styles['swap-resume-step-separator']}></div>
                     <div className={styles['swap-resume-step-container'] + ' ' + styles['step-information']}>
                         <div className={styles['swap-resume-step-transaction-detail']}>
-                            <strong><Translate>Fee</Translate></strong> <span>{truncateDecimal(parseFloat(formatEther(quote?.totalNetworkFee)), 8)} <strong>ETH</strong></span>
+                            <strong><Translate>Fee</Translate></strong> <span>{truncateDecimal(parseFloat(formatEther(quote?.totalNetworkFee)), 4)} <strong>ETH</strong></span>
                         </div>
                         {/*<div className={styles['swap-resume-step-transaction-detail']}>*/}
                         {/*    <strong>Network Cost</strong> <span>0,00</span>*/}
