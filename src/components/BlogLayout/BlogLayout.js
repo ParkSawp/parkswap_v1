@@ -95,7 +95,7 @@ export default function BlogLayout({ children, title }) {
                         <div className="footer-socials-container">
                             {
                                 SOCIALS_NETWORKS.map((socialNetwork) => (
-                                    <a href="#" key={socialNetwork.name} className="blog-social-network">
+                                    <a href={socialNetwork.href} key={socialNetwork.name} className="blog-social-network">
                                         <socialNetwork.icon/>
                                     </a>
                                 ))
