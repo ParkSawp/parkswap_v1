@@ -9,7 +9,7 @@ import Translate from "@/src/components/Translate/Translate";
 import PageLayout from "@/src/app/PageLayout";
 import {useState} from "react";
 import {CloseIcon, DiscordIcon, XTwitterIcon} from "@/src/components/Icon/Icon";
-import {ContactMails} from "@/src/config/constants";
+import {ContactMails, SOCIALS_NETWORKS} from "@/src/config/constants";
 
 export default function Home() {
 
@@ -33,16 +33,7 @@ export default function Home() {
     },
   ];
 
-  const socialNetworks = [
-        {
-          url: 'https://www.facebook.com',
-          icon: <DiscordIcon />
-        },
-        {
-          url: 'https://www.x.com',
-          icon: <XTwitterIcon />
-        }
-      ];
+  const socialNetworks = SOCIALS_NETWORKS;
 
   const toggleMenuOnMobile = () => {
     setIsOpen(!isOpen);
@@ -213,8 +204,8 @@ export default function Home() {
               <div className={styles["main-footer-medias"]}>
                 {
                   socialNetworks.map((socialNetwork)=> (
-                      <a href={socialNetwork.url} className={styles["main-footer-medias-link"]}>
-                        {socialNetwork.icon}
+                      <a href={socialNetwork.href} className={styles["main-footer-medias-link"]}>
+                        <socialNetwork.icon />
                       </a>
                   ))
                 }

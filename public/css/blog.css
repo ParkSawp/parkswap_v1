@@ -80,6 +80,12 @@ img {
     border-radius: var(--section-radius) var(--section-radius) 0 0;
     margin-bottom: 0;
 }
+ul.blog-list {
+    margin-left: 2rem;
+}
+ul.blog-list li {
+    list-style-type: disc;
+}
 /*.blog-section-options-container.backdrop-green{*/
 /*    background: linear-gradient(to bottom, rgba(17, 147, 45, 0.40), #173D1F);*/
 /*}*/

@@ -80,7 +80,10 @@ export default function BlogLayout({ children, title }) {
                             {/*</ul>*/}
                             <ul className="footer-menu-list">
                                 <li className="footer-menu-item">
-                                    <a href="#">Contact</a>
+                                    <span>Contact</span>
+                                </li>
+                                <li>
+                                    <a href={'mailto:'+ContactMails.contact}>{ContactMails.contact}</a>
                                 </li>
                             </ul>
                             {/*<ul className="footer-menu-list">*/}
@@ -106,8 +109,8 @@ export default function BlogLayout({ children, title }) {
                     <section className="footer-copyright">
                         <div>© 2025 ParkSwap All Rights Reserved</div>
                         <div className="footer-copyright-links pc-only">
-                            <a href="#">Terms of Service</a>
-                            <a href="#">Privacy policy</a>
+                            {/*<a href="#">Terms of Service</a>*/}
+                            {/*<a href="#">Privacy policy</a>*/}
                         </div>
                     </section>
                 </footer>
