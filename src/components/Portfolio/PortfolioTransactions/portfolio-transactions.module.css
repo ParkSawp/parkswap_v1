@@ -1,0 +1,81 @@
+.history-filters-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    align-content: center;
+    align-items: center;
+    font-size: .8rem;
+    background: light-dark(var(--transparent-white), var(--transparent-white));
+    border-radius: 10px;
+    color: black;
+}
+.history-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    column-gap: 1rem;
+}
+.history-section-filter-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+.history-filter-body {
+    display: flex;
+    justify-content: space-between;
+    column-gap: .5rem;
+    align-items: center;
+    align-content: center;
+}
+.history-filter-title {
+    font-weight: bold;
+}
+.history-filter-item{
+    display: flex;
+    justify-content: space-between;
+    column-gap: .5rem;
+    background: light-dark(var(--primary-lite-color), var(--dark-primary-lite-color));
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+.history-filter-item.active {
+    background: light-dark(var(--primary-color), var(--primary-color));
+}
+
+.history-search-filter-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    border: light-dark(var(--primary-border-color), var(--dark-primary-border-color));
+    background: light-dark(var(--primary-lite-color), var(--dark-primary-lite-color));
+}
+.history-search-filter-container input{
+    border-radius: 4px;
+    padding: 0.2rem 2rem 0.2rem .5rem;
+    width: 100%;
+    height: 40px;
+    border: none;
+    background: none;
+}
+.history-search-options-container {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    bottom: 0px;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.history-search-options-container button {
+    border: none;
+    background: none;
+    min-width: 30px;
+    cursor: pointer;
+}
+.history-transactions-body-container {
+    padding: 1rem;
+}

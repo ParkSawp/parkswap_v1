@@ -29,9 +29,9 @@ export default function Home() {
     },
     {
       title: 'Portfolio',
-      url: '/home',
+      url: '/portfolio',
       imgSrc: '/svg/icons/portfolio2.svg',
-      soon: true
+      soon: false
     },
     {
       title: 'Market',

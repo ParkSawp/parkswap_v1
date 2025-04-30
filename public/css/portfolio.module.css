@@ -2,10 +2,13 @@
     /* background:red; */
     min-height:600px;
     display:flex;
+    flex-direction: column;
     justify-content: center;
     padding-top:100px;
     padding-bottom:20px;
     font-family:Poppins;
+    align-content: center;
+    align-items: center;
 }
 .portfolio-graphics-wrapper{
     /* background:red; */
@@ -23,7 +26,8 @@
     width: min(80%, 1200px);
 }
 .portfolio-wallet-description {
-    background-color: white;
+    background-color: light-dark(var(--background-color), var(--dark-background-color));
+    backdrop-filter: blur(20px);
     border-radius: 15px;
     padding: 1rem;
 }
@@ -100,14 +104,6 @@
     margin-left:auto;
 }
 
-.body-container-body{
-    font-family:Poppins;
-}
-
-.body-container-body table{
-    width:100%;
-}
-
 
 .header-title{
     flex: 1;
@@ -121,6 +117,7 @@
 .header-title-address{
     display: flex;
     background: #e7f8eb;
+    color: light-dark(var(--primary-text-color), var(--dark-background-color));
     margin-bottom: 1.5rem;
     padding: 5px 15px;
     border-radius: 4px;
@@ -237,36 +234,16 @@
     cursor: pointer;
 }
 .wallet-option-item:hover {
-    color: black;
+    color: ligh-dark(var(--black), var(--primary-lite-color));
 }
 .wallet-option-item:last-child {
     border-right: none;
 }
 .portfolio-container-body {
-    background-color: white;
+    background-color: light-dark(var(--background-color), var(--dark-background-color));
     margin-top: 20px;
 }
-.portfolio-container-body table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
-}
-.portfolio-container-body tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-.body-container-body td {
-    padding:10px;
-    text-align:center;
-}
-.body-container-body th{
-    padding:10px;
-    text-align:center;
-    border-bottom:1px solid #dddddd;
-}
-.body-container-body th:first-child,
-.body-container-body td:first-child {
-    text-align: left;
-    padding-left: 2rem;
-}
+
 .graphics-container {
     flex: 1;
     display: flex;
@@ -287,6 +264,13 @@
 }
 .graphic-container img {
     height: 100%;
+}
+.portfolio-no-address-icon-container {
+    font-size: 5rem;
+    color: light-dark(var(--black), var(--white));
+}
+.portfolio-custom-connect-btn {
+    margin-top: 1rem;
 }
 
 @media only screen and (max-width:700px) {

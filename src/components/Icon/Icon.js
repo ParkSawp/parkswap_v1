@@ -9,6 +9,7 @@ import {
     faArrowRightArrowLeft,
     faEllipsis,
     faAngleDown,
+    faAngleRight,
     faPowerOff,
     faBug,
     faCoins,
@@ -28,6 +29,7 @@ import {
     faWallet,
     faClockRotateLeft,
     faEnvelope,
+    faSearch,
     faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -37,6 +39,7 @@ export const SendIcon = (props) => <Icon icon={faPaperPlane} {...props} />
 export const SwapIcon = (props) => <Icon icon={faArrowRightArrowLeft} {...props} />
 export const EllipsisIcon = (props) => <Icon icon={faEllipsis} {...props} />
 export const AngleDownIcon = (props) => <Icon icon={faAngleDown} {...props} />
+export const AngleRightIcon = (props) => <Icon icon={faAngleRight} {...props} />
 export const LogoutIcon = (props) => <Icon icon={faPowerOff} {...props} />
 export const BugIcon = (props) => <Icon icon={faBug} {...props} />
 export const ExplorerIcon = (props) => <Icon icon={faCoins} {...props} />
@@ -61,9 +64,10 @@ export const WalletIcon = (props) => <Icon icon={faWallet} {...props} />
 export const HistoryIcon = (props) => <Icon icon={faClockRotateLeft} {...props} />
 export const CoinIcon = (props) => <Icon icon={faCoins} {...props} />
 export const MessageIcon = (props) => <Icon icon={faEnvelope} {...props} />
+export const SearchIcon = (props) => <Icon icon={faSearch} {...props} />
 export const QuestionIcon = (props) => <Icon icon={faQuestionCircle} {...props} />
 // export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />
-export const LoadingIcon = ({ className, ...props}) => {
+export const LoadingIcon = ({ className, size, color, ...props}) => {
     const [loaded, setLoaded] = useState(false);
     useEffect(() => {
         import("ldrs").then(({tailChase}) => {
@@ -71,5 +75,5 @@ export const LoadingIcon = ({ className, ...props}) => {
             setLoaded(true);
         });
     }, []);
-    return (loaded && <l-tail-chase size="30" speed="1.75" color="black" {...props} />);
+    return (loaded && <l-tail-chase size={size || 30} speed="1.75" color={color || 'black'} {...props} />);
 };
