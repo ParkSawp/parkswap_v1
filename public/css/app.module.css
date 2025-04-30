@@ -419,7 +419,7 @@
 
     
     .app-navigation-nav ul{
-        flex-direction:row;
+        flex-direction: column;
     }
 
     .nav-home-btn,.nav-portfolio-btn,.nav-bridge-btn{

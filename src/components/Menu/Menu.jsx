@@ -5,7 +5,15 @@ import Head from "next/head";
 import styles from "./Menu.module.css";
 import CustomConnectButton from "@/src/components/Global/CustomConnectButton/CustomConnectButton";
 import { useAccount, useDisconnect } from "wagmi";
-import { AngleDownIcon, LogoutIcon, BugIcon, ExplorerIcon, CloseIcon, BurgerMenuIcon } from "@/src/components/Icon/Icon";
+import {
+    AngleDownIcon,
+    LogoutIcon,
+    BugIcon,
+    ExplorerIcon,
+    CloseIcon,
+    BurgerMenuIcon,
+    QuestionIcon
+} from "@/src/components/Icon/Icon";
 import ColorSchemeButton from "@/src/components/Menu/ColorSchemeButton/ColorSchemButton";
 import LangButton from "@/src/components/Menu/LangButton/LangButton";
 import NotificationSoundButton from "@/src/components/Menu/NotificationSoundButton/NotificationSoundButton";
@@ -229,7 +237,30 @@ const Menu = ({openSettings, settingsButtonVal}) => {
                     icon: '/svg/icons/bug_icon.svg',
                 },
             ]
-        }
+        },
+        // {
+        //     href: null,
+        //     title: t('Support'),
+        //     text: t('Support'),
+        //     available: true,
+        //     icon: <QuestionIcon />,
+        //     submenus: [
+        //         {
+        //             href: '/docs/parkswap-terms-of-use.pdf',
+        //             text: t('Terms of use'),
+        //             title: t('Terms of use'),
+        //             available: true,
+        //             target: 'blank'
+        //         },
+        //         {
+        //             href: '/docs/parkswap_privacy_policy.pdf',
+        //             text: t('Privacy policy'),
+        //             title: t('Privacy policy'),
+        //             available: true,
+        //             target: 'blank'
+        //         },
+        //     ]
+        // },
     ];
     const rightButtonsMenu = [
         {

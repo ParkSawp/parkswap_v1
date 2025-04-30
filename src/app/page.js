@@ -193,32 +193,55 @@ export default function Home() {
               </div>
             </section>
             <footer className={styles["main-footer"]}>
-              <div className={styles["main-footer-logo"]}>
-                <img
-                    width="67"
-                    height="93"
-                    src="/img/main_logo.png"
-                    alt="Parkswap logo white"
-                />
-              </div>
-              <div className={styles["main-footer-medias"]}>
-                {
-                  socialNetworks.map((socialNetwork)=> (
-                      <a href={socialNetwork.href} className={styles["main-footer-medias-link"]}>
-                        <socialNetwork.icon />
+              <div className={styles["main-footer-body"]}  >
+                <div className={styles["main-footer-logo"]} >
+                  <img
+                      width="67"
+                      height="93"
+                      src="/img/main_logo.png"
+                      alt="Parkswap logo white"
+                  />
+                </div>
+                <div className={styles["main-footer-links"]}  >
+                  <ul>
+                    <li>
+                      <h3 className={styles['footer-links-title']}>
+                        <Translate >Support</Translate>
+                      </h3>
+                    </li>
+                    <li>
+                      <a href="/docs/parkswap-terms-of-use.pdf">
+                        <Translate>Terms of use</Translate>
                       </a>
-                  ))
-                }
-              </div>
-              <div className={styles["main-footer-contact"]}>
-                <svg width="28" height="27">
-                  <image
-                      width="28"
-                      height="27"
-                      href="/svg/icons/letter.svg"
-                  ></image>
-                </svg>
-                <a href={'mailto:'+ContactMails.contact}>{ContactMails.contact}</a>
+                    </li>
+                    <li>
+                      <a href="/docs/parkswap_privacy_policy.pdf">
+                        <Translate>Privacy policy</Translate>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div  className={styles["main-footer-contacts-follows"]} >
+                  <div className={styles["main-footer-medias"]}>
+                    {
+                      socialNetworks.map((socialNetwork) => (
+                          <a href={socialNetwork.href} className={styles["main-footer-medias-link"]}>
+                            <socialNetwork.icon/>
+                          </a>
+                      ))
+                    }
+                  </div>
+                  <div className={styles["main-footer-contact"]}>
+                    <svg width="28" height="27">
+                      <image
+                          width="28"
+                          height="27"
+                          href="/svg/icons/letter.svg"
+                      ></image>
+                    </svg>
+                    <a href={'mailto:' + ContactMails.contact}>{ContactMails.contact}</a>
+                  </div>
+                </div>
               </div>
               <div className={styles["main-footer-hr"]}>
                 <svg
