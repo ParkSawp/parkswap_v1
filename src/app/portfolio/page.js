@@ -7,14 +7,24 @@ import React, {useState} from "react";
 import ToggleSwitch from "@/src/components/Global/ToggleSwitch/ToggleSwitch";
 import dynamic from "next/dynamic";
 import AppLayout from "@/src/app/AppLayout";
+import { WalletIcon } from "@/src/components/Icon/Icon";
 import {useAccount} from "wagmi";
+import CustomConnectButton from "@/src/components/Global/CustomConnectButton/CustomConnectButton";
+import PortfolioWallet from "@/src/components/Portfolio/PortfolioWallet/PortfolioWallet";
+import PortfolioTransactions from "@/src/components/Portfolio/PortfolioTransactions/PortfolioTransactions";
 
 const StatsChart = dynamic(() => import("@/src/components/Global/StatsChart/StatsChart"), { ssr: false });
+
+const VIEWS = {
+    TOKEN: 'token',
+    HISTORY: 'history',
+}
 
 function HomeComponent() {
     const { address } = useAccount();
     // const [address, _] = useState('0xEczMZjMUo5QPCWa9vxZ6me2cjQhqgvFqVU4XBCgx2tSw');
     const [showNft, setShowNft] = useState(true);
+    const [currentView, setCurrentView] = useState(VIEWS.TOKEN);
     const [networks, __] = useState([
         { icon: 'eth' },
         { icon: 'usdt' },
@@ -25,10 +35,19 @@ function HomeComponent() {
         return (
             <motion.div className={styles["portfolio-wrapper"]} initial={{opacity: 0, scale: 0.5}}
                         animate={{opacity: 1, scale: 1}} transition={{duration: 0.5}}>
-                Connect your wallet
+                <div className={styles["portfolio-no-address-icon-container"]}>
+                    <WalletIcon />
+                </div>
+                <div>Connect your wallet</div>
+                <div className={styles["portfolio-custom-connect-btn"]}>
+                    <CustomConnectButton />
+                </div>
             </motion.div>
         )
     }
+
+    const showTokens = () => setCurrentView(VIEWS.TOKEN);
+    const showHistory = () => setCurrentView(VIEWS.HISTORY);
 
     return (
         <>
@@ -82,54 +101,23 @@ function HomeComponent() {
                         <div className={styles["portfolio-networks-options"]}>
                             <div className={styles['wallet-networks-container']}>
                                 {
-                                    networks.map((network) => (
-                                        <div className={styles['wallet-network']}>
+                                    networks.map((network, index) => (
+                                        <div key={index} className={styles['wallet-network']}>
                                             <img src={`/svg/tokens/${network.icon}.svg`} alt={network.name}/>
                                         </div>
                                     ))
                                 }
                             </div>
                             <div className={styles["wallet-options"]}>
-                                <div className={styles['wallet-option-item']}>Portfolio</div>
-                                <div className={styles['wallet-option-item']}>History</div>
-                                <div className={styles['wallet-option-item']}>Settings</div>
+                                <div className={styles['wallet-option-item']} onClick={showTokens}>Portfolio</div>
+                                <div className={styles['wallet-option-item']} onClick={showHistory} >History</div>
+                                {/*<div className={styles['wallet-option-item']} onClick={showSettings}>Settings</div>*/}
                             </div>
                         </div>
                     </div>
                     <div className={styles["portfolio-container-body"]}>
-                        <div className={styles["body-container-body"]}>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Asset</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Balance</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td scope="row">ETH</td>
-                                        <td>$667</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">USDT</td>
-                                        <td>$667</td>
-                                        <td>9.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">USDC</td>
-                                        <td>$667</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">UNI</td>
-                                        <td>$667</td>
-                                        <td>0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        { currentView === VIEWS.TOKEN && <PortfolioWallet /> }
+                        { currentView === VIEWS.HISTORY && <PortfolioTransactions /> }
                     </div>
                 </div>
             </motion.div>

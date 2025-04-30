@@ -130,7 +130,7 @@ const Menu = ({openSettings, settingsButtonVal}) => {
             href: '/portfolio',
             text: t('Portfolio'),
             title: '',
-            available: false,
+            available: true,
             icon: null,
             submenus: []
         },
