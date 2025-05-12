@@ -14,7 +14,7 @@ export const USD_PRICE_REFRESH_TIME = 1000;
 export const MINIMUM_VALUE_TO_DISPLAY =0.0001;
 
 export const SOCIALS_NETWORKS = [
-    { icon: XTwitterIcon, href: 'https://twitter.com/Parkindustrie', className: 'is-twitterX', name: 'TwitterX'},
+    { icon: XTwitterIcon, href: 'https://x.com/ParkSwap_x', className: 'is-twitterX', name: 'TwitterX'},
     { icon: DiscordIcon, href: 'https://discord.gg/qVDj7wrZUd', className: 'is-discord', name: 'Discord' },
     // { icon: TelegramIcon, href: '', className: 'is-telegram', name: 'Telegram' },
     // { icon: ChatIcon, href: '', className: 'is-chat', name: 'Chat' },

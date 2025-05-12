@@ -225,7 +225,7 @@ export default function Home() {
                   <div className={styles["main-footer-medias"]}>
                     {
                       socialNetworks.map((socialNetwork) => (
-                          <a href={socialNetwork.href} className={styles["main-footer-medias-link"]}>
+                          <a href={socialNetwork.href} className={styles["main-footer-medias-link"]} target="_blank">
                             <socialNetwork.icon/>
                           </a>
                       ))
