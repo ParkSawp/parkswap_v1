@@ -63,3 +63,40 @@
     align-content: center;
     column-gap: .5rem;
 }
+.token-image-container {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    overflow: visible;
+}
+.token-image {
+    width: 100%;
+}
+.token-network-image-container {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #171621;
+}
+.token-network-image-container img {
+    width: 100%;
+}
+.portfolio-section {
+    margin-bottom: 1rem;
+}
+.portfolio-wallet-section-title {
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}

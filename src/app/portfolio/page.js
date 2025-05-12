@@ -12,6 +12,8 @@ import {useAccount} from "wagmi";
 import CustomConnectButton from "@/src/components/Global/CustomConnectButton/CustomConnectButton";
 import PortfolioWallet from "@/src/components/Portfolio/PortfolioWallet/PortfolioWallet";
 import PortfolioTransactions from "@/src/components/Portfolio/PortfolioTransactions/PortfolioTransactions";
+import Translate from "@/src/components/Translate/Translate";
+import Amount from "@/src/components/Global/Amount/Amount";
 
 const StatsChart = dynamic(() => import("@/src/components/Global/StatsChart/StatsChart"), { ssr: false });
 
@@ -76,11 +78,12 @@ function HomeComponent() {
                                     <div className={styles['transactions-options-container']}>
                                         <button
                                             className={styles['transaction-option'] + ' ' + styles['transaction-option-send']}>
-                                            <span>Receive </span>
+                                            <span><Translate>Send</Translate></span>
                                             <img src="/svg/icons/send.svg" alt="Send"/>
                                         </button>
                                         <button
                                             className={styles['transaction-option'] + ' ' + styles['transaction-option-receive']}>
+                                            <span><Translate>Receive</Translate></span>
                                             <img src="/svg/icons/receive.svg" alt="Receive"/>
                                         </button>
                                     </div>
@@ -88,7 +91,9 @@ function HomeComponent() {
                             </div>
                             <div className={styles["header-amount-details"]}>
                                 <div className={styles["header-amount"]}>
-                                    <div className={styles["header-amount-amount"]}>$32,093,90</div>
+                                    <div className={styles["header-amount-amount"]}>
+                                        <Amount amount={32093} />
+                                    </div>
                                     <div className={styles["header-amount-percent"]}>-3.98%</div>
                                 </div>
                                 <div className={styles['nft-amount-details']}>

@@ -156,12 +156,24 @@
     align-items: center;
 }
 .transaction-option {
-    background: black;
-    border: 1px solid black;
+    background: #171621;
+    border: 1px solid #171621;
     padding: 5px 10px;
     color: white;
     margin-right: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.transaction-option:hover{
+    background: black;
+    border-color: black;
+}
+.transaction-option span {
+    display: inline-block;
+    margin-right: .5rem;
+}
+.header-amount {
+    font-size: 1.7rem;
 }
 .header-amount-amount,.header-amount-percent{
     height:50%;
@@ -173,12 +185,11 @@
 
 .header-amount-amount{
     padding-top:20px;
-    font-size:16px;
 }
 
 .header-amount-percent{
     padding-bottom:20px;
-    font-size:14px;
+    font-size: 1rem;
     color:red;
 }
 .header-amount-details {
