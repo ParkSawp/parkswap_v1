@@ -14,18 +14,33 @@
     --primary-medium-color: rgba(162, 218, 118, 0.45);
     --primary-lite-color: rgba(162, 218, 118, 0.1);
     --primary-color-hover: #27ae60;
-    --primary-gradient: linear-gradient(#088a24, darkgreen);
+    --primary-background-gradient: linear-gradient(#2c3e50, white 30%);
     --disable-background-color: black;
     --disable-foreground-color: grey;
     --active-background: #27ae60;
     --black: #000;
     --white: #fff;
+    --yellow: #f1c40f;
+    --lite-yellow: rgba(241, 196, 15, 0.7);
+    --red: #c0392b;
+    --lite-red: rgba(192, 57, 43, 0.7);
+    --green: #16a085;
+    --lite-green: rgba(22, 160, 133, 0.7);
+    --blue: #2980b9;
+    --lite-blue: rgba(41, 128, 185, 0.7);
+    --orange: #f39c12;
+    --lite-orange: rgba(243, 156, 18, 0.7);
+    --purple: #8e44ad;
+    --lite-purple: rgba(142, 68, 173, 0.7);
+    --pink: #f368e0;
+    --lite-pink: rgba(243, 104, 224, 0.7);
     --white-smoof: #f1f8ef;
     --text-black-hover: #000;
     --text-white-hover: white;
     --transparent-white: rgba(255, 255, 255, 0.45);
     --transparent-black: rgba(0, 0, 0, 0.45);
     --gray: #78909c;
+    --black-gray: rgba(43, 58, 67, 0.7);
     --telegram-color: #0088cc;
     --twitter-x-color: #55acee;
     --discord-color: #7289da;
@@ -42,12 +57,16 @@
     --dark-disable-background-color: black;
     --dark-disable-foreground-color: grey;
     --dark-active-background: #27ae60;
+    --dark-primary-background-gradient: linear-gradient(#2c3e50, white 30%);
 }
 body.light {
     color-scheme: light;
 }
 body.dark {
     color-scheme: dark;
+}
+.portfolio-page {
+
 }
 
 * {

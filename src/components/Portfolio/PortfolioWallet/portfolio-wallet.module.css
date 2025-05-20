@@ -1,14 +1,14 @@
 
 .portfolio-wallet-container-body{
     font-family:Poppins;
+    padding: 1rem;
 }
 
 .portfolio-wallet-container-body table{
     width:100%;
 }
 .portfolio-wallet-container-body table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
+    border-collapse: collapse;
 }
 .portfolio-wallet-container-body tr:nth-child(even) {
     background-color: light-dark(var(--primary-lite-color), var(--primary-lite-color));
@@ -20,7 +20,14 @@
 .portfolio-wallet-container-body th{
     padding:10px;
     text-align:center;
-    border-bottom:1px solid #dddddd;
+}
+.token-row{
+    transition: all .2s ease-in-out;
+}
+.token-row:hover{
+    scale: 1.05;
+    box-shadow: 1px 10px 10px rgba(44, 44, 44, 0.5);
+    border-radius: 10px;
 }
 .portfolio-wallet-container-body th:first-child,
 .portfolio-wallet-container-body td:first-child {
@@ -28,26 +35,40 @@
     padding-left: 2rem;
 }
 .portfolio-wallet-container-body button {
-    border: none;
+    border: 1px solid transparent;
     background: none;
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.portfolio-wallet-container-body button:hover {
+    background: var(--black-gray);
+    color: white;
+}
+.portfolio-wallet-container-body button.transaction-button:hover {
+    background: var(--lite-red);
+    color: white;
 }
 .portfolio-wallet-stats-container-body {
     display: flex;
     justify-content: space-around;
     align-content: center;
     align-items: center;
+    column-gap: 1rem;
 }
 .portfolio-wallet-stats-item {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-content: center;
     align-items: center;
     border: 1px solid var(--primary-lite-color);
-    padding: 1rem;
+    padding: .3rem;
     border-radius: 10px;
-    margin: 1rem;
-    min-width: 200px;
     row-gap: 1.5rem;
     background: light-dark(var(--primary-lite-color), var(--dark-primary-color));
     color: light-dark(var(--black), var(--black));
@@ -97,6 +118,104 @@
     margin-bottom: 1rem;
 }
 .portfolio-wallet-section-title {
-    padding: 0 1rem;
+    padding: 1rem 0;
     font-size: 1.2rem;
+    font-weight: bold;
+}
+.token-address-container {
+    color: var(--black-gray);
+    font-size: .8rem;
+}
+.portfolio-wallet-loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    min-height: 150px;
+}
+.portfolio-wallet-table-header th {
+    text-align: left;
+}
+.portfolio-wallet-table-column {
+    text-align: left !important;
+}
+.portfolio-wallet-table-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    column-gap: .5rem;
+}
+.portfolio-wallet-table-header-options {
+    text-align: center !important;
+}
+.token-type {
+    display: inline-block;
+    background: var(--black-gray);
+    font-size: .7rem;
+    padding: .2rem .5rem;
+    border-radius: 5px;
+    color: var(--white);
+    text-align: center;
+    max-width: 80px;
+    min-width: 80px;
+    &.is-native {
+        background: var(--lite-blue);
+    }
+    &.is-stablecoin {
+        background: var(--lite-green);
+    }
+    &.is-erc20 {
+        background: var(--lite-yellow);
+    }
+    &.is-erc721 {
+        background: var(--lite-red);
+    }
+}
+.portfolio-wallet-table-empty {
+    text-align: center;
+    padding: 2rem;
+}
+.portfolio-network-section-available {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.token-type-container {
+
+}
+.wallet-network-container {
+    border: 1px solid var(--green);
+    border-radius: 15px;
+    padding: .5rem;
+    cursor: pointer;
+    background: white;
+    min-width: 150px;
+}
+.wallet-network-container.wallet-network-active {
+    background: var(--primary-color);
+}
+.wallet-network-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    column-gap: .5rem;
+}
+.wallet-network-description-name {
+    font-size: .8rem;
+}
+.wallet-network-description-icon {
+
+}
+.wallet-network-description-icon img{
+    height: 15px;
+}
+.wallet-network-amount {
+    font-weight: bold;
 }

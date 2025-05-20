@@ -18,7 +18,7 @@ import { I18nextProvider } from 'react-i18next';
 const queryClient = new QueryClient();
 
 
-export default function AppLayout({ children, header = {} }) {
+export default function AppLayout({ children, bodyClassName, header = {} }) {
     const [settingsButtonVal, setSettingsButtonVal] = useState("...");
     const [isSettingsOpen, setIsSettingOpen] = useState(false);
     const [settings, setSettings] = useState(APP_SETTINGS_DEFAULT);
@@ -69,7 +69,7 @@ export default function AppLayout({ children, header = {} }) {
                                 <meta http-equiv="Content-Security-Policy"
                                       content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com"/>
                             </Head>
-                            <body className={settings.colorScheme}>
+                            <body className={settings.colorScheme +' '+ bodyClassName}>
                                 <div className={styles["site-wrapper"]}>
                                     <AppSettingsModal isOpen={isSettingsOpen} closeModal={closeSettings}/>
                                     <Menu openSettings={openSettings} settingsButtonVal={settingsButtonVal}/>

@@ -31,6 +31,7 @@ import {
     faEnvelope,
     faSearch,
     faQuestionCircle,
+    faMoneyBillTransfer,
 } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -66,6 +67,7 @@ export const CoinIcon = (props) => <Icon icon={faCoins} {...props} />
 export const MessageIcon = (props) => <Icon icon={faEnvelope} {...props} />
 export const SearchIcon = (props) => <Icon icon={faSearch} {...props} />
 export const QuestionIcon = (props) => <Icon icon={faQuestionCircle} {...props} />
+export const Transactions = (props) => <Icon icon={faMoneyBillTransfer} {...props} />
 // export const LoadingIcon = ({ className, ...props}) => <Icon icon={faSpinner} spinPulse={true} className={'loading-icon '+ (className || '')} {...props} />
 export const LoadingIcon = ({ className, size, color, ...props}) => {
     const [loaded, setLoaded] = useState(false);

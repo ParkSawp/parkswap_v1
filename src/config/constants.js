@@ -22,3 +22,7 @@ export const SOCIALS_NETWORKS = [
 export const ContactMails = {
     contact: 'contactparkswap@proton.me'
 };
+
+export const PORTFOLIO = {
+    REFRESH_INTERVAL: 120 * 1000
+};
