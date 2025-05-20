@@ -8,7 +8,7 @@ export default function Amount({ amount}) {
 
     return (
         <>
-            {amountFormatted} $
+            $ {amountFormatted}
         </>
     )
 }

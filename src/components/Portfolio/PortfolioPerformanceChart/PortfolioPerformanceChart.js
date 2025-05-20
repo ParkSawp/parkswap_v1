@@ -6,12 +6,7 @@ export default function PortfolioPerformanceChart({ }) {
         theme: "light",
         animationEnabled: true,
         exportEnabled: false,
-        // title: {
-        //     text: "Number of iPhones Sold"
-        // },
-        // axisY: {
-        //     title: "Number of iPhones ( in Million )"
-        // },
+        backgroundColor: "transparent",
         axisX: {
             lineDashType: "dot",
             lineThickness: 2

@@ -4,7 +4,7 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    padding-top:100px;
+    padding-top: 10px;
     padding-bottom:20px;
     font-family:Poppins;
     align-content: center;
@@ -26,7 +26,7 @@
     width: min(80%, 1200px);
 }
 .portfolio-wallet-description {
-    background-color: light-dark(var(--background-color), var(--dark-background-color));
+    /*background-color: light-dark(var(--background-color), var(--black-gray));*/
     backdrop-filter: blur(20px);
     border-radius: 15px;
     padding: 1rem;
@@ -117,8 +117,7 @@
 .header-title-address{
     display: flex;
     background: #e7f8eb;
-    color: light-dark(var(--primary-text-color), var(--dark-background-color));
-    margin-bottom: 1.5rem;
+    color: light-dark(var(--primary-text-color), var(--black-gray));
     padding: 5px 15px;
     border-radius: 4px;
     justify-content: center;
@@ -174,6 +173,7 @@
 }
 .header-amount {
     font-size: 1.7rem;
+    font-weight: bold;
 }
 .header-amount-amount,.header-amount-percent{
     height:50%;
@@ -184,7 +184,9 @@
 }
 
 .header-amount-amount{
-    padding-top:20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    justify-content: flex-start;
 }
 
 .header-amount-percent{
@@ -251,7 +253,8 @@
     border-right: none;
 }
 .portfolio-container-body {
-    background-color: light-dark(var(--background-color), var(--dark-background-color));
+    /*background-color: light-dark(var(--background-color), var(--black-gray));*/
+    backdrop-filter: blur(1.5);
     margin-top: 20px;
 }
 
@@ -283,7 +286,43 @@
 .portfolio-custom-connect-btn {
     margin-top: 1rem;
 }
-
+.portfolio-any-address-input {
+    border: 1px solid #ccc;
+    padding: .4rem;
+    border-radius: 15px;
+    width: 100%;
+    font-size: .8rem;
+}
+.wallet-address-input-container {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: .5rem;
+    align-content: center;
+    align-items: center;
+}
+.wallet-option-item {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    column-gap: .5rem;
+}
+.wallet-option-item-button {
+    border: 1px solid transparent;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.wallet-option-item-button:hover {
+    background: var(--black-gray);
+    color: white;
+}
 @media only screen and (max-width:700px) {
     .portfolio-wallet-details {
         align-items: center;

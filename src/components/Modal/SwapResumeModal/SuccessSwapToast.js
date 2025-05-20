@@ -1,5 +1,5 @@
 import {useChainId} from "wagmi";
-import {base} from "wagmi/chains";
+import {base} from "@wagmi/core/chains";
 import Translate from "@/src/components/Translate/Translate";
 import React from "react";
 import styles from "@/src/components/Modal/SwapResumeModal/SwapResumeModal.module.css";

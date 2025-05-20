@@ -11,12 +11,16 @@ type CoinGekoTokenDetail = {
         thumb: string;
         large: string;
     }
+    categories: string[]
 }
 
 export default class CoinGeckoProvider implements ITokenProvider {
 
     public static shared = new CoinGeckoProvider();
     public static IconNotFoundSrc = '/svg/tokens/icon.404.svg';
+    public static allGekoTokens = [];
+    public static allGekoTokensBySymbol = {};
+    public static allGekoTokensByGekoId = {};
 
     public static async getTokensPrice(ids: string[]): Promise<{ amount: Number }> {
         ids = ids.map((id) => id.toLowerCase());
@@ -40,31 +44,52 @@ export default class CoinGeckoProvider implements ITokenProvider {
 
         return { amount: data[id]?.usd || data[symbol]?.usd || 0 };
     }
-    public async getAll(): Promise<CoinGekoToken[]> {
+    public async getAll(): Promise<{ [key: string]: CoinGekoToken }> {
+        if(CoinGeckoProvider.allGekoTokens.length > 0) {
+            return CoinGeckoProvider.allGekoTokensBySymbol;
+        }
         const tokenListResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/list');
         const data = await tokenListResponse.json();
         if(Array.isArray(data)) {
-            return data;
+            CoinGeckoProvider.allGekoTokens = data;
+            data.forEach((item) => {
+                CoinGeckoProvider.allGekoTokensBySymbol[item.symbol.toLowerCase()] = item;
+                CoinGeckoProvider.allGekoTokensByGekoId[item.id] = item;
+            });
+            return CoinGeckoProvider.allGekoTokensBySymbol;
         }
-        return [];
+        return {};
     }
     public async getTokenDetails(id: string): Promise<CoinGekoTokenDetail> {
+        const coinGekoToken = CoinGeckoProvider.allGekoTokensByGekoId[id];
+        if(coinGekoToken.details) {
+            return coinGekoToken.details;
+        }
         const tokenResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/'+id);
-        return await tokenResponse.json();
+        const details = await tokenResponse.json();
+        if(details.status?.error_code) {
+            return {} as CoinGekoTokenDetail;
+        }
+        coinGekoToken.details = details;
+        return details;
     }
 
     public async getTokenIcon(token): Promise<string> {
         const tokens = await this.getAll();
-        const coinGekoToken = tokens?.find((item) => item.symbol.toLowerCase() === token.symbol.toLowerCase());
+        const coinGekoToken = tokens[token.symbol.toLowerCase()] ?? null;
+
         if(!coinGekoToken) {
-            console.log({ message: 'Token not found on coin gueko'})
+            console.log({ message: 'Token not found on coin gueko', token: token.symbol })
             return CoinGeckoProvider.IconNotFoundSrc;
         }
         const coinGekoTokenDetails = await this.getTokenDetails(coinGekoToken.id);
         if(!coinGekoTokenDetails) {
             return CoinGeckoProvider.IconNotFoundSrc;
         }
-
+        if(!coinGekoTokenDetails.image) {
+            console.log({ message: 'Token image not found on coin gueko', token: token.symbol, geko: coinGekoTokenDetails});
+            return CoinGeckoProvider.IconNotFoundSrc;
+        }
         return coinGekoTokenDetails.image.small.replace(/\?[0-9]+$/, '');
     }
 
