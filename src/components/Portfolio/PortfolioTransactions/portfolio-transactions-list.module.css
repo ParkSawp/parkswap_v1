@@ -9,7 +9,7 @@
 }
 .history-transaction-container {
     border: 1px solid transparent;
-    padding: .5rem;
+    padding: .1rem .5rem;
     border-radius: 5px;
 }
 .history-transaction-container.active {
@@ -20,6 +20,19 @@
     background: light-dark(var(--primary-lite-color), var(--dark-primary-lite-color));
     border: 1px solid light-dark(var(--primary-border-color), var(--dark-primary-border-color));
     cursor: pointer;
+}
+.history-transaction-type {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    column-gap: .5rem;
+    min-width: 175px;
+}
+.history-transaction-type-network img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 .history-transaction-type-operation {
     position: relative;
@@ -32,21 +45,42 @@
     height: 40px;
     color: grey;
 }
-.history-transaction-type-network img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.history-transaction-type-operation.is-receive {
+    background: var(--lite-green);
+    color: white;
 }
-.history-transaction-type {
+.history-transaction-type-operation.is-send {
+    background: var(--lite-orange);
+    color: white;
+}
+.history-transaction-type-operation.is-trade {
+    background: var(--lite-blue);
+    color: white;
+}
+.history-transaction-type-operation.is-approve {
+    background: var(--lite-red);
+    color: white;
+}
+.history-transaction-type-operation.is-failed {
+    background: var(--lite-pink);
+    color: white;
+}
+.history-transaction-asset-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    align-content: center;
     column-gap: .5rem;
+    min-width: 150px;
+}
+.history-transaction-asset-swap-icon:last-child{
+    display: none;
 }
 .history-transaction-row-container {
     display: flex;
     justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    column-gap: 1rem;
 }
 .history-transaction-assets-container {
     display: flex;
@@ -59,15 +93,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     align-content: center;
 }
-.history-transaction-asset-container {
+.history-transaction-asset-balance-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     column-gap: .5rem;
-    min-width: 150px;
 }
 .history-transaction-asset-logo-container {
     background: white;
@@ -104,9 +137,11 @@
     align-items: center;
     column-gap: .5rem;
     margin-top: .5rem;
+    width: 130px;
 }
 .history-transaction-second-part-label-details div {
     display: flex;
+    flex: 1;
 }
 .history-transaction-more-container {
     animation: show-more-details .25s linear;
@@ -121,6 +156,25 @@
 .history-transaction-more-container a {
     color: light-dark(var(--black), var(--white));
     font-weight: bold;
+}
+.history-transaction-type-name:first-letter {
+    text-transform: capitalize;
+}
+.history-transaction-assets-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    column-gap: 1rem;
+}
+.history-transaction-second-part-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    column-gap: .5rem;
 }
 
 @keyframes show-more-details {

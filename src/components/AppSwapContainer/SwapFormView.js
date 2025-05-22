@@ -90,7 +90,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
             return;
         }
         const params = {
-            amount: parseUnits(buyTokenAmount.toString(), buyToken.decimals),
+            amount: customParseUnits(buyTokenAmount.toString(), buyToken.decimals),
             chainId: appSettings.selectedChainId,
         };
         if(address) {
