@@ -32,6 +32,16 @@ export const truncateDecimal = (num, digit = 4, checkMinimum = false) => {
 export const formatFromUnits = (value, decimals) => {
     return truncateDecimal(parseFloat(formatUnits(value, decimals)), 6);
 }
+export const customParseUnits= (amount, decimals) => {
+    const nDecimals = Number(decimals);
+    try {
+        return parseUnits(amount, nDecimals);
+    } catch (e) {
+        const fixedAmount = Number(amount).toFixed(nDecimals);
+        console.error({ decimals, nDecimals, amount, error: e.message, fixedAmount });
+        return parseUnits(fixedAmount, nDecimals);
+    }
+}
 
 export const fullFormatFromBalance = (balance) => {
     return formatUnits(balance.value, balance.decimals);

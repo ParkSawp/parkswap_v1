@@ -27,14 +27,14 @@ const StatsChart = dynamic(() => import("@/src/components/Global/StatsChart/Stat
 const VIEWS = {
     TOKEN: 'token',
     HISTORY: 'history',
-}
+};
 
 function HomeComponent({ params }) {
     const { address: connectedWalletAddress } = useAccount();
     const { t } = useTranslation();
     const [showNft, setShowNft] = useState(true);
     const [currentView, setCurrentView] = useState(VIEWS.TOKEN);
-    const [address, setAddress] = useState(params?.address ? params.address : connectedWalletAddress);
+    const [address, setAddress] = useState((params?.address) ? params.address : connectedWalletAddress);
     const [otherAddressToWatch, setOtherAddressToWatch] = useState('');
     const [currentDate, setCurrentDate] = useState(new Date());
     const { data: portfolioData, lastUpdate, loading: portfolioLoading, error, fetchPortfolio } = useGetPortfolio();
@@ -48,6 +48,16 @@ function HomeComponent({ params }) {
         // },  PORTFOLIO.REFRESH_INTERVAL);
         // return () => clearInterval(intervalId);
     }, [address, fetchPortfolio]);
+
+    // useEffect(() => {
+    //     setAddress(connectedWalletAddress);
+    // }, [connectedWalletAddress]);
+
+    useEffect(() => {
+        const updateCurrentDate = () => setCurrentDate(new Date());
+        const timeIntervalId = setInterval(updateCurrentDate, PORTFOLIO.REFRESH_INTERVAL);
+        return () => clearInterval(timeIntervalId);
+    }, [currentDate]);
 
     if(!address || !isAddress(address)) {
         return (
@@ -78,12 +88,6 @@ function HomeComponent({ params }) {
 
     const showTokens = () => setCurrentView(VIEWS.TOKEN);
     const showHistory = () => setCurrentView(VIEWS.HISTORY);
-
-    useEffect(() => {
-        const updateCurrentDate = () => setCurrentDate(new Date());
-        const timeIntervalId = setInterval(updateCurrentDate, PORTFOLIO.REFRESH_INTERVAL);
-        return () => clearInterval(timeIntervalId);
-    }, [currentDate]);
 
     return (
         <>
@@ -178,7 +182,7 @@ function HomeComponent({ params }) {
                     </div>
                     <div className={styles["portfolio-container-body"]}>
                         { currentView === VIEWS.TOKEN && <PortfolioWallet tokens={portfolioData?.tokens} amount={portfolioData?.amount} chains={portfolioData?.chains} /> }
-                        { currentView === VIEWS.HISTORY && <PortfolioTransactions /> }
+                        { currentView === VIEWS.HISTORY && <PortfolioTransactions address={address} lastUpdate={lastUpdate} /> }
                     </div>
                 </div>
             </motion.div>

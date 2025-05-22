@@ -1,13 +1,15 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import styles from './portfolio-transactions.module.css';
 import PortfolioTransactionsList from "@/src/components/Portfolio/PortfolioTransactions/PortfolioTransactionsList";
 import {CloseIcon, LoadingIcon, SearchIcon} from "@/src/components/Icon/Icon";
 import {useTranslation} from "react-i18next";
 import Translate from "@/src/components/Translate/Translate";
+import useGetTransactions from "@/src/hooks/useGetTransactions";
 
-export default function PortfolioTransactions({ }) {
+export default function PortfolioTransactions({ address, lastUpdate }) {
 
     const { t, i18n } = useTranslation();
+    const { data: transactions, isLoading: fetchTransactionLoading, fetchTransactions } = useGetTransactions();
 
     const [isLoading, setIsLoading] = useState(false);
     const [showMoreHash, setShowMoreHash] = useState(null);
@@ -22,7 +24,6 @@ export default function PortfolioTransactions({ }) {
             { value: 'others', label: t('Others') },
         ]
     }, [i18n.language]);
-
     const assetTypes = useMemo(() => {
         return [
             { value: 'all', label: t('All assets') },
@@ -30,42 +31,6 @@ export default function PortfolioTransactions({ }) {
             { value: 'nft', label: t('NFTs') },
         ]
     },[i18n.language]);
-
-    const transactionsByDate = [
-        {
-            date: '29 Avril 2025',
-            transactions: [
-                {hash: '0x12541548564512'},
-                {hash: '0x1254154856956s', assets: {main: { logo: 'uni-logo.svg' }}},
-                {hash: '0x1254154856sf48'},
-            ]
-        },
-        {
-            date: '25 Avril 2025',
-            transactions: [
-                {hash: '0x1254154856rth8'},
-                {hash: '0x1254154856nb84', assets: {main: { logo: 'uni-logo.svg' }}},
-            ]
-        },
-        {
-            date: '18 Avril 2025',
-            transactions: [
-                {hash: '0x1254154856pmlo'},
-                {hash: '0x1254154856ased', assets: {main: { logo: 'sol-logo.svg' }}},
-                {hash: '0x1254154856wcvf'},
-            ]
-        },
-        {
-            date: '05 Avril 2025',
-            transactions: [
-                {hash: '0x1254154856mpfd'},
-                {hash: '0x1254154856aqxp', assets: {main: { logo: 'ltc-logo.svg' }}},
-                {hash: '0x1254154856tgbs'},
-                {hash: '0x1254154856qwsn', assets: {main: { logo: 'sol-logo.svg' }}},
-                {hash: '0x1254154856pmlo'},
-            ]
-        }
-    ];
 
     const find = () => setIsLoading(true);
     const setFilterAsset = (assetType) => setFilters({ ...filters, asset: assetType});
@@ -82,6 +47,10 @@ export default function PortfolioTransactions({ }) {
             transactions: [...filters.transactions, transactionType]
         });
     };
+
+    useEffect(() => {
+        fetchTransactions(address)
+    }, [address, lastUpdate, fetchTransactions]);
 
     return (
         <>
@@ -151,7 +120,7 @@ export default function PortfolioTransactions({ }) {
 
             <div className={styles['history-transactions-body-container']}>
                 {
-                    transactionsByDate.map((transactionsByDate, index) => (
+                    transactions.map((transactionsByDate, index) => (
                         <div key={transactionsByDate.date} className={styles['history-transactions-date-container']} >
                             <div className={styles['history-transactions-date']} >{transactionsByDate.date}</div>
                             <PortfolioTransactionsList transactions={transactionsByDate.transactions} showMoreHash={showMoreHash} setShowMoreHash={setShowMoreHash} />

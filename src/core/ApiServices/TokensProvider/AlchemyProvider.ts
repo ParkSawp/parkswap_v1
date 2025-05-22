@@ -3,9 +3,28 @@ import TokenRepository, { type Token } from '@/src/core/Models/TokenRepository';
 import { base, polygon, avalanche, bsc, mainnet }  from "@wagmi/core/chains"
 import {formatUnits, Typed as token} from "ethers";
 import CoinGeckoProvider from "@/src/core/ApiServices/TokensProvider/CoinGeckoProvider";
-import {chai} from "globals";
+import * as fns from 'date-fns';
+import TransactionFormatter from "@/src/core/Fotmatter/TransactionFormatter";
 
 export default class AlchemyProvider {
+
+    public static TokenCache = {};
+
+    public static getChainFromEnum(alchemyChainId: string) {
+        if(alchemyChainId === 'base-mainnet') {
+            return base;
+        }
+        if(alchemyChainId === 'polygon-mainnet') {
+            return polygon;
+        }
+        if(alchemyChainId === 'avax-mainnet') {
+            return avalanche;
+        }
+        if(alchemyChainId === 'bnb-mainnet') {
+            return bsc;
+        }
+        return mainnet;
+    }
 
     public static getChainEnum(chainId: number): string {
         if(chainId === base.id) {
@@ -24,7 +43,7 @@ export default class AlchemyProvider {
     }
 
 
-    protected static async loadTokenIcon(token, chainId) {
+    public static async loadTokenIcon(token, chainId): Promise<void> {
         const storedToken = await TokenRepository.getTokenByAddress(token.address, chainId);
         if(storedToken) {
             token.logo_uri = storedToken.logo_uri;
@@ -55,9 +74,16 @@ export default class AlchemyProvider {
         return 'https://'+ alchemyNetworkId +'.g.alchemy.com/v2/'+process.env.ALCHEMY_API_KEY;
     }
 
-    protected static getPriceApiUrl(path: string = ''): string {
-        return `https://api.g.alchemy.com/prices/v1/${process.env.ALCHEMY_API_KEY}/${path}`;
+    protected static getAlchemyUrl(path: string, type: string, version: string = 'v1'): string {
+        return `https://api.g.alchemy.com/${type}/${version}/${process.env.ALCHEMY_API_KEY}/${path}`;
     }
+    protected static getTransactionByAddressUrl(): string {
+        return AlchemyProvider.getAlchemyUrl('transactions/history/by-address', 'data');
+    }
+    protected static getPriceApiUrl(path: string = ''): string {
+        return AlchemyProvider.getAlchemyUrl(path, 'prices');
+    }
+
 
     protected static async request(url: string, params: object, rootProperty: string = null): Promise<any> {
         const headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
@@ -67,13 +93,18 @@ export default class AlchemyProvider {
 
         try {
             const response = await fetch(url, { method: 'POST', headers: headers, body: body });
-            const jsonData = await response.json();
-            if(rootProperty) {
-                return jsonData[rootProperty] ?? null;
+            try {
+                const jsonData = await response.json();
+                if(rootProperty) {
+                    return jsonData[rootProperty] ?? null;
+                }
+                return jsonData ?? null;
+            } catch (e) {
+                console.log({ error: e.message, method: 'AlchemyProvider.request->response.json', url, params, body})
+                return null;
             }
-            return jsonData ?? null;
         } catch (e) {
-            console.log({ error: e.message })
+            console.log({ error: e.message, method: 'AlchemyProvider.request', url, params, body})
             return null;
         }
     }
@@ -199,19 +230,51 @@ export default class AlchemyProvider {
             totalAmount,
         }
     }
-    public static async transactions(address: string): Promise<any> {
-        // https://api.g.alchemy.com/data/v1/:apiKey/
+    public static async transactions(address: string, after: string = ''): Promise<any> {
+        const result = await AlchemyProvider.request(
+            AlchemyProvider.getTransactionByAddressUrl(),
+            {
+                "limit": 50,
+                "addresses": [
+                    {
+                        "address": address,
+                        "networks": [
+                            AlchemyProvider.getChainEnum(base.id),
+                            AlchemyProvider.getChainEnum(mainnet.id),
+                            // AlchemyProvider.getChainEnum(avalanche.id),
+                            // AlchemyProvider.getChainEnum(polygon.id),
+                            // AlchemyProvider.getChainEnum(bsc.id),
+                        ]
+                    }
+                ]
+            },
+            null
+        );
 
+        if(!result?.transactions) {
+            return { after: '', transactions: []};
+        }
+
+        return {
+            after: result.after,
+            transactions: await TransactionFormatter.formatByDate(result.transactions, address)
+        };
     }
 
     public static async tokenMetaData(tokenAddress: string, chainId: number): Promise<any> {
+        if(AlchemyProvider.TokenCache[chainId] && AlchemyProvider.TokenCache[chainId][tokenAddress]) {
+            return AlchemyProvider.TokenCache[chainId][tokenAddress];
+        }
+        AlchemyProvider.TokenCache[chainId] = AlchemyProvider.TokenCache[chainId] || {};
         const data = await AlchemyProvider.request(AlchemyProvider.getNetworkApiUrl(chainId), {
             id: chainId,
             method: "alchemy_getTokenMetadata",
             params: [tokenAddress]
         }, 'result');
 
-        return {address: tokenAddress, ...data};
+        const result = {address: tokenAddress, ...data};
+        AlchemyProvider.TokenCache[chainId][tokenAddress] = result;
+        return result;
     }
     public static async balances(walletAddress: string, chainId: number): Promise<{[key: string]: Token}> {
         if(!walletAddress) {

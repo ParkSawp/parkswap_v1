@@ -1,0 +1,20 @@
+.address-container {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    column-gap: .5rem;
+    width: 100%;
+}
+.address-container-link {
+    color: var(--black-gray);
+    font-size: .7rem;
+}
+.address-container-link:visited {
+    color: var(--black-gray) !important;
+}
+.copy-address:hover {
+    cursor: pointer;
+    color: var(--blue);
+}

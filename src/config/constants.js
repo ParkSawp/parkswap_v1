@@ -5,10 +5,6 @@ export const PUBLIC_WALLETCONNECT_PROJECT_ID = "d4a7715acb2b89e6fdb0480c35b71b6f
 export const MAX_ALLOWANCE =
     115792089237316195423570985008687907853269984665640564039457584007913129639935n;
 
-export const ERC20_ABI = [
-    'function transfer(address to, uint256 amount) public returns (bool)',
-];
-
 export const USD_PRICE_REFRESH_TIME = 1000;
 
 export const MINIMUM_VALUE_TO_DISPLAY =0.0001;
@@ -26,3 +22,22 @@ export const ContactMails = {
 export const PORTFOLIO = {
     REFRESH_INTERVAL: 120 * 1000
 };
+
+export const ERC20_ABI = [
+    // Event Transfer
+    "event Transfer(address indexed from, address indexed to, uint256 value)",
+
+    // Event Approval
+    "event Approval(address indexed owner, address indexed spender, uint256 value)",
+
+    // Optional: fonction pour lire le nom/symbole
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+    "function decimals() view returns (uint8)",
+
+    // Optional: fonctions de base
+    "function balanceOf(address) view returns (uint256)",
+    "function allowance(address owner, address spender) view returns (uint256)",
+    "function approve(address spender, uint256 value) returns (bool)",
+    "function transfer(address to, uint256 value) returns (bool)"
+];

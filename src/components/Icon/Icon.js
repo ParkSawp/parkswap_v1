@@ -32,12 +32,20 @@ import {
     faSearch,
     faQuestionCircle,
     faMoneyBillTransfer,
+    faShield,
+    faHeartCirclePlus,
+    faCircleXmark,
+    faCopy
 } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Icon = (props) => <FontAwesomeIcon {...props} />
 export const SendIcon = (props) => <Icon icon={faPaperPlane} {...props} />
 export const SwapIcon = (props) => <Icon icon={faArrowRightArrowLeft} {...props} />
+export const ReceiveIcon = (props) => <Icon icon={faHeartCirclePlus} {...props} />
+export const FailedIcon = (props) => <Icon icon={faCircleXmark} {...props} />
+export const ApproveIcon = (props) => <Icon icon={faShield} {...props} />
+export const CopyIcon = (props) => <Icon icon={faCopy} {...props} />
 export const EllipsisIcon = (props) => <Icon icon={faEllipsis} {...props} />
 export const AngleDownIcon = (props) => <Icon icon={faAngleDown} {...props} />
 export const AngleRightIcon = (props) => <Icon icon={faAngleRight} {...props} />
