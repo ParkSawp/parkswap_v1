@@ -1,4 +1,4 @@
-import {formatUnits} from "ethers";
+import {formatUnits, parseUnits} from "ethers";
 import {Bounce, toast} from "react-toastify";
 import i18n from '../config/i18n';
 import {MINIMUM_VALUE_TO_DISPLAY} from "@/src/config/constants";
@@ -39,6 +39,15 @@ export const fullFormatFromBalance = (balance) => {
 
 export const formatFromBalance = (balance) => {
     return formatFromUnits(balance.value, balance.decimals);
+}
+export const customParseUnits= (amount, decimals) => {
+    const nDecimals = Number(decimals);
+    try {
+        return parseUnits(amount, nDecimals);
+    } catch (e) {
+        const fixedAmount = Number(amount).toFixed(nDecimals);
+        return parseUnits(fixedAmount, nDecimals);
+    }
 }
 
 

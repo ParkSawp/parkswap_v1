@@ -9,7 +9,7 @@ import { ERC20_ABI } from '@/src/config/constants'
 import Translate from "@/src/components/Translate/Translate";
 import {useTranslation} from "react-i18next";
 import {LoadingIcon} from "@/src/components/Icon/Icon";
-import {Toast} from "@/src/config/functions";
+import {customParseUnits, Toast} from "@/src/config/functions";
 import SendTransactionNotification from "@/src/components/AppSwapContainer/SendTransactionNotification";
 
 
@@ -37,14 +37,14 @@ export default function SendFormView({ }) {
         return sendNativeToken();
     }
     const sendNativeToken = () => {
-        const amountFormatted = parseUnits(amount, token.decimals);
+        const amountFormatted = customParseUnits(amount, token.decimals);
         sendTransaction({
             to: receiverAddress,
             value: amountFormatted
         });
     }
     const sendToken = () => {
-        const amountFormatted = parseUnits(amount, token.decimals);
+        const amountFormatted = customParseUnits(amount, token.decimals);
         const data = (new Interface(ERC20_ABI)).encodeFunctionData('transfer', [receiverAddress, amountFormatted]);
 
         const transaction = {

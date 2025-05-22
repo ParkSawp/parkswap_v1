@@ -7,7 +7,7 @@ import styles from "@/src/components/AppSwapReviewTrade/AppSwapReviewTrade.modul
 import {useTranslation} from "react-i18next";
 import Translate from "@/src/components/Translate/Translate";
 import {LoadingIcon} from "@/src/components/Icon/Icon";
-import {truncateDecimal} from "@/src/config/functions";
+import {customParseUnits, truncateDecimal} from "@/src/config/functions";
 
 export default function SwapButtonHandler({ loading, price, address, sellToken, buyToken, sellTokenAmount, buyTokenAmount }) {
 
@@ -20,7 +20,7 @@ export default function SwapButtonHandler({ loading, price, address, sellToken, 
 
     // const inSufficientBalance = false;
     const inSufficientBalance = (sellTokenBalance && sellToken && sellTokenAmount)
-            ? parseUnits(sellTokenAmount, sellToken.decimals) > sellTokenBalance.value
+            ? customParseUnits(sellTokenAmount, sellToken.decimals) > sellTokenBalance.value
             : true;
 
     if(loading) {

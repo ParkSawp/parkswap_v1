@@ -13,7 +13,7 @@ import useAppSettings from "@/src/hooks/useAppSettings";
 import AppSwapSettings from "@/src/components/AppSwapSettings/AppSwapSettings";
 import { useTranslation } from 'react-i18next';
 import RangeSlider from "react-range-slider-input";
-import {truncateDecimal} from "@/src/config/functions";
+import {customParseUnits, truncateDecimal} from "@/src/config/functions";
 
 
 const BUY_DIRECTION = 'buy';
@@ -67,7 +67,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
             return;
         }
         const params = {
-            amount: parseUnits(sellTokenAmount.toString(), sellToken.decimals),
+            amount: customParseUnits(sellTokenAmount.toString(), sellToken.decimals),
             chainId: appSettings.selectedChainId,
         };
         if(address) {

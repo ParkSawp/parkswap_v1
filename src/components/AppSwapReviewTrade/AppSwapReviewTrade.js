@@ -12,7 +12,7 @@ import SwapResumeModal from "@/src/components/Modal/SwapResumeModal/SwapResumeMo
 import customConnectStyles from "@/src/components/Global/CustomConnectButton/CustomConnectButton.module.css";
 import Translate from "@/src/components/Translate/Translate";
 import {ArrowRight, LoadingIcon, SwapIcon} from "@/src/components/Icon/Icon";
-import {truncateDecimal} from "@/src/config/functions";
+import {customParseUnits, truncateDecimal} from "@/src/config/functions";
 
 export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmount, sellTokenAmount }) {
     const { address } = useAccount();
@@ -26,7 +26,7 @@ export default function AppSwapReviewTrade({  buyToken, sellToken, buyTokenAmoun
             sellSymbol: sellToken.symbol,
             sellTokenDecimals: sellToken.decimals,
             buyAddress: buyToken.address,
-            amount: parseUnits(sellTokenAmount.toString(), sellToken.decimals),
+            amount: customParseUnits(sellTokenAmount.toString(), sellToken.decimals),
             chainId: appSettings.selectedChainId,
             slippage: appSettings.slippage,
             taker: address
