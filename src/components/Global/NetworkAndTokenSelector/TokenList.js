@@ -36,7 +36,9 @@ const QuickTokens = function({ icon, title, recentTokens, onSelectToken }) {
                 {
                     recentTokens.map((token) => (
                         <div key={token.address} className={styles['recent-token-item-container']} onClick={() => onSelectToken(token)}>
-                            <img src={token.logo_uri} alt={token.name} height={20}/>
+                            <div className={styles['recent-token-item-image-container']} >
+                                <img src={token.logo_uri} alt={token.name} />
+                            </div>
                             <div>{token.symbol}</div>
                         </div>
                     ))

@@ -149,7 +149,7 @@ ul.blog-list li {
     flex-direction: column;
 }
 .blog-header {
-    background-image: url("/blogs/dressphtshp.webp");
+    /*background-image: url("/blogs/dressphtshp.webp");*/
     background-repeat: no-repeat;
     background-size: 125%;
     background-position: center;
