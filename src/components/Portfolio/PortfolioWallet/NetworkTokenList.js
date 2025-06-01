@@ -4,6 +4,8 @@ import {ChartIcon, SwapIcon, Transactions} from "@/src/components/Icon/Icon";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import TokenType from "@/src/components/Portfolio/PortfolioWallet/TokenType";
+import Link from "next/link";
+import Address from "@/src/components/Global/Address/Address";
 
 
 export default function NetworkTokenList({ tokens, chainId }) {
@@ -25,7 +27,7 @@ export default function NetworkTokenList({ tokens, chainId }) {
                                 <div>
                                     <div>{token.symbol}</div>
                                     <div className={styles['token-address-container']}>
-                                        {token.shortAddress}
+                                        <Address value={token.address} />
                                     </div>
                                 </div>
                             </div>
@@ -40,12 +42,12 @@ export default function NetworkTokenList({ tokens, chainId }) {
                         <td className={styles['portfolio-wallet-table-column']}><Amount amount={token.price.total}/></td>
                         <td className={styles['portfolio-wallet-table-column']}>
                             <div className={styles['portfolio-wallet-table-options']} >
-                                <button title={t('Swap')} className={styles['token-option-button']+' '+styles['swap-button']} onClick={() => console.log('swap')}>
+                                <Link href={'/app/swap/'+token.address} title={t('Swap')} className={styles['token-option-button']+' '+styles['swap-button']} >
                                     <SwapIcon />
-                                </button>
-                                <button title={t('Swap')} className={styles['token-option-button']+' '+styles['transaction-button']} onClick={() => console.log('transactions')}>
-                                    <Transactions />
-                                </button>
+                                </Link>
+                                {/*<button title={t('Swap')} className={styles['token-option-button']+' '+styles['transaction-button']} onClick={() => console.log('transactions')}>*/}
+                                {/*    <Transactions />*/}
+                                {/*</button>*/}
                             </div>
                         </td>
                     </tr>

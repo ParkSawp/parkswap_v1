@@ -34,25 +34,6 @@
     text-align: left;
     padding-left: 2rem;
 }
-.portfolio-wallet-container-body button {
-    border: 1px solid transparent;
-    background: none;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.portfolio-wallet-container-body button:hover {
-    background: var(--black-gray);
-    color: white;
-}
-.portfolio-wallet-container-body button.transaction-button:hover {
-    background: var(--lite-red);
-    color: white;
-}
 .portfolio-wallet-stats-container-body {
     display: flex;
     justify-content: space-around;
@@ -218,4 +199,24 @@
 }
 .wallet-network-amount {
     font-weight: bold;
+}
+.token-option-button {
+    border: 1px solid transparent;
+    background: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--black-gray);
+}
+.token-option-button:hover {
+    background: var(--black-gray);
+    color: white;
+}
+.token-option-button.transaction-button:hover {
+    background: var(--lite-red);
+    color: white;
 }

@@ -26,7 +26,7 @@ export default function TransactionLogAsset({ log }) {
                         <span className={styles['history-transaction-asset-symbol']} >{ log.asset?.symbol }</span>
                     </div>
                     <div className={styles['history-transaction-asset-amount-container']}>
-                        <Amount amount={150}/>
+                        {/*<Amount amount={150}/>*/}
                     </div>
                 </div>
             </div>

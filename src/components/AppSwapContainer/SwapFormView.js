@@ -19,7 +19,7 @@ import {customParseUnits, truncateDecimal} from "@/src/config/functions";
 const BUY_DIRECTION = 'buy';
 const SELL_DIRECTION = 'sell';
 
-export default function SwapFormView({setIsWalletConnected, reset: {shouldResetPrice, setShouldResetPrice}, isWalletConnected, displaySettings, onTokensSelect }) {
+export default function SwapFormView({ sellTokenFromParam, setIsWalletConnected, reset: {shouldResetPrice, setShouldResetPrice}, isWalletConnected, displaySettings, onTokensSelect }) {
 
     const [sellToken,setSellToken] = useState();
     const [sellTokenAmount,setSellTokenAmount] = useState(0);
@@ -48,7 +48,7 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
         setBuyTokenAmount(amount);
         setDirection(BUY_DIRECTION);
     };
-    const handleSellToken = async (token) => {
+    const handleSellToken = (token) => {
         setSellToken(token);
         setDirection(SELL_DIRECTION);
         onTokensSelect && onTokensSelect({ sellToken: token, buyToken: buyToken});
@@ -136,6 +136,13 @@ export default function SwapFormView({setIsWalletConnected, reset: {shouldResetP
         }
         setShouldResetPrice(false);
     }, [shouldResetPrice, updateAmount]);
+
+    useEffect(() => {
+        if(!sellTokenFromParam) {
+            return;
+        }
+        handleSellToken(sellTokenFromParam)
+    }, [sellTokenFromParam])
 
     return (
         <>

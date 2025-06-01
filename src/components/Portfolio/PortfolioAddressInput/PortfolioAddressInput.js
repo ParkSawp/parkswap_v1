@@ -3,7 +3,7 @@ import React from "react";
 import {useTranslation} from "react-i18next";
 
 
-export default function PortfolioAddressInput({ value, onChange }) {
+export default function PortfolioAddressInput({ className, value, onChange }) {
     const { t } = useTranslation();
 
     return (
@@ -11,7 +11,7 @@ export default function PortfolioAddressInput({ value, onChange }) {
             <input
                 type="text"
                 placeholder={t("Enter wallet address to track")}
-                className={styles["portfolio-any-address-input"]}
+                className={styles["portfolio-any-address-input"]+' '+className}
                 value={value}
                 onInput={(e) => onChange(e.target.value)}
             />

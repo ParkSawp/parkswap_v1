@@ -279,17 +279,10 @@
 .graphic-container img {
     height: 100%;
 }
-.portfolio-no-address-icon-container {
-    font-size: 5rem;
-    color: light-dark(var(--black), var(--white));
-}
-.portfolio-custom-connect-btn {
-    margin-top: 1rem;
-}
 .portfolio-any-address-input {
     border: 1px solid #ccc;
-    padding: .4rem;
-    border-radius: 15px;
+    padding: .75rem .4rem;
+    border-radius: 35px;
     width: 100%;
     font-size: .8rem;
 }

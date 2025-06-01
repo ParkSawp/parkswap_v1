@@ -8,17 +8,19 @@ import SendFormView from "@/src/components/AppSwapContainer/SendFormView";
 import {ChartIcon, ReloadIcon, SendIcon, SettingsIcon, SwapIcon} from "@/src/components/Icon/Icon";
 import Translate from "@/src/components/Translate/Translate";
 import {useTranslation} from "react-i18next";
+import useGetTokens from "@/src/hooks/useGetTokens";
 
 const SWAP_VIEW = 'SWAP_VIEW';
 const SEND_VIEW = 'SEND_VIEW';
 
 
-export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletConnected,isWalletConnected, onTokensSelect}) {
+export default function SwapContainer({address, setIsGraphOpen, isGraphOpen, setIsWalletConnected, isWalletConnected, onTokensSelect}) {
   const [displaySettings,setDisplaySettings] = useState(false);
   const [shouldResetPrice, setShouldResetPrice] = useState(false);
 
   const [view, setView] = useState(SWAP_VIEW);
   const { t } = useTranslation();
+  const { tokens, fetchTokens } = useGetTokens();
 
 
   const showSwapView = () => setView(SWAP_VIEW);
@@ -33,6 +35,12 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
   const toggleIsGraphOpen = () => {
     setIsGraphOpen(!isGraphOpen);
   };
+
+  useEffect(() => {
+    fetchTokens({ key: address });
+  }, [address]);
+
+  const sellTokenFromParams = (tokens.length === 1) ? tokens[0] : null;
 
   return (
       <>
@@ -77,7 +85,9 @@ export default function SwapContainer({setIsGraphOpen,isGraphOpen,setIsWalletCon
                     setIsWalletConnected={setIsWalletConnected}
                     isWalletConnected={isWalletConnected}
                     displaySettings={displaySettings}
-                    onTokensSelect={onTokensSelect} />
+                    onTokensSelect={onTokensSelect}
+                    sellTokenFromParam={sellTokenFromParams}
+                  />
                 : <SendFormView/>
           }
         </motion.div>

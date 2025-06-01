@@ -8,7 +8,7 @@ import ChartContainer from "../../components/AppChartContainer/AppChartContainer
 import React, { useState } from "react";
 import AppSwapHistory from "@/src/components/AppSwapHistory/AppSwapHistory";
 
-export default function Home() {
+export default function SwapApp({ params }) {
   const [isGraphOpen, setIsGraphOpen] = useState(false);
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [tokens, setTokens] = useState({ buyToken: null, sellToken: null });
@@ -23,6 +23,7 @@ export default function Home() {
                 isWalletConnected={isWalletConnected}
                 setIsWalletConnected={setIsWalletConnected}
                 onTokensSelect={setTokens}
+                address={params?.address}
               />
               <ChartContainer isGraphOpen={isGraphOpen} {...tokens} />
           </div>

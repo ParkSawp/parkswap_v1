@@ -79,3 +79,25 @@
 .history-transactions-body-container {
     padding: 1rem;
 }
+.history-transactions-loading-container {
+    padding: 1rem;
+    text-align: center;
+}
+.history-transactions-load-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: .5rem;
+}
+.history-transactions-load-more-button {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    background: light-dark(var(--dark-green-color), var(--dark-green-color));
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.history-transactions-load-more-button:hover {
+    background: var(--lite-green);
+}

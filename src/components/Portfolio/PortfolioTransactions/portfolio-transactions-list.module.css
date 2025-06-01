@@ -152,6 +152,7 @@
     align-items: center;
     align-content: center;
     column-gap: 1.5rem;
+    margin-top: .75rem;
 }
 .history-transaction-more-container a {
     color: light-dark(var(--black), var(--white));
@@ -176,7 +177,18 @@
     align-content: center;
     column-gap: .5rem;
 }
-
+.history-transaction-more-item-value {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: .5rem;
+}
+.history-transaction-more-item-value span {
+    display: inline-block;
+    padding: 0.15rem .5rem;
+    background: var(--primary-lite-color);
+    color: var(--black-gray);
+    border-radius: 5px;
+}
 @keyframes show-more-details {
     from {
         height: 0;
