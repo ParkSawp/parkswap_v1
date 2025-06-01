@@ -1,0 +1,95 @@
+.empty-portfolio-wrapper{
+    /* background:red; */
+    min-height:600px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom:20px;
+    font-family:Poppins;
+    align-content: center;
+    align-items: center;
+}
+.empty-portfolio-container {
+    width: min(80%, 1200px);
+}
+.portfolio-custom-connect-btn {
+    margin-top: 1rem;
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.empty-portfolio-header-image-wrapper {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.empty-portfolio-header-image-wrapper img {
+    filter: grayscale(100%);
+    opacity: .4;
+}
+.portfolio-address-input-wrapper {
+    width: min(90%, 500px);
+    position: relative;
+    margin: 2rem auto;
+}
+.portfolio-address-input {
+    text-align: center;
+    background: none;
+    padding-right: 2rem;
+}
+.portfolio-address-input.connected-wallet {
+    padding-right: 125px;
+}
+.portfolio-address-search-icon-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .5;
+}
+.portfolio-address-search-button-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display:  flex;
+    justify-content:  center;
+    padding: 2px;
+}
+.portfolio-address-search-button-wrapper button {
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    padding: 0 .5rem;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    font-size: .7rem;
+    cursor: pointer;
+    justify-content: center;
+}
+.portfolio-tracked-addresses-input-wrapper {
+    margin-top: 1rem;
+}
+.empty-portfolio-title {
+    text-align: center;
+}
+.portfolio-tracked-addresses-wrapper {
+    display:  flex;
+    justify-content:  flex-start;
+    flex-wrap: wrap;
+    column-gap: .5rem;
+    row-gap: .5rem;
+}
+.portfolio-tracked-addresses-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}

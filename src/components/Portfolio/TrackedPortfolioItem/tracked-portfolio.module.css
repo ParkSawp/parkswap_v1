@@ -1,0 +1,83 @@
+.tracked-portfolio-item {
+    width: min(100%, 275px);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    padding: .3rem;
+    border: 1px solid var(--black-gray);
+    box-shadow: 0 5.5px 0 0 #c4c8d733;
+    transition: box-shadow .2s linear;
+    background:  var(--white);
+}
+.tracked-portfolio-item:hover {
+    box-shadow: 0px 4px 3px var(--black-gray);
+    cursor: pointer;
+}
+.tracked-portfolio-wallet-image-wrapper {
+    width: 40px;
+    height: 40px;
+    overflow:  hidden;
+    display:  flex;
+    justify-content:  center;
+    align-items: center;
+    background: var(--black-gray);
+    border-radius: 50%;
+}
+.tracked-portfolio-wallet-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.tracked-portfolio-wallet-infos {
+    display: flex;
+    justify-content: space-between;
+    column-gap: .5rem;
+}
+.tracked-portfolio-wallet-description {
+    display: flex;
+    justify-content: space-between;
+}
+.tracked-portfolio-wallet-name {
+    font-weight: bold;
+    font-size: .9rem;
+    text-wrap: nowrap;
+    width: 120px;
+    overflow:  hidden;
+    text-overflow: ellipsis;
+    color: var(--dark-green-color);
+}
+.tracked-portfolio-wallet-amounts-description {
+    font-weight: bold;
+    font-size: .85rem;
+}
+.tracked-portfolio-wallet-assets-description {
+    height: 35px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: .5rem;
+}
+.tracked-portfolio-wallet-assets-title {
+    font-size: .6rem;
+    color: var(--black-gray);
+}
+.tracked-portfolio-wallet-asset-description {
+    width: 30px;
+    height: 30px;
+    overflow:  hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    background: var(--gray);
+}
+.tracked-portfolio-wallet-asset-description img {
+    max-width: 100%;
+    max-height: 100%;
+    filter: grayscale(100%);
+    opacity: .8;
+}
+
+.tracked-portfolio-wallet-asset-description img:hover {
+    filter:  grayscale(0%);
+    opacity: 1;
+}

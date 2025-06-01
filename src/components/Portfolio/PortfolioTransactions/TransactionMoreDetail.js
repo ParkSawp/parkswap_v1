@@ -11,18 +11,19 @@ export default function TransactionMoreDetail({ transaction }) {
             <div className={styles['history-transaction-more-container']} >
                 <div className={styles['history-transaction-more-item']} >
                     <div className={styles['history-transaction-more-item-label']} >
-                        <Translate>Network Fee</Translate>
+                        <Translate>Transaction Fee</Translate>
                     </div>
                     <div className={styles['history-transaction-more-item-value']} >
-                        {transaction.gas.price} ETH ($0.00)
+                        <span>{transaction.gas.fee} ETH</span>
                     </div>
                 </div>
                 <div className={styles['history-transaction-more-item']} >
                     <div className={styles['history-transaction-more-item-label']} >
-                        <Translate>Rate</Translate>
+                        <Translate>Gas Price</Translate>
                     </div>
                     <div className={styles['history-transaction-more-item-value']} >
-                        1 ETH = 1,632.653 USDC
+                        <span>{transaction.gas.priceGwei} Gwei</span>
+                        <span>{transaction.gas.price} ETH</span>
                     </div>
                 </div>
                 <div className={styles['history-transaction-more-item']} >

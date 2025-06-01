@@ -21,6 +21,7 @@ import {useTranslation} from "react-i18next";
 import { useRouter } from "next/navigation";
 import PortfolioAddressInput from "@/src/components/Portfolio/PortfolioAddressInput/PortfolioAddressInput";
 import { formatDistance } from "date-fns";
+import EmptyWalletView from "@/src/components/Portfolio/EmptyWalletView/EmptyWalletView";
 
 const StatsChart = dynamic(() => import("@/src/components/Global/StatsChart/StatsChart"), { ssr: false });
 
@@ -34,7 +35,7 @@ function HomeComponent({ params }) {
     const { t } = useTranslation();
     const [showNft, setShowNft] = useState(true);
     const [currentView, setCurrentView] = useState(VIEWS.TOKEN);
-    const [address, setAddress] = useState((params?.address) ? params.address : connectedWalletAddress);
+    const [address, setAddress] = useState(params.address);
     const [otherAddressToWatch, setOtherAddressToWatch] = useState('');
     const [currentDate, setCurrentDate] = useState(new Date());
     const { data: portfolioData, lastUpdate, loading: portfolioLoading, error, fetchPortfolio } = useGetPortfolio();
@@ -43,41 +44,13 @@ function HomeComponent({ params }) {
     useEffect(() => {
         if(!address) return;
         fetchPortfolio({ address });
-        // const intervalId = setInterval(() => {
-        //     fetchPortfolio({ address });
-        // },  PORTFOLIO.REFRESH_INTERVAL);
-        // return () => clearInterval(intervalId);
     }, [address, fetchPortfolio]);
-
-    // useEffect(() => {
-    //     setAddress(connectedWalletAddress);
-    // }, [connectedWalletAddress]);
 
     useEffect(() => {
         const updateCurrentDate = () => setCurrentDate(new Date());
         const timeIntervalId = setInterval(updateCurrentDate, PORTFOLIO.REFRESH_INTERVAL);
         return () => clearInterval(timeIntervalId);
     }, [currentDate]);
-
-    if(!address || !isAddress(address)) {
-        return (
-            <motion.div className={styles["portfolio-wrapper"]} initial={{opacity: 0, scale: 0.5}}
-                        animate={{opacity: 1, scale: 1}} transition={{duration: 0.5}}>
-                <div>
-                    <PortfolioAddressInput value={address} onChange={setAddress} />
-                </div>
-                <div className={styles["portfolio-no-address-icon-container"]}>
-                    <WalletIcon />
-                </div>
-                <div>Connect your wallet</div>
-                <div className={styles["portfolio-custom-connect-btn"]}>
-                    <CustomConnectButton />
-                </div>
-            </motion.div>
-        )
-    }
-
-    const reloadCurrentAddress = () => fetchPortfolio({ address });
     const watchNewAddress = (address) => {
         if(isAddress(address)) {
             router.push(`/portfolio/address/${address}`);
@@ -85,6 +58,14 @@ function HomeComponent({ params }) {
         }
         setOtherAddressToWatch(address);
     }
+
+    if(!address || !isAddress(address)) {
+        return (
+            <EmptyWalletView address={address} setAddress={setAddress} watchNewAddress={watchNewAddress} connectedWalletAddress={connectedWalletAddress} />
+        )
+    }
+
+    const reloadCurrentAddress = () => fetchPortfolio({ address });
 
     const showTokens = () => setCurrentView(VIEWS.TOKEN);
     const showHistory = () => setCurrentView(VIEWS.HISTORY);

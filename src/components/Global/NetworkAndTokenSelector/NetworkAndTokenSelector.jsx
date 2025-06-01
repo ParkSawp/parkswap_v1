@@ -21,7 +21,7 @@ export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly
     const [searchKey, setSearchKey] = useState('');
     const [selectNetworkOnly, setSelectNetworkOnly] = useState(networkOnly);
 
-    const { tokens, isLoading } = useGetTokens(address, searchKey);
+    const { tokens, isLoading, fetchTokens } = useGetTokens();
 
     const selectToken = (token) => {
         setSelectedToken(token);
@@ -44,6 +44,10 @@ export default function NetworkAndTokenSelector({ networkOnly = false, tokenOnly
     const handleSelectNetwork = () => {
         setSelectNetworkOnly(true);
     };
+
+    useEffect(() => {
+        fetchTokens({ wallet: address, key: searchKey });
+    }, [address, searchKey]);
 
 
     return (

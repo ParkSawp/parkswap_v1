@@ -3,9 +3,9 @@ import styles from './address.module.css';
 import {CopyIcon} from "@/src/components/Icon/Icon";
 import {Toast} from "@/src/config/functions";
 
-export default function Address({ value, network, isHash = false, copy = true }) {
+export default function Address({ value, target = true, network, isHash = false, copy = true }) {
 
-    const href = network ? network.explorerUrl+`/${isHash ? 'tx' : 'address'}/${value}` : '#';
+    const href = network ? network.explorerUrl+`/${isHash ? 'tx' : 'address'}/${value}` : '/portfolio/address/'+value;
 
     const copyToClipboard = (event) => {
         event.stopPropagation();
@@ -20,7 +20,7 @@ export default function Address({ value, network, isHash = false, copy = true })
     return (
         <>
             <div className={styles['address-container']} title={value} >
-                <a href={href} target="_blank" className={styles['address-container-link']} >
+                <a href={href} target={target ? "_blank" : "_parent"} className={styles['address-container-link']} onClick={(e) => e.stopPropagation()} >
                     {value.slice(0, isHash ? 10 : 7)}...{value.slice(-4)}
                 </a>
                 {

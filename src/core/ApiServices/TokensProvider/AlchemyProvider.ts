@@ -23,6 +23,11 @@ export default class AlchemyProvider {
         if(alchemyChainId === 'bnb-mainnet') {
             return bsc;
         }
+        // arb-mainnet
+        // Optimism
+        // starknet-mainnet
+        // solana-mainnet
+        // bitcoin-mainnet
         return mainnet;
     }
 
@@ -159,6 +164,8 @@ export default class AlchemyProvider {
             // console.log({ symbol: chain.name, amount: result.totalAmount, tokens: result.tokens.length })
         }
 
+        wallets.tokens.sort((a, b) => b?.price.total - a?.price.total);
+
         return wallets;
     }
     public static async walletTokensByChain(address: string, chain): Promise<any> {
@@ -234,7 +241,8 @@ export default class AlchemyProvider {
         const result = await AlchemyProvider.request(
             AlchemyProvider.getTransactionByAddressUrl(),
             {
-                "limit": 50,
+                "limit": 25,
+                'after': after,
                 "addresses": [
                     {
                         "address": address,

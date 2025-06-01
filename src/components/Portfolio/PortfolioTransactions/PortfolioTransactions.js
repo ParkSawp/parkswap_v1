@@ -9,7 +9,7 @@ import useGetTransactions from "@/src/hooks/useGetTransactions";
 export default function PortfolioTransactions({ address, lastUpdate }) {
 
     const { t, i18n } = useTranslation();
-    const { data: transactions, isLoading: fetchTransactionLoading, fetchTransactions } = useGetTransactions();
+    const { data: transactions, cursor, loading: fetchTransactionLoading, fetchTransactions } = useGetTransactions();
 
     const [isLoading, setIsLoading] = useState(false);
     const [showMoreHash, setShowMoreHash] = useState(null);
@@ -18,9 +18,10 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
     const transactionTypes = useMemo(() => {
         return [
             { value: 'trade', label: t('Trade') },
-            { value: 'mint', label: t('Mint') },
+            // { value: 'mint', label: t('Mint') },
             { value: 'receive', label: t('Receive') },
             { value: 'send', label: t('Send') },
+            { value: 'approve', label: t('Approve') },
             { value: 'others', label: t('Others') },
         ]
     }, [i18n.language]);
@@ -47,10 +48,44 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
             transactions: [...filters.transactions, transactionType]
         });
     };
+    const updateSearchKey = (event) => setFilters({ ...filters, searchKey: event.target.value });
+
+    const loadMoreTransactions = () => {
+        fetchTransactions(address, transactions, cursor);
+    };
 
     useEffect(() => {
-        fetchTransactions(address)
+        fetchTransactions(address, []);
     }, [address, lastUpdate, fetchTransactions]);
+
+    const filteredTransactions = transactions.map((transactionsByDate) => {
+        const transactions = transactionsByDate.transactions.filter((transaction) => {
+            if(filters.transactions.length > 0) {
+               const isMatchTransactionType = filters.transactions.includes(transaction.type) || filters.transactions.includes('others');
+               if(!isMatchTransactionType) {
+                   return false;
+               }
+            }
+
+            if(!filters.searchKey) {
+                return true;
+            }
+            const isHashMatch = transaction.hash.toLowerCase().includes(filters.searchKey.toLowerCase());
+            if(isHashMatch) {
+                return true;
+            }
+            return transaction.mainLogs.find((log) => {
+                return log.hash?.toLowerCase().includes(filters.searchKey.toLowerCase())
+                    || log.args?.from?.toLowerCase().includes(filters.searchKey.toLowerCase())
+                    || log.args?.to?.toLowerCase().includes(filters.searchKey.toLowerCase())
+                    || log.asset?.name?.toLowerCase().includes(filters.searchKey.toLowerCase())
+                    || log.asset?.address?.toLowerCase().includes(filters.searchKey.toLowerCase())
+                    || log.asset?.symbol?.toLowerCase().includes(filters.searchKey.toLowerCase());
+            });
+        });
+
+        return { date: transactionsByDate.date, transactions };
+    }).filter((transactionsByDate) => transactionsByDate.transactions.length > 0)
 
     return (
         <>
@@ -78,21 +113,21 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
                         </div>
                     </div>
                     <div className={styles['history-section-filter-container']}>
-                        <div className={styles['history-filter-title']}>
-                            <Translate>Assets</Translate>
-                        </div>
-                        <div className={styles['history-filter-body']}>
-                            {
-                                assetTypes.map((assetType) => (
-                                    <label onClick={() => setFilterAsset(assetType.value)}
-                                           key={assetType.value}
-                                           className={styles['history-filter-item']+' '+(filters.asset === assetType.value ? styles['active'] : '')}>
-                                        <input type="radio" readOnly checked={filters.asset === assetType.value} name='history-filter-asset-type' value={assetType.value}/>
-                                        <span>{assetType.label}</span>
-                                    </label>
-                                ))
-                            }
-                        </div>
+                        {/*<div className={styles['history-filter-title']}>*/}
+                        {/*    <Translate>Assets</Translate>*/}
+                        {/*</div>*/}
+                        {/*<div className={styles['history-filter-body']}>*/}
+                        {/*    {*/}
+                        {/*        assetTypes.map((assetType) => (*/}
+                        {/*            <label onClick={() => setFilterAsset(assetType.value)}*/}
+                        {/*                   key={assetType.value}*/}
+                        {/*                   className={styles['history-filter-item']+' '+(filters.asset === assetType.value ? styles['active'] : '')}>*/}
+                        {/*                <input type="radio" readOnly checked={filters.asset === assetType.value} name='history-filter-asset-type' value={assetType.value}/>*/}
+                        {/*                <span>{assetType.label}</span>*/}
+                        {/*            </label>*/}
+                        {/*        ))*/}
+                        {/*    }*/}
+                        {/*</div>*/}
                     </div>
                     {/*<div className={styles['history-spam-filter-container']}>*/}
                     {/*    Hide Span*/}
@@ -104,7 +139,12 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
                     </div>
                     <div className={styles['history-filter-body']}>
                         <div className={styles['history-search-filter-container']}>
-                            <input type="text" placeholder={t('Filter by address or name')}/>
+                            <input
+                                type="text"
+                                placeholder={t('Filter by address or name')}
+                                value={filters.searchKey}
+                                onChange={updateSearchKey}
+                            />
                             <div className={styles['history-search-options-container']}>
                                 {
                                     isLoading
@@ -120,14 +160,34 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
 
             <div className={styles['history-transactions-body-container']}>
                 {
-                    transactions.map((transactionsByDate, index) => (
+                    filteredTransactions.map((transactionsByDate, index) => (
                         <div key={transactionsByDate.date} className={styles['history-transactions-date-container']} >
                             <div className={styles['history-transactions-date']} >{transactionsByDate.date}</div>
                             <PortfolioTransactionsList transactions={transactionsByDate.transactions} showMoreHash={showMoreHash} setShowMoreHash={setShowMoreHash} />
-                        </div>
-                    ))
+                        </div> ))
+                }
+                {
+                    fetchTransactionLoading
+                        ?  (
+                            <div className={styles['history-transactions-loading-container']} >
+                                <LoadingIcon size={20}/>
+                            </div>
+                        ) : null
                 }
             </div>
+            {
+                (transactions.length > 0 && cursor)
+                &&
+                (
+                    <>
+                       <div className={styles['history-transactions-load-more-container']} >
+                           <button className={styles['history-transactions-load-more-button']} onClick={loadMoreTransactions} >
+                               <Translate>Load more</Translate>
+                           </button>
+                       </div>
+                    </>
+                )
+            }
         </>
     );
 }

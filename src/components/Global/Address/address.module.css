@@ -6,6 +6,11 @@
     align-content: center;
     column-gap: .5rem;
     width: 100%;
+    padding: 0 .2rem;
+    border-radius: 10px;
+}
+.address-container:hover {
+    background-color: var(--primary-lite-color);
 }
 .address-container-link {
     color: var(--black-gray);

@@ -135,8 +135,11 @@ export default class TransactionFormatter {
             number: transaction.blockNumber,
             internal: transaction.internalTxns,
             gas: {
-                value: formatEther(parseInt(transaction.gas)),
-                price: formatEther(transaction.gasPrice)
+                gas: formatEther(parseInt(transaction.gas)),
+                price: formatEther(parseInt(transaction.gasPrice)),
+                priceGwei: (parseInt(transaction.gasPrice) / 1_000_000_000).toFixed(6),
+                fee: formatEther(parseInt(transaction.gasPrice) * parseInt(transaction.gas)),
+
             },
             eventNames,
             type: TransactionFormatter.getTransactionType(walletAddress, transaction, mainLogs),

@@ -3,10 +3,9 @@ import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvid
 
 export async function GET(request) {
     const { searchParams } = request.nextUrl
-    const { address } = Object.fromEntries(searchParams.entries());
+    const { address, cursor } = Object.fromEntries(searchParams.entries());
 
-    const response = await AlchemyProvider.transactions(address.toLowerCase());
-
+    const response = await AlchemyProvider.transactions(address.toLowerCase(), cursor || '');
 
     // Do whatever you want
     return NextResponse.json( response, { status: 200 });
