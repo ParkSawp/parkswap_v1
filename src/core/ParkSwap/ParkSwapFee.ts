@@ -13,10 +13,10 @@ export default class ParkSwapFee {
             if(response.value) {
                 amountTotal = amount * response.value;
                 if(amountTotal > 10000 && amountTotal < 100000) {
-                    fee = 200;
+                    fee = Number(process.env.API_FEE_L2_BPS || '200');
                 }
                 else if(amountTotal > 100000) {
-                    fee = 300;
+                    fee = Number(process.env.API_FEE_L3_BPS || '300');
                 }
             }
 
