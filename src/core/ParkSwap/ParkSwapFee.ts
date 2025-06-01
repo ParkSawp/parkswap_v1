@@ -4,7 +4,7 @@ import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvid
 export default class ParkSwapFee {
 
     public static async getFeeBps(symbol: string, amount: number): Promise<{fee: number}> {
-        let fee = 100;
+        let fee = Number(process.env.API_FEE_BPS);
         try {
             const response = await AlchemyProvider.usd(symbol);
 
