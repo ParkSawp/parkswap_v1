@@ -144,7 +144,7 @@ export default function Home() {
                       <div className={styles["content-text"]}>
                         <div className={styles["container-title"]}>
                           <span style={{color: "white"}}>
-                            Multifunctionnal aggregator
+                            DeFi HUB
                             {/*<i style={{ color: "white", fontStyle: "normal" }}>*/}
                             {/*  Au coeur*/}
                             {/*</i>*/}
