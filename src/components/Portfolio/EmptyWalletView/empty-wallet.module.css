@@ -77,7 +77,7 @@
 .portfolio-tracked-addresses-input-wrapper {
     margin-top: 1rem;
 }
-.empty-portfolio-title {
+.empty-portfolio-title, .portfolio-tracked-addresses-empty {
     text-align: center;
 }
 .portfolio-tracked-addresses-wrapper {
@@ -92,4 +92,10 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
+}
+.portfolio-tracked-addresses-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
 }

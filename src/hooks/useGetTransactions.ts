@@ -41,6 +41,7 @@ export default function useGetTransactions() {
         loading,
         error,
         cursor,
-        fetchTransactions
+        fetchTransactions,
+        setTransactions: setData
     }
 }

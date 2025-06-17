@@ -7,21 +7,20 @@ import React, {useEffect} from "react";
 import Translate from "@/src/components/Translate/Translate";
 import {useGetWallets} from "@/src/hooks/useGetWallets";
 import TrackedPortfolioItem from "@/src/components/Portfolio/TrackedPortfolioItem/TrackedPortfolioItem";
+import useRecentTrackedAddresses from "@/src/hooks/useRecentTrackedAddresses";
 
 
 export default function EmptyWalletView({ connectedWalletAddress, watchNewAddress, address, setAddress}) {
 
     const useMyAddress  = () => watchNewAddress(connectedWalletAddress);
-    const { wallets, loading, fetchWallets } = useGetWallets();
+    const { data: recentTrackedAddresses } = useRecentTrackedAddresses();
 
     let inputClassName = styles['portfolio-address-input'];
     if(connectedWalletAddress) {
         inputClassName += ' '+styles['connected-wallet'];
     }
 
-    useEffect(() => {
-        fetchWallets();
-    }, []);
+    const wallets = Object.values(recentTrackedAddresses.portfolio);
 
     return (
         <motion.div className={styles["empty-portfolio-wrapper"]} initial={{opacity: 0, scale: 0.5}}
@@ -64,15 +63,20 @@ export default function EmptyWalletView({ connectedWalletAddress, watchNewAddres
 
                 <div className={styles["portfolio-tracked-addresses-input-wrapper"]}>
                     {
-                        loading
-                            ? (<div className={styles['portfolio-tracked-addresses-loading']}><LoadingIcon /></div>)
-                            : <div className={styles['portfolio-tracked-addresses-wrapper']} >
-                                {
-                                    wallets.map((wallet) => (
-                                        <TrackedPortfolioItem key={wallet.address} wallet={wallet} watchNewAddress={watchNewAddress} />
-                                    ))
-                                }
-                            </div>
+                        (wallets.length > 0) && (
+                            <>
+                                <div className={styles['portfolio-tracked-addresses-title']}>
+                                    <Translate>Recently tracked addresses</Translate>
+                                </div>
+                                <div className={styles['portfolio-tracked-addresses-wrapper']} >
+                                    {
+                                        wallets.map((wallet) => (
+                                            <TrackedPortfolioItem key={wallet.address} wallet={wallet} watchNewAddress={watchNewAddress} />
+                                        ))
+                                    }
+                                </div>
+                            </>
+                        )
                     }
                 </div>
             </div>

@@ -5,15 +5,19 @@ import {CloseIcon, LoadingIcon, SearchIcon} from "@/src/components/Icon/Icon";
 import {useTranslation} from "react-i18next";
 import Translate from "@/src/components/Translate/Translate";
 import useGetTransactions from "@/src/hooks/useGetTransactions";
+import useRecentTrackedAddresses from "@/src/hooks/useRecentTrackedAddresses";
+import recentAddresses from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
 
 export default function PortfolioTransactions({ address, lastUpdate }) {
 
     const { t, i18n } = useTranslation();
-    const { data: transactions, cursor, loading: fetchTransactionLoading, fetchTransactions } = useGetTransactions();
+    const { data: transactions, setTransactions, cursor, loading: fetchTransactionLoading, fetchTransactions } = useGetTransactions();
 
     const [isLoading, setIsLoading] = useState(false);
     const [showMoreHash, setShowMoreHash] = useState(null);
     const [filters, setFilters] = useState({asset: 'all', transactions: [], searchKey: ''});
+
+    const { data: recentAddresses, addRecent } = useRecentTrackedAddresses();
 
     const transactionTypes = useMemo(() => {
         return [
@@ -55,8 +59,20 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
     };
 
     useEffect(() => {
+        if(recentAddresses.transactions[address]) {
+            setTransactions(recentAddresses.transactions[address]);
+            console.log(recentAddresses)
+            return;
+        }
         fetchTransactions(address, []);
-    }, [address, lastUpdate, fetchTransactions]);
+    }, [address, lastUpdate, fetchTransactions, recentAddresses]);
+
+    useEffect(() => {
+        if(!address || !transactions?.length) {
+            return;
+        }
+        addRecent(address, null,  transactions);
+    }, [transactions]);
 
     const filteredTransactions = transactions.map((transactionsByDate) => {
         const transactions = transactionsByDate.transactions.filter((transaction) => {

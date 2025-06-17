@@ -7,17 +7,20 @@ export default function TrackedPortfolioItem({ wallet, watchNewAddress }) {
 
     const trackWallet = () => watchNewAddress(wallet.address);
 
+    if(!wallet) {
+        return null;
+    }
     return (
         <div className={styles['tracked-portfolio-item']} onClick={trackWallet} >
             <div  className={styles['tracked-portfolio-wallet-description']} >
                 <div  className={styles['tracked-portfolio-wallet-infos']} >
-                    <div  className={styles['tracked-portfolio-wallet-image-wrapper']} >
-                        <img src={wallet.image} alt={wallet.name}/>
-                    </div>
+                    {/*<div  className={styles['tracked-portfolio-wallet-image-wrapper']} >*/}
+                    {/*    <img src={wallet.image ?? ''} alt={wallet.name}/>*/}
+                    {/*</div>*/}
                     <div  className={styles['tracked-portfolio-wallet-address-description']} >
-                        <div  className={styles['tracked-portfolio-wallet-name']} >
-                            { wallet.name }
-                        </div>
+                        {/*<div  className={styles['tracked-portfolio-wallet-name']} >*/}
+                        {/*    { wallet.name ?? 'Unnamed' }*/}
+                        {/*</div>*/}
                         <div  className={styles['tracked-portfolio-wallet-address']} >
                             <Address value={wallet.address} target={false} />
                         </div>
@@ -25,7 +28,7 @@ export default function TrackedPortfolioItem({ wallet, watchNewAddress }) {
                 </div>
                 <div  className={styles['tracked-portfolio-wallet-amounts-description']} >
                     <div>
-                        <Amount amount={wallet.description?.amount?.total || 100000}  />
+                        <Amount amount={wallet.amount?.total || 0}  />
                     </div>
                 </div>
             </div>
@@ -34,7 +37,7 @@ export default function TrackedPortfolioItem({ wallet, watchNewAddress }) {
             </div>
             <div  className={styles['tracked-portfolio-wallet-assets-description']} >
                 {
-                    wallet.description?.assets?.slice(0, 7).map((asset) => (
+                    wallet.tokens?.slice(0, 7).map((asset) => (
                         <div className={styles['tracked-portfolio-wallet-asset-description']} key={asset.address}>
                             <img src={asset.logo_uri} alt={asset.name} />
                         </div>

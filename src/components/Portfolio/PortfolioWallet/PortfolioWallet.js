@@ -70,7 +70,7 @@ export default function PortfolioWallet({ tokens: allTokens, chains, amount }) {
                     </div>
                 </div>
                 <div className={styles['portfolio-section']} >
-                    <div className={styles['portfolio-wallet-section-title']}><Translate>Performance</Translate></div>
+                    <div className={styles['portfolio-wallet-section-title']}><Translate>Details</Translate></div>
                     <div className={styles["portfolio-wallet-stats-container-body"]}>
                         <div className={styles["portfolio-wallet-stats-item"]}>
                             <div className={styles["portfolio-wallet-stats-item-title"]}><Translate>Total

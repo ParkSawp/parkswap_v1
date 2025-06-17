@@ -22,6 +22,9 @@ import { useRouter } from "next/navigation";
 import PortfolioAddressInput from "@/src/components/Portfolio/PortfolioAddressInput/PortfolioAddressInput";
 import { formatDistance } from "date-fns";
 import EmptyWalletView from "@/src/components/Portfolio/EmptyWalletView/EmptyWalletView";
+import useRecentTrackedAddresses from "@/src/hooks/useRecentTrackedAddresses";
+import walletData from "@/src/core/ApiServices/TokensProvider/TokenProvider";
+import Address from "@/src/components/Global/Address/Address";
 
 const StatsChart = dynamic(() => import("@/src/components/Global/StatsChart/StatsChart"), { ssr: false });
 
@@ -40,6 +43,7 @@ function HomeComponent({ params }) {
     const [currentDate, setCurrentDate] = useState(new Date());
     const { data: portfolioData, lastUpdate, loading: portfolioLoading, error, fetchPortfolio } = useGetPortfolio();
     const router = useRouter()
+    const { addRecent } = useRecentTrackedAddresses();
 
     useEffect(() => {
         if(!address) return;
@@ -58,6 +62,13 @@ function HomeComponent({ params }) {
         }
         setOtherAddressToWatch(address);
     }
+
+    useEffect(() => {
+        if(!address || !portfolioData) {
+            return;
+        }
+        addRecent(address, portfolioData,  null);
+    }, [portfolioData]);
 
     if(!address || !isAddress(address)) {
         return (
@@ -94,31 +105,28 @@ function HomeComponent({ params }) {
                                         }
                                     </div>
                                     <div className={styles["header-title-address"]}>
-                                        <span className={styles['address-container']}>{address}</span>
-                                        <span className={styles["address-copy-button"]}>
-                                            <img src="/svg/icons/copy.svg" alt="Copy"/>
-                                        </span>
+                                        <Address value={address} full={true} />
                                     </div>
                                     <div className={styles["header-amount-amount"]}>
                                         <Amount amount={portfolioData?.amount.total ?? 0} />
                                     </div>
                                     <div className={styles['transactions-options-container']}>
                                         {
-                                            (address === connectedWalletAddress)
-                                            && (
-                                                <>
-                                                    <button
-                                                        className={styles['transaction-option'] + ' ' + styles['transaction-option-send']}>
-                                                        <span><Translate>Send</Translate></span>
-                                                        <img src="/svg/icons/send.svg" alt="Send"/>
-                                                    </button>
-                                                    <button
-                                                        className={styles['transaction-option'] + ' ' + styles['transaction-option-receive']}>
-                                                        <span><Translate>Receive</Translate></span>
-                                                        <img src="/svg/icons/receive.svg" alt="Receive"/>
-                                                    </button>
-                                                </>
-                                            )
+                                            // (address === connectedWalletAddress)
+                                            // && (
+                                            //     <>
+                                            //         <button
+                                            //             className={styles['transaction-option'] + ' ' + styles['transaction-option-send']}>
+                                            //             <span><Translate>Send</Translate></span>
+                                            //             <img src="/svg/icons/send.svg" alt="Send"/>
+                                            //         </button>
+                                            //         <button
+                                            //             className={styles['transaction-option'] + ' ' + styles['transaction-option-receive']}>
+                                            //             <span><Translate>Receive</Translate></span>
+                                            //             <img src="/svg/icons/receive.svg" alt="Receive"/>
+                                            //         </button>
+                                            //     </>
+                                            // )
                                         }
                                     </div>
                                 </div>
@@ -167,19 +175,19 @@ function HomeComponent({ params }) {
                     </div>
                 </div>
             </motion.div>
-            <motion.div className={styles["portfolio-graphics-wrapper"]}>
-                <div className={styles['graphics-container']}>
-                    <div className={styles['graphic-container']}>
-                        <StatsChart title='Protocol Exposure'/>
-                    </div>
-                    <div className={styles['graphic-container']}>
-                        <StatsChart title='Token Exposure'/>
-                    </div>
-                    <div className={styles['graphic-container']}>
-                        <img src="/img/nft.jpg" alt="NFT"/>
-                    </div>
-                </div>
-            </motion.div>
+            {/*<motion.div className={styles["portfolio-graphics-wrapper"]}>*/}
+            {/*    <div className={styles['graphics-container']}>*/}
+            {/*        <div className={styles['graphic-container']}>*/}
+            {/*            <StatsChart title='Protocol Exposure'/>*/}
+            {/*        </div>*/}
+            {/*        <div className={styles['graphic-container']}>*/}
+            {/*            <StatsChart title='Token Exposure'/>*/}
+            {/*        </div>*/}
+            {/*        <div className={styles['graphic-container']}>*/}
+            {/*            <img src="/img/nft.jpg" alt="NFT"/>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</motion.div>*/}
         </>
     );
 }
