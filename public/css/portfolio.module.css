@@ -23,7 +23,7 @@
 }
 
 .portfolio-container{
-    width: min(80%, 1200px);
+    width: min(100%, 1200px);
 }
 .portfolio-wallet-description {
     /*background-color: light-dark(var(--background-color), var(--black-gray));*/
@@ -186,7 +186,7 @@
 .header-amount-amount{
     font-size: 2.5rem;
     font-weight: bold;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .header-amount-percent{
@@ -316,6 +316,9 @@
     background: var(--black-gray);
     color: white;
 }
+.wallet-option-item-button-label {
+    font-size: .7rem;
+}
 @media only screen and (max-width:700px) {
     .portfolio-wallet-details {
         align-items: center;
@@ -342,5 +345,8 @@
     .header-amount-details {
         align-items: flex-end;
         padding-right: 10px;
+    }
+    .header-amount-amount{
+        justify-content: flex-start;
     }
 }

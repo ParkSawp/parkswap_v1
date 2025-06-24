@@ -70,8 +70,8 @@ export default function EmptyWalletView({ connectedWalletAddress, watchNewAddres
                                 </div>
                                 <div className={styles['portfolio-tracked-addresses-wrapper']} >
                                     {
-                                        wallets.map((wallet) => (
-                                            <TrackedPortfolioItem key={wallet.address} wallet={wallet} watchNewAddress={watchNewAddress} />
+                                        wallets.map((wallet, index) => (
+                                            <TrackedPortfolioItem key={index} wallet={wallet} watchNewAddress={watchNewAddress} />
                                         ))
                                     }
                                 </div>

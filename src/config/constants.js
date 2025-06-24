@@ -23,6 +23,14 @@ export const PORTFOLIO = {
     REFRESH_INTERVAL: 120 * 1000
 };
 
+export const STABLE_COINS = [
+    "usdt","usdc","usde","dai","usd1","fdusd","pyusd","tusd","usdd",
+    "eurc","usd0","usdy","usdf","rlusd","usdg","frax","usdo","deusd",
+    "eurs","ausd","usdtb","usdl","usdb","frxusd","usdp","lisusd","xusd",
+    "vbusd","busd","aeur","euri","gusd","eurcv","eurt","lusd","susd",
+    "cusd","ampl","dusd","mnee","yusd","zusd","gyen","idrt","bidr"
+];
+
 export const ERC20_ABI = [
     // Event Transfer
     "event Transfer(address indexed from, address indexed to, uint256 value)",

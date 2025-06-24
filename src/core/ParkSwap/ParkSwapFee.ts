@@ -1,4 +1,5 @@
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
+import {Logs} from "@/src/config/Logs";
 
 
 export default class ParkSwapFee {
@@ -20,7 +21,7 @@ export default class ParkSwapFee {
                 }
             }
 
-            console.log({ feeCalculator: fee, amountTotal, response, symbol });
+            Logs.log({ feeCalculator: fee, amountTotal, response, symbol });
         } catch (e) {}
 
         return { fee };

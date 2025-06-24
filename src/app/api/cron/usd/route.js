@@ -3,9 +3,9 @@ import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvid
 
 
 export async function GET(request) {
-    // if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-    //     return request.status(401).end('Unauthorized');
-    // }
+    if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+        return request.status(401).end('Unauthorized');
+    }
 
     const data = await AlchemyProvider.usd(['ETH', 'BTC']);
 

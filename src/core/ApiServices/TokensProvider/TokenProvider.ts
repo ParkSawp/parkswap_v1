@@ -4,6 +4,7 @@ import TokenRepository, { type Token } from '@/src/core/Models/TokenRepository';
 
 import {formatUnits, isAddress} from 'ethers';
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
+import {Logs} from "@/src/config/Logs";
 
 export default class TokenProvider {
 
@@ -23,7 +24,7 @@ export default class TokenProvider {
                 }
             }
         } catch (e) {
-            console.log('TOKEN CREATION ERROR : '+ e.message);
+            Logs.log('TOKEN CREATION ERROR : '+ e.message);
         }
 
         return token;

@@ -21,3 +21,8 @@ check:
 
 build:
 	docker compose exec app npm run build
+
+reinstall:
+	rm -rf .next
+	rm -rf node_modules
+	npm install

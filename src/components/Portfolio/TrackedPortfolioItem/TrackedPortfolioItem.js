@@ -37,8 +37,8 @@ export default function TrackedPortfolioItem({ wallet, watchNewAddress }) {
             </div>
             <div  className={styles['tracked-portfolio-wallet-assets-description']} >
                 {
-                    wallet.tokens?.slice(0, 7).map((asset) => (
-                        <div className={styles['tracked-portfolio-wallet-asset-description']} key={asset.address}>
+                    wallet.tokens?.slice(0, 7).map((asset, index) => (
+                        <div className={styles['tracked-portfolio-wallet-asset-description']} key={index}>
                             <img src={asset.logo_uri} alt={asset.name} />
                         </div>
                     ))

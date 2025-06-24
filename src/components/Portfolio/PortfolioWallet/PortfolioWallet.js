@@ -101,13 +101,13 @@ export default function PortfolioWallet({ tokens: allTokens, chains, amount }) {
                 </div>
                 <div className={styles['portfolio-section']} >
                     <div className={styles['portfolio-wallet-section-title']}><Translate>Assets</Translate></div>
-                    <table>
+                    <table className={styles['portfolio-wallet-tokens-table']}>
                         <thead>
                             <tr className={styles['portfolio-wallet-table-header']}>
                                 <th scope="col"><Translate>Token</Translate></th>
-                                <th scope="col"><Translate>Type</Translate></th>
-                                <th scope="col"><Translate>Balance</Translate></th>
-                                <th scope="col"><Translate>Price</Translate></th>
+                                <th scope="col" className={styles['desktop-only']} ><Translate>Type</Translate></th>
+                                <th scope="col" className={styles['desktop-only']} ><Translate>Balance</Translate></th>
+                                <th scope="col" className={styles['desktop-only']} ><Translate>Price</Translate></th>
                                 <th scope="col"><Translate>USD Value</Translate></th>
                                 <th scope="col" className={styles['portfolio-wallet-table-header-options']}><Translate>Options</Translate></th>
                             </tr>

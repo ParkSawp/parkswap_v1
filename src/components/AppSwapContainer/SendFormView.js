@@ -11,6 +11,7 @@ import {useTranslation} from "react-i18next";
 import {LoadingIcon} from "@/src/components/Icon/Icon";
 import {customParseUnits, Toast} from "@/src/config/functions";
 import SendTransactionNotification from "@/src/components/AppSwapContainer/SendTransactionNotification";
+import {Logs} from "@/src/config/Logs";
 
 
 
@@ -59,7 +60,7 @@ export default function SendFormView({ }) {
     const isInvalidForm = !receiverAddress || isInvalidAddress || !amount || !token;
 
     useEffect(() => {
-        console.log({ data, error });
+        Logs.log({ data, error });
         if(data) {
             setAmount('0');
             setReceiverAddress('');

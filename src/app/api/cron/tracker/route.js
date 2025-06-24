@@ -1,11 +1,12 @@
 import {NextResponse} from "next/server";
 import WalletRepository from "@/src/core/Models/WalletRepository";
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
+import {Logs} from "@/src/config/Logs";
 
 export async function GET(request) {
-    // if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-    //     return request.status(401).end('Unauthorized');
-    // }
+    if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+        return request.status(401).end('Unauthorized');
+    }
 
     const wallets = await WalletRepository.getWallets();
 
@@ -19,7 +20,7 @@ export async function GET(request) {
             });
             await WalletRepository.update(wallet.id, { description, tokens: assets.tokens });
         } catch (error) {
-            console.log(error.message);
+            Logs.log(error.message);
         }
     }
 

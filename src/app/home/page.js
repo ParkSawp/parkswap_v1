@@ -57,8 +57,8 @@ export default function Home() {
             className={styles["home-container"]}
         >
           {
-            links.map((link) => (
-                <Link key={link.title} disabled={link.soon} href={link.url} className={styles["home-option"] + (link.soon ? ' ' + styles["home-option-soon"] : '')}>
+            links.map((link, index) => (
+                <Link key={link.title+'_'+index} disabled={link.soon} href={link.url} className={styles["home-option"] + (link.soon ? ' ' + styles["home-option-soon"] : '')}>
                   <div className={styles["home-option-icon"]}>
                     <svg width="80px" height="80px" className={link.soon ? styles['home-option-soon-svg'] : ''}>
                       <title>{link.title}</title>

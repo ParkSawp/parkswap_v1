@@ -1,48 +1,165 @@
 
 import TokenRepository, { type Token } from '@/src/core/Models/TokenRepository';
-import { base, polygon, avalanche, bsc, mainnet }  from "@wagmi/core/chains"
-import {formatUnits, Typed as token} from "ethers";
+import {
+    base, polygon, avalanche, bsc, mainnet, fantom, berachain, mantle,
+    zksync, gnosis, arbitrum,arbitrumNova, polygonZkEvm, celo, scroll,
+    sonic, blast, linea, astar, zora
+}  from "@wagmi/core/chains"
+import {ethers, formatUnits, Log, Typed as token} from "ethers";
 import CoinGeckoProvider from "@/src/core/ApiServices/TokensProvider/CoinGeckoProvider";
 import * as fns from 'date-fns';
 import TransactionFormatter from "@/src/core/Fotmatter/TransactionFormatter";
+import {Logs} from "@/src/config/Logs";
+import {STABLE_COINS} from "@/src/config/constants";
 
 export default class AlchemyProvider {
 
+    public static CHAINS: {id: number, alchemyId: string, chain: any}[] = [
+        {
+            id: celo.id,
+            alchemyId: 'celo-mainnet',
+            chain: celo
+        },
+        {
+            id: arbitrum.id,
+            alchemyId: 'arb-mainnet',
+            chain: arbitrum
+        },
+        {
+            id: base.id,
+            alchemyId: 'base-mainnet',
+            chain: base
+        },
+        {
+            id: polygon.id,
+            alchemyId: 'polygon-mainnet',
+            chain: polygon
+        },
+        {
+            id: avalanche.id,
+            alchemyId: 'avax-mainnet',
+            chain: avalanche
+        },
+        {
+            id: bsc.id,
+            alchemyId: 'bnb-mainnet',
+            chain: bsc
+        },
+        {
+            id: fantom.id,
+            alchemyId: 'fantom-mainnet',
+            chain: fantom
+        },
+        {
+            id: berachain.id,
+            alchemyId: 'berachain-mainnet',
+            chain: berachain
+        },
+        {
+            id: mantle.id,
+            alchemyId: 'mantle-mainnet',
+            chain: mantle
+        },
+        {
+            id: zksync.id,
+            alchemyId: 'zksync-mainnet',
+            chain: zksync
+        },
+        {
+            id: gnosis.id,
+            alchemyId: 'gnosis-mainnet',
+            chain: gnosis
+        },
+        {
+            id: arbitrumNova.id,
+            alchemyId: 'arbnova-mainnet',
+            chain: arbitrumNova
+        },
+        {
+            id: polygonZkEvm.id,
+            alchemyId: 'polygonzkevm-mainnet',
+            chain: polygonZkEvm
+        },
+        {
+            id: sonic.id,
+            alchemyId: 'sonic-mainnet',
+            chain: sonic
+        },
+        {
+            id: scroll.id,
+            alchemyId: 'scroll-mainnet',
+            chain: scroll
+        },
+        {
+            id: blast.id,
+            alchemyId: 'blast-mainnet',
+            chain: blast
+        },
+        {
+            id: linea.id,
+            alchemyId: 'linea-mainnet',
+            chain: linea
+        },
+        {
+            id: astar.id,
+            alchemyId: 'astar-mainnet',
+            chain: astar
+        },
+        {
+            id: zora.id,
+            alchemyId: 'zora-mainnet',
+            chain: zora
+        },
+        {
+            id: mainnet.id,
+            alchemyId: 'eth-mainnet',
+            chain: mainnet
+        },
+    ];
+
+    public static SUPPORTED_CHAINS = [
+        base,
+        bsc,
+        polygon,
+        avalanche,
+        mainnet,
+        fantom,
+        berachain,
+        mantle,
+        zksync,
+        gnosis,
+        arbitrum,
+        arbitrumNova,
+        polygonZkEvm,
+        celo,
+        scroll,
+        sonic,
+    ];
+
     public static TokenCache = {};
 
-    public static getChainFromEnum(alchemyChainId: string) {
-        if(alchemyChainId === 'base-mainnet') {
-            return base;
+    public static getChainFromEnum(alchemyChainId: string): any {
+        for(const chain of AlchemyProvider.CHAINS) {
+            if(chain.alchemyId === alchemyChainId) {
+                return chain.chain;
+            }
         }
-        if(alchemyChainId === 'polygon-mainnet') {
-            return polygon;
-        }
-        if(alchemyChainId === 'avax-mainnet') {
-            return avalanche;
-        }
-        if(alchemyChainId === 'bnb-mainnet') {
-            return bsc;
-        }
-        // arb-mainnet
-        // Optimism
-        // starknet-mainnet
-        // solana-mainnet
-        // bitcoin-mainnet
-        return mainnet;
+        return ;
     }
 
+    public static getChain(chainId: number): any {
+        for(const chain of AlchemyProvider.CHAINS) {
+            if(chain.id === chainId) {
+                return chain.chain;
+            }
+        }
+        return mainnet;
+    }
     public static getChainEnum(chainId: number): string {
-        if(chainId === base.id) {
-            return 'base-mainnet';
-        }
-        if(chainId === polygon.id) {
-            return 'polygon-mainnet';
-        }
-        if(chainId === avalanche.id) {
-            return 'avax-mainnet';
-        }
-        if(chainId === bsc.id) {
-            return 'bnb-mainnet';
+        for(const chain of AlchemyProvider.CHAINS) {
+            if(chain.id === chainId) {
+                return chain.alchemyId;
+            }
         }
         return 'eth-mainnet';
     }
@@ -59,19 +176,26 @@ export default class AlchemyProvider {
 
     protected static async loadTokenDetails(token) {
         token.is = { native: token.address === 'null' };
-        const gekoCoin = CoinGeckoProvider.allGekoTokensBySymbol[token.symbol.toLowerCase()];
+        token.categories = [];
+        if(STABLE_COINS.includes(token.symbol?.toLowerCase())) {
+            Logs.watch('Stable Coin '+token.symbol);
+            token.categories.push('stablecoin');
+        }
+
+        const gekoCoin = CoinGeckoProvider.allGekoTokensBySymbol[token.symbol?.toLowerCase()];
         if(!gekoCoin) {
             return;
         }
 
         const gekoCoinDetails = await CoinGeckoProvider.shared.getTokenDetails(gekoCoin.id);
         token.geko = gekoCoinDetails;
+
         if(!gekoCoinDetails?.categories) {
             return;
         }
 
-        token.categories = gekoCoinDetails.categories;
-        token.is.stablecoin = gekoCoinDetails.categories.find(item => item.toLowerCase().includes('stablecoin'));
+        token.categories = [...token.categories, ...gekoCoinDetails.categories];
+        token.is.stablecoin = gekoCoinDetails.categories.find(item => item?.toLowerCase().includes('stablecoin'));
     }
 
     protected static getNetworkApiUrl(chainId: number): string {
@@ -105,11 +229,11 @@ export default class AlchemyProvider {
                 }
                 return jsonData ?? null;
             } catch (e) {
-                console.log({ error: e.message, method: 'AlchemyProvider.request->response.json', url, params, body})
+                Logs.log({ error: e.message, method: 'AlchemyProvider.request->response.json', url, params, body})
                 return null;
             }
         } catch (e) {
-            console.log({ error: e.message, method: 'AlchemyProvider.request', url, params, body})
+            Logs.error({ error: e.message, method: 'AlchemyProvider.request', url, params, body})
             return null;
         }
     }
@@ -137,7 +261,7 @@ export default class AlchemyProvider {
             }
             let value = 0;
             data.data.forEach(item => {
-                if(item.symbol === symbol) {
+                if(item && item.symbol === symbol) {
                     value = parseFloat(item.prices[0].value);
                 }
             });
@@ -147,7 +271,7 @@ export default class AlchemyProvider {
         return { symbol, value: 0 };
     }
     public static async walletTokens(address: string): Promise<any> {
-        const chains = [ base, bsc, polygon, avalanche, mainnet ];
+        const chains = AlchemyProvider.SUPPORTED_CHAINS;
         const wallets = {
             chains: [],
             tokens: [],
@@ -161,10 +285,11 @@ export default class AlchemyProvider {
             wallets.tokens.push(...result.tokens);
             wallets.amount[chain.id] = result.totalAmount;
             wallets.amount.total += result.totalAmount;
-            // console.log({ symbol: chain.name, amount: result.totalAmount, tokens: result.tokens.length })
+            // Logs.log({ symbol: chain.name, amount: result.totalAmount, tokens: result.tokens.length })
         }
 
-        wallets.tokens.sort((a, b) => b?.price.total - a?.price.total);
+        wallets.tokens.sort((a, b) => b?.price.total - a?.price.total)
+            .sort((a, b) => a.isNative ? -1 : 1)
 
         return wallets;
     }
@@ -190,7 +315,9 @@ export default class AlchemyProvider {
             decimals: chain.nativeCurrency.decimals,
             prices: [{...price, currency: 'usd'}],
         });
-        balances['null'] = { ...balances['null'], symbol: nativeTokenSymbol, decimals: chain.nativeCurrency.decimals };
+        if(balances['null']) {
+            balances['null'] = { ...balances['null'], symbol: nativeTokenSymbol, decimals: chain.nativeCurrency.decimals };
+        }
 
         const formattedTokens = allTokens.map(token => {
             const tokenFromAddress = balances[token.address];
@@ -212,15 +339,17 @@ export default class AlchemyProvider {
             return {
                 chainId,
                 address: token.address ?? null,
-                symbol: tokenFromAddress.symbol,
+                symbol: tokenFromAddress?.symbol,
                 price: selectedPrice || { value: 0, currency: 'usd', total: 0, balance: 0},
                 shortAddress: isNative ? chain.name : token.address.slice(0, 6)+'...'+token.address.slice(-4),
                 isNative,
             }
-        }).filter(token => token.price && token.price.total > 0.001);
+        }).filter(token => token.price && (token.price.total > 0.001 && token.price.total < 10_000_000));
         const totalAmount = formattedTokens.reduce((total, item) => total + (item.price?.total || 0), 0);
-        formattedTokens.sort((a, b) => b.price?.total - a.price?.total);
+        formattedTokens
+            .sort((a, b) => b.price?.total - a.price?.total);
 
+        Logs.watch('Formatted Tokens '+formattedTokens.length);
         const promises = [];
 
         formattedTokens.forEach((token) => {
@@ -241,7 +370,7 @@ export default class AlchemyProvider {
         const result = await AlchemyProvider.request(
             AlchemyProvider.getTransactionByAddressUrl(),
             {
-                "limit": 25,
+                "limit": 15,
                 'after': after,
                 "addresses": [
                     {
@@ -284,25 +413,75 @@ export default class AlchemyProvider {
         AlchemyProvider.TokenCache[chainId][tokenAddress] = result;
         return result;
     }
+    public static async nativeTokenBalance(walletAddress: string, chainId: number): Promise<{balanceWei: string, balanceEther: number, balanceFormatted: string}> {
+        try {
+            const data = await AlchemyProvider.request(AlchemyProvider.getNetworkApiUrl(chainId), {
+                id: chainId,
+                method: "eth_getBalance",
+                params: [
+                    walletAddress
+                ]
+            });
+            if(!data?.result) {
+                return { balanceWei: '0', balanceEther: 0, balanceFormatted: '0.00'};
+            }
+            const balanceWei = BigInt(data.result);
+            const balanceEther = Number(balanceWei) / Math.pow(10, 18);
+
+            return {
+                balanceWei: data.result,
+                balanceEther: balanceEther,
+                balanceFormatted: balanceEther.toFixed(6)
+            };
+        } catch(e) {
+            Logs.watch({ error: e.message, method: 'AlchemyProvider.nativeTokenBalance', walletAddress, chainId })
+        }
+    }
     public static async balances(walletAddress: string, chainId: number): Promise<{[key: string]: Token}> {
         if(!walletAddress) {
             return {};
         }
-        const data = await AlchemyProvider.request(AlchemyProvider.getNetworkApiUrl(chainId), {
-            id: chainId,
-            method: "alchemy_getTokenBalances",
-            params: [
-                walletAddress
-            ]
-        }, 'result');
+        let pageKey = null, hasTokenBalances = true, deep = 0;
+        const tokenBalances = [];
 
-        if(!data?.tokenBalances) {
-            return {};
-        }
+        do {
+            const params = {maxCount: 100};
+            if(pageKey) {
+                params['pageKey'] = pageKey;
+            }
+            const data = await AlchemyProvider.request(AlchemyProvider.getNetworkApiUrl(chainId), {
+                id: chainId,
+                method: "alchemy_getTokenBalances",
+                params: [
+                    walletAddress,
+                    "erc20",
+                    params
+                ]
+            });
+            deep++;
+            if(!data?.result?.tokenBalances) {
+                break;
+            }
+            tokenBalances.push(...data.result.tokenBalances);
+            pageKey = data.result.pageKey;
+            hasTokenBalances = data.result.tokenBalances.length > 0;
+        } while(hasTokenBalances && deep < 20);
 
-        const tokenList = data.tokenBalances.filter((token) => {
+        const chain = AlchemyProvider.getChain(chainId);
+        Logs.watch(' => '+chain.name+' '+tokenBalances.length)
+        const tokenList = tokenBalances.filter((token) => {
             return token.tokenBalance !== "0";
         });
+        const nativeToken = await AlchemyProvider.nativeTokenBalance(walletAddress, chainId);
+
+        tokenList.push({
+            contractAddress: 'null',
+            address: 'Native',
+            tokenBalance: nativeToken?.balanceWei || '0',
+            symbol: chain.nativeCurrency.symbol,
+            decimals: chain.nativeCurrency.decimals,
+            name: chain.nativeCurrency.name,
+        })
         const tokenBalancePromises = [];
         const balances = {};
         const symbols = [];
@@ -316,7 +495,7 @@ export default class AlchemyProvider {
         const tokensMetaMetaData = await Promise.all(tokenBalancePromises);
         const tokens = {};
         tokensMetaMetaData.forEach((tokenMetaData) => {
-            tokens[tokenMetaData.address.toLowerCase()] = {
+            tokens[tokenMetaData.address?.toLowerCase()] = {
                 address: tokenMetaData.address,
                 name: tokenMetaData.name,
                 symbol: tokenMetaData.symbol,
@@ -325,6 +504,7 @@ export default class AlchemyProvider {
                 balance: balances[tokenMetaData.address],
             };
         });
+        Logs.watch(' => Post filter '+chain.name+' '+Object.keys(tokens).length)
         return tokens;
     }
 

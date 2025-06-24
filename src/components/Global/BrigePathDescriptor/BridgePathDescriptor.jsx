@@ -82,7 +82,7 @@ export default function BridgePathDescriptor({ fromToken, token, network, showTi
                 <div className={styles['bridge-form-receive-details-container']}>
                     {
                         path.details?.map(({token, network, logo, title, description}) => (
-                            <div className={bfstyles['bridge-form-item-token-description']}>
+                            <div key={title} className={bfstyles['bridge-form-item-token-description']}>
                                 {
                                     (token || network)
                                         ? (
@@ -108,8 +108,8 @@ export default function BridgePathDescriptor({ fromToken, token, network, showTi
                                         {
                                             Array.isArray(description)
                                                 ? (
-                                                    description.map((descriptionLine) => (
-                                                        <div className={styles['bridge-form-details-description']}>{descriptionLine}</div>
+                                                    description.map((descriptionLine, index) => (
+                                                        <div key={index} className={styles['bridge-form-details-description']}>{descriptionLine}</div>
                                                     ))
                                                 )
                                                 : <div className={styles['bridge-form-details-description']}>{description}</div>

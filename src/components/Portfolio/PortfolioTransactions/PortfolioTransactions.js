@@ -7,6 +7,7 @@ import Translate from "@/src/components/Translate/Translate";
 import useGetTransactions from "@/src/hooks/useGetTransactions";
 import useRecentTrackedAddresses from "@/src/hooks/useRecentTrackedAddresses";
 import recentAddresses from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
+import {Logs} from "@/src/config/Logs";
 
 export default function PortfolioTransactions({ address, lastUpdate }) {
 
@@ -61,7 +62,7 @@ export default function PortfolioTransactions({ address, lastUpdate }) {
     useEffect(() => {
         if(recentAddresses.transactions[address]) {
             setTransactions(recentAddresses.transactions[address]);
-            console.log(recentAddresses)
+            Logs.log(recentAddresses)
             return;
         }
         fetchTransactions(address, []);

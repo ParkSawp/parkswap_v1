@@ -2,7 +2,6 @@ import * as fns from "date-fns";
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
 import {ethers, formatEther, formatUnits} from "ethers";
 import { ERC20_ABI } from '@/src/config/constants';
-import * as net from "node:net";
 
 type ParkswapLogFormat = {
     name: string;
@@ -86,7 +85,11 @@ export default class TransactionFormatter {
         }
         const args = details.args.map(arg => {
             if(typeof arg === 'bigint' || typeof arg === 'number') {
-                return formatUnits(arg, token ? token.decimals : network.nativeCurrency.decimals);
+                try {
+                    return formatUnits(BigInt(arg), token ? token.decimals : network.nativeCurrency.decimals)
+                } catch (e) {
+                    return arg;
+                }
             }
             return arg;
         });
@@ -135,10 +138,10 @@ export default class TransactionFormatter {
             number: transaction.blockNumber,
             internal: transaction.internalTxns,
             gas: {
-                gas: formatEther(parseInt(transaction.gas)),
-                price: formatEther(parseInt(transaction.gasPrice)),
+                gas: formatEther(BigInt(transaction.gas)),
+                price: formatEther(BigInt(transaction.gasPrice)),
                 priceGwei: (parseInt(transaction.gasPrice) / 1_000_000_000).toFixed(6),
-                fee: formatEther(parseInt(transaction.gasPrice) * parseInt(transaction.gas)),
+                fee: formatEther(BigInt(BigInt(transaction.gasPrice) * BigInt(transaction.gas))),
 
             },
             eventNames,

@@ -188,7 +188,7 @@ export default function Home() {
               <h1 className={styles["main-content-title"]}>FEATURES</h1>
               <div className={styles["main-content-features"]}>
                 {
-                  features.map((feature) => <HomeFeature key={feature.title} feature={feature}/>)
+                  features.map((feature, index) => <HomeFeature key={feature.title+'_index'} feature={feature}/>)
                 }
               </div>
             </section>

@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import BaseScam from "@/src/core/ApiServices/NetworkScam/BaseScam";
 import TransactionRepository, {TransactionStatus} from "@/src/core/Models/TransactionRepository";
+import {Logs} from "@/src/config/Logs";
 
 async function removeExpiredTransactions(){
     const transactions = await TransactionRepository.getExpiredTransactions(60);
     const transactionIds = transactions.map(({id}) => id);
 
-    console.log('DELETE EXPIRED TRANSACTIONS: ', transactionIds);
+    Logs.log('DELETE EXPIRED TRANSACTIONS: ', transactionIds);
     await TransactionRepository.deleteByIds(transactionIds);
 }
 
@@ -15,7 +16,7 @@ async function updatePendingTransaction(transaction) {
     if(transactionStatus.message === 'OK') {
         const status = (Number(transactionStatus.result.isError) === 1 ? TransactionStatus.failed : TransactionStatus.success);
         await TransactionRepository.updateTransactionStatus(transaction.id, status);
-        console.log('Transaction updated status : '+transaction.hash+' -> to '+status);
+        Logs.log('Transaction updated status : '+transaction.hash+' -> to '+status);
     }
 }
 async function updatePendingTransactions() {

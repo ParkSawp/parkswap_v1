@@ -1,7 +1,7 @@
 import ITokenProvider from "@/src/core/ApiServices/TokensProvider/ITokenProvider";
 import { type Token } from "@/src/core/Models/TokenRepository";
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
-import connectKitConfig from '../../../config/connectKitConfig.js';
+import {Logs} from "@/src/config/Logs";
 
 
 type CoinGekoToken = {symbol: string, id: string, name: string};
@@ -65,37 +65,49 @@ export default class CoinGeckoProvider implements ITokenProvider {
         if(coinGekoToken.details) {
             return coinGekoToken.details;
         }
-        const tokenResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/'+id);
-        const details = await tokenResponse.json();
-        if(details.status?.error_code) {
+        try {
+            const tokenResponse = await fetch(process.env['COIN_GECKO_TOKEN_URL']+'/'+id);
+            const details = await tokenResponse.json();
+            if(details.status?.error_code) {
+                return {} as CoinGekoTokenDetail;
+            }
+            coinGekoToken.details = details;
+            return details;
+        } catch (e) {
             return {} as CoinGekoTokenDetail;
         }
-        coinGekoToken.details = details;
-        return details;
     }
 
     public async getTokenIcon(token): Promise<string> {
+        if(!token.symbol) {
+            return CoinGeckoProvider.IconNotFoundSrc;
+        }
         const tokens = await this.getAll();
         const coinGekoToken = tokens[token.symbol.toLowerCase()] ?? null;
 
         if(!coinGekoToken) {
-            console.log({ message: 'Token not found on coin gueko', token: token.symbol })
+            Logs.log({ message: 'Token not found on coin gueko', token: token.symbol })
             return CoinGeckoProvider.IconNotFoundSrc;
         }
-        const coinGekoTokenDetails = await this.getTokenDetails(coinGekoToken.id);
-        if(!coinGekoTokenDetails) {
+        try {
+            const coinGekoTokenDetails = await this.getTokenDetails(coinGekoToken.id);
+            if(!coinGekoTokenDetails) {
+                return CoinGeckoProvider.IconNotFoundSrc;
+            }
+            if(!coinGekoTokenDetails.image) {
+                Logs.log({ message: 'Token image not found on coin gueko', token: token.symbol, geko: coinGekoTokenDetails});
+                return CoinGeckoProvider.IconNotFoundSrc;
+            }
+            return coinGekoTokenDetails.image.small.replace(/\?[0-9]+$/, '');
+        } catch (e) {
+            Logs.log({ message: 'Token image not found on coin gueko', token: token.symbol, error: e.message });
             return CoinGeckoProvider.IconNotFoundSrc;
         }
-        if(!coinGekoTokenDetails.image) {
-            console.log({ message: 'Token image not found on coin gueko', token: token.symbol, geko: coinGekoTokenDetails});
-            return CoinGeckoProvider.IconNotFoundSrc;
-        }
-        return coinGekoTokenDetails.image.small.replace(/\?[0-9]+$/, '');
     }
 
     public async getToken(address: string, chainId: string): Promise<Token|null> {
         const token = await AlchemyProvider.tokenMetaData(address, Number(chainId));
-        console.log({
+        Logs.log({
             searchToken: address,
             chainId,
             token
@@ -107,7 +119,7 @@ export default class CoinGeckoProvider implements ITokenProvider {
         if(!logoUri) {
             logoUri = await this.getTokenIcon(token);
         }
-        console.log({ address, chainId, ...token, logoUri })
+        Logs.log({ address, chainId, ...token, logoUri })
 
         return {
             address: token.address,

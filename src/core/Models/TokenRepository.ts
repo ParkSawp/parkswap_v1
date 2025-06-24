@@ -1,4 +1,5 @@
 import {supabase} from "@/src/config/db";
+import {Logs} from "@/src/config/Logs";
 
 export type Token = {
     name: string;
@@ -32,11 +33,11 @@ export default class TokenRepository {
         }
         const { data, error } = await TokenRepository.table().insert(token).select();
         if(error) {
-            console.error('ERROR: CREATE TOKEN ('+token.name+') : '+ token.address)
+            Logs.error(' CREATE TOKEN ('+token.name+') : '+ token.address)
             return null;
         }
         const createdToken = data[0];
-        console.log('CREATE TOKEN ('+token.name+') : '+ createdToken.address);
+        Logs.log('CREATE TOKEN ('+token.name+') : '+ createdToken.address);
         return createdToken;
     }
 

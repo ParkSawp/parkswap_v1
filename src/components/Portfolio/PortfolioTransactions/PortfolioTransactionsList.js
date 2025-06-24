@@ -24,7 +24,7 @@ export default function PortfolioTransactionsList({ transactions = [], showMoreH
         <div  className={styles['history-transactions-list-container']} >
             {
                 transactions.map((transaction, index) => (
-                    <div onClick={() => console.log(transaction)} key={transaction.hash} className={styles['history-transaction-container']+' '+((showMoreHash === transaction.hash) ? styles['active'] : '')}>
+                    <div key={transaction.hash} className={styles['history-transaction-container']+' '+((showMoreHash === transaction.hash) ? styles['active'] : '')}>
                         <div key={transaction.hash} onClick={() => showMore(transaction.hash)} className={styles['history-transaction-row-container']}>
                             <div className={styles['history-transaction-type-container']}>
                                 <div className={styles['history-transaction-type']}>

@@ -4,6 +4,7 @@ import styles from "@/public/css/index.module.css";
 import {useTranslation} from "react-i18next";
 import i18n from "@/src/config/i18n";
 import Translate from "@/src/components/Translate/Translate";
+// import {Logs} from "@/src/config/Logs";
 
 export default function HomeFeature({ feature }) {
     // const [title, setTitle] = useState(feature.title);
@@ -13,7 +14,7 @@ export default function HomeFeature({ feature }) {
     // useEffect(() => {
     //     setTitle(t(feature.title));
     //     setDescription(t(feature.description));
-    //     console.log({ title: i18n.t(feature.title), description: i18n.t(feature.description) });
+    //     Logs.log({ title: i18n.t(feature.title), description: i18n.t(feature.description) });
     // }, []);
 
     return (

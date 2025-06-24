@@ -3,6 +3,7 @@ import QuoteFormatter from "@/src/core/Fotmatter/QuoteFormatter";
 import TransactionRepository from "@/src/core/Models/TransactionRepository";
 import ParkSwapFee from "@/src/core/ParkSwap/ParkSwapFee";
 import {formatUnits} from "ethers";
+import {Logs} from "@/src/config/Logs";
 
 type RouteFillItem = {
     from: string;
@@ -78,7 +79,7 @@ export default class Ox {
             buyToken: Ox.getRealAddress(buyToken),
             sellAmount: amount.toString(),
         };
-        console.log({ params })
+        Logs.log({ params })
         if(slippage) {
             params['slippageBps'] = (slippage * 100).toString();
         }
@@ -108,7 +109,7 @@ export default class Ox {
         if(slippage) {
             params['slippageBps'] = slippage * 100;
         }
-        console.log({ params })
+        Logs.log({ params })
         const priceParams = new URLSearchParams(params);
 
         const priceResponse = await Ox.fetch('/swap/permit2/quote', priceParams);

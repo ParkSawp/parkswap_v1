@@ -157,13 +157,13 @@ function HomeComponent({ params }) {
                                     <button  className={styles['wallet-option-item-button']} onClick={reloadCurrentAddress} >
                                         <ReloadIcon />
                                     </button>
-                                    <span>{formatDistance(currentDate, lastUpdate, { addSuffix: true })}</span>
+                                    <span className={styles['wallet-option-item-button-label']} >{formatDistance(currentDate, lastUpdate, { addSuffix: true })}</span>
                                 </div>
                                 <div className={styles['wallet-option-item']} onClick={showTokens}>
-                                    <span>Portfolio</span>
+                                    <span className={styles['wallet-option-item-button-label']} >Portfolio</span>
                                 </div>
                                 <div className={styles['wallet-option-item']} onClick={showHistory} >
-                                    <span>History</span>
+                                    <span className={styles['wallet-option-item-button-label']} >History</span>
                                 </div>
                                 {/*<div className={styles['wallet-option-item']} onClick={showSettings}>Settings</div>*/}
                             </div>

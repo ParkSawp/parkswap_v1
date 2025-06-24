@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
+import {Logs} from "@/src/config/Logs";
 
 export default function BlogReveal({ children, delay = .25, ...props }) {
 
@@ -12,7 +13,7 @@ export default function BlogReveal({ children, delay = .25, ...props }) {
         if(!inInView) {
             return;
         }
-        console.log(inInView)
+        Logs.log(inInView)
         mainControls.start('visible');
 
     }, [inInView]);

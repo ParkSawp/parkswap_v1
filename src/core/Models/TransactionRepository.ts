@@ -1,4 +1,5 @@
 import {supabase} from "@/src/config/db";
+import {Logs} from "@/src/config/Logs";
 
 export enum TransactionType {
     swap = 'swap',
@@ -52,7 +53,7 @@ export default class TransactionRepository {
             });
 
         if(error) {
-            console.log('ERROR: Error when try to find existing transaction', { address, type, from_token, to_token, to });
+            Logs.log('ERROR: Error when try to find existing transaction', { address, type, from_token, to_token, to });
             return null;
         }
 
@@ -69,7 +70,7 @@ export default class TransactionRepository {
         const timeAgo = (new Date((new Date()).getTime() - time*60000)).toISOString()
             .replace('T', ' ')
             .replace('Z', '');
-        console.log(timeAgo);
+        Logs.log(timeAgo);
         const { data } = await TransactionRepository.table()
             .select()
             .lte('created_at', timeAgo)
@@ -96,11 +97,11 @@ export default class TransactionRepository {
             point: transaction.point
         }).select();
         if(error || !data[0]) {
-            console.error('ERROR: TRANSACTION NOT CREATED ('+error.message+') ');
+            Logs.error('ERROR: TRANSACTION NOT CREATED ('+error.message+') ');
             return null;
         }
         const createdTransaction = data[0];
-        console.log('SUCCESS: TRANSACTION CREATED ('+createdTransaction.id+') ');
+        Logs.log('SUCCESS: TRANSACTION CREATED ('+createdTransaction.id+') ');
         return createdTransaction;
     }
 
@@ -144,7 +145,7 @@ export default class TransactionRepository {
         }).match({ id: transactionId, status: TransactionStatus.created });
 
         if(error) {
-            console.log('ERROR: error while attempt to update transaction '+ error.message);
+            Logs.log('error while attempt to update transaction '+ error.message);
         }
     }
 

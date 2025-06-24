@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './SwapResumeModal.module.css';
 import Modal from "@/src/components/Modal/Modal";
 import {useSendTransaction, useSignTypedData} from "wagmi";
-import {formatEther} from "ethers";
+import {formatEther, Log} from "ethers";
 import {Toast, truncateDecimal} from "@/src/config/functions";
 import useRecentToken from "@/src/hooks/useRecentToken";
 import {numberToHex, size, concat} from "viem";
@@ -13,6 +13,7 @@ import useAppSettings from "@/src/hooks/useAppSettings";
 import useGetUsdPrice from "@/src/hooks/useGetUsdPrice";
 import Amount from "@/src/components/Global/Amount/Amount";
 import SuccessSwapToast from "@/src/components/Modal/SwapResumeModal/SuccessSwapToast";
+import {Logs} from "@/src/config/Logs";
 
 const SwapResumeTokenDetail = ({ token, amount }) => {
     const { amount: usdAmount, updateAmount } = useGetUsdPrice();
@@ -94,7 +95,7 @@ export default function SwapResumeModal({onClose, quote, sellToken, buyToken, se
             return;
         }
         if(error) {
-            console.log(error)
+            Logs.error(error)
             Toast.error("Swap rejected by user", settings.notificationSound);
         }
     }, [error, transactionSentHash]);
