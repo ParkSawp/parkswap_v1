@@ -35,7 +35,7 @@ export default function NetworkTokenList({ tokens, chainId }) {
                                                 : <Address value={token.address}/>
                                         }
                                     </div>
-                                    <div className={styles['portfolio-wallet-table-column']}><Amount amount={token.price.balance} devise={''}/></div>
+                                    <div className={styles['portfolio-wallet-table-column']+' '+ styles['mobile-only']}><Amount amount={token.price.balance} devise={''}/></div>
                                 </div>
                             </div>
                         </td>

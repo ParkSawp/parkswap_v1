@@ -233,6 +233,9 @@
     background: var(--lite-red);
     color: white;
 }
+.mobile-only {
+    display: block;
+}
 .desktop-only {
     display: none;
 }
@@ -246,6 +249,9 @@
     .portfolio-wallet-container-body td:first-child {
         text-align: left;
         padding-left: 1rem;
+    }
+    .mobile-only {
+        display: none;
     }
     .desktop-only {
         display: table-cell;
