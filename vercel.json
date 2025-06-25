@@ -3,16 +3,9 @@
     {
       "path": "/api/cron",
       "schedule": "0 1 * * *"
-    },
-    {
-      "path": "/app/api/cron",
-      "schedule": "0 1 * * *"
     }
   ],
   "functions": {
-    "/app/api/**/*": {
-      "maxDuration": 60
-    },
     "/api/**/*": {
       "maxDuration": 60
     }
