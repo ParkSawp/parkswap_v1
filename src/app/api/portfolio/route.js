@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import AlchemyProvider from "@/src/core/ApiServices/TokensProvider/AlchemyProvider";
 
-export const maxDuration = 600;
 
 export async function GET(request) {
   const { searchParams } = request.nextUrl

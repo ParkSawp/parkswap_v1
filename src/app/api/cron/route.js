@@ -3,8 +3,6 @@ import BaseScam from "@/src/core/ApiServices/NetworkScam/BaseScam";
 import TransactionRepository, {TransactionStatus} from "@/src/core/Models/TransactionRepository";
 import {Logs} from "@/src/config/Logs";
 
-export const maxDuration = 600;
-
 async function removeExpiredTransactions(){
     const transactions = await TransactionRepository.getExpiredTransactions(60);
     const transactionIds = transactions.map(({id}) => id);
